@@ -6,27 +6,27 @@
 <title>Wolfburn Operations — Divergence</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0F0B08;
-    --bg-2: #14100C;
-    --bg-3: #1A1410;
-    --bg-4: #221B14;
-    --line: #2A2118;
-    --line-2: #3A2E22;
-    --copper: #B5894C;
-    --amber: #D9A551;
-    --cream: #F5EDE0;
-    --muted: #9A8470;
-    --muted-2: #6B5A48;
-    --green: #7EA67B;
-    --red: #C26B5C;
-    --blue: #6A8AA6;
+    --bg: #0A0A0F;
+    --bg-2: #11121A;
+    --bg-3: #181A24;
+    --bg-4: #20232E;
+    --line: #25283A;
+    --line-2: #353852;
+    --copper: #8B5CF6;          /* electric violet · primary accent */
+    --amber: #3B82F6;            /* modern blue · secondary accent */
+    --cream: #F4F4F8;            /* off-white foreground */
+    --muted: #9CA0B5;
+    --muted-2: #6B6F88;
+    --green: #10B981;            /* emerald */
+    --red: #EF4444;              /* modern red */
+    --blue: #06B6D4;             /* cyan */
     --display: 'Space Grotesk', 'Helvetica Neue', sans-serif;
     --body: 'Inter', system-ui, sans-serif;
     --mono: 'JetBrains Mono', 'SF Mono', monospace;
-    --serif: 'Playfair Display', Georgia, serif;
+    --serif: 'Space Grotesk', sans-serif;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { background: var(--bg); color: var(--cream); font-family: var(--body); font-weight: 400; font-size: 14px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
@@ -264,7 +264,7 @@
     right: -10%;
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(217,165,81,0.06) 0%, transparent 60%);
+    background: radial-gradient(circle, rgba(139,92,246,0.08) 0%, transparent 60%);
     pointer-events: none;
   }
   .atlas-orb-wrap {
@@ -301,8 +301,8 @@
     align-items: center;
     gap: 8px;
     padding: 5px 12px;
-    background: rgba(126,166,123,0.12);
-    border: 1px solid rgba(126,166,123,0.3);
+    background: rgba(16,185,129,0.12);
+    border: 1px solid rgba(16,185,129,0.3);
     border-radius: 100px;
     font-family: var(--mono);
     font-size: 10px;
@@ -494,7 +494,7 @@
     height: 8px;
     border-radius: 50%;
   }
-  .agent-card .health.ok { background: var(--green); box-shadow: 0 0 8px rgba(126,166,123,0.5); }
+  .agent-card .health.ok { background: var(--green); box-shadow: 0 0 8px rgba(16,185,129,0.5); }
   .agent-card .health.warn { background: var(--amber); }
   .agent-card .health.err { background: var(--red); }
   .agent-card .health.idle { background: var(--muted-2); }
@@ -829,10 +829,10 @@
     letter-spacing: 0.14em;
     text-transform: uppercase;
   }
-  .pill.ok { background: rgba(126,166,123,0.12); color: var(--green); border: 1px solid rgba(126,166,123,0.3); }
-  .pill.warn { background: rgba(217,165,81,0.12); color: var(--amber); border: 1px solid rgba(217,165,81,0.3); }
-  .pill.err { background: rgba(194,107,92,0.12); color: var(--red); border: 1px solid rgba(194,107,92,0.3); }
-  .pill.info { background: rgba(106,138,166,0.12); color: var(--blue); border: 1px solid rgba(106,138,166,0.3); }
+  .pill.ok { background: rgba(16,185,129,0.12); color: var(--green); border: 1px solid rgba(16,185,129,0.3); }
+  .pill.warn { background: rgba(59,130,246,0.12); color: var(--amber); border: 1px solid rgba(59,130,246,0.3); }
+  .pill.err { background: rgba(239,68,68,0.12); color: var(--red); border: 1px solid rgba(239,68,68,0.3); }
+  .pill.info { background: rgba(6,182,212,0.12); color: var(--blue); border: 1px solid rgba(6,182,212,0.3); }
   .pill.muted { background: var(--bg-4); color: var(--muted); border: 1px solid var(--line-2); }
 
   .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
@@ -920,7 +920,7 @@
   .modal-wrap {
     position: fixed;
     inset: 0;
-    background: rgba(15,11,8,0.85);
+    background: rgba(10,10,15,0.88);
     backdrop-filter: blur(8px);
     z-index: 1000;
     display: none;
@@ -1067,21 +1067,21 @@
             <svg viewBox="0 0 160 160">
               <defs>
                 <radialGradient id="orb-grad" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stop-color="#D9A551" stop-opacity="0.9" />
-                  <stop offset="40%" stop-color="#B5894C" stop-opacity="0.5" />
-                  <stop offset="100%" stop-color="#0F0B08" stop-opacity="0" />
+                  <stop offset="0%" stop-color="#3B82F6" stop-opacity="0.9" />
+                  <stop offset="40%" stop-color="#8B5CF6" stop-opacity="0.5" />
+                  <stop offset="100%" stop-color="#0A0A0F" stop-opacity="0" />
                 </radialGradient>
                 <linearGradient id="ring-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#D9A551" />
-                  <stop offset="100%" stop-color="#B5894C" />
+                  <stop offset="0%" stop-color="#3B82F6" />
+                  <stop offset="100%" stop-color="#8B5CF6" />
                 </linearGradient>
               </defs>
-              <circle cx="80" cy="80" r="78" fill="none" stroke="#3A2E22" stroke-width="1" />
-              <circle cx="80" cy="80" r="64" fill="none" stroke="#3A2E22" stroke-width="1" stroke-dasharray="2 4" />
+              <circle cx="80" cy="80" r="78" fill="none" stroke="#353852" stroke-width="1" />
+              <circle cx="80" cy="80" r="64" fill="none" stroke="#353852" stroke-width="1" stroke-dasharray="2 4" />
               <circle cx="80" cy="80" r="50" fill="url(#orb-grad)" />
               <circle cx="80" cy="80" r="30" fill="none" stroke="url(#ring-grad)" stroke-width="1.5" opacity="0.6" />
               <!-- waveform -->
-              <g stroke="#F5EDE0" stroke-width="2" stroke-linecap="round">
+              <g stroke="#F4F4F8" stroke-width="2" stroke-linecap="round">
                 <line x1="60" y1="78" x2="60" y2="82" />
                 <line x1="66" y1="73" x2="66" y2="87" />
                 <line x1="72" y1="68" x2="72" y2="92" />
@@ -1091,10 +1091,10 @@
                 <line x1="96" y1="78" x2="96" y2="82" />
               </g>
               <!-- orbital dots -->
-              <circle cx="80" cy="2" r="2" fill="#D9A551" />
-              <circle cx="158" cy="80" r="2" fill="#B5894C" opacity="0.6" />
-              <circle cx="80" cy="158" r="2" fill="#B5894C" opacity="0.4" />
-              <circle cx="2" cy="80" r="2" fill="#B5894C" opacity="0.6" />
+              <circle cx="80" cy="2" r="2" fill="#3B82F6" />
+              <circle cx="158" cy="80" r="2" fill="#8B5CF6" opacity="0.6" />
+              <circle cx="80" cy="158" r="2" fill="#8B5CF6" opacity="0.4" />
+              <circle cx="2" cy="80" r="2" fill="#8B5CF6" opacity="0.6" />
             </svg>
           </div>
           <div>
@@ -1129,7 +1129,7 @@
           <div class="kpi-value">156<span class="unit">SKUs</span></div>
           <div class="kpi-delta up">storefront sync</div>
           <svg class="kpi-spark" width="60" height="22" viewBox="0 0 60 22">
-            <polyline fill="none" stroke="#7EA67B" stroke-width="1.5" points="0,16 8,14 16,15 24,11 32,12 40,8 48,9 60,3" />
+            <polyline fill="none" stroke="#10B981" stroke-width="1.5" points="0,16 8,14 16,15 24,11 32,12 40,8 48,9 60,3" />
           </svg>
         </div>
         <div class="kpi">
@@ -1137,7 +1137,7 @@
           <div class="kpi-value">12</div>
           <div class="kpi-delta up">102 collectors · 71 retail</div>
           <svg class="kpi-spark" width="60" height="22" viewBox="0 0 60 22">
-            <polyline fill="none" stroke="#B5894C" stroke-width="1.5" points="0,14 8,12 16,13 24,10 32,9 40,11 48,7 60,5" />
+            <polyline fill="none" stroke="#8B5CF6" stroke-width="1.5" points="0,14 8,12 16,13 24,10 32,9 40,11 48,7 60,5" />
           </svg>
         </div>
         <div class="kpi" style="opacity: 0.55;">
@@ -1155,14 +1155,14 @@
           <div class="kpi-value">82<span class="unit">/100</span></div>
           <div class="kpi-delta up">▲ 7 since Apr 29</div>
           <svg class="kpi-spark" width="60" height="22" viewBox="0 0 60 22">
-            <rect x="0" y="6" width="6" height="14" fill="#7EA67B"/>
-            <rect x="8" y="3" width="6" height="17" fill="#7EA67B"/>
-            <rect x="16" y="8" width="6" height="12" fill="#D9A551"/>
-            <rect x="24" y="4" width="6" height="16" fill="#7EA67B"/>
-            <rect x="32" y="2" width="6" height="18" fill="#7EA67B"/>
-            <rect x="40" y="5" width="6" height="15" fill="#7EA67B"/>
-            <rect x="48" y="3" width="6" height="17" fill="#7EA67B"/>
-            <rect x="56" y="6" width="4" height="14" fill="#7EA67B"/>
+            <rect x="0" y="6" width="6" height="14" fill="#10B981"/>
+            <rect x="8" y="3" width="6" height="17" fill="#10B981"/>
+            <rect x="16" y="8" width="6" height="12" fill="#3B82F6"/>
+            <rect x="24" y="4" width="6" height="16" fill="#10B981"/>
+            <rect x="32" y="2" width="6" height="18" fill="#10B981"/>
+            <rect x="40" y="5" width="6" height="15" fill="#10B981"/>
+            <rect x="48" y="3" width="6" height="17" fill="#10B981"/>
+            <rect x="56" y="6" width="4" height="14" fill="#10B981"/>
           </svg>
         </div>
       </div>
@@ -1415,15 +1415,15 @@
           <svg viewBox="0 0 1180 460" width="1180" height="460" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                <path d="M 0 0 L 10 5 L 0 10 z" fill="#3A2E22"/>
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="#353852"/>
               </marker>
               <marker id="arrow-c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                <path d="M 0 0 L 10 5 L 0 10 z" fill="#B5894C"/>
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="#8B5CF6"/>
               </marker>
             </defs>
 
             <!-- Lane labels -->
-            <g font-family="JetBrains Mono" font-size="10" fill="#6B5A48" letter-spacing="2.4">
+            <g font-family="JetBrains Mono" font-size="10" fill="#6B6F88" letter-spacing="2.4">
               <text x="20" y="22">TRIGGERS</text>
               <text x="270" y="22">ORCHESTRATOR</text>
               <text x="500" y="22">SPECIALIST AGENTS</text>
@@ -1432,47 +1432,47 @@
             </g>
 
             <!-- Lane separators -->
-            <line x1="240" y1="40" x2="240" y2="450" stroke="#221B14" stroke-dasharray="2 4" />
-            <line x1="470" y1="40" x2="470" y2="450" stroke="#221B14" stroke-dasharray="2 4" />
-            <line x1="830" y1="40" x2="830" y2="450" stroke="#221B14" stroke-dasharray="2 4" />
-            <line x1="1030" y1="40" x2="1030" y2="450" stroke="#221B14" stroke-dasharray="2 4" />
+            <line x1="240" y1="40" x2="240" y2="450" stroke="#20232E" stroke-dasharray="2 4" />
+            <line x1="470" y1="40" x2="470" y2="450" stroke="#20232E" stroke-dasharray="2 4" />
+            <line x1="830" y1="40" x2="830" y2="450" stroke="#20232E" stroke-dasharray="2 4" />
+            <line x1="1030" y1="40" x2="1030" y2="450" stroke="#20232E" stroke-dasharray="2 4" />
 
             <!-- TRIGGERS column -->
-            <g font-family="Inter" font-size="11" fill="#F5EDE0">
+            <g font-family="Inter" font-size="11" fill="#F4F4F8">
               <g transform="translate(20, 60)">
-                <rect width="200" height="44" fill="#1A1410" stroke="#2A2118" rx="3"/>
+                <rect width="200" height="44" fill="#181A24" stroke="#25283A" rx="3"/>
                 <text x="14" y="20" font-weight="500">New product launch</text>
-                <text x="14" y="34" fill="#9A8470" font-size="10">Shopify webhook</text>
+                <text x="14" y="34" fill="#9CA0B5" font-size="10">Shopify webhook</text>
               </g>
               <g transform="translate(20, 118)">
-                <rect width="200" height="44" fill="#1A1410" stroke="#2A2118" rx="3"/>
+                <rect width="200" height="44" fill="#181A24" stroke="#25283A" rx="3"/>
                 <text x="14" y="20" font-weight="500">Low inventory</text>
-                <text x="14" y="34" fill="#9A8470" font-size="10">Threshold trigger</text>
+                <text x="14" y="34" fill="#9CA0B5" font-size="10">Threshold trigger</text>
               </g>
               <g transform="translate(20, 176)">
-                <rect width="200" height="44" fill="#1A1410" stroke="#2A2118" rx="3"/>
+                <rect width="200" height="44" fill="#181A24" stroke="#25283A" rx="3"/>
                 <text x="14" y="20" font-weight="500">Campaign brief</text>
-                <text x="14" y="34" fill="#9A8470" font-size="10">Wesley · voice or text</text>
+                <text x="14" y="34" fill="#9CA0B5" font-size="10">Wesley · voice or text</text>
               </g>
               <g transform="translate(20, 234)">
-                <rect width="200" height="44" fill="#1A1410" stroke="#2A2118" rx="3"/>
+                <rect width="200" height="44" fill="#181A24" stroke="#25283A" rx="3"/>
                 <text x="14" y="20" font-weight="500">Audit alert</text>
-                <text x="14" y="34" fill="#9A8470" font-size="10">Auditor / Sentinel</text>
+                <text x="14" y="34" fill="#9CA0B5" font-size="10">Auditor / Sentinel</text>
               </g>
               <g transform="translate(20, 292)">
-                <rect width="200" height="44" fill="#1A1410" stroke="#2A2118" rx="3"/>
+                <rect width="200" height="44" fill="#181A24" stroke="#25283A" rx="3"/>
                 <text x="14" y="20" font-weight="500">Daily / weekly cron</text>
-                <text x="14" y="34" fill="#9A8470" font-size="10">Scheduled</text>
+                <text x="14" y="34" fill="#9CA0B5" font-size="10">Scheduled</text>
               </g>
               <g transform="translate(20, 350)">
-                <rect width="200" height="44" fill="#1A1410" stroke="#2A2118" rx="3"/>
+                <rect width="200" height="44" fill="#181A24" stroke="#25283A" rx="3"/>
                 <text x="14" y="20" font-weight="500">Customer event</text>
-                <text x="14" y="34" fill="#9A8470" font-size="10">Klaviyo / Shopify</text>
+                <text x="14" y="34" fill="#9CA0B5" font-size="10">Klaviyo / Shopify</text>
               </g>
             </g>
 
             <!-- Connector arrows triggers -> Atlas -->
-            <g stroke="#3A2E22" stroke-width="1.2" fill="none" marker-end="url(#arrow)">
+            <g stroke="#353852" stroke-width="1.2" fill="none" marker-end="url(#arrow)">
               <path d="M 220 82 Q 250 82 280 200" />
               <path d="M 220 140 Q 250 140 280 210" />
               <path d="M 220 198 Q 250 198 280 220" />
@@ -1483,15 +1483,15 @@
 
             <!-- ATLAS in center -->
             <g transform="translate(260, 170)">
-              <circle cx="100" cy="60" r="60" fill="#1A1410" stroke="#B5894C" stroke-width="1.5"/>
-              <circle cx="100" cy="60" r="48" fill="none" stroke="#B5894C" stroke-width="0.5" stroke-dasharray="2 3" opacity="0.6"/>
+              <circle cx="100" cy="60" r="60" fill="#181A24" stroke="#8B5CF6" stroke-width="1.5"/>
+              <circle cx="100" cy="60" r="48" fill="none" stroke="#8B5CF6" stroke-width="0.5" stroke-dasharray="2 3" opacity="0.6"/>
               <circle cx="100" cy="60" r="32" fill="url(#orb-grad)" opacity="0.5"/>
-              <text x="100" y="58" text-anchor="middle" font-family="Playfair Display" font-size="22" font-weight="600" fill="#F5EDE0">Atlas</text>
-              <text x="100" y="74" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#B5894C" letter-spacing="1.5">DISPATCHER</text>
+              <text x="100" y="58" text-anchor="middle" font-family="Playfair Display" font-size="22" font-weight="600" fill="#F4F4F8">Atlas</text>
+              <text x="100" y="74" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#8B5CF6" letter-spacing="1.5">DISPATCHER</text>
             </g>
 
             <!-- Atlas -> agents -->
-            <g stroke="#B5894C" stroke-width="1.2" fill="none" marker-end="url(#arrow-c)" opacity="0.7">
+            <g stroke="#8B5CF6" stroke-width="1.2" fill="none" marker-end="url(#arrow-c)" opacity="0.7">
               <path d="M 460 200 Q 480 200 500 80" />
               <path d="M 460 210 Q 480 210 500 130" />
               <path d="M 460 220 Q 480 220 500 180" />
@@ -1502,83 +1502,83 @@
             </g>
 
             <!-- AGENTS column -->
-            <g font-family="Inter" font-size="11" fill="#F5EDE0">
+            <g font-family="Inter" font-size="11" fill="#F4F4F8">
               <g transform="translate(490, 62)">
-                <rect width="180" height="40" fill="#1A1410" stroke="#B5894C" rx="3"/>
-                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#B5894C">Scribe</text>
-                <text x="14" y="32" font-size="9" fill="#9A8470">Long-form blog</text>
+                <rect width="180" height="40" fill="#181A24" stroke="#8B5CF6" rx="3"/>
+                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#8B5CF6">Scribe</text>
+                <text x="14" y="32" font-size="9" fill="#9CA0B5">Long-form blog</text>
               </g>
               <g transform="translate(490, 112)">
-                <rect width="180" height="40" fill="#1A1410" stroke="#B5894C" rx="3"/>
-                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#B5894C">Quill</text>
-                <text x="14" y="32" font-size="9" fill="#9A8470">Copy &amp; ad creative</text>
+                <rect width="180" height="40" fill="#181A24" stroke="#8B5CF6" rx="3"/>
+                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#8B5CF6">Quill</text>
+                <text x="14" y="32" font-size="9" fill="#9CA0B5">Copy &amp; ad creative</text>
               </g>
               <g transform="translate(490, 162)">
-                <rect width="180" height="40" fill="#1A1410" stroke="#D9A551" rx="3"/>
-                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#D9A551">Forge</text>
-                <text x="14" y="32" font-size="9" fill="#9A8470">Shopify · theme · Shogun</text>
+                <rect width="180" height="40" fill="#181A24" stroke="#3B82F6" rx="3"/>
+                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#3B82F6">Forge</text>
+                <text x="14" y="32" font-size="9" fill="#9CA0B5">Shopify · theme · Shogun</text>
               </g>
               <g transform="translate(490, 212)">
-                <rect width="180" height="40" fill="#1A1410" stroke="#F5EDE0" rx="3"/>
-                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#F5EDE0">Crucible</text>
-                <text x="14" y="32" font-size="9" fill="#9A8470">Meta Ads</text>
+                <rect width="180" height="40" fill="#181A24" stroke="#F4F4F8" rx="3"/>
+                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#F4F4F8">Crucible</text>
+                <text x="14" y="32" font-size="9" fill="#9CA0B5">Meta Ads</text>
               </g>
               <g transform="translate(490, 262)">
-                <rect width="180" height="40" fill="#1A1410" stroke="#F5EDE0" rx="3"/>
-                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#F5EDE0">Anvil</text>
-                <text x="14" y="32" font-size="9" fill="#9A8470">Google · YouTube</text>
+                <rect width="180" height="40" fill="#181A24" stroke="#F4F4F8" rx="3"/>
+                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#F4F4F8">Anvil</text>
+                <text x="14" y="32" font-size="9" fill="#9CA0B5">Google · YouTube</text>
               </g>
               <g transform="translate(490, 312)">
-                <rect width="180" height="40" fill="#1A1410" stroke="#6A8AA6" rx="3"/>
-                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#6A8AA6">Lighthouse</text>
-                <text x="14" y="32" font-size="9" fill="#9A8470">Analytics · attribution</text>
+                <rect width="180" height="40" fill="#181A24" stroke="#06B6D4" rx="3"/>
+                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#06B6D4">Lighthouse</text>
+                <text x="14" y="32" font-size="9" fill="#9CA0B5">Analytics · attribution</text>
               </g>
               <g transform="translate(490, 362)">
-                <rect width="180" height="40" fill="#1A1410" stroke="#7EA67B" rx="3"/>
-                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#7EA67B">Auditor</text>
-                <text x="14" y="32" font-size="9" fill="#9A8470">Site health · CLS · SEO</text>
+                <rect width="180" height="40" fill="#181A24" stroke="#10B981" rx="3"/>
+                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#10B981">Auditor</text>
+                <text x="14" y="32" font-size="9" fill="#9CA0B5">Site health · CLS · SEO</text>
               </g>
 
               <!-- second column of agents -->
               <g transform="translate(680, 62)">
-                <rect width="140" height="40" fill="#1A1410" stroke="#B5894C" rx="3"/>
-                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#B5894C">Composer</text>
-                <text x="14" y="32" font-size="9" fill="#9A8470">Social posts</text>
+                <rect width="140" height="40" fill="#181A24" stroke="#8B5CF6" rx="3"/>
+                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#8B5CF6">Composer</text>
+                <text x="14" y="32" font-size="9" fill="#9CA0B5">Social posts</text>
               </g>
               <g transform="translate(680, 112)">
-                <rect width="140" height="40" fill="#1A1410" stroke="#B5894C" rx="3"/>
-                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#B5894C">Voice</text>
-                <text x="14" y="32" font-size="9" fill="#9A8470">Brand QA</text>
+                <rect width="140" height="40" fill="#181A24" stroke="#8B5CF6" rx="3"/>
+                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#8B5CF6">Voice</text>
+                <text x="14" y="32" font-size="9" fill="#9CA0B5">Brand QA</text>
               </g>
               <g transform="translate(680, 162)">
-                <rect width="140" height="40" fill="#1A1410" stroke="#D9A551" rx="3"/>
-                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#D9A551">Cellarman</text>
-                <text x="14" y="32" font-size="9" fill="#9A8470">Inventory</text>
+                <rect width="140" height="40" fill="#181A24" stroke="#3B82F6" rx="3"/>
+                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#3B82F6">Cellarman</text>
+                <text x="14" y="32" font-size="9" fill="#9CA0B5">Inventory</text>
               </g>
               <g transform="translate(680, 212)">
-                <rect width="140" height="40" fill="#1A1410" stroke="#D9A551" rx="3"/>
-                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#D9A551">Ledger</text>
-                <text x="14" y="32" font-size="9" fill="#9A8470">Orders · refunds</text>
+                <rect width="140" height="40" fill="#181A24" stroke="#3B82F6" rx="3"/>
+                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#3B82F6">Ledger</text>
+                <text x="14" y="32" font-size="9" fill="#9CA0B5">Orders · refunds</text>
               </g>
               <g transform="translate(680, 262)">
-                <rect width="140" height="40" fill="#1A1410" stroke="#D9A551" rx="3"/>
-                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#D9A551">Reviews</text>
-                <text x="14" y="32" font-size="9" fill="#9A8470">Trustpilot · Judge.me</text>
+                <rect width="140" height="40" fill="#181A24" stroke="#3B82F6" rx="3"/>
+                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#3B82F6">Reviews</text>
+                <text x="14" y="32" font-size="9" fill="#9CA0B5">Trustpilot · Judge.me</text>
               </g>
               <g transform="translate(680, 312)">
-                <rect width="140" height="40" fill="#1A1410" stroke="#F5EDE0" rx="3"/>
-                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#F5EDE0">Strategist</text>
-                <text x="14" y="32" font-size="9" fill="#9A8470">Plans</text>
+                <rect width="140" height="40" fill="#181A24" stroke="#F4F4F8" rx="3"/>
+                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#F4F4F8">Strategist</text>
+                <text x="14" y="32" font-size="9" fill="#9CA0B5">Plans</text>
               </g>
               <g transform="translate(680, 362)">
-                <rect width="140" height="40" fill="#1A1410" stroke="#F5EDE0" rx="3"/>
-                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#F5EDE0">Audience</text>
-                <text x="14" y="32" font-size="9" fill="#9A8470">Segments</text>
+                <rect width="140" height="40" fill="#181A24" stroke="#F4F4F8" rx="3"/>
+                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#F4F4F8">Audience</text>
+                <text x="14" y="32" font-size="9" fill="#9CA0B5">Segments</text>
               </g>
             </g>
 
             <!-- Specialists -> Channels arrows -->
-            <g stroke="#3A2E22" stroke-width="1" fill="none" marker-end="url(#arrow)">
+            <g stroke="#353852" stroke-width="1" fill="none" marker-end="url(#arrow)">
               <path d="M 820 82 Q 838 82 850 95" />
               <path d="M 820 132 Q 838 132 850 145" />
               <path d="M 820 182 Q 838 182 850 195" />
@@ -1588,35 +1588,35 @@
             </g>
 
             <!-- CHANNELS column -->
-            <g font-family="JetBrains Mono" font-size="10" fill="#F5EDE0" letter-spacing="1.5">
+            <g font-family="JetBrains Mono" font-size="10" fill="#F4F4F8" letter-spacing="1.5">
               <g transform="translate(840, 80)">
-                <rect width="180" height="36" fill="#1A1410" stroke="#2A2118" rx="2"/>
+                <rect width="180" height="36" fill="#181A24" stroke="#25283A" rx="2"/>
                 <text x="14" y="22">SHOPIFY · STOREFRONT</text>
               </g>
               <g transform="translate(840, 130)">
-                <rect width="180" height="36" fill="#1A1410" stroke="#2A2118" rx="2"/>
+                <rect width="180" height="36" fill="#181A24" stroke="#25283A" rx="2"/>
                 <text x="14" y="22">META · CRUCIBLE FEEDS</text>
               </g>
               <g transform="translate(840, 180)">
-                <rect width="180" height="36" fill="#1A1410" stroke="#2A2118" rx="2"/>
+                <rect width="180" height="36" fill="#181A24" stroke="#25283A" rx="2"/>
                 <text x="14" y="22">GOOGLE · ANVIL</text>
               </g>
               <g transform="translate(840, 230)">
-                <rect width="180" height="36" fill="#1A1410" stroke="#2A2118" rx="2"/>
+                <rect width="180" height="36" fill="#181A24" stroke="#25283A" rx="2"/>
                 <text x="14" y="22">KLAVIYO · EMAIL · SMS</text>
               </g>
               <g transform="translate(840, 280)">
-                <rect width="180" height="36" fill="#1A1410" stroke="#2A2118" rx="2"/>
+                <rect width="180" height="36" fill="#181A24" stroke="#25283A" rx="2"/>
                 <text x="14" y="22">SOCIAL · IG / X / TIKTOK</text>
               </g>
               <g transform="translate(840, 330)">
-                <rect width="180" height="36" fill="#1A1410" stroke="#2A2118" rx="2"/>
+                <rect width="180" height="36" fill="#181A24" stroke="#25283A" rx="2"/>
                 <text x="14" y="22">BLOG · WOLFBURN.COM</text>
               </g>
             </g>
 
             <!-- Channels -> Report arrows -->
-            <g stroke="#3A2E22" stroke-width="1" fill="none" marker-end="url(#arrow)">
+            <g stroke="#353852" stroke-width="1" fill="none" marker-end="url(#arrow)">
               <path d="M 1020 98 Q 1040 98 1050 200" />
               <path d="M 1020 148 Q 1040 148 1050 215" />
               <path d="M 1020 198 Q 1040 198 1050 225" />
@@ -1627,18 +1627,18 @@
 
             <!-- REPORT column -->
             <g transform="translate(1040, 180)">
-              <rect width="120" height="100" fill="#1A1410" stroke="#6A8AA6" rx="3"/>
-              <text x="60" y="32" text-anchor="middle" font-family="Space Grotesk" font-size="14" font-weight="600" fill="#6A8AA6">Lighthouse</text>
-              <text x="60" y="50" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#9A8470" letter-spacing="1.4">CONSOLIDATES</text>
-              <text x="60" y="68" text-anchor="middle" font-family="Inter" font-size="10" fill="#F5EDE0">→ daily brief</text>
-              <text x="60" y="84" text-anchor="middle" font-family="Inter" font-size="10" fill="#F5EDE0">→ Atlas memory</text>
+              <rect width="120" height="100" fill="#181A24" stroke="#06B6D4" rx="3"/>
+              <text x="60" y="32" text-anchor="middle" font-family="Space Grotesk" font-size="14" font-weight="600" fill="#06B6D4">Lighthouse</text>
+              <text x="60" y="50" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#9CA0B5" letter-spacing="1.4">CONSOLIDATES</text>
+              <text x="60" y="68" text-anchor="middle" font-family="Inter" font-size="10" fill="#F4F4F8">→ daily brief</text>
+              <text x="60" y="84" text-anchor="middle" font-family="Inter" font-size="10" fill="#F4F4F8">→ Atlas memory</text>
             </g>
 
             <!-- Lighthouse back to Atlas (loop) -->
-            <g stroke="#6A8AA6" stroke-width="1" stroke-dasharray="3 3" fill="none" opacity="0.6">
+            <g stroke="#06B6D4" stroke-width="1" stroke-dasharray="3 3" fill="none" opacity="0.6">
               <path d="M 1040 230 Q 700 440 360 280" />
             </g>
-            <text x="700" y="438" font-family="JetBrains Mono" font-size="9" fill="#6A8AA6" letter-spacing="1.4">FEEDBACK LOOP · ATLAS LEARNS</text>
+            <text x="700" y="438" font-family="JetBrains Mono" font-size="9" fill="#06B6D4" letter-spacing="1.4">FEEDBACK LOOP · ATLAS LEARNS</text>
           </svg>
         </div>
       </div>
@@ -1662,20 +1662,20 @@
           </div>
           <svg viewBox="0 0 720 220" width="100%" height="220">
             <!-- grid -->
-            <g stroke="#221B14" stroke-width="1">
+            <g stroke="#20232E" stroke-width="1">
               <line x1="40" y1="40" x2="700" y2="40"/>
               <line x1="40" y1="90" x2="700" y2="90"/>
               <line x1="40" y1="140" x2="700" y2="140"/>
               <line x1="40" y1="190" x2="700" y2="190"/>
             </g>
-            <g font-family="JetBrains Mono" font-size="9" fill="#6B5A48">
+            <g font-family="JetBrains Mono" font-size="9" fill="#6B6F88">
               <text x="6" y="44">£8k</text>
               <text x="6" y="94">£6k</text>
               <text x="6" y="144">£4k</text>
               <text x="6" y="194">£2k</text>
             </g>
             <!-- bars -->
-            <g fill="#3A2E22">
+            <g fill="#353852">
               <rect x="50" y="160" width="14" height="30"/>
               <rect x="74" y="155" width="14" height="35"/>
               <rect x="98" y="148" width="14" height="42"/>
@@ -1705,14 +1705,14 @@
               <rect x="674" y="48" width="14" height="142"/>
             </g>
             <!-- 7-day moving avg -->
-            <polyline fill="none" stroke="#D9A551" stroke-width="2" points="57,165 81,158 105,150 129,158 153,150 177,140 201,135 225,130 249,140 273,128 297,118 321,120 345,108 369,118 393,100 417,93 441,98 465,82 489,88 513,72 537,80 561,68 585,60 609,72 633,55 657,62 681,50"/>
+            <polyline fill="none" stroke="#3B82F6" stroke-width="2" points="57,165 81,158 105,150 129,158 153,150 177,140 201,135 225,130 249,140 273,128 297,118 321,120 345,108 369,118 393,100 417,93 441,98 465,82 489,88 513,72 537,80 561,68 585,60 609,72 633,55 657,62 681,50"/>
             <!-- last point -->
-            <circle cx="681" cy="50" r="4" fill="#D9A551"/>
-            <circle cx="681" cy="50" r="9" fill="none" stroke="#D9A551" stroke-width="1" opacity="0.4"/>
+            <circle cx="681" cy="50" r="4" fill="#3B82F6"/>
+            <circle cx="681" cy="50" r="9" fill="none" stroke="#3B82F6" stroke-width="1" opacity="0.4"/>
           </svg>
           <div style="display:flex; gap: 24px; font-family: var(--mono); font-size: 10px; color: var(--muted); margin-top: 14px; letter-spacing: 0.06em;">
-            <span><span style="display:inline-block; width:10px; height:10px; background:#3A2E22; margin-right:6px; vertical-align:middle;"></span>Daily revenue</span>
-            <span><span style="display:inline-block; width:10px; height:2px; background:#D9A551; margin-right:6px; vertical-align:middle;"></span>7-day moving average</span>
+            <span><span style="display:inline-block; width:10px; height:10px; background:#353852; margin-right:6px; vertical-align:middle;"></span>Daily revenue</span>
+            <span><span style="display:inline-block; width:10px; height:2px; background:#3B82F6; margin-right:6px; vertical-align:middle;"></span>7-day moving average</span>
           </div>
         </div>
 
@@ -1725,31 +1725,31 @@
           <svg viewBox="0 0 320 220" width="100%" height="220">
             <!-- donut -->
             <g transform="translate(110, 110)">
-              <circle r="80" fill="none" stroke="#221B14" stroke-width="22"/>
-              <circle r="80" fill="none" stroke="#B5894C" stroke-width="22" stroke-dasharray="180 502" stroke-dashoffset="0" transform="rotate(-90)"/>
-              <circle r="80" fill="none" stroke="#D9A551" stroke-width="22" stroke-dasharray="120 502" stroke-dashoffset="-180" transform="rotate(-90)"/>
-              <circle r="80" fill="none" stroke="#7EA67B" stroke-width="22" stroke-dasharray="90 502" stroke-dashoffset="-300" transform="rotate(-90)"/>
-              <circle r="80" fill="none" stroke="#6A8AA6" stroke-width="22" stroke-dasharray="60 502" stroke-dashoffset="-390" transform="rotate(-90)"/>
-              <circle r="80" fill="none" stroke="#9A8470" stroke-width="22" stroke-dasharray="52 502" stroke-dashoffset="-450" transform="rotate(-90)"/>
-              <text x="0" y="-2" text-anchor="middle" font-family="Space Grotesk" font-size="22" font-weight="600" fill="#F5EDE0">£127k</text>
-              <text x="0" y="14" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#9A8470" letter-spacing="1.4">30 DAY</text>
+              <circle r="80" fill="none" stroke="#20232E" stroke-width="22"/>
+              <circle r="80" fill="none" stroke="#8B5CF6" stroke-width="22" stroke-dasharray="180 502" stroke-dashoffset="0" transform="rotate(-90)"/>
+              <circle r="80" fill="none" stroke="#3B82F6" stroke-width="22" stroke-dasharray="120 502" stroke-dashoffset="-180" transform="rotate(-90)"/>
+              <circle r="80" fill="none" stroke="#10B981" stroke-width="22" stroke-dasharray="90 502" stroke-dashoffset="-300" transform="rotate(-90)"/>
+              <circle r="80" fill="none" stroke="#06B6D4" stroke-width="22" stroke-dasharray="60 502" stroke-dashoffset="-390" transform="rotate(-90)"/>
+              <circle r="80" fill="none" stroke="#9CA0B5" stroke-width="22" stroke-dasharray="52 502" stroke-dashoffset="-450" transform="rotate(-90)"/>
+              <text x="0" y="-2" text-anchor="middle" font-family="Space Grotesk" font-size="22" font-weight="600" fill="#F4F4F8">£127k</text>
+              <text x="0" y="14" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#9CA0B5" letter-spacing="1.4">30 DAY</text>
             </g>
             <!-- legend -->
-            <g font-family="Inter" font-size="11" fill="#F5EDE0">
+            <g font-family="Inter" font-size="11" fill="#F4F4F8">
               <g transform="translate(220, 30)">
-                <rect width="10" height="10" fill="#B5894C"/><text x="16" y="9">Direct · 36%</text>
+                <rect width="10" height="10" fill="#8B5CF6"/><text x="16" y="9">Direct · 36%</text>
               </g>
               <g transform="translate(220, 60)">
-                <rect width="10" height="10" fill="#D9A551"/><text x="16" y="9">Meta · 24%</text>
+                <rect width="10" height="10" fill="#3B82F6"/><text x="16" y="9">Meta · 24%</text>
               </g>
               <g transform="translate(220, 90)">
-                <rect width="10" height="10" fill="#7EA67B"/><text x="16" y="9">Google · 18%</text>
+                <rect width="10" height="10" fill="#10B981"/><text x="16" y="9">Google · 18%</text>
               </g>
               <g transform="translate(220, 120)">
-                <rect width="10" height="10" fill="#6A8AA6"/><text x="16" y="9">Email · 12%</text>
+                <rect width="10" height="10" fill="#06B6D4"/><text x="16" y="9">Email · 12%</text>
               </g>
               <g transform="translate(220, 150)">
-                <rect width="10" height="10" fill="#9A8470"/><text x="16" y="9">Organic · 10%</text>
+                <rect width="10" height="10" fill="#9CA0B5"/><text x="16" y="9">Organic · 10%</text>
               </g>
             </g>
           </svg>
@@ -1767,17 +1767,28 @@
 
       <div class="context-row">
         <div class="ctx-card">
-          <h3>Brand</h3>
-          <div style="font-size: 12px; color: var(--muted); line-height: 1.6;">Award-winning single malt Scotch whisky distillery in Thurso, Caithness. Independent, small-batch. Tagline: <em style="color: var(--cream); font-style: normal;">"Fortune favours the brave."</em></div>
-          <div class="swatch-row">
-            <div class="swatch"><div class="chip" style="background:#0F0B08;"></div><div class="hex">#0F0B08</div></div>
-            <div class="swatch"><div class="chip" style="background:#B5894C;"></div><div class="hex">#B5894C</div></div>
-            <div class="swatch"><div class="chip" style="background:#D9A551;"></div><div class="hex">#D9A551</div></div>
-            <div class="swatch"><div class="chip" style="background:#F5EDE0;"></div><div class="hex">#F5EDE0</div></div>
-            <div class="swatch"><div class="chip" style="background:#9A8470;"></div><div class="hex">#9A8470</div></div>
+          <h3>Account context</h3>
+          <div style="font-size: 12px; color: var(--muted); line-height: 1.6;">Wolfburn Distillery, Thurso, Caithness. Award-winning single malt Scotch whisky. Independent, small-batch. Tagline: <em style="color: var(--cream); font-style: normal;">"Fortune favours the brave."</em></div>
+          <div style="margin-top: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 12px;">
+            <div>
+              <div class="panel-meta" style="margin-bottom: 4px;">FOUNDED</div>
+              <div style="color: var(--cream);">2013</div>
+            </div>
+            <div>
+              <div class="panel-meta" style="margin-bottom: 4px;">REGION</div>
+              <div style="color: var(--cream);">Highland · Caithness</div>
+            </div>
+            <div>
+              <div class="panel-meta" style="margin-bottom: 4px;">SKUs</div>
+              <div style="color: var(--cream);">156 active</div>
+            </div>
+            <div>
+              <div class="panel-meta" style="margin-bottom: 4px;">CHANNELS</div>
+              <div style="color: var(--cream);">DTC · Trade · Tours</div>
+            </div>
           </div>
-          <div style="font-family: var(--mono); font-size: 9px; color: var(--muted); margin-top: 12px; letter-spacing: 0.16em; text-transform: uppercase;">
-            Playfair Display · Inter · JetBrains Mono
+          <div style="font-family: var(--mono); font-size: 9px; color: var(--muted); margin-top: 18px; letter-spacing: 0.16em; text-transform: uppercase; padding-top: 14px; border-top: 1px solid var(--line);">
+            Operated by Divergence · since Apr 2026
           </div>
         </div>
 
@@ -1866,8 +1877,8 @@
           <div class="panel" style="padding: 0; display:flex; flex-direction:column; min-height: 720px;">
             <div style="padding: 18px 24px; border-bottom: 1px solid var(--line); display:flex; align-items:center; justify-content:space-between;">
               <div style="display:flex; gap:12px; align-items:center;">
-                <div style="width:36px; height:36px; border-radius:50%; background:radial-gradient(circle, #D9A551 0%, #B5894C 50%, #0F0B08 100%); display:flex; align-items:center; justify-content:center;">
-                  <div style="width:8px; height:8px; background:#7EA67B; border-radius:50%;"></div>
+                <div style="width:36px; height:36px; border-radius:50%; background:radial-gradient(circle, #3B82F6 0%, #8B5CF6 50%, #0A0A0F 100%); display:flex; align-items:center; justify-content:center;">
+                  <div style="width:8px; height:8px; background:#10B981; border-radius:50%;"></div>
                 </div>
                 <div>
                   <div style="font-family: var(--display); font-weight:600; font-size:15px;">Atlas</div>
@@ -2875,24 +2886,24 @@
           <div class="panel">
             <h3>Channel attribution · last touch</h3>
             <svg viewBox="0 0 600 240" width="100%" height="220">
-              <g font-family="Inter" font-size="11" fill="#F5EDE0">
+              <g font-family="Inter" font-size="11" fill="#F4F4F8">
                 <g transform="translate(20, 20)">
-                  <rect width="180" height="22" fill="#B5894C"/><text x="190" y="16">Direct · 36% · £45,876</text>
+                  <rect width="180" height="22" fill="#8B5CF6"/><text x="190" y="16">Direct · 36% · £45,876</text>
                 </g>
                 <g transform="translate(20, 56)">
-                  <rect width="120" height="22" fill="#D9A551"/><text x="130" y="16">Meta · 24% · £30,584</text>
+                  <rect width="120" height="22" fill="#3B82F6"/><text x="130" y="16">Meta · 24% · £30,584</text>
                 </g>
                 <g transform="translate(20, 92)">
-                  <rect width="90" height="22" fill="#7EA67B"/><text x="100" y="16">Google · 18% · £22,938</text>
+                  <rect width="90" height="22" fill="#10B981"/><text x="100" y="16">Google · 18% · £22,938</text>
                 </g>
                 <g transform="translate(20, 128)">
-                  <rect width="60" height="22" fill="#6A8AA6"/><text x="70" y="16">Email · 12% · £15,292</text>
+                  <rect width="60" height="22" fill="#06B6D4"/><text x="70" y="16">Email · 12% · £15,292</text>
                 </g>
                 <g transform="translate(20, 164)">
-                  <rect width="50" height="22" fill="#9A8470"/><text x="60" y="16">Organic · 10% · £12,742</text>
+                  <rect width="50" height="22" fill="#9CA0B5"/><text x="60" y="16">Organic · 10% · £12,742</text>
                 </g>
                 <g transform="translate(20, 200)">
-                  <rect width="20" height="22" fill="#3A2E22"/><text x="30" y="16">Other · &lt;1%</text>
+                  <rect width="20" height="22" fill="#353852"/><text x="30" y="16">Other · &lt;1%</text>
                 </g>
               </g>
             </svg>
