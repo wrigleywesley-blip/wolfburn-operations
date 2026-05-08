@@ -3416,7 +3416,20 @@
    - Toasts + modal
    - Atlas brain (knowledge + intent matcher)
    - Web Speech API (input + output)
+   - Live connector fetches (Meta, Google Ads, Klaviyo, ...)
    ========================================================================= */
+
+/* ---------- CONNECTOR ENDPOINTS ----------
+   Set these to the deployed Cloudflare Worker URLs.
+   Empty string = not yet deployed → dashboard shows the setup checklist on that channel page.
+   See worker/README.md for the Meta deploy steps. */
+const CONNECTORS = {
+  meta:     { url: "", refreshMs: 5 * 60 * 1000 },   // paste Worker URL here once deployed
+  google:   { url: "", refreshMs: 5 * 60 * 1000 },
+  klaviyo:  { url: "", refreshMs: 5 * 60 * 1000 },
+  ga4:      { url: "", refreshMs: 5 * 60 * 1000 }
+};
+
 (function(){
 
   /* ---------- DASHBOARD KNOWLEDGE BASE ---------- */
@@ -3946,6 +3959,117 @@
       // already populated by static markup, no-op
     }
   });
+
+  /* ---------- META CONNECTOR ---------- */
+  let metaState = { loaded: false, data: null, error: null, lastFetch: null };
+
+  async function fetchMeta() {
+    if (!CONNECTORS.meta.url) return; // not configured yet
+    try {
+      const r = await fetch(CONNECTORS.meta.url + '/all', { cache: 'no-store' });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      const data = await r.json();
+      metaState = { loaded: true, data, error: null, lastFetch: new Date() };
+      renderMeta(data);
+      // bump the connection banner on Overview
+      const banner = document.querySelector('#page-overview [data-connection-banner]');
+      if (banner) banner.textContent = '7 live';
+    } catch (e) {
+      metaState = { loaded: false, data: null, error: e.message, lastFetch: new Date() };
+      console.warn('Meta connector error:', e.message);
+    }
+  }
+
+  function fmtMoney(n, decimals) {
+    if (n == null) return '—';
+    if (decimals == null) decimals = 0;
+    return '£' + n.toLocaleString('en-GB', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+  }
+  function fmtNum(n) { return n == null ? '—' : n.toLocaleString('en-GB'); }
+
+  function renderMeta(d) {
+    const page = document.getElementById('page-meta');
+    if (!page) return;
+    // replace the amber "illustrative" banner with a green live one
+    const banner = page.querySelector('.panel[style*="--amber"]');
+    if (banner) {
+      banner.outerHTML = `
+        <div class="panel" style="margin-bottom: 24px; background: linear-gradient(135deg, var(--bg-3), var(--bg-2)); border-color: var(--green); border-left: 3px solid var(--green);">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <div style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; color: var(--green); text-transform: uppercase;">● live · meta marketing api</div>
+              <div style="font-family: var(--display); font-size: 16px; font-weight: 600; margin-top: 6px;">${d.account.name} · ${d.account.currency} · ${d.account.status}</div>
+              <div style="color: var(--muted); font-size: 12px; margin-top: 4px;">Last sync ${new Date(d.fetched_at).toLocaleTimeString()} · Worker cache 5 min · refreshes every 5 min</div>
+            </div>
+            <span class="pill ok">● live</span>
+          </div>
+        </div>`;
+    }
+    // update KPI strip
+    const kpiGrid = page.querySelector('.grid-4');
+    const i = d.insights_30d || {};
+    if (kpiGrid) {
+      kpiGrid.innerHTML = `
+        <div class="stat-mini"><div class="lbl">Spend · 30d</div><div class="val">${fmtMoney(i.spend, 0)}</div><div class="delta flat">live</div></div>
+        <div class="stat-mini"><div class="lbl">Revenue · 30d</div><div class="val">${fmtMoney(i.revenue, 0)}</div><div class="delta flat">attributed</div></div>
+        <div class="stat-mini"><div class="lbl">ROAS · blended</div><div class="val">${i.roas != null ? i.roas + '×' : '—'}</div><div class="delta flat">${i.purchases || 0} purchases</div></div>
+        <div class="stat-mini"><div class="lbl">CPM · avg</div><div class="val">${i.impressions ? '£' + ((i.spend / i.impressions) * 1000).toFixed(2) : '—'}</div><div class="delta flat">${fmtNum(i.impressions)} impressions</div></div>
+      `;
+    }
+    // replace campaigns table
+    const campaignsPanel = page.querySelector('.tab-panel[data-tab-id="campaigns"]');
+    if (campaignsPanel) {
+      const rows = (d.campaigns || []).map(c => {
+        const ci = c.insights || {};
+        return `<tr>
+          <td><div class="name">${c.name}</div><div class="muted-cell">${c.objective || '—'}</div></td>
+          <td class="muted-cell">${c.status}</td>
+          <td class="num">${fmtMoney(ci.spend, 2)}</td>
+          <td class="num">${fmtMoney(ci.revenue, 0)}</td>
+          <td class="num" style="color: ${ci.roas >= 3 ? 'var(--green)' : ci.roas >= 1 ? 'var(--cream)' : 'var(--red)'};">${ci.roas != null ? ci.roas + '×' : '—'}</td>
+          <td class="num">${ci.ctr != null ? ci.ctr.toFixed(2) + '%' : '—'}</td>
+          <td><span class="pill ${c.status === 'ACTIVE' ? 'ok' : 'muted'}">${c.status.toLowerCase()}</span></td>
+        </tr>`;
+      }).join('') || `<tr><td colspan="7" style="text-align:center; color:var(--muted); padding: 32px;">No active campaigns found in this ad account.</td></tr>`;
+      campaignsPanel.innerHTML = `
+        <table class="data-table">
+          <thead><tr><th>Campaign</th><th>Objective</th><th>Spend · 30d</th><th>Revenue</th><th>ROAS</th><th>CTR</th><th>Status</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+        <div style="text-align: center; margin-top: 14px; font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.06em;">${d.campaigns?.length || 0} campaigns · live from Meta Marketing API · cached 5 min</div>
+      `;
+    }
+  }
+
+  // boot Meta on page load + every 5 min
+  function metaBoot() {
+    fetchMeta();
+    if (CONNECTORS.meta.url) {
+      setInterval(fetchMeta, CONNECTORS.meta.refreshMs);
+    } else {
+      // not configured — show setup CTA on Meta page
+      const page = document.getElementById('page-meta');
+      if (page) {
+        const banner = page.querySelector('.panel[style*="--amber"]');
+        if (banner) {
+          banner.innerHTML = `
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <div style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; color: var(--amber); text-transform: uppercase;">⚡ Setup required · ~25 min</div>
+                <div style="font-family: var(--display); font-size: 17px; font-weight: 600; margin-top: 6px;">Connect Meta Marketing API for continuous live sync</div>
+                <div style="color: var(--muted); font-size: 13px; margin-top: 6px; line-height: 1.6;">Cloudflare Worker scaffolded in <code style="font-family: var(--mono); background: var(--bg-3); padding: 2px 6px; border-radius: 3px;">/worker</code>. Setup steps: create Meta App + System User token (15 min) → deploy Worker (10 min) → paste URL into <code style="font-family: var(--mono); background: var(--bg-3); padding: 2px 6px; border-radius: 3px;">CONNECTORS.meta.url</code> in index.html. Numbers below are illustrative until then.</div>
+              </div>
+              <a class="btn solid" href="https://github.com/wrigleywesley-blip/wolfburn-operations/blob/main/worker/README.md" target="_blank">Open setup guide ↗</a>
+            </div>`;
+        }
+      }
+    }
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', metaBoot);
+  } else {
+    metaBoot();
+  }
 
 })();
 </script>
