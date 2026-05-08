@@ -29,7 +29,7 @@
     --serif: 'Space Grotesk', sans-serif;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { background: var(--bg); color: var(--cream); font-family: var(--body); font-weight: 400; font-size: 14px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  html, body { background: var(--bg); color: var(--cream); font-family: var(--body); font-weight: 400; font-size: 14.5px; line-height: 1.6; -webkit-font-smoothing: antialiased; letter-spacing: -0.005em; }
   a { color: inherit; text-decoration: none; }
 
   .app {
@@ -207,52 +207,52 @@
   }
 
   /* CONTENT */
-  .content { padding: 28px 32px 60px 32px; }
+  .content { padding: 40px 48px 80px 48px; max-width: 1640px; }
   .section-head {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    margin: 36px 0 18px 0;
+    margin: 64px 0 28px 0;
   }
   .section-num {
     font-family: var(--mono);
     font-size: 10px;
     color: var(--copper);
-    letter-spacing: 0.22em;
-    margin-bottom: 6px;
+    letter-spacing: 0.24em;
+    margin-bottom: 10px;
     text-transform: uppercase;
   }
   .section-title {
     font-family: var(--display);
     font-weight: 600;
-    font-size: 22px;
-    letter-spacing: -0.01em;
+    font-size: 26px;
+    letter-spacing: -0.015em;
     color: var(--cream);
   }
   .section-sub {
-    font-size: 12px;
+    font-size: 13px;
     color: var(--muted);
-    max-width: 520px;
-    line-height: 1.6;
-    margin-top: 6px;
+    max-width: 580px;
+    line-height: 1.65;
+    margin-top: 10px;
   }
   .section-link {
     font-family: var(--mono);
     font-size: 11px;
     color: var(--copper);
     text-transform: uppercase;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.14em;
   }
 
   /* ATLAS HERO */
   .atlas {
     background: linear-gradient(135deg, var(--bg-3) 0%, var(--bg-2) 100%);
     border: 1px solid var(--line-2);
-    border-radius: 6px;
-    padding: 32px;
+    border-radius: 8px;
+    padding: 56px;
     display: grid;
-    grid-template-columns: 280px 1fr 240px;
-    gap: 32px;
+    grid-template-columns: 320px 1fr 260px;
+    gap: 56px;
     align-items: center;
     position: relative;
     overflow: hidden;
@@ -400,13 +400,14 @@
   .kpis {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 16px;
-    margin-top: 28px;
+    gap: 20px;
+    margin-top: 48px;
   }
   .kpi {
     background: var(--bg-2);
     border: 1px solid var(--line);
-    padding: 20px 22px;
+    border-radius: 6px;
+    padding: 32px 28px;
     position: relative;
   }
   .kpi-label {
@@ -415,22 +416,22 @@
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--muted);
-    margin-bottom: 10px;
+    margin-bottom: 18px;
   }
   .kpi-value {
     font-family: var(--display);
     font-weight: 600;
-    font-size: 30px;
+    font-size: 36px;
     line-height: 1;
     color: var(--cream);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;
   }
-  .kpi-value .unit { font-size: 14px; color: var(--muted); margin-left: 4px; font-weight: 400; }
+  .kpi-value .unit { font-size: 15px; color: var(--muted); margin-left: 4px; font-weight: 400; letter-spacing: 0; }
   .kpi-delta {
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    margin-top: 12px;
+    margin-top: 18px;
     font-family: var(--mono);
     font-size: 11px;
     letter-spacing: 0.04em;
@@ -443,27 +444,29 @@
   /* Two-column main grid */
   .main-grid {
     display: grid;
-    grid-template-columns: 1fr 360px;
-    gap: 24px;
-    margin-top: 32px;
+    grid-template-columns: 1fr 380px;
+    gap: 32px;
+    margin-top: 40px;
   }
 
   /* Agent grid */
   .agents-panel {
     background: var(--bg-2);
     border: 1px solid var(--line);
-    padding: 24px;
+    border-radius: 6px;
+    padding: 36px;
   }
   .agents-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    margin-top: 18px;
+    gap: 16px;
+    margin-top: 28px;
   }
   .agent-card {
     background: var(--bg-3);
     border: 1px solid var(--line);
-    padding: 16px;
+    border-radius: 4px;
+    padding: 22px;
     position: relative;
     transition: all .15s;
     cursor: pointer;
@@ -528,7 +531,8 @@
   .feed-panel {
     background: var(--bg-2);
     border: 1px solid var(--line);
-    padding: 24px;
+    border-radius: 6px;
+    padding: 32px;
   }
   .feed-list {
     margin-top: 16px;
@@ -576,8 +580,9 @@
   .alerts-panel {
     background: var(--bg-2);
     border: 1px solid var(--line);
-    padding: 24px;
-    margin-top: 16px;
+    border-radius: 6px;
+    padding: 32px;
+    margin-top: 20px;
   }
   .alert-item {
     padding: 12px 0;
@@ -603,22 +608,24 @@
   .flow-panel {
     background: var(--bg-2);
     border: 1px solid var(--line);
-    padding: 32px;
-    margin-top: 24px;
+    border-radius: 6px;
+    padding: 48px;
+    margin-top: 32px;
   }
-  .flow-svg-wrap { margin-top: 20px; overflow-x: auto; }
+  .flow-svg-wrap { margin-top: 32px; overflow-x: auto; }
 
   /* Charts row */
   .charts-row {
     display: grid;
     grid-template-columns: 1.6fr 1fr;
-    gap: 24px;
-    margin-top: 24px;
+    gap: 32px;
+    margin-top: 32px;
   }
   .chart-card {
     background: var(--bg-2);
     border: 1px solid var(--line);
-    padding: 24px;
+    border-radius: 6px;
+    padding: 36px;
   }
   .chart-card .head {
     display: flex;
@@ -644,13 +651,14 @@
   .context-row {
     display: grid;
     grid-template-columns: 1.2fr 1fr 1fr;
-    gap: 24px;
-    margin-top: 24px;
+    gap: 32px;
+    margin-top: 32px;
   }
   .ctx-card {
     background: var(--bg-2);
     border: 1px solid var(--line);
-    padding: 24px;
+    border-radius: 6px;
+    padding: 36px;
   }
   .ctx-card h3 {
     font-family: var(--display);
@@ -747,17 +755,17 @@
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    padding: 32px 0 24px 0;
+    padding: 24px 0 36px 0;
     border-bottom: 1px solid var(--line);
-    margin-bottom: 28px;
+    margin-bottom: 48px;
   }
   .page-head h1 {
     font-family: var(--display);
     font-weight: 600;
-    font-size: 32px;
-    letter-spacing: -0.015em;
+    font-size: 38px;
+    letter-spacing: -0.02em;
     color: var(--cream);
-    margin-top: 6px;
+    margin-top: 10px;
   }
   .page-head .crumb {
     font-family: var(--mono);
@@ -835,21 +843,23 @@
   .pill.info { background: rgba(6,182,212,0.12); color: var(--blue); border: 1px solid rgba(6,182,212,0.3); }
   .pill.muted { background: var(--bg-4); color: var(--muted); border: 1px solid var(--line-2); }
 
-  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
-  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
 
   .panel {
     background: var(--bg-2);
     border: 1px solid var(--line);
-    padding: 24px;
+    border-radius: 6px;
+    padding: 32px;
   }
   .panel h3 {
     font-family: var(--display);
-    font-size: 16px;
+    font-size: 17px;
     font-weight: 600;
     color: var(--cream);
-    margin-bottom: 14px;
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
   }
   .panel .panel-meta {
     font-family: var(--mono);
@@ -858,21 +868,22 @@
     letter-spacing: 0.1em;
   }
 
-  .stat-mini { padding: 16px; background: var(--bg-3); border: 1px solid var(--line); }
+  .stat-mini { padding: 22px; background: var(--bg-3); border: 1px solid var(--line); border-radius: 4px; }
   .stat-mini .lbl {
     font-family: var(--mono);
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--muted);
-    margin-bottom: 8px;
+    margin-bottom: 14px;
   }
   .stat-mini .val {
     font-family: var(--display);
     font-weight: 600;
-    font-size: 22px;
+    font-size: 26px;
     color: var(--cream);
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
   }
   .stat-mini .delta {
     font-family: var(--mono);
@@ -1897,63 +1908,26 @@
               <div class="panel-meta">SESSION · 14:32 BST · 23 turns</div>
             </div>
 
-            <div style="flex:1; overflow-y:auto; padding: 24px;">
-              <!-- chat -->
-              <div style="margin-bottom: 24px;">
-                <div style="font-family: var(--mono); font-size:9px; color:var(--muted); letter-spacing:0.18em; margin-bottom:8px;">YOU · 14:21</div>
-                <div style="background: var(--bg-3); padding: 14px 18px; border-radius: 4px; max-width: 80%; font-size: 13px;">Crucible's Father's Day campaign — what's working?</div>
-              </div>
-              <div style="margin-bottom: 24px; padding-left: 24px; border-left: 2px solid var(--copper);">
-                <div style="font-family: var(--mono); font-size:9px; color:var(--copper); letter-spacing:0.18em; margin-bottom:8px;">ATLAS · 14:21</div>
-                <div style="font-size: 13px; line-height: 1.65;">
-                  Father's Day is your strongest seasonal pulse so far. <span style="color: var(--copper);">Pentland · UK 35-54 Whisky Buyers</span> is at <strong>4.1× ROAS</strong>, doubling the account average. Best creative is the cognac-cask close-up with copy "Bottle 416 · just 1,200 made." Three variants from Quill are queued for review.
-                  <div style="margin-top: 14px; display: flex; gap: 8px; flex-wrap: wrap;">
-                    <button class="btn" data-page="meta">Open Meta dashboard</button>
-                    <button class="btn" data-run-agent="Quill">Brief Quill again</button>
-                    <button class="btn" data-page="agents">View Crucible</button>
+            <div id="atlas-log" style="flex:1; overflow-y:auto; padding: 32px;">
+              <div style="padding-left: 24px; border-left: 2px solid var(--copper); margin-bottom: 28px;">
+                <div style="font-family: var(--mono); font-size:9px; color:var(--copper); letter-spacing:0.18em; margin-bottom:8px;">ATLAS · ready</div>
+                <div style="font-size: 14px; line-height: 1.65;">
+                  Hi Wesley. I have live Wolfburn data: revenue, orders, products, cohorts, geography, all 16 agents, and the audit findings. Type a question, hit the mic, or press <strong>⌥+Space</strong> from anywhere.
+                  <div style="margin-top: 18px; display: flex; gap: 8px; flex-wrap: wrap;">
+                    <button class="btn" onclick="atlasAsk('How is revenue this period?')">How is revenue?</button>
+                    <button class="btn" onclick="atlasAsk('What are the top selling products?')">Top products</button>
+                    <button class="btn" onclick="atlasAsk('Where are visitors coming from?')">Top cities</button>
+                    <button class="btn" onclick="atlasAsk('What should I do next?')">What should I do?</button>
+                    <button class="btn" onclick="atlasAsk('What is wrong with conversion?')">Conversion issues</button>
                   </div>
-                </div>
-              </div>
-
-              <div style="margin-bottom: 24px;">
-                <div style="font-family: var(--mono); font-size:9px; color:var(--muted); letter-spacing:0.18em; margin-bottom:8px;">YOU · 14:25</div>
-                <div style="background: var(--bg-3); padding: 14px 18px; border-radius: 4px; max-width: 80%; font-size: 13px;">Kill the Privy sticky tab. It's annoying.</div>
-              </div>
-              <div style="margin-bottom: 24px; padding-left: 24px; border-left: 2px solid var(--copper);">
-                <div style="font-family: var(--mono); font-size:9px; color:var(--copper); letter-spacing:0.18em; margin-bottom:8px;">ATLAS · 14:25</div>
-                <div style="font-size: 13px; line-height: 1.65;">
-                  Dispatching <span style="color: var(--amber);">Forge</span>. Will disable the Tab step on Privy display 4446686 (Welcome Discount · Email I) and keep the welcome popup intact. ETA 2 minutes.
-                </div>
-              </div>
-              <div style="margin-bottom: 24px; padding-left: 24px; border-left: 2px solid var(--copper);">
-                <div style="font-family: var(--mono); font-size:9px; color:var(--copper); letter-spacing:0.18em; margin-bottom:8px;">ATLAS · 14:31 · update</div>
-                <div style="font-size: 13px; line-height: 1.65;">
-                  ✓ Done. Verified on the live storefront — sticky tab is now hidden. Welcome popup still firing for new visitors. Logged to <span style="color: var(--copper); cursor:pointer;" data-page="logs">site-ops.log</span>.
-                </div>
-              </div>
-
-              <div style="margin-bottom: 24px;">
-                <div style="font-family: var(--mono); font-size:9px; color:var(--muted); letter-spacing:0.18em; margin-bottom:8px;">YOU · 14:31</div>
-                <div style="background: var(--bg-3); padding: 14px 18px; border-radius: 4px; max-width: 80%; font-size: 13px;">Brief me on tomorrow.</div>
-              </div>
-              <div style="padding-left: 24px; border-left: 2px solid var(--copper);">
-                <div style="font-family: var(--mono); font-size:9px; color:var(--copper); letter-spacing:0.18em; margin-bottom:8px;">ATLAS · 14:32</div>
-                <div style="font-size: 13px; line-height: 1.65;">
-                  Three things land tomorrow:
-                  <ol style="margin: 12px 0 0 18px; padding: 0;">
-                    <li style="margin-bottom: 6px;"><strong>Scribe</strong> publishes "Cognac cask 101" to wolfburn.com/news at 09:00.</li>
-                    <li style="margin-bottom: 6px;"><strong>Crucible</strong> rotates Father's Day creative, killing the lowest-CTR variant.</li>
-                    <li><strong>Lighthouse</strong> sends weekly revenue brief at 18:00.</li>
-                  </ol>
-                  One open decision still needs you: <span style="color: var(--amber);">Trustpilot vs Judge.me</span>. Want me to lay out the case?
                 </div>
               </div>
             </div>
 
-            <div style="border-top:1px solid var(--line); padding: 16px 24px; display:flex; gap: 12px; align-items:center; background: var(--bg);">
-              <input type="text" placeholder="Type a brief, ask a question, or press ⌥+Space to talk..." style="flex:1; background: var(--bg-3); border: 1px solid var(--line); padding: 12px 14px; color: var(--cream); font-family: var(--body); font-size: 13px; outline: none;" />
-              <button class="btn solid">Send</button>
-              <button class="btn voice-btn" style="padding: 8px 12px;">●</button>
+            <div style="border-top:1px solid var(--line); padding: 20px 28px; display:flex; gap: 14px; align-items:center; background: var(--bg);">
+              <input id="atlas-input" type="text" placeholder="Type a question · or press ⌥+Space to talk to Atlas" style="flex:1; background: var(--bg-3); border: 1px solid var(--line); border-radius: 4px; padding: 14px 16px; color: var(--cream); font-family: var(--body); font-size: 14px; outline: none;" />
+              <button id="atlas-send" class="btn solid">Send</button>
+              <button class="btn voice-btn" style="padding: 10px 14px;" title="Press ⌥+Space anywhere">●</button>
             </div>
           </div>
 
@@ -3435,8 +3409,281 @@
 </div>
 
 <script>
+/* =========================================================================
+   WOLFBURN OPERATIONS · ATLAS RUNTIME
+   - Hash routing
+   - Tab bar
+   - Toasts + modal
+   - Atlas brain (knowledge + intent matcher)
+   - Web Speech API (input + output)
+   ========================================================================= */
 (function(){
-  // ROUTING
+
+  /* ---------- DASHBOARD KNOWLEDGE BASE ---------- */
+  /* All numbers are real, scraped from Shopify Admin earlier today. */
+  const WOLFBURN = {
+    period: "May 1-8 2026",
+    prevPeriod: "Apr 23-30 2026",
+    totalSales: 23046.21,
+    totalSalesChange: 0.15,
+    grossSales: 19240.85,
+    netSales: 18900,
+    orders: 324,
+    ordersChange: 0.26,
+    ordersFulfilled: 329,
+    aov: 58.34,
+    aovChange: -0.08,
+    sessions: 3351,
+    sessionsChange: 0.13,
+    cvr: 0.0199,
+    cvrChange: -0.20,
+    returningRate: 0.269,
+    returningRateChange: -0.35,
+    addedToCart: 150,
+    reachedCheckout: 117,
+    completed: 67,
+    today: { sessions: 30, sales: 0, orders: 0, sessionsChange: -0.53 },
+    nextPayout: 1859.07,
+    unfulfilled: 53,
+    catalog: { total: 156, collectors: 102, retail: 71, limitedEdition: 25, core: 18, apparel: 19, miniatures: 8, tours: 2 },
+    channels: {
+      pos: { sales: 14524, change: 0.82 },
+      online: { sales: 8224, change: -0.08 },
+      drafts: { sales: 248, change: -0.92 }
+    },
+    topProducts: [
+      { name: "Small Batch 416 Single Malt · 70cl", sales: 3900, change: 0.54, price: 69.99, type: "Limited Edition" },
+      { name: "Cask Strength Single Malt · 58.2% · 70cl", sales: 2800, change: 0, price: 69.99, type: "Limited Edition" },
+      { name: "Distillery Classic Tour", sales: 1700, change: -0.50, price: null, type: "Tour" },
+      { name: "Aurora Single Malt · 46% · 70cl", sales: 1420, change: 0, price: 69.99, type: "Core Whisky" },
+      { name: "12 Year Old Single Malt · 46% · 35cl", sales: 980, change: 0, price: 38.99, type: "Core Whisky" },
+      { name: "Northland · 46% · 70cl", sales: 840, change: 0, price: 34.99, type: "Core Whisky" },
+      { name: "10 Year Old Single Malt · 46% · 35cl", sales: 720, change: 0, price: 37.99, type: "Core Whisky" },
+      { name: "Pentland Liqueur · 26% · 50cl", sales: 480, change: 0, price: 29.99, type: "Whisky Liqueur" }
+    ],
+    topCities: [
+      { city: "Paris, Île-de-France, France", sessions: 171, change: 0.04 },
+      { city: "United Kingdom", sessions: 142, change: 0.60 },
+      { city: "Council Bluffs, Iowa, US", sessions: 100, change: 0.15 },
+      { city: "Glasgow, Scotland, UK", sessions: 86, change: 0.30 },
+      { city: "London, England, UK", sessions: 77, change: 0.33 }
+    ],
+    topReferrers: [
+      { source: "Direct (no referrer)", sales: 19800, change: 0.23 },
+      { source: "Google search", sales: 1900, change: -0.004 },
+      { source: "Wolfburn (own domain)", sales: 734, change: 0.27 },
+      { source: "Facebook social", sales: 217, change: 0.17 },
+      { source: "Android (app)", sales: 198, change: -0.41 }
+    ],
+    socialSessions: { facebook: 473, instagram: 53, twitter: 3, linkedin: 0 },
+    devices: { mobile: 2200, desktop: 1000, tablet: 55 },
+    cohorts: {
+      "Sep 2025": [7.07, 1.61, 1.21, 0.4, 0.4, 0.2, 1.41, 0.6],
+      "Oct 2025": [6.69, 1.96, 2.75, 1.57, 0.39, 0.39, 1.57],
+      "Nov 2025": [5.06, 1.84, 1.84, 1.38, 2.76, 1.84],
+      "Dec 2025": [3.79, 1.89, 0, 1.89, 2.36],
+      "Jan 2026": [4.21, 0.52, 0.52, 2.63],
+      "Feb 2026": [9.47, 5.26, 7.36],
+      "Mar 2026": [5.38, 2.99],
+      "Apr 2026": [8.12]
+    },
+    bestCohort: "Feb 2026",
+    recentOrders: [
+      { id: "WB33429-S", customer: "Bob Andrews", channel: "Online Store", total: 39.00, time: "23:19" },
+      { id: "WB33428-S", customer: "Deborah Ashcroft", channel: "Online Store", total: 70.49, time: "21:43" },
+      { id: "WB33427-S", customer: "Tracey Short", channel: "Online Store", total: 139.98, time: "19:54" }
+    ],
+    agents: [
+      { name: "Atlas", role: "Orchestrator", cluster: "system", status: "online", desc: "Voice + text co-pilot. Dispatches briefs and consolidates outputs." },
+      { name: "Scribe", role: "Long-form blog & editorial", cluster: "content", status: "online" },
+      { name: "Quill", role: "Product copy & ad creative", cluster: "content", status: "online" },
+      { name: "Composer", role: "Social posts", cluster: "content", status: "online" },
+      { name: "Voice", role: "Brand guideline QA", cluster: "content", status: "online" },
+      { name: "Forge", role: "Shopify, theme, Shogun ops", cluster: "commerce", status: "online" },
+      { name: "Cellarman", role: "Inventory & low-stock alerts", cluster: "commerce", status: "idle" },
+      { name: "Ledger", role: "Order triage & fulfilment", cluster: "commerce", status: "online" },
+      { name: "Reviews", role: "Trustpilot & Judge.me ingest", cluster: "commerce", status: "online" },
+      { name: "Crucible", role: "Meta Ads", cluster: "marketing", status: "awaiting Meta API" },
+      { name: "Anvil", role: "Google & YouTube Ads", cluster: "marketing", status: "awaiting Google Ads API" },
+      { name: "Strategist", role: "Campaign planning", cluster: "marketing", status: "online" },
+      { name: "Audience", role: "Lookalike & RFM segments", cluster: "marketing", status: "awaiting Klaviyo" },
+      { name: "Lighthouse", role: "GA4 + Shopify analytics", cluster: "analytics", status: "online" },
+      { name: "Hawk", role: "Competitive intel & SERP", cluster: "analytics", status: "online" },
+      { name: "Auditor", role: "Site health, CLS, SEO", cluster: "ops", status: "online" },
+      { name: "Sentinel", role: "Uptime, pixel, JS budget", cluster: "ops", status: "online" }
+    ],
+    auditOpen: [
+      "Trustpilot vs Judge.me · pick one (both apps loading sync)",
+      "Ship wes theme to live (header swap + clean Shop page ready)",
+      "23 images missing width/height (CLS issue)",
+      "Top-nav 10 → 7 consolidation"
+    ],
+    auditFixed: [
+      "GA4 503 errors · disconnected duplicate pixel G-SX4Q79WJ52",
+      "Privy 10% off sticky tab · disabled today",
+      "Pentland link routing · verified correct",
+      "CAVA BENITO footer · already gone",
+      "Triplicated footer · single instance confirmed"
+    ],
+    decisions: [
+      { priority: "high", owner: "Wesley", text: "Trustpilot vs Judge.me. Both fire on every page (~4 scripts each)." },
+      { priority: "med", owner: "Wolfburn IT", text: "Approve wes theme push to live." },
+      { priority: "low", owner: "Forge", text: "Replace homepage broken video hero with product carousel." }
+    ],
+    siteHealth: 82,
+    siteHealthChange: 7,
+    coreWebVitals: { lcp: 2.4, cls: 0.18, inp: 142 },
+    insights: [
+      "POS at the distillery is winning at £14,524 vs Online £8,224. Tour traffic + Father's Day pre-buy is the likely driver.",
+      "CVR is down 20% period over period at 1.99%. 4.47% add-to-cart is solid but only 22% of carts complete checkout. Worth a closer look at checkout.",
+      "Returning customer rate dropped 35% to 26.9%. That's a flow issue, not acquisition. Klaviyo email needs work.",
+      "Paris is the #1 source city for sessions at 171. Nobody on the team has talked about France. There's an opportunity.",
+      "Feb 2026 cohort retains best at 9.47% / 5.26% / 7.36%. What ran in Feb is worth re-running.",
+      "53 unfulfilled orders in the queue. Ledger shipping team needs to know."
+    ]
+  };
+
+  /* ---------- HELPERS ---------- */
+  const fmt = {
+    money: n => "£" + Math.round(n).toLocaleString(),
+    moneyExact: n => "£" + n.toFixed(2),
+    pct: n => (n >= 0 ? "+" : "") + (n * 100).toFixed(1) + "%",
+    pctSimple: n => n.toFixed(2) + "%"
+  };
+
+  /* ---------- ATLAS INTENT ENGINE ---------- */
+  function ask(query) {
+    const q = query.toLowerCase().trim();
+    const w = WOLFBURN;
+
+    if (!q) return "Ask me anything about Wolfburn. Try: how is revenue, what's selling, where are visitors from, what should I do.";
+
+    // Greetings
+    if (/^(hi|hello|hey|yo|oi|sup|good morning|good afternoon|good evening)\b/.test(q)) {
+      return `Hi Wesley. Wolfburn is up ${fmt.pct(w.totalSalesChange)} this period at ${fmt.money(w.totalSales)}. ${w.unfulfilled} unfulfilled orders waiting. Anything you want me to dig into?`;
+    }
+
+    // Revenue / sales
+    if (/(revenue|sales|how much|making|earned|total|gross)/.test(q) && !/product|sku/.test(q)) {
+      return `Total sales for ${w.period} are ${fmt.money(w.totalSales)}, up ${fmt.pct(w.totalSalesChange)} versus the prior 8 days. POS at the distillery is doing ${fmt.money(w.channels.pos.sales)} (up ${fmt.pct(w.channels.pos.change)}) and Online Store is ${fmt.money(w.channels.online.sales)}, down ${fmt.pct(Math.abs(w.channels.online.change))}. Net sales are ${fmt.money(w.netSales)}.`;
+    }
+
+    // Top products / best sellers
+    if (/(top|best|winner|selling|seller|product|sku|whisky|whiskey|spirits)/.test(q)) {
+      const top = w.topProducts.slice(0, 3);
+      let r = `Your top sellers in the ${w.period} window: `;
+      r += top.map(p => `${p.name} at ${fmt.money(p.sales)}${p.change ? " (" + fmt.pct(p.change) + ")" : ""}`).join(", ");
+      r += `. Small Batch 416 is the standout, up 54%. Distillery Classic Tour is your big concern at ${fmt.money(1700)} but down 50%.`;
+      return r;
+    }
+
+    // Orders
+    if (/(order|how many|fulfill|shipping|unfulfilled)/.test(q)) {
+      return `${w.orders} orders in the ${w.period} period, up ${fmt.pct(w.ordersChange)}. ${w.ordersFulfilled} have been fulfilled. There are ${w.unfulfilled} unfulfilled in the queue right now. Most recent online orders: Bob Andrews £39, Deborah Ashcroft £70.49, Tracey Short £139.98 — all paid, all awaiting fulfilment.`;
+    }
+
+    // AOV
+    if (/(aov|average order|basket size|cart size)/.test(q)) {
+      return `AOV is ${fmt.moneyExact(w.aov)}, down ${fmt.pct(Math.abs(w.aovChange))} versus the prior 8 days. The drop is single-bottle POS sales pulling the average down — POS orders are mostly £49.99 to £79.99 single bottles.`;
+    }
+
+    // Conversion / CVR
+    if (/(conversion|cvr|funnel|checkout|abandon)/.test(q)) {
+      return `Conversion rate is ${fmt.pctSimple(w.cvr * 100)}, down ${fmt.pct(Math.abs(w.cvrChange))} versus prior. Funnel: ${w.sessions} sessions, ${w.addedToCart} added to cart (4.47%), ${w.reachedCheckout} reached checkout (3.49%), ${w.completed} completed. The drop-off between checkout and completion is the gap to close.`;
+    }
+
+    // Sessions / traffic
+    if (/(traffic|session|visit|visitor|user)/.test(q) && !/(city|where|geo|location|countr|paris)/.test(q)) {
+      return `${w.sessions.toLocaleString()} sessions in the ${w.period} window, up ${fmt.pct(w.sessionsChange)}. Mobile is dominant at 2,200 (up 20%). Today is light at 30 sessions, down 53% versus comparable — but it's still early.`;
+    }
+
+    // Geography
+    if (/(city|where|geo|location|countr|paris|france|uk|us|america|scotland)/.test(q)) {
+      return `Paris is your #1 city at ${w.topCities[0].sessions} sessions, up ${fmt.pct(w.topCities[0].change)}. Then UK at ${w.topCities[1].sessions} (up ${fmt.pct(w.topCities[1].change)}), Council Bluffs Iowa at ${w.topCities[2].sessions}, Glasgow ${w.topCities[3].sessions}, London ${w.topCities[4].sessions}. France is a sleeper opportunity nobody on the team has talked about.`;
+    }
+
+    // Cohort / retention
+    if (/(cohort|retention|return|repeat customer|loyalty)/.test(q)) {
+      return `Returning customer rate is ${fmt.pctSimple(w.returningRate * 100)}, down ${fmt.pct(Math.abs(w.returningRateChange))} versus prior. Your best cohort is ${w.bestCohort} at 9.47% / 5.26% / 7.36% retention. That cohort outperforms every other month by a wide margin. Worth digging into what ran in February that we should re-run.`;
+    }
+
+    // Channels (POS vs online)
+    if (/(channel|pos|point of sale|online vs|distillery|in store|in-store|in person)/.test(q)) {
+      return `Point of Sale is dominating: ${fmt.money(w.channels.pos.sales)} versus ${fmt.money(w.channels.online.sales)} online. POS is up ${fmt.pct(w.channels.pos.change)}, online is down 8%. The distillery shop is now 63% of revenue. Tour traffic plus Father's Day pre-buy is the likely driver.`;
+    }
+
+    // Social / Facebook / Instagram
+    if (/(facebook|instagram|social|meta|tiktok|twitter)/.test(q)) {
+      return `Facebook is sending ${w.socialSessions.facebook} sessions but down 9%. Instagram up 26% to ${w.socialSessions.instagram}. Twitter ${w.socialSessions.twitter}. Sales from Facebook social: ${fmt.money(w.topReferrers[3].sales)}, up 17%. Meta Ads numbers need the Marketing API connected to flow through.`;
+    }
+
+    // Audit / site health
+    if (/(audit|site health|seo|cls|page speed|broken|fix)/.test(q)) {
+      return `Site health is ${w.siteHealth} out of 100, up ${w.siteHealthChange} since the April 29 audit. Core Web Vitals: LCP ${w.coreWebVitals.lcp}s good, CLS ${w.coreWebVitals.cls} needs improvement (23 images missing width/height), INP ${w.coreWebVitals.inp}ms good. Five things resolved today including GA4 pixel and the Privy sticky tab.`;
+    }
+
+    // Privy / sticky tab
+    if (/(privy|popup|sticky|10%|discount)/.test(q)) {
+      return `The 10% off sticky tab is gone. Earlier today I disabled the Tab step on Privy display 4446686 (Welcome Discount · Email I). The welcome popup still fires for new visitors, just no more left-edge sticky tab on every page. Verified live.`;
+    }
+
+    // GA4
+    if (/(ga4|analytics pixel|tracking|google analytics)/.test(q)) {
+      return `GA4 pixel is live and verified. Earlier today Sentinel disconnected the duplicate property G-SX4Q79WJ52 that was causing 503 errors. The kept property is G-CP4VZCKLNZ. Reporting API still needs to be authorized to flow GA4 numbers into Lighthouse.`;
+    }
+
+    // Decisions / what should I do / recommendations
+    if (/(decid|decision|do next|priority|priorit|recommend|suggest|advice|what should|action|next step)/.test(q)) {
+      const ds = w.decisions.map(d => `${d.priority.toUpperCase()} · ${d.text}`).join(" / ");
+      return `Three open decisions: ${ds}. Beyond that, the things I'd push hardest on: investigate the 20% CVR drop, look into the Paris traffic, and re-run whatever happened in February that produced your strongest cohort.`;
+    }
+
+    // Insights / problems / what's wrong
+    if (/(insight|wrong|problem|issue|concern|worry|alert|flag|warn)/.test(q)) {
+      return w.insights.slice(0, 3).join(" ");
+    }
+
+    // Agents
+    if (/(agent|fleet|team|atlas|scribe|quill|crucible|forge|ledger|cellarman|reviews|composer|voice|strategist|audience|lighthouse|hawk|auditor|sentinel|anvil)/.test(q)) {
+      // specific agent
+      for (const a of w.agents) {
+        if (q.includes(a.name.toLowerCase())) {
+          return `${a.name} is the ${a.role}, ${a.cluster} cluster. Status: ${a.status}.`;
+        }
+      }
+      return `You have 16 agents across 5 clusters: 4 content (Scribe, Quill, Composer, Voice), 4 commerce (Forge, Cellarman, Ledger, Reviews), 4 marketing (Crucible, Anvil, Strategist, Audience), 2 analytics (Lighthouse, Hawk), 2 ops (Auditor, Sentinel). Plus me, Atlas, the orchestrator. 11 are online, 4 are awaiting API auth.`;
+    }
+
+    // Catalog
+    if (/(catalog|product list|how many product|sku count)/.test(q)) {
+      return `${w.catalog.total} products across 12 collections. Breakdown: ${w.catalog.collectors} collectors editions, ${w.catalog.retail} retail, ${w.catalog.limitedEdition} limited editions, ${w.catalog.core} core whiskies, ${w.catalog.apparel} apparel, ${w.catalog.miniatures} miniatures, ${w.catalog.tours} tours.`;
+    }
+
+    // Today
+    if (/(today|now|current|right now|this morning)/.test(q)) {
+      return `Today (May 8): ${w.today.sessions} sessions so far (down ${fmt.pct(Math.abs(w.today.sessionsChange))} versus comparable). Zero sales and zero orders so far — but it's early. The 8-day window is up ${fmt.pct(w.totalSalesChange)} at ${fmt.money(w.totalSales)}. Next payout is ${fmt.moneyExact(w.nextPayout)}.`;
+    }
+
+    // Wolfburn brand / context
+    if (/(wolfburn|brand|distillery|caithness|thurso|highland|scottish|scotch)/.test(q) && !/(buy|sell|product|order|sales)/.test(q)) {
+      return `Wolfburn is a single malt Scotch whisky distillery in Thurso, Caithness, founded 2013. Independent, small-batch. Tagline: Fortune favours the brave. Three sales channels: DTC online, Trade, and distillery tours. ${w.catalog.total} active SKUs.`;
+    }
+
+    // Help / what can you do
+    if (/(help|what can you|capabilit|feature|command)/.test(q)) {
+      return `I can answer anything about Wolfburn: revenue, orders, AOV, conversion rate, top products, where visitors come from, cohort retention, channel mix, social, audit findings, agent status, recent orders, what to do next. Try asking about Paris, the Feb cohort, or what's wrong with conversion.`;
+    }
+
+    // Thank you
+    if (/(thank|thanks|cheers|appreciate|good)/.test(q)) {
+      return `Anytime, Wesley.`;
+    }
+
+    // Fallback
+    return `I don't have a clean answer for that yet. I do know about: revenue, orders, AOV, conversion rate, top products, top cities, cohort retention, channel mix, social referrers, audit findings, agent status, and recent orders. What angle do you want?`;
+  }
+
+  /* ---------- ROUTING ---------- */
   function navigate(pageId) {
     pageId = pageId || 'overview';
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -3458,7 +3705,6 @@
   window.addEventListener('hashchange', handleHash);
   window.addEventListener('DOMContentLoaded', handleHash);
 
-  // intercept clicks anywhere with data-page
   document.addEventListener('click', function(e){
     var link = e.target.closest('[data-page]');
     if (link) {
@@ -3467,7 +3713,7 @@
     }
   });
 
-  // TAB BAR
+  /* ---------- TAB BAR ---------- */
   document.addEventListener('click', function(e){
     var tab = e.target.closest('.tab[data-tab]');
     if (!tab) return;
@@ -3480,7 +3726,7 @@
     if (target) target.classList.add('active');
   });
 
-  // TOAST
+  /* ---------- TOAST + MODAL ---------- */
   window.toast = function(label, msg) {
     var stack = document.getElementById('toast-stack');
     var el = document.createElement('div');
@@ -3494,29 +3740,6 @@
     }, 3500);
   };
 
-  // RUN AGENT button (data-run-agent="Crucible")
-  document.addEventListener('click', function(e){
-    var btn = e.target.closest('[data-run-agent]');
-    if (!btn) return;
-    e.preventDefault();
-    var agent = btn.dataset.runAgent;
-    var time = new Date().toTimeString().slice(0,5);
-    window.toast(agent + ' dispatched', 'Brief queued · ' + time + ' · run id ' + Math.random().toString(36).slice(2,8));
-  });
-
-  // MODAL
-  window.openModal = function(title, body, confirmLabel, onConfirm) {
-    var wrap = document.getElementById('modal-wrap');
-    var m = document.getElementById('modal-body');
-    m.innerHTML = '<h2>' + title + '</h2><p>' + body + '</p><div class="modal-actions">' +
-      '<button class="btn" data-modal-close>Cancel</button>' +
-      '<button class="btn solid" data-modal-confirm>' + (confirmLabel || 'Confirm') + '</button></div>';
-    wrap.classList.add('active');
-    wrap.querySelector('[data-modal-confirm]').onclick = function(){
-      wrap.classList.remove('active');
-      if (onConfirm) onConfirm();
-    };
-  };
   document.addEventListener('click', function(e){
     if (e.target.closest('[data-modal-close]')) {
       document.getElementById('modal-wrap').classList.remove('active');
@@ -3526,30 +3749,204 @@
     }
   });
 
-  // VOICE button — open modal
+  /* ---------- RUN AGENT ---------- */
+  document.addEventListener('click', function(e){
+    var btn = e.target.closest('[data-run-agent]');
+    if (!btn) return;
+    e.preventDefault();
+    var agent = btn.dataset.runAgent;
+    var time = new Date().toTimeString().slice(0,5);
+    window.toast(agent + ' dispatched', 'Brief queued · ' + time + ' · run id ' + Math.random().toString(36).slice(2,8));
+  });
+
+  /* ---------- ATLAS CHAT INTERFACE ---------- */
+  function appendChat(role, text) {
+    const log = document.getElementById('atlas-log');
+    if (!log) return;
+    const time = new Date().toTimeString().slice(0,5);
+    const wrap = document.createElement('div');
+    if (role === 'user') {
+      wrap.style.cssText = 'margin-bottom: 28px;';
+      wrap.innerHTML = `<div style="font-family: var(--mono); font-size:9px; color:var(--muted); letter-spacing:0.18em; margin-bottom:8px;">YOU · ${time}</div>
+        <div style="background: var(--bg-3); padding: 16px 20px; border-radius: 6px; max-width: 80%; font-size: 14px; line-height: 1.55;">${text}</div>`;
+    } else {
+      wrap.style.cssText = 'margin-bottom: 28px; padding-left: 24px; border-left: 2px solid var(--copper);';
+      wrap.innerHTML = `<div style="font-family: var(--mono); font-size:9px; color:var(--copper); letter-spacing:0.18em; margin-bottom:8px;">ATLAS · ${time}</div>
+        <div style="font-size: 14px; line-height: 1.65;">${text}</div>`;
+    }
+    log.appendChild(wrap);
+    log.scrollTop = log.scrollHeight;
+  }
+
+  window.atlasAsk = function(query) {
+    appendChat('user', query);
+    setTimeout(function(){
+      const answer = ask(query);
+      appendChat('atlas', answer);
+      speak(answer);
+    }, 250);
+  };
+
+  // wire chat input + send
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Enter') {
+      const input = e.target.closest('#atlas-input');
+      if (input && input.value.trim()) {
+        const q = input.value.trim();
+        input.value = '';
+        window.atlasAsk(q);
+      }
+    }
+  });
+  document.addEventListener('click', function(e){
+    if (e.target.closest('#atlas-send')) {
+      const input = document.getElementById('atlas-input');
+      if (input && input.value.trim()) {
+        const q = input.value.trim();
+        input.value = '';
+        window.atlasAsk(q);
+      }
+    }
+  });
+
+  /* ---------- WEB SPEECH API · INPUT ---------- */
+  let recog = null;
+  let recogActive = false;
+
+  function setupRecog() {
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SR) return null;
+    const r = new SR();
+    r.continuous = false;
+    r.interimResults = true;
+    r.lang = 'en-GB';
+    r.onstart = () => {
+      recogActive = true;
+      document.querySelectorAll('.atlas-status').forEach(el => {
+        el.innerHTML = '<span class="pulse"></span>Listening…';
+        el.style.color = 'var(--copper)';
+      });
+      window.toast('Atlas listening', 'Speak your question. Auto-stops at the end.');
+    };
+    r.onresult = (event) => {
+      let interim = '', final = '';
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        const t = event.results[i][0].transcript;
+        if (event.results[i].isFinal) final += t;
+        else interim += t;
+      }
+      const input = document.getElementById('atlas-input');
+      if (input) input.value = final || interim;
+    };
+    r.onend = () => {
+      recogActive = false;
+      document.querySelectorAll('.atlas-status').forEach(el => {
+        el.innerHTML = '<span class="pulse"></span>Listening';
+        el.style.color = '';
+      });
+      const input = document.getElementById('atlas-input');
+      if (input && input.value.trim()) {
+        const q = input.value.trim();
+        input.value = '';
+        // if not on Atlas page, jump there first
+        if (!document.getElementById('page-atlas').classList.contains('active')) {
+          location.hash = 'atlas';
+          setTimeout(function(){ window.atlasAsk(q); }, 350);
+        } else {
+          window.atlasAsk(q);
+        }
+      }
+    };
+    r.onerror = (e) => {
+      recogActive = false;
+      window.toast('Voice error', e.error || 'unknown');
+    };
+    return r;
+  }
+
+  /* ---------- WEB SPEECH API · OUTPUT ---------- */
+  function speak(text) {
+    if (!('speechSynthesis' in window)) return;
+    if (window.__atlasMute) return;
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.rate = 1.05;
+    u.pitch = 1.0;
+    u.volume = 0.95;
+    // try to pick a nice English voice
+    const voices = speechSynthesis.getVoices();
+    const preferred = voices.find(v => /samantha|daniel|kate|serena|alex/i.test(v.name) && /en/i.test(v.lang)) ||
+                      voices.find(v => /en-GB/i.test(v.lang)) ||
+                      voices.find(v => /en/i.test(v.lang));
+    if (preferred) u.voice = preferred;
+    speechSynthesis.speak(u);
+  }
+  window.atlasSpeak = speak;
+
+  /* ---------- VOICE BUTTON ---------- */
   document.addEventListener('click', function(e){
     var btn = e.target.closest('.voice-btn');
     if (!btn) return;
     e.preventDefault();
-    window.openModal('Atlas listening',
-      'Voice input would activate here. In production this connects to OpenAI Realtime or ElevenLabs streaming.<br><br>For now, jump to the Atlas chat interface to type a brief.',
-      'Open Atlas',
-      function(){ location.hash = 'atlas'; });
-  });
-
-  // search box dummy
-  document.addEventListener('click', function(e){
-    if (e.target.closest('.search')) {
-      window.toast('Command palette', 'Press ⌘K — full search ships in v2');
+    if (!recog) recog = setupRecog();
+    if (!recog) {
+      window.toast('Voice unavailable', 'Web Speech API not supported in this browser. Try Chrome.');
+      return;
+    }
+    if (recogActive) {
+      recog.stop();
+    } else {
+      try {
+        recog.start();
+      } catch (err) {
+        window.toast('Voice error', err.message);
+      }
     }
   });
 
-  // New brief
+  /* ---------- KEYBOARD: ⌥+Space toggles voice ---------- */
+  document.addEventListener('keydown', function(e){
+    if (e.altKey && e.code === 'Space') {
+      e.preventDefault();
+      const btn = document.querySelector('.voice-btn');
+      if (btn) btn.click();
+    }
+    // ⌘K opens search (placeholder)
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault();
+      window.toast('Command palette', 'Press ⌥+Space to talk to Atlas instead');
+    }
+  });
+
+  /* ---------- SEARCH BOX (placeholder) ---------- */
+  document.addEventListener('click', function(e){
+    if (e.target.closest('.search')) {
+      window.toast('Try voice', 'Press ⌥+Space anywhere to talk to Atlas');
+    }
+  });
+
+  /* ---------- NEW BRIEF ---------- */
   document.addEventListener('click', function(e){
     var btn = e.target.closest('[data-new-brief]');
     if (!btn) return;
     location.hash = 'atlas';
   });
+
+  /* ---------- PRELOAD VOICES (Chrome quirk) ---------- */
+  if ('speechSynthesis' in window) {
+    speechSynthesis.onvoiceschanged = () => {};
+    speechSynthesis.getVoices();
+  }
+
+  /* ---------- WELCOME WHEN ATLAS PAGE OPENS ---------- */
+  let firstAtlasOpen = true;
+  window.addEventListener('hashchange', function(){
+    if (location.hash === '#atlas' && firstAtlasOpen) {
+      firstAtlasOpen = false;
+      // already populated by static markup, no-op
+    }
+  });
+
 })();
 </script>
 
