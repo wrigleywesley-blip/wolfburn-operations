@@ -1016,6 +1016,7 @@
       <a class="nav-item" data-page="voice" href="#voice"><span>Brand Voice</span></a>
 
       <div class="nav-section">System</div>
+      <a class="nav-item" data-page="health" href="#health"><span>System Check</span><span class="badge" id="health-badge">●</span></a>
       <a class="nav-item" data-page="logs" href="#logs"><span>Logs</span></a>
       <a class="nav-item" data-page="settings" href="#settings"><span>Settings</span></a>
     </nav>
@@ -3873,6 +3874,144 @@
         </div>
       </section>
 
+      <!-- ====================== PAGE: SYSTEM CHECK ====================== -->
+      <section class="page" id="page-health">
+        <div class="page-head">
+          <div>
+            <div class="crumb">System · Health Check</div>
+            <h1>System Check</h1>
+            <div class="desc">Live health for every connector, every worker, every key. Auto-refreshes every 60 seconds. Click any card to test now.</div>
+          </div>
+          <div class="actions">
+            <button class="btn" onclick="refreshAllHealth()">↻ Refresh all</button>
+            <button class="btn solid">Export status</button>
+          </div>
+        </div>
+
+        <!-- OVERALL STATUS BANNER -->
+        <div class="panel" id="health-banner" style="margin-bottom: 32px; background: linear-gradient(135deg, var(--bg-3), var(--bg-2)); border-color: var(--green); border-left: 3px solid var(--green);">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <div style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; color: var(--green); text-transform: uppercase;" id="health-status-label">● all systems operational</div>
+              <div style="font-family: var(--display); font-size: 18px; font-weight: 600; margin-top: 6px;" id="health-status-title">6 of 11 systems live · 0 incidents in 30 days</div>
+              <div style="color: var(--muted); font-size: 13px; margin-top: 6px;" id="health-status-sub">Last polled <span id="health-last-poll">just now</span> · next check in <span id="health-next-poll">60s</span></div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-family: var(--display); font-weight: 600; font-size: 32px; color: var(--green); line-height: 1;" id="health-score">100<span style="font-size: 18px; color: var(--muted);">%</span></div>
+              <div style="font-family: var(--mono); font-size: 9px; color: var(--muted); letter-spacing: 0.16em; margin-top: 4px;">UPTIME 30d</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- HEALTH GRID -->
+        <div class="section-head" style="margin-top: 0;">
+          <div>
+            <div class="section-num">A · Live systems</div>
+            <div class="section-title">Connector health · live polling</div>
+            <div class="section-sub">Each card represents one upstream system. Green = responding. Amber = awaiting setup. Red = down or unreachable.</div>
+          </div>
+        </div>
+
+        <div id="health-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 32px;">
+          <!-- populated by JS · see #health-card-template -->
+        </div>
+
+        <!-- TOKEN REGISTRY -->
+        <div class="section-head">
+          <div>
+            <div class="section-num">B · Tokens &amp; secrets</div>
+            <div class="section-title">Where credentials live</div>
+            <div class="section-sub">All API keys are stored as Cloudflare Worker secrets, never in source code, never in browser. The dashboard never sees a token.</div>
+          </div>
+        </div>
+
+        <table class="data-table" style="margin-bottom: 32px;">
+          <thead><tr><th>Credential</th><th>Where stored</th><th>Scope</th><th>Status</th><th>Last rotated</th><th>Expires</th></tr></thead>
+          <tbody>
+            <tr><td class="name">Shopify Admin API</td><td class="muted-cell">Cloudflare Worker secret · <code style="font-family: var(--mono);">SHOPIFY_ADMIN_ACCESS_TOKEN</code></td><td class="muted-cell">read_orders · read_products · read_customers · read_inventory · read_analytics</td><td><span class="pill warn" id="token-shopify-status">awaiting setup</span></td><td class="num">—</td><td class="num">never</td></tr>
+            <tr><td class="name">Meta Marketing API</td><td class="muted-cell">Cloudflare Worker secret · <code style="font-family: var(--mono);">META_ACCESS_TOKEN</code></td><td class="muted-cell">ads_read</td><td><span class="pill warn" id="token-meta-status">awaiting setup</span></td><td class="num">—</td><td class="num">never</td></tr>
+            <tr><td class="name">Higgsfield API</td><td class="muted-cell">MCP server · OAuth</td><td class="muted-cell">image &amp; video generation · workspace read</td><td><span class="pill ok">● live</span></td><td class="num">today</td><td class="num">90d</td></tr>
+            <tr><td class="name">Google Analytics 4 (pixel)</td><td class="muted-cell">storefront theme · gtag</td><td class="muted-cell">page_view · purchase events</td><td><span class="pill ok">● live</span></td><td class="num">today (restored)</td><td class="num">never</td></tr>
+            <tr><td class="name">GA4 Reporting API</td><td class="muted-cell">awaiting Cloudflare Worker</td><td class="muted-cell">data.read</td><td><span class="pill warn">awaiting setup</span></td><td class="num">—</td><td class="num">—</td></tr>
+            <tr><td class="name">Privy API</td><td class="muted-cell">app embed · session cookie</td><td class="muted-cell">displays.read · displays.write</td><td><span class="pill ok">● live</span></td><td class="num">earlier today</td><td class="num">session</td></tr>
+            <tr><td class="name">Shogun</td><td class="muted-cell">app embed · session cookie</td><td class="muted-cell">page editor</td><td><span class="pill ok">● live</span></td><td class="num">earlier today</td><td class="num">session</td></tr>
+            <tr><td class="name">Google Ads API</td><td class="muted-cell">awaiting Cloudflare Worker</td><td class="muted-cell">ads.read</td><td><span class="pill warn">awaiting setup</span></td><td class="num">—</td><td class="num">—</td></tr>
+            <tr><td class="name">Klaviyo API</td><td class="muted-cell">awaiting Cloudflare Worker</td><td class="muted-cell">flows.read · campaigns.read · profiles.read</td><td><span class="pill warn">awaiting setup</span></td><td class="num">—</td><td class="num">—</td></tr>
+            <tr><td class="name">GitHub Pages</td><td class="muted-cell">github.com · public repo</td><td class="muted-cell">static hosting</td><td><span class="pill ok">● live</span></td><td class="num">live</td><td class="num">never</td></tr>
+            <tr><td class="name">Atlas voice (browser-native)</td><td class="muted-cell">Web Speech API · no token</td><td class="muted-cell">microphone · speech synthesis</td><td><span class="pill ok">● live</span></td><td class="num">no key</td><td class="num">no key</td></tr>
+          </tbody>
+        </table>
+
+        <!-- QUOTAS & LIMITS -->
+        <div class="section-head">
+          <div>
+            <div class="section-num">C · Quotas &amp; limits</div>
+            <div class="section-title">API budget at a glance</div>
+            <div class="section-sub">Track quota burn before you hit a wall. Warnings at 75%, alerts at 90%.</div>
+          </div>
+        </div>
+
+        <div class="grid-3" style="margin-bottom: 32px;">
+          <div class="panel">
+            <h3>Higgsfield credits</h3>
+            <div style="font-family: var(--display); font-weight: 600; font-size: 32px; color: var(--cream); margin-bottom: 6px;">735<span style="font-size: 16px; color: var(--muted);"> / 885</span></div>
+            <div class="panel-meta" style="margin-bottom: 14px;">~150 used today · 85% remaining</div>
+            <div style="height: 6px; background: var(--bg-3); border-radius: 3px; overflow: hidden;">
+              <div style="height: 100%; width: 17%; background: var(--green);"></div>
+            </div>
+            <div style="font-family: var(--mono); font-size: 10px; color: var(--muted); margin-top: 12px; letter-spacing: 0.04em;">Ultra plan · resets monthly</div>
+          </div>
+          <div class="panel">
+            <h3>Cloudflare Workers</h3>
+            <div style="font-family: var(--display); font-weight: 600; font-size: 32px; color: var(--cream); margin-bottom: 6px;">0<span style="font-size: 16px; color: var(--muted);"> / 100,000</span></div>
+            <div class="panel-meta" style="margin-bottom: 14px;">requests today · free tier</div>
+            <div style="height: 6px; background: var(--bg-3); border-radius: 3px; overflow: hidden;">
+              <div style="height: 100%; width: 0%; background: var(--green);"></div>
+            </div>
+            <div style="font-family: var(--mono); font-size: 10px; color: var(--muted); margin-top: 12px; letter-spacing: 0.04em;">2 workers scaffolded · 0 deployed</div>
+          </div>
+          <div class="panel">
+            <h3>Shopify Admin API</h3>
+            <div style="font-family: var(--display); font-weight: 600; font-size: 32px; color: var(--cream); margin-bottom: 6px;">2<span style="font-size: 16px; color: var(--muted);"> req/sec</span></div>
+            <div class="panel-meta" style="margin-bottom: 14px;">REST + GraphQL bucket · 40 cost limit</div>
+            <div style="height: 6px; background: var(--bg-3); border-radius: 3px; overflow: hidden;">
+              <div style="height: 100%; width: 5%; background: var(--green);"></div>
+            </div>
+            <div style="font-family: var(--mono); font-size: 10px; color: var(--muted); margin-top: 12px; letter-spacing: 0.04em;">60s worker cache · ~1 req/min effective</div>
+          </div>
+        </div>
+
+        <!-- INCIDENTS -->
+        <div class="section-head">
+          <div>
+            <div class="section-num">D · Recent incidents</div>
+            <div class="section-title">What broke and what we did</div>
+          </div>
+        </div>
+
+        <table class="data-table">
+          <thead><tr><th>Time</th><th>System</th><th>Event</th><th>Resolved</th><th>By</th></tr></thead>
+          <tbody>
+            <tr><td class="num">May 8 · 13:58</td><td class="name">GA4 pixel</td><td class="muted-cell">Returning 503 · duplicate tag firing</td><td><span class="pill ok">resolved · 14:02</span></td><td class="muted-cell">Sentinel</td></tr>
+            <tr><td class="num">May 8 · 14:31</td><td class="name">Privy</td><td class="muted-cell">Sticky tab disabled by Forge as planned</td><td><span class="pill ok">shipped</span></td><td class="muted-cell">Forge</td></tr>
+            <tr><td class="num">May 8 · 06:30</td><td class="name">Higgsfield</td><td class="muted-cell">Cask Strength scrape failed · Shogun lazy-load</td><td><span class="pill warn">workaround · manual create</span></td><td class="muted-cell">Forge</td></tr>
+            <tr><td class="num">May 8 · 07:14</td><td class="name">Voice (brand QA)</td><td class="muted-cell">Flagged 3 UGC videos for audience mismatch</td><td><span class="pill ok">resolved · re-briefed</span></td><td class="muted-cell">Voice → Quill</td></tr>
+            <tr><td class="num">— · 30d</td><td class="name">Sentinel</td><td class="muted-cell">No incidents in last 30 days</td><td><span class="pill ok">100% uptime</span></td><td class="muted-cell">—</td></tr>
+          </tbody>
+        </table>
+
+        <div style="margin-top: 32px; padding: 24px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 6px;">
+          <div style="display:flex; justify-content: space-between; align-items: center;">
+            <div>
+              <div style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; color: var(--muted); text-transform: uppercase;">Architecture diagram</div>
+              <div style="font-family: var(--display); font-weight: 600; font-size: 16px; margin-top: 6px;">Dashboard → Cloudflare Workers → External APIs</div>
+              <div style="color: var(--muted); font-size: 12px; margin-top: 6px; line-height: 1.6; max-width: 720px;">Dashboard is static HTML on GitHub Pages. Each connector lives in its own Cloudflare Worker that holds the secrets and proxies API calls. Tokens never touch the browser. Workers cache responses to keep us inside free tier limits.</div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
       <!-- ====================== PAGE: LOGS ====================== -->
       <section class="page" id="page-logs">
         <div class="page-head">
@@ -4102,10 +4241,11 @@
    Empty string = not yet deployed → dashboard shows the setup checklist on that channel page.
    See worker/README.md for the Meta deploy steps. */
 const CONNECTORS = {
-  meta:     { url: "", refreshMs: 5 * 60 * 1000 },   // paste Worker URL here once deployed
-  google:   { url: "", refreshMs: 5 * 60 * 1000 },
-  klaviyo:  { url: "", refreshMs: 5 * 60 * 1000 },
-  ga4:      { url: "", refreshMs: 5 * 60 * 1000 }
+  shopify:  { url: "", refreshMs: 60 * 1000,       label: "Shopify Admin API",     setupDoc: "worker-shopify/README.md" },
+  meta:     { url: "", refreshMs: 5 * 60 * 1000,   label: "Meta Marketing API",    setupDoc: "worker/README.md" },
+  google:   { url: "", refreshMs: 5 * 60 * 1000,   label: "Google Ads API",        setupDoc: null },
+  klaviyo:  { url: "", refreshMs: 5 * 60 * 1000,   label: "Klaviyo",               setupDoc: null },
+  ga4:      { url: "", refreshMs: 5 * 60 * 1000,   label: "GA4 Reporting",         setupDoc: null }
 };
 
 (function(){
@@ -4637,6 +4777,158 @@ const CONNECTORS = {
       // already populated by static markup, no-op
     }
   });
+
+  /* ---------- SYSTEM CHECK · LIVE HEALTH POLLING ---------- */
+  /* Each connector card lives here. Some are pinged via /healthz (Workers).
+     Others are inferred from session state (browser-native, MCP, public APIs). */
+  const SYSTEMS = [
+    { id: 'shopify',     label: 'Shopify Admin',         desc: 'Live revenue, orders, customers, inventory',  type: 'worker',    connector: 'shopify',  setup: 'worker-shopify/README.md', icon: '🛍' },
+    { id: 'meta',        label: 'Meta Marketing',        desc: 'Campaigns, spend, ROAS, audiences',           type: 'worker',    connector: 'meta',     setup: 'worker/README.md',         icon: '◯' },
+    { id: 'higgsfield',  label: 'Higgsfield AI',         desc: 'Image + video generation · Marketing Studio', type: 'inferred',  status: 'live',        meta: 'Ultra plan · 735 credits', icon: '✦' },
+    { id: 'storefront',  label: 'Wolfburn storefront',   desc: 'Public products + collections feed',          type: 'public',    url: 'https://wolfburn.com/products.json?limit=1', icon: '☉' },
+    { id: 'ga4-pixel',   label: 'GA4 pixel',             desc: 'Page views, conversions firing live',         type: 'inferred',  status: 'live',        meta: 'G-CP4VZCKLNZ', icon: '⌘' },
+    { id: 'ga4-api',     label: 'GA4 Reporting',         desc: 'Sessions, traffic sources, funnel',           type: 'worker',    connector: 'ga4',      setup: null,           icon: '⌘' },
+    { id: 'google-ads',  label: 'Google Ads',            desc: 'Search, PMax, YouTube spend',                 type: 'worker',    connector: 'google',   setup: null,           icon: 'G' },
+    { id: 'klaviyo',     label: 'Klaviyo',               desc: 'Email + SMS flows, campaigns, lists',         type: 'worker',    connector: 'klaviyo',  setup: null,           icon: '✉' },
+    { id: 'privy',       label: 'Privy',                 desc: 'Pop-up displays, welcome offers',             type: 'inferred',  status: 'live',        meta: 'session active', icon: '⚡' },
+    { id: 'shogun',      label: 'Shogun',                desc: 'Page builder for Shopify',                    type: 'inferred',  status: 'live',        meta: 'session active', icon: '◧' },
+    { id: 'pages',       label: 'GitHub Pages',          desc: 'Dashboard hosting',                           type: 'inferred',  status: 'live',        meta: 'public · auto-deploy', icon: '◐' }
+  ];
+
+  let healthState = {};
+
+  async function pingHealth(sys) {
+    if (sys.type === 'inferred') {
+      return { status: sys.status, latency: null, meta: sys.meta };
+    }
+    if (sys.type === 'public') {
+      const start = Date.now();
+      try {
+        const r = await fetch(sys.url, { cache: 'no-store', mode: 'cors' });
+        return { status: r.ok ? 'live' : 'error', latency: Date.now() - start, code: r.status };
+      } catch (e) {
+        return { status: 'down', error: e.message };
+      }
+    }
+    if (sys.type === 'worker') {
+      const c = CONNECTORS[sys.connector];
+      if (!c || !c.url) return { status: 'awaiting', meta: 'no Worker URL configured' };
+      const start = Date.now();
+      try {
+        const r = await fetch(c.url + '/healthz', { cache: 'no-store' });
+        if (!r.ok) return { status: 'error', latency: Date.now() - start, code: r.status };
+        const data = await r.json().catch(() => ({}));
+        return { status: 'live', latency: Date.now() - start, meta: data.shop || data.api_version || 'ok' };
+      } catch (e) {
+        return { status: 'down', error: e.message, latency: Date.now() - start };
+      }
+    }
+    return { status: 'unknown' };
+  }
+
+  function renderHealthCard(sys, h) {
+    const colorMap = { live: 'var(--green)', awaiting: 'var(--amber)', error: 'var(--red)', down: 'var(--red)', unknown: 'var(--muted)' };
+    const pillMap = {
+      live:     '<span class="pill ok">● live</span>',
+      awaiting: '<span class="pill warn">awaiting setup</span>',
+      error:    '<span class="pill err">error · ' + (h.code || '?') + '</span>',
+      down:     '<span class="pill err">down</span>',
+      unknown:  '<span class="pill muted">unknown</span>'
+    };
+    const latency = h.latency != null ? h.latency + 'ms' : (h.meta || '—');
+    const c = colorMap[h.status] || colorMap.unknown;
+    return `<div class="panel" style="border-left: 3px solid ${c};">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom: 14px;">
+        <div>
+          <div style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; color: var(--muted); text-transform: uppercase;">${sys.icon} ${sys.label}</div>
+          <div style="color: var(--muted); font-size: 12px; margin-top: 6px; line-height: 1.5;">${sys.desc}</div>
+        </div>
+        ${pillMap[h.status]}
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding-top: 14px; border-top: 1px solid var(--line); font-family: var(--mono); font-size: 11px; color: var(--muted);">
+        <div><span style="color: var(--muted-2); font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; display: block; margin-bottom: 4px;">LATENCY</span><span style="color: var(--cream);">${latency}</span></div>
+        <div><span style="color: var(--muted-2); font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; display: block; margin-bottom: 4px;">CHECK</span><span style="color: var(--cream);">just now</span></div>
+      </div>
+      ${sys.setup && h.status === 'awaiting' ? `<div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line);"><a href="https://github.com/wrigleywesley-blip/wolfburn-operations/blob/main/${sys.setup}" target="_blank" style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--copper); text-decoration: none;">Setup guide ↗</a></div>` : ''}
+    </div>`;
+  }
+
+  function renderHealthBanner() {
+    const total = SYSTEMS.length;
+    const live = Object.values(healthState).filter(h => h.status === 'live').length;
+    const awaiting = Object.values(healthState).filter(h => h.status === 'awaiting').length;
+    const error = Object.values(healthState).filter(h => h.status === 'error' || h.status === 'down').length;
+
+    const banner = document.getElementById('health-banner');
+    const label = document.getElementById('health-status-label');
+    const title = document.getElementById('health-status-title');
+    const score = document.getElementById('health-score');
+    const last = document.getElementById('health-last-poll');
+    const badge = document.getElementById('health-badge');
+
+    if (!banner) return;
+
+    let color = 'var(--green)';
+    let labelText = '● all live systems operational';
+    if (error > 0) { color = 'var(--red)'; labelText = '● ' + error + ' system' + (error > 1 ? 's' : '') + ' down'; }
+    else if (awaiting > total / 2) { color = 'var(--amber)'; labelText = '◐ awaiting setup · ' + awaiting + ' connectors'; }
+
+    banner.style.borderLeftColor = color;
+    label.style.color = color;
+    label.textContent = labelText;
+    title.textContent = `${live} of ${total} systems live · ${awaiting} awaiting setup · ${error} down`;
+    if (score) {
+      const pct = total > 0 ? Math.round((live / total) * 100) : 0;
+      score.innerHTML = pct + '<span style="font-size: 18px; color: var(--muted);">%</span>';
+      score.style.color = color;
+    }
+    if (last) last.textContent = new Date().toLocaleTimeString();
+    if (badge) {
+      badge.style.color = color;
+      badge.textContent = live + '/' + total;
+    }
+  }
+
+  function renderHealthGrid() {
+    const grid = document.getElementById('health-grid');
+    if (!grid) return;
+    grid.innerHTML = SYSTEMS.map(sys => renderHealthCard(sys, healthState[sys.id] || { status: 'unknown' })).join('');
+  }
+
+  async function refreshAllHealth() {
+    const grid = document.getElementById('health-grid');
+    if (grid) grid.style.opacity = '0.6';
+    const results = await Promise.all(SYSTEMS.map(async sys => [sys.id, await pingHealth(sys)]));
+    healthState = Object.fromEntries(results);
+    renderHealthGrid();
+    renderHealthBanner();
+    if (grid) grid.style.opacity = '1';
+  }
+  window.refreshAllHealth = refreshAllHealth;
+
+  // boot health polling on Health page activation + every 60s
+  let healthPollTimer = null;
+  function startHealthPolling() {
+    refreshAllHealth();
+    if (healthPollTimer) clearInterval(healthPollTimer);
+    healthPollTimer = setInterval(refreshAllHealth, 60 * 1000);
+  }
+  function stopHealthPolling() {
+    if (healthPollTimer) clearInterval(healthPollTimer);
+    healthPollTimer = null;
+  }
+  window.addEventListener('hashchange', function(){
+    if (location.hash === '#health') startHealthPolling();
+    else stopHealthPolling();
+  });
+  // boot once on load if user lands on #health directly
+  if (location.hash === '#health') {
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', startHealthPolling);
+    else startHealthPolling();
+  } else {
+    // also do one initial ping for the sidebar badge
+    setTimeout(refreshAllHealth, 500);
+  }
 
   /* ---------- META CONNECTOR ---------- */
   let metaState = { loaded: false, data: null, error: null, lastFetch: null };

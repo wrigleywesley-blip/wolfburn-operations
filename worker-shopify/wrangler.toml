@@ -1,0 +1,10 @@
+name = "wolfburn-shopify-sync"
+main = "src/index.ts"
+compatibility_date = "2026-05-08"
+
+# [vars]
+# ALLOWED_ORIGIN = "https://wrigleywesley-blip.github.io"
+
+# Secrets via:
+#   wrangler secret put SHOPIFY_SHOP_DOMAIN          (e.g. wolfburn-distillery.myshopify.com)
+#   wrangler secret put SHOPIFY_ADMIN_ACCESS_TOKEN   (shpat_...)
