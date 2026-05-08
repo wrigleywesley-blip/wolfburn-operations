@@ -1,0 +1,413 @@
+{
+  "total_products": 156,
+  "by_type": {
+    "Retail": 42,
+    "Beverages & Tobacco > Alcoholic Beverages > Whisky > Scotch Whisky": 38,
+    "Collectors": 40,
+    "Clothing": 11,
+    "Food, Beverages & Tobacco > Beverages > Alcoholic Beverages > Liquor & Spirits": 8,
+    "Food, Beverages & Tobacco > Beverages > Alcoholic Beverages > Liquor & Spirits > Whiskey": 1,
+    "Tasting Event": 1,
+    "Distillery Tour": 2,
+    "Merchandise": 12,
+    "Gift Card": 1
+  },
+  "by_price_band": {
+    "<\u00a320": 35,
+    "\u00a320-\u00a350": 27,
+    "\u00a350-\u00a3100": 72,
+    "\u00a3100-\u00a3200": 9,
+    "\u00a3200+": 13
+  },
+  "date_range": [
+    "2022-05-10",
+    "2026-05-01"
+  ],
+  "hero_products": [
+    {
+      "title": "Cask Strength Single Malt Scotch Whisky (Single Bottle)",
+      "price": "48.99",
+      "product_type": "Retail",
+      "handle": "cask-strength-single-malt-scotch-whisky-single-bottle",
+      "created_at": "2026-05-01"
+    },
+    {
+      "title": "Cask Strength Single Malt Scotch Whisky (Case of 6)",
+      "price": "293.96",
+      "product_type": "Retail",
+      "handle": "cask-strength-single-malt-scotch-whisky-case-of-6",
+      "created_at": "2026-05-01"
+    },
+    {
+      "title": "Cask Strength Single Malt Whisky \u2013 58.2% vol. 70cl",
+      "price": "69.99",
+      "product_type": "Beverages & Tobacco > Alcoholic Beverages > Whisky > Scotch Whisky",
+      "handle": "cask-strength-single-malt-scotch-whisky-58-2-vol-70cl",
+      "created_at": "2026-04-30"
+    },
+    {
+      "title": "12 Year Old Miniatures (Case of 12)",
+      "price": "67.12",
+      "product_type": "Retail",
+      "handle": "12-year-old-miniatures-case-of-12",
+      "created_at": "2026-04-29"
+    },
+    {
+      "title": "Small Batch 416 Single Malt Scotch Whisky (Single Bottle)",
+      "price": "48.99",
+      "product_type": "Retail",
+      "handle": "small-batch-416-single-malt-scotch-whisky-single-bottle",
+      "created_at": "2026-04-22"
+    },
+    {
+      "title": "Wolfburn 12 Year Old Single Malt Scotch Whisky Miniature  46 vol 5cl",
+      "price": "7.99",
+      "product_type": "Beverages & Tobacco > Alcoholic Beverages > Whisky > Scotch Whisky",
+      "handle": "wolfburn-12-year-old-single-malt-scotch-whisky-miniature-46-vol-5cl",
+      "created_at": "2026-04-21"
+    },
+    {
+      "title": "Small Batch 416 Single Malt Scotch Whisky (Case of 6)",
+      "price": "293.96",
+      "product_type": "Retail",
+      "handle": "small-batch-416-single-malt-scotch-whisky-case-of-6",
+      "created_at": "2026-04-20"
+    },
+    {
+      "title": "Small Batch 416 Single Malt Scotch Whisky - 46% vol. 70cl",
+      "price": "69.99",
+      "product_type": "Beverages & Tobacco > Alcoholic Beverages > Whisky > Scotch Whisky",
+      "handle": "small-batch-416-single-malt-scotch-whisky-46-vol-70cl",
+      "created_at": "2026-04-16"
+    },
+    {
+      "title": "Pentland Whisky Liqueur (Case of 6)",
+      "price": "125.94",
+      "product_type": "Retail",
+      "handle": "pentland-single-malt-scotch-whisky-liqueur-26-vol-50cl-retail",
+      "created_at": "2026-03-22"
+    },
+    {
+      "title": "Pentland Single Malt Scotch Whisky Liqueur \u2013 26% vol. 50cl",
+      "price": "29.99",
+      "product_type": "Beverages & Tobacco > Alcoholic Beverages > Whisky > Scotch Whisky",
+      "handle": "pentland-single-malt-scotch-whisky-liqueur-26-vol-50cl",
+      "created_at": "2026-03-16"
+    },
+    {
+      "title": "10 Year Old 35cl (Case of 6)",
+      "price": "159.56",
+      "product_type": "Retail",
+      "handle": "10-year-old-35cl-case-of-6",
+      "created_at": "2026-02-24"
+    },
+    {
+      "title": "12 Year Old 35cl (Case of 6)",
+      "price": "163.76",
+      "product_type": "Retail",
+      "handle": "12-year-old-35cl-case-of-6",
+      "created_at": "2026-02-24"
+    },
+    {
+      "title": "12 Year Old Single Malt Scotch Whisky - 46 vol. 35cl",
+      "price": "38.99",
+      "product_type": "Beverages & Tobacco > Alcoholic Beverages > Whisky > Scotch Whisky",
+      "handle": "12-year-old-single-malt-scotch-whisky-46-vol-35cl",
+      "created_at": "2026-02-04"
+    },
+    {
+      "title": "10 Year Old Single Malt Scotch Whisky - 46 vol. 35cl",
+      "price": "37.99",
+      "product_type": "Beverages & Tobacco > Alcoholic Beverages > Whisky > Scotch Whisky",
+      "handle": "10-year-old-single-malt-scotch-whisky-46-vol-35cl",
+      "created_at": "2026-02-04"
+    },
+    {
+      "title": "10 Year Old Luxury Whisky Christmas Cracker \u2013 46% vol. 5cl",
+      "price": "9.99",
+      "product_type": "Food, Beverages & Tobacco > Beverages > Alcoholic Beverages > Liquor & Spirits",
+      "handle": "10-year-old-luxury-cracker-46-vol-5cl",
+      "created_at": "2024-10-23"
+    },
+    {
+      "title": "Northland Luxury Whisky Christmas Cracker \u2013 46% vol. 5cl",
+      "price": "8.99",
+      "product_type": "Food, Beverages & Tobacco > Beverages > Alcoholic Beverages > Liquor & Spirits",
+      "handle": "northland-cracker-46-vol-5cl",
+      "created_at": "2024-10-23"
+    },
+    {
+      "title": "Morven Luxury Whisky Christmas Cracker \u2013 46% vol. 5cl",
+      "price": "8.99",
+      "product_type": "Food, Beverages & Tobacco > Beverages > Alcoholic Beverages > Liquor & Spirits",
+      "handle": "morven-luxury-cracker-46-vol-5cl",
+      "created_at": "2024-10-23"
+    },
+    {
+      "title": "Aurora Luxury Whisky Christmas Cracker \u2013 46% vol. 5cl",
+      "price": "8.99",
+      "product_type": "Food, Beverages & Tobacco > Beverages > Alcoholic Beverages > Liquor & Spirits",
+      "handle": "aurora-luxury-cracker-46-vol-5cl",
+      "created_at": "2024-10-23"
+    },
+    {
+      "title": "Northland (Case of 6)",
+      "price": "209.96",
+      "product_type": "Retail",
+      "handle": "northland-46-vol-70cl-case-of-6",
+      "created_at": "2022-05-18"
+    },
+    {
+      "title": "Northland (Single bottle)",
+      "price": "34.99",
+      "product_type": "Retail",
+      "handle": "northland",
+      "created_at": "2023-09-27"
+    },
+    {
+      "title": "Northland 35cl (Case of 6)",
+      "price": "136.46",
+      "product_type": "Retail",
+      "handle": "8-year-old-northland-35cl-case-of-6",
+      "created_at": "2025-09-08"
+    },
+    {
+      "title": "8 Year Old Northland 35cl (Case of 6)",
+      "price": "146.96",
+      "product_type": "Retail",
+      "handle": "8-year-old-northland-46-vol-35cl-case-of-6",
+      "created_at": "2024-03-23"
+    },
+    {
+      "title": "8 Year Old Northland (Case of 6)",
+      "price": "230.96",
+      "product_type": "Retail",
+      "handle": "8yr-northland-case-of-6",
+      "created_at": "2025-09-08"
+    },
+    {
+      "title": "8 Year old Northland (Single bottle)",
+      "price": "38.50",
+      "product_type": "Retail",
+      "handle": "8yr-northland-single-bottle",
+      "created_at": "2025-09-08"
+    },
+    {
+      "title": "8 Year Old Northland Single Malt Scotch Whisky \u2013 46% vol. 35cl",
+      "price": "34.99",
+      "product_type": "Beverages & Tobacco > Alcoholic Beverages > Whisky > Scotch Whisky",
+      "handle": "8-year-old-northland-46-vol-35cl",
+      "created_at": "2025-09-08"
+    },
+    {
+      "title": "8 Year Old Northland Single Malt Scotch Whisky \u2013 46% vol. 70cl",
+      "price": "54.99",
+      "product_type": "Beverages & Tobacco > Alcoholic Beverages > Whisky > Scotch Whisky",
+      "handle": "8-year-old-northland-46-vol-70cl",
+      "created_at": "2025-09-08"
+    },
+    {
+      "title": "Dounreay 12 Year old Single Malt Scotch Whisky \u2013 46% vol. 70cl",
+      "price": "64.99",
+      "product_type": "Beverages & Tobacco > Alcoholic Beverages > Whisky > Scotch Whisky",
+      "handle": "dounreay-46-vol-70cl",
+      "created_at": "2025-08-12"
+    },
+    {
+      "title": "12 Year Old Single Malt Scotch Whisky \u2013 46% vol. 70cl",
+      "price": "69.99",
+      "product_type": "Beverages & Tobacco > Alcoholic Beverages > Whisky > Scotch Whisky",
+      "handle": "12-year-old-single-malt-scotch-whisky-46-vol-70cl",
+      "created_at": "2025-07-01"
+    },
+    {
+      "title": "12 Year Old (Case of 6)",
+      "price": "293.96",
+      "product_type": "Retail",
+      "handle": "12-year-old-case-of-6",
+      "created_at": "2025-07-01"
+    },
+    {
+      "title": "12 Year Old (Single bottle)",
+      "price": "48.99",
+      "product_type": "Retail",
+      "handle": "12-year-old-single-bottle",
+      "created_at": "2025-07-01"
+    },
+    {
+      "title": "Kylver 15 \u2013 53.6% vol. 70cl",
+      "price": "99.99",
+      "product_type": "Collectors",
+      "handle": "kylver-15-53-6-vol-70cl",
+      "created_at": "2025-06-11"
+    },
+    {
+      "title": "Kylver 15 \u2013 53.6% vol. 70cl",
+      "price": "99.99",
+      "product_type": "Beverages & Tobacco > Alcoholic Beverages > Whisky > Scotch Whisky",
+      "handle": "kylver15-53-6-vol-70cl",
+      "created_at": "2025-06-11"
+    },
+    {
+      "title": "Morven 35cl (Case of 6)",
+      "price": "142.76",
+      "product_type": "Retail",
+      "handle": "morven-35cl-case-of-6",
+      "created_at": "2024-08-24"
+    },
+    {
+      "title": "Morven Single Malt Scotch Whisky \u2013 46% vol. 35cl",
+      "price": "33.99",
+      "product_type": "Beverages & Tobacco > Alcoholic Beverages > Whisky > Scotch Whisky",
+      "handle": "morven-46-vol-35cl",
+      "created_at": "2024-03-05"
+    },
+    {
+      "title": "Aurora 35cl (Case of 6)",
+      "price": "136.46",
+      "product_type": "Retail",
+      "handle": "aurora-46-vol-35cl_retail",
+      "created_at": "2024-03-23"
+    },
+    {
+      "title": "Aurora Single Malt Scotch Whisky \u2013 46% vol. 35cl",
+      "price": "32.49",
+      "product_type": "Beverages & Tobacco > Alcoholic Beverages > Whisky > Scotch Whisky",
+      "handle": "aurora-46-vol-35cl",
+      "created_at": "2024-03-05"
+    },
+    {
+      "title": "10 Year Old Miniatures (Case of 12)",
+      "price": "62.92",
+      "product_type": "Retail",
+      "handle": "10-year-old-miniatures-case-of-12",
+      "created_at": "2024-04-17"
+    },
+    {
+      "title": "Wolfburn 10 Year Old Single Malt Scotch Whisky Miniature \u2013 46% vol 5cl",
+      "price": "7.49",
+      "product_type": "Beverages & Tobacco > Alcoholic Beverages > Whisky > Scotch Whisky",
+      "handle": "10-year-old-miniature-46-vol-5cl",
+      "created_at": "2024-04-17"
+    },
+    {
+      "title": "Morven (Single bottle)",
+      "price": "37.79",
+      "product_type": "Retail",
+      "handle": "morven",
+      "created_at": "2023-09-27"
+    },
+    {
+      "title": "Cask Strength 2023 (Single bottle)",
+      "price": "51.49",
+      "product_type": "Retail",
+      "handle": "cask-strength",
+      "created_at": "2023-09-27"
+    },
+    {
+      "title": "Aurora (Single bottle)",
+      "price": "34.99",
+      "product_type": "Retail",
+      "handle": "aurora",
+      "created_at": "2023-09-27"
+    },
+    {
+      "title": "10 Year Old (Single bottle)",
+      "price": "47.59",
+      "product_type": "Retail",
+      "handle": "10-year-old-46-vol-70cl-retail",
+      "created_at": "2023-09-27"
+    },
+    {
+      "title": "Cask Strength 2023 (Case of 6)",
+      "price": "272.94",
+      "product_type": "Retail",
+      "handle": "cask-strength-2023-case-of-6",
+      "created_at": "2023-06-13"
+    },
+    {
+      "title": "10 Year Old Single Malt Scotch Whisky \u2013 46% vol. 70cl",
+      "price": "67.99",
+      "product_type": "Beverages & Tobacco > Alcoholic Beverages > Whisky > Scotch Whisky",
+      "handle": "10-year-old-46-vol-70cl",
+      "created_at": "2023-04-11"
+    },
+    {
+      "title": "10 Year Old (Case of 6)",
+      "price": "285.56",
+      "product_type": "Retail",
+      "handle": "10-year-old-case-of-6",
+      "created_at": "2023-04-12"
+    },
+    {
+      "title": "Aurora (Case of 6)",
+      "price": "209.96",
+      "product_type": "Retail",
+      "handle": "aurora-case-of-6",
+      "created_at": "2022-07-01"
+    },
+    {
+      "title": "Morven Miniatures (Case of 12)",
+      "price": "58.72",
+      "product_type": "Retail",
+      "handle": "morven-miniatures-case-of-12",
+      "created_at": "2022-06-07"
+    },
+    {
+      "title": "Aurora Miniatures (Case of 12)",
+      "price": "58.72",
+      "product_type": "Retail",
+      "handle": "aurora-miniatures-case-of-12",
+      "created_at": "2022-06-07"
+    },
+    {
+      "title": "Northland Miniatures (Case of 12)",
+      "price": "58.72",
+      "product_type": "Retail",
+      "handle": "northland-miniatures-case-of-12",
+      "created_at": "2022-06-07"
+    },
+    {
+      "title": "Morven (Case of 6)",
+      "price": "226.76",
+      "product_type": "Retail",
+      "handle": "morven-46-vol-70cl-case-of-6",
+      "created_at": "2022-05-18"
+    },
+    {
+      "title": "Morven Single Malt Scotch Whisky Miniature \u2013 46% vol. 5cl",
+      "price": "6.99",
+      "product_type": "Beverages & Tobacco > Alcoholic Beverages > Whisky > Scotch Whisky",
+      "handle": "morven-miniature-46-vol-5cl",
+      "created_at": "2022-05-12"
+    },
+    {
+      "title": "Aurora Single Malt Scotch Whisky Miniature \u2013 46% vol. 5cl",
+      "price": "6.99",
+      "product_type": "Beverages & Tobacco > Alcoholic Beverages > Whisky > Scotch Whisky",
+      "handle": "aurora-miniature-46-vol-5cl",
+      "created_at": "2022-05-12"
+    },
+    {
+      "title": "Northland Single Malt Scotch Whisky Miniature \u2013 46% vol 5cl",
+      "price": "6.99",
+      "product_type": "Beverages & Tobacco > Alcoholic Beverages > Whisky > Scotch Whisky",
+      "handle": "northland-miniature-46-vol-5cl",
+      "created_at": "2022-05-12"
+    },
+    {
+      "title": "Morven Single Malt Scotch Whisky \u2013 46% vol. 70cl",
+      "price": "53.99",
+      "product_type": "Beverages & Tobacco > Alcoholic Beverages > Whisky > Scotch Whisky",
+      "handle": "morven-46-vol-70cl",
+      "created_at": "2022-05-12"
+    },
+    {
+      "title": "Aurora Single Malt Scotch Whisky \u2013 46% vol. 70cl",
+      "price": "49.99",
+      "product_type": "Beverages & Tobacco > Alcoholic Beverages > Whisky > Scotch Whisky",
+      "handle": "aurora-46-vol-70cl",
+      "created_at": "2022-05-10"
+    }
+  ]
+}

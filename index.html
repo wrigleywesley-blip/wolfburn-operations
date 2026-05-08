@@ -1042,6 +1042,16 @@
       <!-- ====================== PAGE: OVERVIEW ====================== -->
       <section class="page active" id="page-overview">
 
+      <!-- DATA STATUS BANNER -->
+      <div style="display:grid; grid-template-columns: 1fr auto; gap: 16px; padding: 14px 18px; background: var(--bg-2); border: 1px solid var(--line-2); border-left: 3px solid var(--copper); margin-bottom: 24px; align-items: center;">
+        <div style="display:flex; gap: 24px; align-items:center; flex-wrap: wrap;">
+          <div style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; color: var(--copper); text-transform: uppercase;">⚡ Connection state</div>
+          <span style="font-size: 12px; color: var(--cream);"><strong style="color: var(--green);">5 live</strong> <span style="color: var(--muted);">·</span> Storefront · Privy · Shopify Admin (browser) · GA4 admin · Shogun</span>
+          <span style="font-size: 12px; color: var(--cream);"><strong style="color: var(--amber);">7 awaiting auth</strong> <span style="color: var(--muted);">·</span> Shopify API · Meta · Google Ads · GA4 Reporting · Klaviyo · Trustpilot · Judge.me</span>
+        </div>
+        <button class="btn" data-page="settings">Manage connectors →</button>
+      </div>
+
       <!-- ATLAS HERO -->
       <div style="display:flex; align-items:baseline; justify-content:space-between; margin-bottom: 18px;">
         <div>
@@ -1095,11 +1105,11 @@
         </div>
 
         <div class="atlas-message">
-          <div class="label">Latest brief · 14:31 BST</div>
+          <div class="label">Latest brief · live</div>
           <blockquote>
-            "Wolfburn is up <em>+18.4%</em> month over month. Crucible is running 3 active Meta campaigns with a blended <em>3.2× ROAS</em>. Forge just published the new Pentland banner. Two open decisions: <em>Trustpilot vs Judge.me</em>, and shipping wes theme to live."
+            "Storefront sync confirms <em>156 products</em> across <em>12 collections</em>: 18 core, 25 limited, 102 collectors, 19 apparel. The <em>10% off sticky tab is dead</em> on the live site (Privy display 4446686). <em>GA4 pixel is restored</em> after the duplicate disconnect. Three open ops decisions: Shopify Admin auth, Trustpilot vs Judge.me, and shipping wes theme to live."
           </blockquote>
-          <div class="timestamp">— ATLAS · synthesised from 16 agents · 14 sources · 28 seconds ago</div>
+          <div class="timestamp">— ATLAS · synthesised from real storefront + this session's ops · 4 connectors live, 4 awaiting auth</div>
         </div>
 
         <div class="atlas-cta">
@@ -1115,41 +1125,35 @@
       <!-- KPI STRIP -->
       <div class="kpis">
         <div class="kpi">
-          <div class="kpi-label">Revenue · 30d</div>
-          <div class="kpi-value"><span class="unit">£</span>127,432</div>
-          <div class="kpi-delta up">▲ 18.4% vs prev</div>
+          <div class="kpi-label">Catalog · live</div>
+          <div class="kpi-value">156<span class="unit">SKUs</span></div>
+          <div class="kpi-delta up">storefront sync</div>
           <svg class="kpi-spark" width="60" height="22" viewBox="0 0 60 22">
             <polyline fill="none" stroke="#7EA67B" stroke-width="1.5" points="0,16 8,14 16,15 24,11 32,12 40,8 48,9 60,3" />
           </svg>
         </div>
         <div class="kpi">
-          <div class="kpi-label">Orders · 30d</div>
-          <div class="kpi-value">312</div>
-          <div class="kpi-delta up">▲ 12.1% vs prev</div>
+          <div class="kpi-label">Collections</div>
+          <div class="kpi-value">12</div>
+          <div class="kpi-delta up">102 collectors · 71 retail</div>
           <svg class="kpi-spark" width="60" height="22" viewBox="0 0 60 22">
             <polyline fill="none" stroke="#B5894C" stroke-width="1.5" points="0,14 8,12 16,13 24,10 32,9 40,11 48,7 60,5" />
           </svg>
         </div>
-        <div class="kpi">
-          <div class="kpi-label">AOV</div>
-          <div class="kpi-value"><span class="unit">£</span>408</div>
-          <div class="kpi-delta down">▼ 2.3% vs prev</div>
-          <svg class="kpi-spark" width="60" height="22" viewBox="0 0 60 22">
-            <polyline fill="none" stroke="#C26B5C" stroke-width="1.5" points="0,6 8,7 16,8 24,9 32,11 40,12 48,13 60,14" />
-          </svg>
+        <div class="kpi" style="opacity: 0.55;">
+          <div class="kpi-label">Revenue · 30d</div>
+          <div class="kpi-value" style="font-family: var(--mono); font-size: 14px; padding: 8px 0;">awaiting Shopify auth</div>
+          <div class="kpi-delta flat">connect Admin API</div>
+        </div>
+        <div class="kpi" style="opacity: 0.55;">
+          <div class="kpi-label">Meta ROAS</div>
+          <div class="kpi-value" style="font-family: var(--mono); font-size: 14px; padding: 8px 0;">awaiting Meta auth</div>
+          <div class="kpi-delta flat">connect Marketing API</div>
         </div>
         <div class="kpi">
-          <div class="kpi-label">Meta ROAS · blended</div>
-          <div class="kpi-value">3.2<span class="unit">×</span></div>
-          <div class="kpi-delta up">▲ 0.4 vs prev</div>
-          <svg class="kpi-spark" width="60" height="22" viewBox="0 0 60 22">
-            <polyline fill="none" stroke="#D9A551" stroke-width="1.5" points="0,16 8,15 16,12 24,13 32,10 40,8 48,7 60,4" />
-          </svg>
-        </div>
-        <div class="kpi">
-          <div class="kpi-label">Agents · health</div>
-          <div class="kpi-value">14<span class="unit">/16</span></div>
-          <div class="kpi-delta flat">2 idle · 0 errors</div>
+          <div class="kpi-label">Site health · audit</div>
+          <div class="kpi-value">82<span class="unit">/100</span></div>
+          <div class="kpi-delta up">▲ 7 since Apr 29</div>
           <svg class="kpi-spark" width="60" height="22" viewBox="0 0 60 22">
             <rect x="0" y="6" width="6" height="14" fill="#7EA67B"/>
             <rect x="8" y="3" width="6" height="17" fill="#7EA67B"/>
@@ -1778,36 +1782,46 @@
         </div>
 
         <div class="ctx-card">
-          <h3>Hero products</h3>
+          <h3>Hero products <span class="pill ok" style="margin-left: 8px;">live · 156 SKUs</span></h3>
           <div class="product-row">
             <div class="product-line">
               <div>
-                <div class="nm">Wolfburn 12yo</div>
-                <div class="desc">Sherry &amp; bourbon cask · Highland</div>
+                <div class="nm">Cask Strength · 70cl</div>
+                <div class="desc">58.2% vol · Limited Edition</div>
               </div>
-              <div class="price">£72</div>
+              <div class="price">£69.99</div>
             </div>
             <div class="product-line">
               <div>
-                <div class="nm">Wolfburn 10yo</div>
-                <div class="desc">Bourbon cask · 46%</div>
+                <div class="nm">Small Batch 416 · 70cl</div>
+                <div class="desc">46% vol · Limited Edition</div>
               </div>
-              <div class="price">£58</div>
+              <div class="price">£69.99</div>
             </div>
             <div class="product-line">
               <div>
-                <div class="nm">Northland</div>
-                <div class="desc">No-age statement · approachable</div>
+                <div class="nm">12 Year Old · 35cl</div>
+                <div class="desc">46% vol · Core whisky</div>
               </div>
-              <div class="price">£42</div>
+              <div class="price">£38.99</div>
             </div>
             <div class="product-line">
               <div>
-                <div class="nm">Pentland</div>
-                <div class="desc">Cognac cask · limited</div>
+                <div class="nm">Northland · 70cl</div>
+                <div class="desc">46% vol · No age statement</div>
               </div>
-              <div class="price">£89</div>
+              <div class="price">£34.99</div>
             </div>
+            <div class="product-line">
+              <div>
+                <div class="nm">Pentland Liqueur · 50cl</div>
+                <div class="desc">26% vol · Whisky liqueur</div>
+              </div>
+              <div class="price">£29.99</div>
+            </div>
+          </div>
+          <div style="font-family: var(--mono); font-size: 9px; color: var(--muted); margin-top: 12px; letter-spacing: 0.12em; text-transform: uppercase;">
+            source · wolfburn.com/products.json · live
           </div>
         </div>
 
@@ -2319,11 +2333,22 @@
           </div>
         </div>
 
+        <div class="panel" style="margin-bottom: 20px; background: linear-gradient(135deg, var(--bg-3), var(--bg-2)); border-color: var(--copper);">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <div style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; color: var(--copper); text-transform: uppercase;">⚡ Connection required</div>
+              <div style="font-family: var(--display); font-size: 16px; font-weight: 600; margin-top: 6px;">Authorize Shopify Admin to unlock live revenue, orders, CVR, carts, customer data</div>
+              <div style="color: var(--muted); font-size: 12px; margin-top: 4px;">Catalog data (156 products, 12 collections) is already streaming from the public storefront.</div>
+            </div>
+            <button class="btn solid">Connect Shopify Admin</button>
+          </div>
+        </div>
+
         <div class="grid-4" style="margin-bottom: 28px;">
-          <div class="stat-mini"><div class="lbl">Revenue · today</div><div class="val">£3,847</div><div class="delta up">▲ 14% vs yesterday</div></div>
-          <div class="stat-mini"><div class="lbl">Orders · today</div><div class="val">11</div><div class="delta up">▲ 2 vs yesterday</div></div>
-          <div class="stat-mini"><div class="lbl">CVR · today</div><div class="val">1.6%</div><div class="delta down">▼ 0.2pp</div></div>
-          <div class="stat-mini"><div class="lbl">Carts · open</div><div class="val">37</div><div class="delta flat">£8,420 value</div></div>
+          <div class="stat-mini"><div class="lbl">Products · live</div><div class="val">156</div><div class="delta up">storefront sync</div></div>
+          <div class="stat-mini"><div class="lbl">Collections</div><div class="val">12</div><div class="delta flat">8 active</div></div>
+          <div class="stat-mini" style="opacity: 0.5;"><div class="lbl">Revenue · today</div><div class="val" style="font-family: var(--mono); font-size: 14px;">awaiting auth</div><div class="delta flat">connect Admin</div></div>
+          <div class="stat-mini" style="opacity: 0.5;"><div class="lbl">Orders · today</div><div class="val" style="font-family: var(--mono); font-size: 14px;">awaiting auth</div><div class="delta flat">connect Admin</div></div>
         </div>
 
         <div class="tab-bar" data-tab-group="shopify">
@@ -2334,34 +2359,37 @@
         </div>
 
         <div class="tab-panel active" data-tab-group="shopify" data-tab-id="orders">
-          <table class="data-table">
-            <thead><tr><th>Order</th><th>Customer</th><th>Items</th><th>Total</th><th>Status</th><th>Time</th></tr></thead>
-            <tbody>
-              <tr><td class="name">#WB-12847</td><td>J. Henderson · Edinburgh</td><td>Wolfburn 12yo · 1</td><td class="num">£72.00</td><td><span class="pill ok">paid</span></td><td class="num">14:19</td></tr>
-              <tr><td class="name">#WB-12846</td><td>M. Patel · London</td><td>Pentland · 1, Glencairn × 2</td><td class="num">£104.50</td><td><span class="pill ok">paid</span></td><td class="num">13:48</td></tr>
-              <tr><td class="name">#WB-12845</td><td>K. Mackenzie · Inverness</td><td>Northland · 2</td><td class="num">£84.00</td><td><span class="pill ok">paid · fulfilled</span></td><td class="num">12:30</td></tr>
-              <tr><td class="name">#WB-12844</td><td>R. O'Brien · Dublin</td><td>Wolfburn 10yo · 1</td><td class="num">£58.00</td><td><span class="pill warn">refund req</span></td><td class="num">11:55</td></tr>
-              <tr><td class="name">#WB-12843</td><td>S. Chen · Manchester</td><td>Pentland · 1</td><td class="num">£89.00</td><td><span class="pill ok">paid</span></td><td class="num">11:12</td></tr>
-              <tr><td class="name">#WB-12842</td><td>L. Thompson · Glasgow</td><td>12yo · 1, t-shirt L · 1</td><td class="num">£97.00</td><td><span class="pill ok">paid</span></td><td class="num">10:48</td></tr>
-              <tr><td class="name">#WB-12841</td><td>P. Vasquez · Madrid</td><td>Northland · 1</td><td class="num">£42.00</td><td><span class="pill info">int'l hold</span></td><td class="num">09:22</td></tr>
-              <tr><td class="name">#WB-12840</td><td>A. Jenkins · Cardiff</td><td>Wolfburn 12yo · 2, Pentland · 1</td><td class="num">£233.00</td><td><span class="pill ok">paid · fulfilled</span></td><td class="num">08:15</td></tr>
-            </tbody>
-          </table>
+          <div class="panel" style="text-align: center; padding: 60px 32px;">
+            <div style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em; color: var(--copper); text-transform: uppercase; margin-bottom: 14px;">Awaiting Shopify Admin authorization</div>
+            <div style="font-family: var(--display); font-size: 22px; font-weight: 600; margin-bottom: 10px;">Orders stream lights up the moment you connect</div>
+            <div style="color: var(--muted); font-size: 13px; max-width: 520px; margin: 0 auto 24px auto; line-height: 1.6;">Once authorized, Ledger pulls every new order in real time. Customer name, items, fulfilment status, refund flags, all live.</div>
+            <button class="btn solid">Connect Shopify Admin</button>
+          </div>
         </div>
 
         <div class="tab-panel" data-tab-group="shopify" data-tab-id="products">
+          <div style="display:flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+            <div style="font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.14em; text-transform: uppercase;">live · 156 products from wolfburn.com/products.json · 30s sync</div>
+            <span class="pill ok">● live</span>
+          </div>
           <table class="data-table">
-            <thead><tr><th>Product</th><th>Units · 30d</th><th>Revenue · 30d</th><th>Conv rate</th><th>Stock</th><th>Status</th></tr></thead>
+            <thead><tr><th>Product</th><th>Type</th><th>Price</th><th>Created</th><th>Status</th></tr></thead>
             <tbody>
-              <tr><td class="name">Wolfburn 12 Year Old · 70cl</td><td class="num">186</td><td class="num">£13,392</td><td class="num">2.4%</td><td class="num">412</td><td><span class="pill ok">active</span></td></tr>
-              <tr><td class="name">Pentland · Cognac Cask · 70cl</td><td class="num">87</td><td class="num">£7,743</td><td class="num">1.8%</td><td class="num">94</td><td><span class="pill warn">limited · 1,200</span></td></tr>
-              <tr><td class="name">Wolfburn 10 Year Old · 70cl</td><td class="num">142</td><td class="num">£8,236</td><td class="num">2.1%</td><td class="num">580</td><td><span class="pill ok">active</span></td></tr>
-              <tr><td class="name">Northland · 70cl</td><td class="num">203</td><td class="num">£8,526</td><td class="num">2.8%</td><td class="num">1,240</td><td><span class="pill ok">active</span></td></tr>
-              <tr><td class="name">Kylver Series 14 · 70cl</td><td class="num">42</td><td class="num">£5,460</td><td class="num">0.9%</td><td class="num">38</td><td><span class="pill warn">low stock</span></td></tr>
-              <tr><td class="name">Wolfburn Glencairn Glass</td><td class="num">156</td><td class="num">£1,872</td><td class="num">5.4%</td><td class="num">820</td><td><span class="pill ok">active</span></td></tr>
-              <tr><td class="name">Distillery T-Shirt · L</td><td class="num">38</td><td class="num">£950</td><td class="num">3.2%</td><td class="num">62</td><td><span class="pill ok">active</span></td></tr>
+              <tr><td class="name">Cask Strength Single Malt · 58.2% · 70cl</td><td class="muted-cell">Limited Edition</td><td class="num">£69.99</td><td class="num">2025-09</td><td><span class="pill ok">active</span></td></tr>
+              <tr><td class="name">Small Batch 416 Single Malt · 46% · 70cl</td><td class="muted-cell">Limited Edition</td><td class="num">£69.99</td><td class="num">2025-12</td><td><span class="pill ok">active</span></td></tr>
+              <tr><td class="name">12 Year Old Single Malt · 46% · 35cl</td><td class="muted-cell">Core Whisky</td><td class="num">£38.99</td><td class="num">2024-03</td><td><span class="pill ok">active</span></td></tr>
+              <tr><td class="name">10 Year Old Single Malt · 46% · 35cl</td><td class="muted-cell">Core Whisky</td><td class="num">£37.99</td><td class="num">2024-03</td><td><span class="pill ok">active</span></td></tr>
+              <tr><td class="name">Northland · 46% · 70cl</td><td class="muted-cell">Core Whisky</td><td class="num">£34.99</td><td class="num">2022-05</td><td><span class="pill ok">active</span></td></tr>
+              <tr><td class="name">8 Year Old Northland · 46% · 35cl</td><td class="muted-cell">Core Whisky</td><td class="num">£34.99</td><td class="num">2024-09</td><td><span class="pill ok">active</span></td></tr>
+              <tr><td class="name">Pentland Liqueur · 26% · 50cl</td><td class="muted-cell">Whisky Liqueur</td><td class="num">£29.99</td><td class="num">2024-08</td><td><span class="pill ok">active</span></td></tr>
+              <tr><td class="name">Hoodie · "Fortune Favours the Brave" · Black</td><td class="muted-cell">Clothing</td><td class="num">£35.00</td><td class="num">2024-11</td><td><span class="pill ok">active</span></td></tr>
+              <tr><td class="name">Fiercely Independent T-Shirt · Black</td><td class="muted-cell">Clothing</td><td class="num">£19.99</td><td class="num">2024-11</td><td><span class="pill ok">active</span></td></tr>
+              <tr><td class="name">2026 Anniversary Series · 55.2% · 70cl</td><td class="muted-cell">Collectors</td><td class="num">£89.99</td><td class="num">2026-04</td><td><span class="pill ok">active</span></td></tr>
+              <tr><td class="name">The Barrel Baron 2026 · 58% · 70cl</td><td class="muted-cell">Collectors</td><td class="num">£89.99</td><td class="num">2026-03</td><td><span class="pill ok">active</span></td></tr>
+              <tr><td class="name">Luxury Whisky Gift Pack · 70cl</td><td class="muted-cell">Gift</td><td class="num">£85.99</td><td class="num">2025-06</td><td><span class="pill ok">active</span></td></tr>
             </tbody>
           </table>
+          <div style="text-align: center; margin-top: 14px; font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.06em;">Showing 12 of 156 · 102 Collectors · 71 Retail · 25 Limited Edition · 18 Core · 19 Apparel</div>
         </div>
 
         <div class="tab-panel" data-tab-group="shopify" data-tab-id="inventory">
@@ -2418,11 +2446,21 @@
           <div>
             <div class="crumb">Channels · Meta Ads</div>
             <h1>Meta Ads</h1>
-            <div class="desc">Crucible runs Meta. Three live campaigns, blended 3.2× ROAS over the last 30 days. Budget pacing on plan.</div>
+            <div class="desc">Crucible runs Meta. Authorize Meta Marketing API to bring real campaigns, spend, ROAS into this view. Numbers below are illustrative.</div>
           </div>
           <div class="actions">
             <button class="btn">Ads Manager ↗</button>
-            <button class="btn solid" data-run-agent="Crucible">Run Crucible</button>
+            <button class="btn solid">Connect Meta API</button>
+          </div>
+        </div>
+        <div class="panel" style="margin-bottom: 24px; background: linear-gradient(135deg, var(--bg-3), var(--bg-2)); border-color: var(--amber); border-left: 3px solid var(--amber);">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <div style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; color: var(--amber); text-transform: uppercase;">⚠ Illustrative data</div>
+              <div style="font-family: var(--display); font-size: 16px; font-weight: 600; margin-top: 6px;">Numbers below are placeholder until Meta Marketing API is connected</div>
+              <div style="color: var(--muted); font-size: 12px; margin-top: 4px;">Once auth'd, Crucible pulls live campaigns, creative performance, audiences, daily spend.</div>
+            </div>
+            <button class="btn solid">Connect now</button>
           </div>
         </div>
 
@@ -2546,11 +2584,21 @@
           <div>
             <div class="crumb">Channels · Google Ads</div>
             <h1>Google Ads</h1>
-            <div class="desc">Anvil runs Google &amp; YouTube. One always-on Performance Max + branded search. Smaller budget, steadier returns.</div>
+            <div class="desc">Anvil runs Google &amp; YouTube. Connect Google Ads API to bring real campaigns, keywords, quality scores into view.</div>
           </div>
           <div class="actions">
             <button class="btn">Google Ads ↗</button>
-            <button class="btn solid" data-run-agent="Anvil">Run Anvil</button>
+            <button class="btn solid">Connect Google Ads API</button>
+          </div>
+        </div>
+        <div class="panel" style="margin-bottom: 24px; background: linear-gradient(135deg, var(--bg-3), var(--bg-2)); border-color: var(--amber); border-left: 3px solid var(--amber);">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <div style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; color: var(--amber); text-transform: uppercase;">⚠ Illustrative data</div>
+              <div style="font-family: var(--display); font-size: 16px; font-weight: 600; margin-top: 6px;">Numbers below are placeholder until Google Ads API is connected</div>
+              <div style="color: var(--muted); font-size: 12px; margin-top: 4px;">Once auth'd, Anvil pulls live campaigns, search terms, keywords with quality scores, PMax assets.</div>
+            </div>
+            <button class="btn solid">Connect now</button>
           </div>
         </div>
 
@@ -2660,11 +2708,21 @@
           <div>
             <div class="crumb">Channels · Klaviyo</div>
             <h1>Klaviyo</h1>
-            <div class="desc">Email + SMS. Three core flows running 24/7 plus a weekly newsletter campaign.</div>
+            <div class="desc">Email + SMS. Connect Klaviyo to bring real flow performance, list growth, campaign sends into view.</div>
           </div>
           <div class="actions">
             <button class="btn">Klaviyo ↗</button>
-            <button class="btn solid" data-run-agent="Composer">Draft campaign</button>
+            <button class="btn solid">Connect Klaviyo</button>
+          </div>
+        </div>
+        <div class="panel" style="margin-bottom: 24px; background: linear-gradient(135deg, var(--bg-3), var(--bg-2)); border-color: var(--amber); border-left: 3px solid var(--amber);">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <div style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; color: var(--amber); text-transform: uppercase;">⚠ Illustrative data</div>
+              <div style="font-family: var(--display); font-size: 16px; font-weight: 600; margin-top: 6px;">Numbers below are placeholder until Klaviyo is connected</div>
+              <div style="color: var(--muted); font-size: 12px; margin-top: 4px;">Once auth'd, Composer pulls live flows, list growth, recent campaign sends, segments.</div>
+            </div>
+            <button class="btn solid">Connect now</button>
           </div>
         </div>
 
@@ -2729,11 +2787,21 @@
           <div>
             <div class="crumb">Channels · GA4</div>
             <h1>GA4</h1>
-            <div class="desc">Property G-CP4VZCKLNZ · www.wolfburn.com. Pixel restored 2026-05-08 after duplicate disconnect.</div>
+            <div class="desc">Property <strong>G-CP4VZCKLNZ</strong> · www.wolfburn.com. <span class="pill ok" style="margin-left: 8px;">pixel live</span> Disconnected duplicate <code style="font-family: var(--mono);">G-SX4Q79WJ52</code> earlier today.</div>
           </div>
           <div class="actions">
             <button class="btn">GA4 property ↗</button>
-            <button class="btn solid" data-run-agent="Lighthouse">Run Lighthouse</button>
+            <button class="btn solid">Connect GA4 Reporting API</button>
+          </div>
+        </div>
+        <div class="panel" style="margin-bottom: 24px; background: linear-gradient(135deg, var(--bg-3), var(--bg-2)); border-color: var(--green); border-left: 3px solid var(--green);">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <div style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; color: var(--green); text-transform: uppercase;">✓ pixel · live</div>
+              <div style="font-family: var(--display); font-size: 16px; font-weight: 600; margin-top: 6px;">Pixel is firing on every page. Reporting API connection unlocks the numbers.</div>
+              <div style="color: var(--muted); font-size: 12px; margin-top: 4px;">Sentinel verified the pixel earlier today. Reporting numbers below are illustrative until you authorize Reporting API.</div>
+            </div>
+            <button class="btn solid">Connect Reporting API</button>
           </div>
         </div>
 
@@ -3145,21 +3213,29 @@
         </div>
 
         <div class="tab-panel" data-tab-group="settings" data-tab-id="integrations">
+          <div style="display: flex; gap: 14px; margin-bottom: 18px;">
+            <div class="stat-mini" style="flex:1;"><div class="lbl">Live connectors</div><div class="val" style="color: var(--green);">5</div></div>
+            <div class="stat-mini" style="flex:1;"><div class="lbl">Awaiting auth</div><div class="val" style="color: var(--amber);">7</div></div>
+            <div class="stat-mini" style="flex:1;"><div class="lbl">Total integrations</div><div class="val">12</div></div>
+          </div>
           <table class="data-table">
             <thead><tr><th>Integration</th><th>Status</th><th>Last sync</th><th>Used by</th><th></th></tr></thead>
             <tbody>
-              <tr><td class="name">Shopify Admin API</td><td><span class="pill ok">connected</span></td><td class="num">28s ago</td><td class="muted-cell">Forge, Ledger, Cellarman</td><td><button class="btn">Manage</button></td></tr>
-              <tr><td class="name">Meta Marketing API</td><td><span class="pill ok">connected</span></td><td class="num">14m ago</td><td class="muted-cell">Crucible</td><td><button class="btn">Manage</button></td></tr>
-              <tr><td class="name">Google Ads API</td><td><span class="pill ok">connected</span></td><td class="num">28m ago</td><td class="muted-cell">Anvil</td><td><button class="btn">Manage</button></td></tr>
-              <tr><td class="name">Google Analytics 4</td><td><span class="pill ok">connected</span></td><td class="num">3m ago</td><td class="muted-cell">Lighthouse, Sentinel</td><td><button class="btn">Manage</button></td></tr>
-              <tr><td class="name">Klaviyo</td><td><span class="pill warn">stale · retrying</span></td><td class="num">14h ago</td><td class="muted-cell">Audience, Composer</td><td><button class="btn">Reconnect</button></td></tr>
-              <tr><td class="name">Privy</td><td><span class="pill ok">connected</span></td><td class="num">1m ago</td><td class="muted-cell">Forge</td><td><button class="btn">Manage</button></td></tr>
-              <tr><td class="name">Trustpilot</td><td><span class="pill ok">connected</span></td><td class="num">9m ago</td><td class="muted-cell">Reviews</td><td><button class="btn">Manage</button></td></tr>
-              <tr><td class="name">Judge.me</td><td><span class="pill ok">connected</span></td><td class="num">12m ago</td><td class="muted-cell">Reviews</td><td><button class="btn">Manage</button></td></tr>
-              <tr><td class="name">Shogun</td><td><span class="pill ok">connected</span></td><td class="num">2h ago</td><td class="muted-cell">Forge</td><td><button class="btn">Manage</button></td></tr>
-              <tr><td class="name">Slack</td><td><span class="pill ok">connected</span></td><td class="num">live</td><td class="muted-cell">Atlas, alerts</td><td><button class="btn">Manage</button></td></tr>
-              <tr><td class="name">OpenAI · Atlas voice</td><td><span class="pill ok">connected</span></td><td class="muted-cell">realtime</td><td class="muted-cell">Atlas</td><td><button class="btn">Manage</button></td></tr>
-              <tr><td class="name">ElevenLabs · TTS</td><td><span class="pill ok">connected</span></td><td class="muted-cell">realtime</td><td class="muted-cell">Atlas</td><td><button class="btn">Manage</button></td></tr>
+              <tr><td class="name">Wolfburn Storefront · public</td><td><span class="pill ok">● live</span></td><td class="num">just now</td><td class="muted-cell">Forge · catalog only</td><td><button class="btn">Inspect</button></td></tr>
+              <tr><td class="name">Privy</td><td><span class="pill ok">● live</span></td><td class="num">earlier today</td><td class="muted-cell">Forge · displays managed</td><td><button class="btn">Open dashboard ↗</button></td></tr>
+              <tr><td class="name">Shopify Admin (browser session)</td><td><span class="pill ok">● live</span></td><td class="num">earlier today</td><td class="muted-cell">Forge · theme + menu ops</td><td><button class="btn">Open admin ↗</button></td></tr>
+              <tr><td class="name">Google Analytics 4 (admin)</td><td><span class="pill ok">● live</span></td><td class="num">earlier today</td><td class="muted-cell">Sentinel · pixel verified</td><td><button class="btn">Open GA4 ↗</button></td></tr>
+              <tr><td class="name">Shogun Page Builder</td><td><span class="pill ok">● live</span></td><td class="num">earlier today</td><td class="muted-cell">Forge · Shop page ops</td><td><button class="btn">Open Shogun ↗</button></td></tr>
+              <tr><td class="name">Shopify Admin API (programmatic)</td><td><span class="pill warn">awaiting auth</span></td><td class="num">—</td><td class="muted-cell">unlocks live revenue, orders, inventory</td><td><button class="btn solid">Connect</button></td></tr>
+              <tr><td class="name">Meta Marketing API</td><td><span class="pill warn">awaiting auth</span></td><td class="num">—</td><td class="muted-cell">unlocks Crucible</td><td><button class="btn solid">Connect</button></td></tr>
+              <tr><td class="name">Google Ads API</td><td><span class="pill warn">awaiting auth</span></td><td class="num">—</td><td class="muted-cell">unlocks Anvil</td><td><button class="btn solid">Connect</button></td></tr>
+              <tr><td class="name">GA4 Reporting API</td><td><span class="pill warn">awaiting auth</span></td><td class="num">—</td><td class="muted-cell">unlocks Lighthouse traffic numbers</td><td><button class="btn solid">Connect</button></td></tr>
+              <tr><td class="name">Klaviyo</td><td><span class="pill warn">awaiting auth</span></td><td class="num">—</td><td class="muted-cell">unlocks Audience, Composer email flows</td><td><button class="btn solid">Connect</button></td></tr>
+              <tr><td class="name">Trustpilot Business API</td><td><span class="pill warn">awaiting auth</span></td><td class="num">—</td><td class="muted-cell">unlocks Reviews ingest</td><td><button class="btn solid">Connect</button></td></tr>
+              <tr><td class="name">Judge.me API</td><td><span class="pill warn">awaiting auth</span></td><td class="num">—</td><td class="muted-cell">unlocks Reviews ingest</td><td><button class="btn solid">Connect</button></td></tr>
+              <tr><td class="name">OpenAI Realtime · Atlas voice</td><td><span class="pill muted">not yet wired</span></td><td class="num">—</td><td class="muted-cell">Atlas voice loop</td><td><button class="btn">Configure</button></td></tr>
+              <tr><td class="name">ElevenLabs TTS</td><td><span class="pill muted">not yet wired</span></td><td class="num">—</td><td class="muted-cell">Atlas voice output</td><td><button class="btn">Configure</button></td></tr>
+              <tr><td class="name">Slack workspace</td><td><span class="pill muted">not yet wired</span></td><td class="num">—</td><td class="muted-cell">Atlas alerts, daily brief</td><td><button class="btn">Configure</button></td></tr>
             </tbody>
           </table>
         </div>
