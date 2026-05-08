@@ -1,0 +1,3370 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1440, initial-scale=1" />
+<title>Wolfburn Operations — Divergence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0F0B08;
+    --bg-2: #14100C;
+    --bg-3: #1A1410;
+    --bg-4: #221B14;
+    --line: #2A2118;
+    --line-2: #3A2E22;
+    --copper: #B5894C;
+    --amber: #D9A551;
+    --cream: #F5EDE0;
+    --muted: #9A8470;
+    --muted-2: #6B5A48;
+    --green: #7EA67B;
+    --red: #C26B5C;
+    --blue: #6A8AA6;
+    --display: 'Space Grotesk', 'Helvetica Neue', sans-serif;
+    --body: 'Inter', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', 'SF Mono', monospace;
+    --serif: 'Playfair Display', Georgia, serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--cream); font-family: var(--body); font-weight: 400; font-size: 14px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+
+  .app {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    min-height: 100vh;
+  }
+
+  /* SIDEBAR */
+  .sidebar {
+    background: var(--bg-2);
+    border-right: 1px solid var(--line);
+    padding: 28px 0;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .brand {
+    padding: 0 24px 28px 24px;
+    border-bottom: 1px solid var(--line);
+  }
+  .brand-mark {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--cream);
+    line-height: 1;
+  }
+  .brand-mark .accent { color: var(--copper); }
+  .brand-sub {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+  .nav { padding: 20px 0; flex: 1; }
+  .nav-section {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted-2);
+    padding: 14px 24px 8px 24px;
+  }
+  .nav-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 9px 24px;
+    font-size: 13px;
+    color: var(--cream);
+    border-left: 2px solid transparent;
+    transition: all .15s;
+  }
+  .nav-item:hover { background: var(--bg-3); }
+  .nav-item.active {
+    background: var(--bg-3);
+    border-left-color: var(--copper);
+    color: var(--cream);
+  }
+  .nav-item .badge {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    background: var(--bg-4);
+    padding: 2px 7px;
+    border-radius: 2px;
+  }
+  .nav-item .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+  .agency {
+    padding: 20px 24px;
+    border-top: 1px solid var(--line);
+  }
+  .agency-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .agency-name {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--cream);
+  }
+  .agency-meta {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted-2);
+    margin-top: 6px;
+  }
+
+  /* MAIN */
+  .main {
+    padding: 0;
+    overflow-x: hidden;
+  }
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 32px;
+    border-bottom: 1px solid var(--line);
+    background: var(--bg);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .topbar-left { display: flex; align-items: center; gap: 24px; }
+  .topbar-meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+  .topbar-meta strong { color: var(--cream); font-weight: 500; }
+  .topbar-right { display: flex; align-items: center; gap: 14px; }
+  .search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 14px;
+    background: var(--bg-3);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    width: 320px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .search .kbd {
+    margin-left: auto;
+    padding: 2px 6px;
+    background: var(--bg-4);
+    border-radius: 2px;
+    font-size: 10px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border: 1px solid var(--copper);
+    background: transparent;
+    color: var(--cream);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all .15s;
+  }
+  .btn:hover { background: var(--copper); color: var(--bg); }
+  .btn.solid { background: var(--copper); color: var(--bg); }
+  .btn.solid:hover { background: var(--amber); border-color: var(--amber); }
+  .avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--copper);
+    color: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 13px;
+  }
+
+  /* CONTENT */
+  .content { padding: 28px 32px 60px 32px; }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin: 36px 0 18px 0;
+  }
+  .section-num {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--copper);
+    letter-spacing: 0.22em;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+  .section-title {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    color: var(--cream);
+  }
+  .section-sub {
+    font-size: 12px;
+    color: var(--muted);
+    max-width: 520px;
+    line-height: 1.6;
+    margin-top: 6px;
+  }
+  .section-link {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--copper);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  /* ATLAS HERO */
+  .atlas {
+    background: linear-gradient(135deg, var(--bg-3) 0%, var(--bg-2) 100%);
+    border: 1px solid var(--line-2);
+    border-radius: 6px;
+    padding: 32px;
+    display: grid;
+    grid-template-columns: 280px 1fr 240px;
+    gap: 32px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .atlas::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(217,165,81,0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .atlas-orb-wrap {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+  .atlas-orb {
+    width: 160px;
+    height: 160px;
+    position: relative;
+  }
+  .atlas-orb svg { width: 100%; height: 100%; }
+  .atlas-name {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--cream);
+    text-align: center;
+  }
+  .atlas-role {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--copper);
+    text-align: center;
+  }
+  .atlas-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 12px;
+    background: rgba(126,166,123,0.12);
+    border: 1px solid rgba(126,166,123,0.3);
+    border-radius: 100px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--green);
+  }
+  .atlas-status .pulse {
+    width: 6px;
+    height: 6px;
+    background: var(--green);
+    border-radius: 50%;
+    animation: pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .atlas-message {
+    border-left: 1px solid var(--line-2);
+    padding-left: 32px;
+  }
+  .atlas-message .label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .atlas-message blockquote {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.45;
+    color: var(--cream);
+    letter-spacing: -0.005em;
+  }
+  .atlas-message blockquote em { color: var(--copper); font-style: normal; font-weight: 600; }
+  .atlas-message .timestamp {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 18px;
+    letter-spacing: 0.06em;
+  }
+  .atlas-cta {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+    position: relative;
+    z-index: 1;
+  }
+  .atlas-cta .voice-btn {
+    background: var(--copper);
+    color: var(--bg);
+    padding: 14px 18px;
+    border: none;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all .15s;
+  }
+  .atlas-cta .voice-btn:hover { background: var(--amber); }
+  .atlas-cta .voice-btn svg { width: 14px; height: 14px; }
+  .atlas-cta .ghost-btn {
+    background: transparent;
+    border: 1px solid var(--line-2);
+    color: var(--muted);
+    padding: 10px 18px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .atlas-cta .meta {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--muted-2);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 4px;
+  }
+
+  /* KPI strip */
+  .kpis {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    margin-top: 28px;
+  }
+  .kpi {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    padding: 20px 22px;
+    position: relative;
+  }
+  .kpi-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .kpi-value {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 1;
+    color: var(--cream);
+    letter-spacing: -0.02em;
+  }
+  .kpi-value .unit { font-size: 14px; color: var(--muted); margin-left: 4px; font-weight: 400; }
+  .kpi-delta {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+  }
+  .kpi-delta.up { color: var(--green); }
+  .kpi-delta.down { color: var(--red); }
+  .kpi-delta.flat { color: var(--muted); }
+  .kpi-spark { position: absolute; right: 22px; bottom: 18px; opacity: 0.7; }
+
+  /* Two-column main grid */
+  .main-grid {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 24px;
+    margin-top: 32px;
+  }
+
+  /* Agent grid */
+  .agents-panel {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    padding: 24px;
+  }
+  .agents-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 18px;
+  }
+  .agent-card {
+    background: var(--bg-3);
+    border: 1px solid var(--line);
+    padding: 16px;
+    position: relative;
+    transition: all .15s;
+    cursor: pointer;
+  }
+  .agent-card:hover { border-color: var(--copper); transform: translateY(-1px); }
+  .agent-card .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .agent-card .cluster-pill {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--copper);
+    border: 1px solid var(--line-2);
+    padding: 3px 8px;
+    border-radius: 100px;
+  }
+  .agent-card .cluster-pill.commerce { color: var(--amber); }
+  .agent-card .cluster-pill.marketing { color: var(--cream); }
+  .agent-card .cluster-pill.analytics { color: var(--blue); }
+  .agent-card .cluster-pill.ops { color: var(--green); }
+  .agent-card .health {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+  .agent-card .health.ok { background: var(--green); box-shadow: 0 0 8px rgba(126,166,123,0.5); }
+  .agent-card .health.warn { background: var(--amber); }
+  .agent-card .health.err { background: var(--red); }
+  .agent-card .health.idle { background: var(--muted-2); }
+  .agent-card .name {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 17px;
+    color: var(--cream);
+    letter-spacing: -0.005em;
+  }
+  .agent-card .role {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+  .agent-card .stats {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid var(--line);
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+  }
+  .agent-card .stats strong { color: var(--cream); font-weight: 500; }
+
+  /* Live feed */
+  .feed-panel {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    padding: 24px;
+  }
+  .feed-list {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+  }
+  .feed-item {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 14px;
+    align-items: start;
+  }
+  .feed-item:last-child { border-bottom: none; }
+  .feed-time {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    padding-top: 2px;
+  }
+  .feed-content { font-size: 12px; line-height: 1.55; }
+  .feed-content .agent {
+    font-family: var(--display);
+    font-weight: 600;
+    color: var(--copper);
+    font-size: 12px;
+  }
+  .feed-content .verb { color: var(--cream); }
+  .feed-content .obj { color: var(--muted); }
+  .feed-content .status-chip {
+    display: inline-block;
+    margin-top: 4px;
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--green);
+  }
+  .feed-content .status-chip.running { color: var(--amber); }
+  .feed-content .status-chip.error { color: var(--red); }
+
+  /* Alerts */
+  .alerts-panel {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    padding: 24px;
+    margin-top: 16px;
+  }
+  .alert-item {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 12px;
+  }
+  .alert-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .alert-item:first-of-type { padding-top: 4px; }
+  .alert-item .pri {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 4px;
+  }
+  .alert-item .pri.high { color: var(--red); }
+  .alert-item .pri.med { color: var(--amber); }
+  .alert-item .pri.low { color: var(--muted); }
+  .alert-item .msg { color: var(--cream); line-height: 1.5; }
+
+  /* Workflow flowchart */
+  .flow-panel {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    padding: 32px;
+    margin-top: 24px;
+  }
+  .flow-svg-wrap { margin-top: 20px; overflow-x: auto; }
+
+  /* Charts row */
+  .charts-row {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 24px;
+    margin-top: 24px;
+  }
+  .chart-card {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    padding: 24px;
+  }
+  .chart-card .head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 18px;
+  }
+  .chart-card .head h3 {
+    font-family: var(--display);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--cream);
+  }
+  .chart-card .head .meta {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* Brand context */
+  .context-row {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: 24px;
+    margin-top: 24px;
+  }
+  .ctx-card {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    padding: 24px;
+  }
+  .ctx-card h3 {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 14px;
+  }
+  .swatch-row { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+  .swatch {
+    flex: 1;
+    min-width: 60px;
+    text-align: center;
+  }
+  .swatch .chip {
+    height: 44px;
+    border-radius: 2px;
+    border: 1px solid var(--line);
+  }
+  .swatch .hex {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--muted);
+    margin-top: 6px;
+    letter-spacing: 0.04em;
+  }
+
+  .product-row { display: flex; flex-direction: column; gap: 10px; }
+  .product-line {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 12px;
+  }
+  .product-line:last-child { border-bottom: none; }
+  .product-line .nm {
+    font-family: var(--display);
+    font-weight: 500;
+    color: var(--cream);
+    font-size: 13px;
+  }
+  .product-line .desc { color: var(--muted); font-size: 11px; margin-top: 2px; }
+  .product-line .price {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--copper);
+  }
+
+  .quick-row { display: flex; flex-direction: column; gap: 8px; }
+  .quick-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px;
+    background: var(--bg-3);
+    border: 1px solid var(--line);
+    font-size: 12px;
+    color: var(--cream);
+    transition: all .15s;
+  }
+  .quick-link:hover { border-color: var(--copper); }
+  .quick-link .arrow { color: var(--copper); font-family: var(--mono); }
+
+  /* Footer */
+  .footer {
+    margin-top: 48px;
+    padding: 28px 32px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  /* Section dividers */
+  .divider {
+    height: 1px;
+    background: var(--line);
+    margin: 48px 0 8px 0;
+  }
+
+  /* PAGE ROUTING */
+  .page { display: none; }
+  .page.active { display: block; animation: fadeIn .25s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+  .page-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 32px 0 24px 0;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 28px;
+  }
+  .page-head h1 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 32px;
+    letter-spacing: -0.015em;
+    color: var(--cream);
+    margin-top: 6px;
+  }
+  .page-head .crumb {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--copper);
+  }
+  .page-head .desc { color: var(--muted); font-size: 13px; max-width: 580px; margin-top: 8px; line-height: 1.55; }
+  .page-head .actions { display: flex; gap: 10px; align-items: center; }
+
+  .tab-bar {
+    display: flex;
+    gap: 4px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 24px;
+  }
+  .tab-bar .tab {
+    padding: 10px 18px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    margin-bottom: -1px;
+    transition: all .15s;
+  }
+  .tab-bar .tab:hover { color: var(--cream); }
+  .tab-bar .tab.active { color: var(--cream); border-bottom-color: var(--copper); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; animation: fadeIn .2s ease; }
+
+  /* DATA TABLE */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+  .data-table th {
+    text-align: left;
+    padding: 12px 14px;
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: var(--bg-3);
+    border-bottom: 1px solid var(--line);
+    font-weight: 500;
+  }
+  .data-table td {
+    padding: 14px;
+    border-bottom: 1px solid var(--line);
+    color: var(--cream);
+    vertical-align: middle;
+  }
+  .data-table tbody tr:hover { background: var(--bg-3); }
+  .data-table .num { font-family: var(--mono); text-align: right; }
+  .data-table .name { font-family: var(--display); font-weight: 500; }
+  .data-table .muted-cell { color: var(--muted); font-size: 11px; }
+  .pill {
+    display: inline-block;
+    padding: 3px 9px;
+    border-radius: 100px;
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .pill.ok { background: rgba(126,166,123,0.12); color: var(--green); border: 1px solid rgba(126,166,123,0.3); }
+  .pill.warn { background: rgba(217,165,81,0.12); color: var(--amber); border: 1px solid rgba(217,165,81,0.3); }
+  .pill.err { background: rgba(194,107,92,0.12); color: var(--red); border: 1px solid rgba(194,107,92,0.3); }
+  .pill.info { background: rgba(106,138,166,0.12); color: var(--blue); border: 1px solid rgba(106,138,166,0.3); }
+  .pill.muted { background: var(--bg-4); color: var(--muted); border: 1px solid var(--line-2); }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+  .panel {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    padding: 24px;
+  }
+  .panel h3 {
+    font-family: var(--display);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 14px;
+  }
+  .panel .panel-meta {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  .stat-mini { padding: 16px; background: var(--bg-3); border: 1px solid var(--line); }
+  .stat-mini .lbl {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .stat-mini .val {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 22px;
+    color: var(--cream);
+    letter-spacing: -0.01em;
+  }
+  .stat-mini .delta {
+    font-family: var(--mono);
+    font-size: 10px;
+    margin-top: 4px;
+  }
+  .stat-mini .delta.up { color: var(--green); }
+  .stat-mini .delta.down { color: var(--red); }
+  .stat-mini .delta.flat { color: var(--muted); }
+
+  /* TOAST */
+  .toast-stack {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .toast {
+    background: var(--bg-2);
+    border: 1px solid var(--copper);
+    border-left: 3px solid var(--copper);
+    padding: 14px 18px;
+    min-width: 280px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    animation: toastIn .3s ease;
+  }
+  @keyframes toastIn {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  .toast .t-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 4px;
+  }
+  .toast .t-msg { color: var(--cream); font-size: 13px; }
+
+  /* MODAL */
+  .modal-wrap {
+    position: fixed;
+    inset: 0;
+    background: rgba(15,11,8,0.85);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal-wrap.active { display: flex; }
+  .modal {
+    background: var(--bg-2);
+    border: 1px solid var(--line-2);
+    padding: 32px;
+    width: 540px;
+    max-width: 92vw;
+  }
+  .modal h2 {
+    font-family: var(--display);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 14px;
+  }
+  .modal p { color: var(--muted); font-size: 13px; line-height: 1.55; }
+  .modal-actions { display: flex; gap: 12px; justify-content: flex-end; margin-top: 24px; }
+
+  /* Print sizing — preserve dashboard width in PDF */
+  @page {
+    size: 1500px 3400px;
+    margin: 0;
+  }
+  @media print {
+    html, body { width: 1500px; }
+    .app { grid-template-columns: 240px 1fr; min-height: auto; }
+    .sidebar { position: static; height: auto; }
+    .topbar { position: static; }
+    body { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ============= SIDEBAR ============= -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark">WOLFBURN<span class="accent">.</span></div>
+      <div class="brand-sub">Operations · Divergence</div>
+    </div>
+
+    <nav class="nav">
+      <div class="nav-section">Workspace</div>
+      <a class="nav-item" data-page="overview" href="#overview">
+        <span>Overview</span>
+        <span class="dot"></span>
+      </a>
+      <a class="nav-item" data-page="atlas" href="#atlas">
+        <span>Atlas</span>
+        <span class="badge">v2.4</span>
+      </a>
+      <a class="nav-item" data-page="agents" href="#agents">
+        <span>Agents</span>
+        <span class="badge">16</span>
+      </a>
+      <a class="nav-item" data-page="workflows" href="#workflows">
+        <span>Workflows</span>
+        <span class="badge">8</span>
+      </a>
+
+      <div class="nav-section">Channels</div>
+      <a class="nav-item" data-page="shopify" href="#shopify"><span>Shopify</span><span class="badge">live</span></a>
+      <a class="nav-item" data-page="meta" href="#meta"><span>Meta Ads</span><span class="badge">3</span></a>
+      <a class="nav-item" data-page="google" href="#google"><span>Google Ads</span><span class="badge">1</span></a>
+      <a class="nav-item" data-page="klaviyo" href="#klaviyo"><span>Klaviyo</span><span class="badge">2</span></a>
+      <a class="nav-item" data-page="ga4" href="#ga4"><span>GA4</span><span class="badge">ok</span></a>
+
+      <div class="nav-section">Insight</div>
+      <a class="nav-item" data-page="analytics" href="#analytics"><span>Analytics</span></a>
+      <a class="nav-item" data-page="audit" href="#audit"><span>Audit &amp; SEO</span></a>
+      <a class="nav-item" data-page="voice" href="#voice"><span>Brand Voice</span></a>
+
+      <div class="nav-section">System</div>
+      <a class="nav-item" data-page="logs" href="#logs"><span>Logs</span></a>
+      <a class="nav-item" data-page="settings" href="#settings"><span>Settings</span></a>
+    </nav>
+
+    <div class="agency">
+      <div class="agency-label">Operated by</div>
+      <div class="agency-name">Divergence</div>
+      <div class="agency-meta">Build 2026.05 · ops core</div>
+    </div>
+  </aside>
+
+  <!-- ============= MAIN ============= -->
+  <main class="main">
+
+    <!-- TOP BAR -->
+    <div class="topbar">
+      <div class="topbar-left">
+        <div class="topbar-meta">
+          <strong>Wolfburn Distillery</strong> · Account · <strong>FRI 08 MAY 2026</strong> · 14:32 BST
+        </div>
+        <div class="topbar-meta">last sync · <strong style="color: var(--green)">28 sec ago</strong></div>
+      </div>
+      <div class="topbar-right">
+        <div class="search">
+          <span>⌕</span>
+          <span>Ask Atlas, run an agent, find a campaign</span>
+          <span class="kbd">⌘K</span>
+        </div>
+        <button class="btn">Run agent</button>
+        <button class="btn solid">+ New brief</button>
+        <div class="avatar">WT</div>
+      </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+      <!-- ====================== PAGE: OVERVIEW ====================== -->
+      <section class="page active" id="page-overview">
+
+      <!-- ATLAS HERO -->
+      <div style="display:flex; align-items:baseline; justify-content:space-between; margin-bottom: 18px;">
+        <div>
+          <div class="section-num">01 · Orchestrator</div>
+          <div class="section-title">Atlas, your operations co-pilot</div>
+        </div>
+        <div class="section-link">View agent →</div>
+      </div>
+
+      <section class="atlas">
+        <div class="atlas-orb-wrap">
+          <div class="atlas-orb">
+            <svg viewBox="0 0 160 160">
+              <defs>
+                <radialGradient id="orb-grad" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#D9A551" stop-opacity="0.9" />
+                  <stop offset="40%" stop-color="#B5894C" stop-opacity="0.5" />
+                  <stop offset="100%" stop-color="#0F0B08" stop-opacity="0" />
+                </radialGradient>
+                <linearGradient id="ring-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#D9A551" />
+                  <stop offset="100%" stop-color="#B5894C" />
+                </linearGradient>
+              </defs>
+              <circle cx="80" cy="80" r="78" fill="none" stroke="#3A2E22" stroke-width="1" />
+              <circle cx="80" cy="80" r="64" fill="none" stroke="#3A2E22" stroke-width="1" stroke-dasharray="2 4" />
+              <circle cx="80" cy="80" r="50" fill="url(#orb-grad)" />
+              <circle cx="80" cy="80" r="30" fill="none" stroke="url(#ring-grad)" stroke-width="1.5" opacity="0.6" />
+              <!-- waveform -->
+              <g stroke="#F5EDE0" stroke-width="2" stroke-linecap="round">
+                <line x1="60" y1="78" x2="60" y2="82" />
+                <line x1="66" y1="73" x2="66" y2="87" />
+                <line x1="72" y1="68" x2="72" y2="92" />
+                <line x1="78" y1="62" x2="78" y2="98" />
+                <line x1="84" y1="68" x2="84" y2="92" />
+                <line x1="90" y1="73" x2="90" y2="87" />
+                <line x1="96" y1="78" x2="96" y2="82" />
+              </g>
+              <!-- orbital dots -->
+              <circle cx="80" cy="2" r="2" fill="#D9A551" />
+              <circle cx="158" cy="80" r="2" fill="#B5894C" opacity="0.6" />
+              <circle cx="80" cy="158" r="2" fill="#B5894C" opacity="0.4" />
+              <circle cx="2" cy="80" r="2" fill="#B5894C" opacity="0.6" />
+            </svg>
+          </div>
+          <div>
+            <div class="atlas-name">Atlas</div>
+            <div class="atlas-role">orchestrator · voice + text</div>
+          </div>
+          <div class="atlas-status"><span class="pulse"></span>Listening</div>
+        </div>
+
+        <div class="atlas-message">
+          <div class="label">Latest brief · 14:31 BST</div>
+          <blockquote>
+            "Wolfburn is up <em>+18.4%</em> month over month. Crucible is running 3 active Meta campaigns with a blended <em>3.2× ROAS</em>. Forge just published the new Pentland banner. Two open decisions: <em>Trustpilot vs Judge.me</em>, and shipping wes theme to live."
+          </blockquote>
+          <div class="timestamp">— ATLAS · synthesised from 16 agents · 14 sources · 28 seconds ago</div>
+        </div>
+
+        <div class="atlas-cta">
+          <button class="voice-btn">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a3 3 0 0 0-3 3v4a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3zM4 7a.5.5 0 0 0-1 0v1a5 5 0 0 0 4.5 4.975V14H6a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1H8.5v-1.025A5 5 0 0 0 13 8V7a.5.5 0 0 0-1 0v1a4 4 0 0 1-8 0V7z"/></svg>
+            Talk to Atlas
+          </button>
+          <button class="ghost-btn">Type a brief</button>
+          <div class="meta">⌥ Space anywhere</div>
+        </div>
+      </section>
+
+      <!-- KPI STRIP -->
+      <div class="kpis">
+        <div class="kpi">
+          <div class="kpi-label">Revenue · 30d</div>
+          <div class="kpi-value"><span class="unit">£</span>127,432</div>
+          <div class="kpi-delta up">▲ 18.4% vs prev</div>
+          <svg class="kpi-spark" width="60" height="22" viewBox="0 0 60 22">
+            <polyline fill="none" stroke="#7EA67B" stroke-width="1.5" points="0,16 8,14 16,15 24,11 32,12 40,8 48,9 60,3" />
+          </svg>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">Orders · 30d</div>
+          <div class="kpi-value">312</div>
+          <div class="kpi-delta up">▲ 12.1% vs prev</div>
+          <svg class="kpi-spark" width="60" height="22" viewBox="0 0 60 22">
+            <polyline fill="none" stroke="#B5894C" stroke-width="1.5" points="0,14 8,12 16,13 24,10 32,9 40,11 48,7 60,5" />
+          </svg>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">AOV</div>
+          <div class="kpi-value"><span class="unit">£</span>408</div>
+          <div class="kpi-delta down">▼ 2.3% vs prev</div>
+          <svg class="kpi-spark" width="60" height="22" viewBox="0 0 60 22">
+            <polyline fill="none" stroke="#C26B5C" stroke-width="1.5" points="0,6 8,7 16,8 24,9 32,11 40,12 48,13 60,14" />
+          </svg>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">Meta ROAS · blended</div>
+          <div class="kpi-value">3.2<span class="unit">×</span></div>
+          <div class="kpi-delta up">▲ 0.4 vs prev</div>
+          <svg class="kpi-spark" width="60" height="22" viewBox="0 0 60 22">
+            <polyline fill="none" stroke="#D9A551" stroke-width="1.5" points="0,16 8,15 16,12 24,13 32,10 40,8 48,7 60,4" />
+          </svg>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">Agents · health</div>
+          <div class="kpi-value">14<span class="unit">/16</span></div>
+          <div class="kpi-delta flat">2 idle · 0 errors</div>
+          <svg class="kpi-spark" width="60" height="22" viewBox="0 0 60 22">
+            <rect x="0" y="6" width="6" height="14" fill="#7EA67B"/>
+            <rect x="8" y="3" width="6" height="17" fill="#7EA67B"/>
+            <rect x="16" y="8" width="6" height="12" fill="#D9A551"/>
+            <rect x="24" y="4" width="6" height="16" fill="#7EA67B"/>
+            <rect x="32" y="2" width="6" height="18" fill="#7EA67B"/>
+            <rect x="40" y="5" width="6" height="15" fill="#7EA67B"/>
+            <rect x="48" y="3" width="6" height="17" fill="#7EA67B"/>
+            <rect x="56" y="6" width="4" height="14" fill="#7EA67B"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- AGENT FLEET + LIVE FEED -->
+      <div class="section-head">
+        <div>
+          <div class="section-num">02 · Agent Fleet</div>
+          <div class="section-title">Sixteen agents, four clusters</div>
+          <div class="section-sub">Each agent runs autonomously on schedule or on demand. Atlas dispatches briefs and consolidates outputs.</div>
+        </div>
+        <div class="section-link">Manage fleet →</div>
+      </div>
+
+      <div class="main-grid">
+
+        <!-- Agents grid -->
+        <div class="agents-panel">
+          <div style="display:flex; gap: 18px; align-items:center; font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted);">
+            <span><span style="color: var(--copper)">●</span> Content</span>
+            <span><span style="color: var(--amber)">●</span> Commerce</span>
+            <span><span style="color: var(--cream)">●</span> Marketing</span>
+            <span><span style="color: var(--blue)">●</span> Analytics</span>
+            <span><span style="color: var(--green)">●</span> Ops</span>
+          </div>
+
+          <div class="agents-grid">
+
+            <!-- CONTENT cluster -->
+            <div class="agent-card">
+              <div class="top"><span class="cluster-pill">Content</span><span class="health ok"></span></div>
+              <div class="name">Scribe</div>
+              <div class="role">Long-form blog &amp; editorial. Publishes to Shopify Articles.</div>
+              <div class="stats"><span><strong>4</strong> runs · 24h</span><span>96% ok</span></div>
+            </div>
+
+            <div class="agent-card">
+              <div class="top"><span class="cluster-pill">Content</span><span class="health ok"></span></div>
+              <div class="name">Quill</div>
+              <div class="role">Product page &amp; ad copy. Brief-driven, brand-bound.</div>
+              <div class="stats"><span><strong>11</strong> runs · 24h</span><span>100% ok</span></div>
+            </div>
+
+            <div class="agent-card">
+              <div class="top"><span class="cluster-pill">Content</span><span class="health ok"></span></div>
+              <div class="name">Composer</div>
+              <div class="role">Social posts across IG, X, TikTok captions. Schedules drafts.</div>
+              <div class="stats"><span><strong>6</strong> runs · 24h</span><span>92% ok</span></div>
+            </div>
+
+            <div class="agent-card">
+              <div class="top"><span class="cluster-pill">Content</span><span class="health ok"></span></div>
+              <div class="name">Voice</div>
+              <div class="role">Brand guideline enforcer. Reviews drafts before send.</div>
+              <div class="stats"><span><strong>22</strong> runs · 24h</span><span>100% ok</span></div>
+            </div>
+
+            <!-- COMMERCE -->
+            <div class="agent-card">
+              <div class="top"><span class="cluster-pill commerce">Commerce</span><span class="health ok"></span></div>
+              <div class="name">Forge</div>
+              <div class="role">Shopify product, collection, theme &amp; Shogun ops.</div>
+              <div class="stats"><span><strong>8</strong> runs · 24h</span><span>100% ok</span></div>
+            </div>
+
+            <div class="agent-card">
+              <div class="top"><span class="cluster-pill commerce">Commerce</span><span class="health idle"></span></div>
+              <div class="name">Cellarman</div>
+              <div class="role">Inventory levels, reorders, low-stock alerts.</div>
+              <div class="stats"><span>idle · 6h</span><span>97% ok</span></div>
+            </div>
+
+            <div class="agent-card">
+              <div class="top"><span class="cluster-pill commerce">Commerce</span><span class="health ok"></span></div>
+              <div class="name">Ledger</div>
+              <div class="role">Order triage, fulfilment routing, refunds.</div>
+              <div class="stats"><span><strong>14</strong> runs · 24h</span><span>100% ok</span></div>
+            </div>
+
+            <div class="agent-card">
+              <div class="top"><span class="cluster-pill commerce">Commerce</span><span class="health ok"></span></div>
+              <div class="name">Reviews</div>
+              <div class="role">Trustpilot &amp; Judge.me ingest, flag, surface to brand.</div>
+              <div class="stats"><span><strong>3</strong> runs · 24h</span><span>100% ok</span></div>
+            </div>
+
+            <!-- MARKETING -->
+            <div class="agent-card">
+              <div class="top"><span class="cluster-pill marketing">Marketing</span><span class="health ok"></span></div>
+              <div class="name">Crucible</div>
+              <div class="role">Meta Ads. Creative, audience, budget optimisation.</div>
+              <div class="stats"><span><strong>9</strong> runs · 24h</span><span>3.2× ROAS</span></div>
+            </div>
+
+            <div class="agent-card">
+              <div class="top"><span class="cluster-pill marketing">Marketing</span><span class="health ok"></span></div>
+              <div class="name">Anvil</div>
+              <div class="role">Google &amp; YouTube. Search, Performance Max, retargeting.</div>
+              <div class="stats"><span><strong>5</strong> runs · 24h</span><span>2.7× ROAS</span></div>
+            </div>
+
+            <div class="agent-card">
+              <div class="top"><span class="cluster-pill marketing">Marketing</span><span class="health ok"></span></div>
+              <div class="name">Strategist</div>
+              <div class="role">Plans campaigns, picks angles, briefs Crucible &amp; Anvil.</div>
+              <div class="stats"><span><strong>2</strong> runs · 24h</span><span>100% ok</span></div>
+            </div>
+
+            <div class="agent-card">
+              <div class="top"><span class="cluster-pill marketing">Marketing</span><span class="health warn"></span></div>
+              <div class="name">Audience</div>
+              <div class="role">Lookalike builds, RFM segments, cohort exports.</div>
+              <div class="stats"><span><strong>1</strong> run · 24h</span><span>Klaviyo sync stale</span></div>
+            </div>
+
+            <!-- ANALYTICS -->
+            <div class="agent-card">
+              <div class="top"><span class="cluster-pill analytics">Analytics</span><span class="health ok"></span></div>
+              <div class="name">Lighthouse</div>
+              <div class="role">GA4 + Shopify. Daily revenue, traffic, attribution.</div>
+              <div class="stats"><span><strong>1</strong> run · 24h</span><span>just now</span></div>
+            </div>
+
+            <div class="agent-card">
+              <div class="top"><span class="cluster-pill analytics">Analytics</span><span class="health ok"></span></div>
+              <div class="name">Hawk</div>
+              <div class="role">Competitive intel &amp; SERP tracking for whisky vertical.</div>
+              <div class="stats"><span><strong>1</strong> run · 24h</span><span>96% ok</span></div>
+            </div>
+
+            <!-- OPS -->
+            <div class="agent-card">
+              <div class="top"><span class="cluster-pill ops">Ops</span><span class="health ok"></span></div>
+              <div class="name">Auditor</div>
+              <div class="role">Site health, broken links, CLS, console errors.</div>
+              <div class="stats"><span><strong>1</strong> run · 24h</span><span>3 medium open</span></div>
+            </div>
+
+            <div class="agent-card">
+              <div class="top"><span class="cluster-pill ops">Ops</span><span class="health idle"></span></div>
+              <div class="name">Sentinel</div>
+              <div class="role">Uptime, GA4 pixel, app stack, third-party JS budget.</div>
+              <div class="stats"><span>idle · 2h</span><span>0 incidents · 30d</span></div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Right column: feed + alerts -->
+        <div>
+          <div class="feed-panel">
+            <div style="display:flex; align-items:baseline; justify-content:space-between;">
+              <div style="font-family: var(--display); font-weight: 600; font-size: 16px;">Live operations</div>
+              <div style="font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.1em;">streaming</div>
+            </div>
+
+            <div class="feed-list">
+              <div class="feed-item">
+                <div class="feed-time">14:31</div>
+                <div class="feed-content">
+                  <span class="agent">Forge</span> <span class="verb">disabled the Privy</span> <span class="obj">"Get 10% Off" sticky tab</span> on live storefront.
+                  <div class="status-chip">✓ shipped</div>
+                </div>
+              </div>
+              <div class="feed-item">
+                <div class="feed-time">13:58</div>
+                <div class="feed-content">
+                  <span class="agent">Sentinel</span> <span class="verb">resolved GA4 pixel 503</span>: <span class="obj">disconnected duplicate G-SX4Q79WJ52, kept G-CP4VZCKLNZ</span>.
+                  <div class="status-chip">✓ resolved</div>
+                </div>
+              </div>
+              <div class="feed-item">
+                <div class="feed-time">13:42</div>
+                <div class="feed-content">
+                  <span class="agent">Crucible</span> <span class="verb">scaled spend</span> on <span class="obj">Pentland · UK Whisky Buyers · 25-54</span> by +20%.
+                  <div class="status-chip">✓ live</div>
+                </div>
+              </div>
+              <div class="feed-item">
+                <div class="feed-time">12:14</div>
+                <div class="feed-content">
+                  <span class="agent">Quill</span> <span class="verb">drafted 4 ad variants</span> for <span class="obj">Wolfburn 12yo · Father's Day angle</span>.
+                  <div class="status-chip">✓ awaiting voice review</div>
+                </div>
+              </div>
+              <div class="feed-item">
+                <div class="feed-time">11:50</div>
+                <div class="feed-content">
+                  <span class="agent">Scribe</span> <span class="verb">published</span> <span class="obj">"What Pentland Tastes Like"</span> to wolfburn.com/news.
+                  <div class="status-chip">✓ live</div>
+                </div>
+              </div>
+              <div class="feed-item">
+                <div class="feed-time">11:08</div>
+                <div class="feed-content">
+                  <span class="agent">Voice</span> <span class="verb">approved</span> <span class="obj">3 product pages, 2 emails, 1 IG carousel</span>.
+                  <div class="status-chip">✓ ok</div>
+                </div>
+              </div>
+              <div class="feed-item">
+                <div class="feed-time">10:22</div>
+                <div class="feed-content">
+                  <span class="agent">Auditor</span> <span class="verb">flagged</span> <span class="obj">23 images missing width/height (CLS)</span>.
+                  <div class="status-chip running">→ medium queue</div>
+                </div>
+              </div>
+              <div class="feed-item">
+                <div class="feed-time">09:00</div>
+                <div class="feed-content">
+                  <span class="agent">Lighthouse</span> <span class="verb">delivered daily brief</span>: <span class="obj">£3,847 / 11 orders / 1.6% CVR</span>.
+                  <div class="status-chip">✓ daily</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="alerts-panel">
+            <div style="display:flex; align-items:baseline; justify-content:space-between;">
+              <div style="font-family: var(--display); font-weight: 600; font-size: 16px;">Open decisions</div>
+              <div style="font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.1em;">3</div>
+            </div>
+            <div class="alert-item">
+              <div class="pri high">High · Wesley</div>
+              <div class="msg">Trustpilot vs Judge.me: pick one. Both currently fire on every page (~4 scripts each).</div>
+            </div>
+            <div class="alert-item">
+              <div class="pri med">Med · Wolfburn IT</div>
+              <div class="msg">Approve wes theme push to live. Header swap + clean Shop page ready.</div>
+            </div>
+            <div class="alert-item">
+              <div class="pri low">Low · Forge</div>
+              <div class="msg">Replace homepage broken video hero with product carousel.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WORKFLOW FLOWCHART -->
+      <div class="section-head">
+        <div>
+          <div class="section-num">03 · Workflow</div>
+          <div class="section-title">How a brief moves through the system</div>
+          <div class="section-sub">Triggers feed Atlas. Atlas dispatches to specialist agents. Specialists ship to channels and report back to Lighthouse.</div>
+        </div>
+        <div class="section-link">Edit workflow →</div>
+      </div>
+
+      <div class="flow-panel">
+        <div class="flow-svg-wrap">
+          <svg viewBox="0 0 1180 460" width="1180" height="460" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="#3A2E22"/>
+              </marker>
+              <marker id="arrow-c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="#B5894C"/>
+              </marker>
+            </defs>
+
+            <!-- Lane labels -->
+            <g font-family="JetBrains Mono" font-size="10" fill="#6B5A48" letter-spacing="2.4">
+              <text x="20" y="22">TRIGGERS</text>
+              <text x="270" y="22">ORCHESTRATOR</text>
+              <text x="500" y="22">SPECIALIST AGENTS</text>
+              <text x="860" y="22">CHANNELS</text>
+              <text x="1060" y="22">REPORT</text>
+            </g>
+
+            <!-- Lane separators -->
+            <line x1="240" y1="40" x2="240" y2="450" stroke="#221B14" stroke-dasharray="2 4" />
+            <line x1="470" y1="40" x2="470" y2="450" stroke="#221B14" stroke-dasharray="2 4" />
+            <line x1="830" y1="40" x2="830" y2="450" stroke="#221B14" stroke-dasharray="2 4" />
+            <line x1="1030" y1="40" x2="1030" y2="450" stroke="#221B14" stroke-dasharray="2 4" />
+
+            <!-- TRIGGERS column -->
+            <g font-family="Inter" font-size="11" fill="#F5EDE0">
+              <g transform="translate(20, 60)">
+                <rect width="200" height="44" fill="#1A1410" stroke="#2A2118" rx="3"/>
+                <text x="14" y="20" font-weight="500">New product launch</text>
+                <text x="14" y="34" fill="#9A8470" font-size="10">Shopify webhook</text>
+              </g>
+              <g transform="translate(20, 118)">
+                <rect width="200" height="44" fill="#1A1410" stroke="#2A2118" rx="3"/>
+                <text x="14" y="20" font-weight="500">Low inventory</text>
+                <text x="14" y="34" fill="#9A8470" font-size="10">Threshold trigger</text>
+              </g>
+              <g transform="translate(20, 176)">
+                <rect width="200" height="44" fill="#1A1410" stroke="#2A2118" rx="3"/>
+                <text x="14" y="20" font-weight="500">Campaign brief</text>
+                <text x="14" y="34" fill="#9A8470" font-size="10">Wesley · voice or text</text>
+              </g>
+              <g transform="translate(20, 234)">
+                <rect width="200" height="44" fill="#1A1410" stroke="#2A2118" rx="3"/>
+                <text x="14" y="20" font-weight="500">Audit alert</text>
+                <text x="14" y="34" fill="#9A8470" font-size="10">Auditor / Sentinel</text>
+              </g>
+              <g transform="translate(20, 292)">
+                <rect width="200" height="44" fill="#1A1410" stroke="#2A2118" rx="3"/>
+                <text x="14" y="20" font-weight="500">Daily / weekly cron</text>
+                <text x="14" y="34" fill="#9A8470" font-size="10">Scheduled</text>
+              </g>
+              <g transform="translate(20, 350)">
+                <rect width="200" height="44" fill="#1A1410" stroke="#2A2118" rx="3"/>
+                <text x="14" y="20" font-weight="500">Customer event</text>
+                <text x="14" y="34" fill="#9A8470" font-size="10">Klaviyo / Shopify</text>
+              </g>
+            </g>
+
+            <!-- Connector arrows triggers -> Atlas -->
+            <g stroke="#3A2E22" stroke-width="1.2" fill="none" marker-end="url(#arrow)">
+              <path d="M 220 82 Q 250 82 280 200" />
+              <path d="M 220 140 Q 250 140 280 210" />
+              <path d="M 220 198 Q 250 198 280 220" />
+              <path d="M 220 256 Q 250 256 280 230" />
+              <path d="M 220 314 Q 250 314 280 240" />
+              <path d="M 220 372 Q 250 372 280 250" />
+            </g>
+
+            <!-- ATLAS in center -->
+            <g transform="translate(260, 170)">
+              <circle cx="100" cy="60" r="60" fill="#1A1410" stroke="#B5894C" stroke-width="1.5"/>
+              <circle cx="100" cy="60" r="48" fill="none" stroke="#B5894C" stroke-width="0.5" stroke-dasharray="2 3" opacity="0.6"/>
+              <circle cx="100" cy="60" r="32" fill="url(#orb-grad)" opacity="0.5"/>
+              <text x="100" y="58" text-anchor="middle" font-family="Playfair Display" font-size="22" font-weight="600" fill="#F5EDE0">Atlas</text>
+              <text x="100" y="74" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#B5894C" letter-spacing="1.5">DISPATCHER</text>
+            </g>
+
+            <!-- Atlas -> agents -->
+            <g stroke="#B5894C" stroke-width="1.2" fill="none" marker-end="url(#arrow-c)" opacity="0.7">
+              <path d="M 460 200 Q 480 200 500 80" />
+              <path d="M 460 210 Q 480 210 500 130" />
+              <path d="M 460 220 Q 480 220 500 180" />
+              <path d="M 460 225 Q 480 225 500 230" />
+              <path d="M 460 230 Q 480 230 500 280" />
+              <path d="M 460 240 Q 480 240 500 330" />
+              <path d="M 460 250 Q 480 250 500 380" />
+            </g>
+
+            <!-- AGENTS column -->
+            <g font-family="Inter" font-size="11" fill="#F5EDE0">
+              <g transform="translate(490, 62)">
+                <rect width="180" height="40" fill="#1A1410" stroke="#B5894C" rx="3"/>
+                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#B5894C">Scribe</text>
+                <text x="14" y="32" font-size="9" fill="#9A8470">Long-form blog</text>
+              </g>
+              <g transform="translate(490, 112)">
+                <rect width="180" height="40" fill="#1A1410" stroke="#B5894C" rx="3"/>
+                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#B5894C">Quill</text>
+                <text x="14" y="32" font-size="9" fill="#9A8470">Copy &amp; ad creative</text>
+              </g>
+              <g transform="translate(490, 162)">
+                <rect width="180" height="40" fill="#1A1410" stroke="#D9A551" rx="3"/>
+                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#D9A551">Forge</text>
+                <text x="14" y="32" font-size="9" fill="#9A8470">Shopify · theme · Shogun</text>
+              </g>
+              <g transform="translate(490, 212)">
+                <rect width="180" height="40" fill="#1A1410" stroke="#F5EDE0" rx="3"/>
+                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#F5EDE0">Crucible</text>
+                <text x="14" y="32" font-size="9" fill="#9A8470">Meta Ads</text>
+              </g>
+              <g transform="translate(490, 262)">
+                <rect width="180" height="40" fill="#1A1410" stroke="#F5EDE0" rx="3"/>
+                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#F5EDE0">Anvil</text>
+                <text x="14" y="32" font-size="9" fill="#9A8470">Google · YouTube</text>
+              </g>
+              <g transform="translate(490, 312)">
+                <rect width="180" height="40" fill="#1A1410" stroke="#6A8AA6" rx="3"/>
+                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#6A8AA6">Lighthouse</text>
+                <text x="14" y="32" font-size="9" fill="#9A8470">Analytics · attribution</text>
+              </g>
+              <g transform="translate(490, 362)">
+                <rect width="180" height="40" fill="#1A1410" stroke="#7EA67B" rx="3"/>
+                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#7EA67B">Auditor</text>
+                <text x="14" y="32" font-size="9" fill="#9A8470">Site health · CLS · SEO</text>
+              </g>
+
+              <!-- second column of agents -->
+              <g transform="translate(680, 62)">
+                <rect width="140" height="40" fill="#1A1410" stroke="#B5894C" rx="3"/>
+                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#B5894C">Composer</text>
+                <text x="14" y="32" font-size="9" fill="#9A8470">Social posts</text>
+              </g>
+              <g transform="translate(680, 112)">
+                <rect width="140" height="40" fill="#1A1410" stroke="#B5894C" rx="3"/>
+                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#B5894C">Voice</text>
+                <text x="14" y="32" font-size="9" fill="#9A8470">Brand QA</text>
+              </g>
+              <g transform="translate(680, 162)">
+                <rect width="140" height="40" fill="#1A1410" stroke="#D9A551" rx="3"/>
+                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#D9A551">Cellarman</text>
+                <text x="14" y="32" font-size="9" fill="#9A8470">Inventory</text>
+              </g>
+              <g transform="translate(680, 212)">
+                <rect width="140" height="40" fill="#1A1410" stroke="#D9A551" rx="3"/>
+                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#D9A551">Ledger</text>
+                <text x="14" y="32" font-size="9" fill="#9A8470">Orders · refunds</text>
+              </g>
+              <g transform="translate(680, 262)">
+                <rect width="140" height="40" fill="#1A1410" stroke="#D9A551" rx="3"/>
+                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#D9A551">Reviews</text>
+                <text x="14" y="32" font-size="9" fill="#9A8470">Trustpilot · Judge.me</text>
+              </g>
+              <g transform="translate(680, 312)">
+                <rect width="140" height="40" fill="#1A1410" stroke="#F5EDE0" rx="3"/>
+                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#F5EDE0">Strategist</text>
+                <text x="14" y="32" font-size="9" fill="#9A8470">Plans</text>
+              </g>
+              <g transform="translate(680, 362)">
+                <rect width="140" height="40" fill="#1A1410" stroke="#F5EDE0" rx="3"/>
+                <text x="14" y="18" font-family="Space Grotesk" font-weight="600" fill="#F5EDE0">Audience</text>
+                <text x="14" y="32" font-size="9" fill="#9A8470">Segments</text>
+              </g>
+            </g>
+
+            <!-- Specialists -> Channels arrows -->
+            <g stroke="#3A2E22" stroke-width="1" fill="none" marker-end="url(#arrow)">
+              <path d="M 820 82 Q 838 82 850 95" />
+              <path d="M 820 132 Q 838 132 850 145" />
+              <path d="M 820 182 Q 838 182 850 195" />
+              <path d="M 820 232 Q 838 232 850 245" />
+              <path d="M 820 282 Q 838 282 850 295" />
+              <path d="M 820 332 Q 838 332 850 345" />
+            </g>
+
+            <!-- CHANNELS column -->
+            <g font-family="JetBrains Mono" font-size="10" fill="#F5EDE0" letter-spacing="1.5">
+              <g transform="translate(840, 80)">
+                <rect width="180" height="36" fill="#1A1410" stroke="#2A2118" rx="2"/>
+                <text x="14" y="22">SHOPIFY · STOREFRONT</text>
+              </g>
+              <g transform="translate(840, 130)">
+                <rect width="180" height="36" fill="#1A1410" stroke="#2A2118" rx="2"/>
+                <text x="14" y="22">META · CRUCIBLE FEEDS</text>
+              </g>
+              <g transform="translate(840, 180)">
+                <rect width="180" height="36" fill="#1A1410" stroke="#2A2118" rx="2"/>
+                <text x="14" y="22">GOOGLE · ANVIL</text>
+              </g>
+              <g transform="translate(840, 230)">
+                <rect width="180" height="36" fill="#1A1410" stroke="#2A2118" rx="2"/>
+                <text x="14" y="22">KLAVIYO · EMAIL · SMS</text>
+              </g>
+              <g transform="translate(840, 280)">
+                <rect width="180" height="36" fill="#1A1410" stroke="#2A2118" rx="2"/>
+                <text x="14" y="22">SOCIAL · IG / X / TIKTOK</text>
+              </g>
+              <g transform="translate(840, 330)">
+                <rect width="180" height="36" fill="#1A1410" stroke="#2A2118" rx="2"/>
+                <text x="14" y="22">BLOG · WOLFBURN.COM</text>
+              </g>
+            </g>
+
+            <!-- Channels -> Report arrows -->
+            <g stroke="#3A2E22" stroke-width="1" fill="none" marker-end="url(#arrow)">
+              <path d="M 1020 98 Q 1040 98 1050 200" />
+              <path d="M 1020 148 Q 1040 148 1050 215" />
+              <path d="M 1020 198 Q 1040 198 1050 225" />
+              <path d="M 1020 248 Q 1040 248 1050 235" />
+              <path d="M 1020 298 Q 1040 298 1050 245" />
+              <path d="M 1020 348 Q 1040 348 1050 255" />
+            </g>
+
+            <!-- REPORT column -->
+            <g transform="translate(1040, 180)">
+              <rect width="120" height="100" fill="#1A1410" stroke="#6A8AA6" rx="3"/>
+              <text x="60" y="32" text-anchor="middle" font-family="Space Grotesk" font-size="14" font-weight="600" fill="#6A8AA6">Lighthouse</text>
+              <text x="60" y="50" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#9A8470" letter-spacing="1.4">CONSOLIDATES</text>
+              <text x="60" y="68" text-anchor="middle" font-family="Inter" font-size="10" fill="#F5EDE0">→ daily brief</text>
+              <text x="60" y="84" text-anchor="middle" font-family="Inter" font-size="10" fill="#F5EDE0">→ Atlas memory</text>
+            </g>
+
+            <!-- Lighthouse back to Atlas (loop) -->
+            <g stroke="#6A8AA6" stroke-width="1" stroke-dasharray="3 3" fill="none" opacity="0.6">
+              <path d="M 1040 230 Q 700 440 360 280" />
+            </g>
+            <text x="700" y="438" font-family="JetBrains Mono" font-size="9" fill="#6A8AA6" letter-spacing="1.4">FEEDBACK LOOP · ATLAS LEARNS</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- CHARTS -->
+      <div class="section-head">
+        <div>
+          <div class="section-num">04 · Performance</div>
+          <div class="section-title">What the channels are doing</div>
+        </div>
+        <div class="section-link">Open analytics →</div>
+      </div>
+
+      <div class="charts-row">
+
+        <!-- Revenue trend -->
+        <div class="chart-card">
+          <div class="head">
+            <h3>Revenue · last 30 days</h3>
+            <div class="meta">£127,432 · ▲ 18.4%</div>
+          </div>
+          <svg viewBox="0 0 720 220" width="100%" height="220">
+            <!-- grid -->
+            <g stroke="#221B14" stroke-width="1">
+              <line x1="40" y1="40" x2="700" y2="40"/>
+              <line x1="40" y1="90" x2="700" y2="90"/>
+              <line x1="40" y1="140" x2="700" y2="140"/>
+              <line x1="40" y1="190" x2="700" y2="190"/>
+            </g>
+            <g font-family="JetBrains Mono" font-size="9" fill="#6B5A48">
+              <text x="6" y="44">£8k</text>
+              <text x="6" y="94">£6k</text>
+              <text x="6" y="144">£4k</text>
+              <text x="6" y="194">£2k</text>
+            </g>
+            <!-- bars -->
+            <g fill="#3A2E22">
+              <rect x="50" y="160" width="14" height="30"/>
+              <rect x="74" y="155" width="14" height="35"/>
+              <rect x="98" y="148" width="14" height="42"/>
+              <rect x="122" y="170" width="14" height="20"/>
+              <rect x="146" y="162" width="14" height="28"/>
+              <rect x="170" y="140" width="14" height="50"/>
+              <rect x="194" y="135" width="14" height="55"/>
+              <rect x="218" y="130" width="14" height="60"/>
+              <rect x="242" y="155" width="14" height="35"/>
+              <rect x="266" y="125" width="14" height="65"/>
+              <rect x="290" y="115" width="14" height="75"/>
+              <rect x="314" y="120" width="14" height="70"/>
+              <rect x="338" y="105" width="14" height="85"/>
+              <rect x="362" y="118" width="14" height="72"/>
+              <rect x="386" y="98" width="14" height="92"/>
+              <rect x="410" y="92" width="14" height="98"/>
+              <rect x="434" y="100" width="14" height="90"/>
+              <rect x="458" y="78" width="14" height="112"/>
+              <rect x="482" y="85" width="14" height="105"/>
+              <rect x="506" y="70" width="14" height="120"/>
+              <rect x="530" y="80" width="14" height="110"/>
+              <rect x="554" y="68" width="14" height="122"/>
+              <rect x="578" y="60" width="14" height="130"/>
+              <rect x="602" y="72" width="14" height="118"/>
+              <rect x="626" y="55" width="14" height="135"/>
+              <rect x="650" y="62" width="14" height="128"/>
+              <rect x="674" y="48" width="14" height="142"/>
+            </g>
+            <!-- 7-day moving avg -->
+            <polyline fill="none" stroke="#D9A551" stroke-width="2" points="57,165 81,158 105,150 129,158 153,150 177,140 201,135 225,130 249,140 273,128 297,118 321,120 345,108 369,118 393,100 417,93 441,98 465,82 489,88 513,72 537,80 561,68 585,60 609,72 633,55 657,62 681,50"/>
+            <!-- last point -->
+            <circle cx="681" cy="50" r="4" fill="#D9A551"/>
+            <circle cx="681" cy="50" r="9" fill="none" stroke="#D9A551" stroke-width="1" opacity="0.4"/>
+          </svg>
+          <div style="display:flex; gap: 24px; font-family: var(--mono); font-size: 10px; color: var(--muted); margin-top: 14px; letter-spacing: 0.06em;">
+            <span><span style="display:inline-block; width:10px; height:10px; background:#3A2E22; margin-right:6px; vertical-align:middle;"></span>Daily revenue</span>
+            <span><span style="display:inline-block; width:10px; height:2px; background:#D9A551; margin-right:6px; vertical-align:middle;"></span>7-day moving average</span>
+          </div>
+        </div>
+
+        <!-- Channel mix -->
+        <div class="chart-card">
+          <div class="head">
+            <h3>Channel mix · 30d</h3>
+            <div class="meta">attribution model · last-touch</div>
+          </div>
+          <svg viewBox="0 0 320 220" width="100%" height="220">
+            <!-- donut -->
+            <g transform="translate(110, 110)">
+              <circle r="80" fill="none" stroke="#221B14" stroke-width="22"/>
+              <circle r="80" fill="none" stroke="#B5894C" stroke-width="22" stroke-dasharray="180 502" stroke-dashoffset="0" transform="rotate(-90)"/>
+              <circle r="80" fill="none" stroke="#D9A551" stroke-width="22" stroke-dasharray="120 502" stroke-dashoffset="-180" transform="rotate(-90)"/>
+              <circle r="80" fill="none" stroke="#7EA67B" stroke-width="22" stroke-dasharray="90 502" stroke-dashoffset="-300" transform="rotate(-90)"/>
+              <circle r="80" fill="none" stroke="#6A8AA6" stroke-width="22" stroke-dasharray="60 502" stroke-dashoffset="-390" transform="rotate(-90)"/>
+              <circle r="80" fill="none" stroke="#9A8470" stroke-width="22" stroke-dasharray="52 502" stroke-dashoffset="-450" transform="rotate(-90)"/>
+              <text x="0" y="-2" text-anchor="middle" font-family="Space Grotesk" font-size="22" font-weight="600" fill="#F5EDE0">£127k</text>
+              <text x="0" y="14" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#9A8470" letter-spacing="1.4">30 DAY</text>
+            </g>
+            <!-- legend -->
+            <g font-family="Inter" font-size="11" fill="#F5EDE0">
+              <g transform="translate(220, 30)">
+                <rect width="10" height="10" fill="#B5894C"/><text x="16" y="9">Direct · 36%</text>
+              </g>
+              <g transform="translate(220, 60)">
+                <rect width="10" height="10" fill="#D9A551"/><text x="16" y="9">Meta · 24%</text>
+              </g>
+              <g transform="translate(220, 90)">
+                <rect width="10" height="10" fill="#7EA67B"/><text x="16" y="9">Google · 18%</text>
+              </g>
+              <g transform="translate(220, 120)">
+                <rect width="10" height="10" fill="#6A8AA6"/><text x="16" y="9">Email · 12%</text>
+              </g>
+              <g transform="translate(220, 150)">
+                <rect width="10" height="10" fill="#9A8470"/><text x="16" y="9">Organic · 10%</text>
+              </g>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <!-- CONTEXT -->
+      <div class="section-head">
+        <div>
+          <div class="section-num">05 · Brand context</div>
+          <div class="section-title">Wolfburn at a glance</div>
+        </div>
+        <div class="section-link">Open brand brief →</div>
+      </div>
+
+      <div class="context-row">
+        <div class="ctx-card">
+          <h3>Brand</h3>
+          <div style="font-size: 12px; color: var(--muted); line-height: 1.6;">Award-winning single malt Scotch whisky distillery in Thurso, Caithness. Independent, small-batch. Tagline: <em style="color: var(--cream); font-style: normal;">"Fortune favours the brave."</em></div>
+          <div class="swatch-row">
+            <div class="swatch"><div class="chip" style="background:#0F0B08;"></div><div class="hex">#0F0B08</div></div>
+            <div class="swatch"><div class="chip" style="background:#B5894C;"></div><div class="hex">#B5894C</div></div>
+            <div class="swatch"><div class="chip" style="background:#D9A551;"></div><div class="hex">#D9A551</div></div>
+            <div class="swatch"><div class="chip" style="background:#F5EDE0;"></div><div class="hex">#F5EDE0</div></div>
+            <div class="swatch"><div class="chip" style="background:#9A8470;"></div><div class="hex">#9A8470</div></div>
+          </div>
+          <div style="font-family: var(--mono); font-size: 9px; color: var(--muted); margin-top: 12px; letter-spacing: 0.16em; text-transform: uppercase;">
+            Playfair Display · Inter · JetBrains Mono
+          </div>
+        </div>
+
+        <div class="ctx-card">
+          <h3>Hero products</h3>
+          <div class="product-row">
+            <div class="product-line">
+              <div>
+                <div class="nm">Wolfburn 12yo</div>
+                <div class="desc">Sherry &amp; bourbon cask · Highland</div>
+              </div>
+              <div class="price">£72</div>
+            </div>
+            <div class="product-line">
+              <div>
+                <div class="nm">Wolfburn 10yo</div>
+                <div class="desc">Bourbon cask · 46%</div>
+              </div>
+              <div class="price">£58</div>
+            </div>
+            <div class="product-line">
+              <div>
+                <div class="nm">Northland</div>
+                <div class="desc">No-age statement · approachable</div>
+              </div>
+              <div class="price">£42</div>
+            </div>
+            <div class="product-line">
+              <div>
+                <div class="nm">Pentland</div>
+                <div class="desc">Cognac cask · limited</div>
+              </div>
+              <div class="price">£89</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ctx-card">
+          <h3>Quick links</h3>
+          <div class="quick-row">
+            <a class="quick-link" href="#"><span>wolfburn.com</span><span class="arrow">↗</span></a>
+            <a class="quick-link" href="#"><span>Shopify admin</span><span class="arrow">↗</span></a>
+            <a class="quick-link" href="#"><span>Wes draft theme</span><span class="arrow">↗</span></a>
+            <a class="quick-link" href="#"><span>Privy displays</span><span class="arrow">↗</span></a>
+            <a class="quick-link" href="#"><span>GA4 property</span><span class="arrow">↗</span></a>
+            <a class="quick-link" href="#"><span>Meta Ads Manager</span><span class="arrow">↗</span></a>
+            <a class="quick-link" href="#"><span>Audit · 2026.04.29</span><span class="arrow">↗</span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div>WOLFBURN OPERATIONS · BUILT BY DIVERGENCE · 2026</div>
+        <div>SESSION · WT · 14:32 BST · BUILD ops.5.8.2026</div>
+      </div>
+
+      </section>
+      <!-- ====================== END OVERVIEW ====================== -->
+
+      <!-- ====================== PAGE: ATLAS ====================== -->
+      <section class="page" id="page-atlas">
+        <div class="page-head">
+          <div>
+            <div class="crumb">Workspace · Orchestrator</div>
+            <h1>Atlas</h1>
+            <div class="desc">Voice + text orchestrator. Speak or type a brief and Atlas dispatches to the right agents, watches their output, and reports back.</div>
+          </div>
+          <div class="actions">
+            <button class="btn">Memory · 2.4 MB</button>
+            <button class="btn solid voice-btn">● Talk to Atlas</button>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 1fr 360px; gap: 24px;">
+          <!-- CHAT -->
+          <div class="panel" style="padding: 0; display:flex; flex-direction:column; min-height: 720px;">
+            <div style="padding: 18px 24px; border-bottom: 1px solid var(--line); display:flex; align-items:center; justify-content:space-between;">
+              <div style="display:flex; gap:12px; align-items:center;">
+                <div style="width:36px; height:36px; border-radius:50%; background:radial-gradient(circle, #D9A551 0%, #B5894C 50%, #0F0B08 100%); display:flex; align-items:center; justify-content:center;">
+                  <div style="width:8px; height:8px; background:#7EA67B; border-radius:50%;"></div>
+                </div>
+                <div>
+                  <div style="font-family: var(--display); font-weight:600; font-size:15px;">Atlas</div>
+                  <div style="font-family: var(--mono); font-size: 9px; color: var(--green); letter-spacing: 0.16em;">● ONLINE · 16 AGENTS REACHABLE</div>
+                </div>
+              </div>
+              <div class="panel-meta">SESSION · 14:32 BST · 23 turns</div>
+            </div>
+
+            <div style="flex:1; overflow-y:auto; padding: 24px;">
+              <!-- chat -->
+              <div style="margin-bottom: 24px;">
+                <div style="font-family: var(--mono); font-size:9px; color:var(--muted); letter-spacing:0.18em; margin-bottom:8px;">YOU · 14:21</div>
+                <div style="background: var(--bg-3); padding: 14px 18px; border-radius: 4px; max-width: 80%; font-size: 13px;">Crucible's Father's Day campaign — what's working?</div>
+              </div>
+              <div style="margin-bottom: 24px; padding-left: 24px; border-left: 2px solid var(--copper);">
+                <div style="font-family: var(--mono); font-size:9px; color:var(--copper); letter-spacing:0.18em; margin-bottom:8px;">ATLAS · 14:21</div>
+                <div style="font-size: 13px; line-height: 1.65;">
+                  Father's Day is your strongest seasonal pulse so far. <span style="color: var(--copper);">Pentland · UK 35-54 Whisky Buyers</span> is at <strong>4.1× ROAS</strong>, doubling the account average. Best creative is the cognac-cask close-up with copy "Bottle 416 · just 1,200 made." Three variants from Quill are queued for review.
+                  <div style="margin-top: 14px; display: flex; gap: 8px; flex-wrap: wrap;">
+                    <button class="btn" data-page="meta">Open Meta dashboard</button>
+                    <button class="btn" data-run-agent="Quill">Brief Quill again</button>
+                    <button class="btn" data-page="agents">View Crucible</button>
+                  </div>
+                </div>
+              </div>
+
+              <div style="margin-bottom: 24px;">
+                <div style="font-family: var(--mono); font-size:9px; color:var(--muted); letter-spacing:0.18em; margin-bottom:8px;">YOU · 14:25</div>
+                <div style="background: var(--bg-3); padding: 14px 18px; border-radius: 4px; max-width: 80%; font-size: 13px;">Kill the Privy sticky tab. It's annoying.</div>
+              </div>
+              <div style="margin-bottom: 24px; padding-left: 24px; border-left: 2px solid var(--copper);">
+                <div style="font-family: var(--mono); font-size:9px; color:var(--copper); letter-spacing:0.18em; margin-bottom:8px;">ATLAS · 14:25</div>
+                <div style="font-size: 13px; line-height: 1.65;">
+                  Dispatching <span style="color: var(--amber);">Forge</span>. Will disable the Tab step on Privy display 4446686 (Welcome Discount · Email I) and keep the welcome popup intact. ETA 2 minutes.
+                </div>
+              </div>
+              <div style="margin-bottom: 24px; padding-left: 24px; border-left: 2px solid var(--copper);">
+                <div style="font-family: var(--mono); font-size:9px; color:var(--copper); letter-spacing:0.18em; margin-bottom:8px;">ATLAS · 14:31 · update</div>
+                <div style="font-size: 13px; line-height: 1.65;">
+                  ✓ Done. Verified on the live storefront — sticky tab is now hidden. Welcome popup still firing for new visitors. Logged to <span style="color: var(--copper); cursor:pointer;" data-page="logs">site-ops.log</span>.
+                </div>
+              </div>
+
+              <div style="margin-bottom: 24px;">
+                <div style="font-family: var(--mono); font-size:9px; color:var(--muted); letter-spacing:0.18em; margin-bottom:8px;">YOU · 14:31</div>
+                <div style="background: var(--bg-3); padding: 14px 18px; border-radius: 4px; max-width: 80%; font-size: 13px;">Brief me on tomorrow.</div>
+              </div>
+              <div style="padding-left: 24px; border-left: 2px solid var(--copper);">
+                <div style="font-family: var(--mono); font-size:9px; color:var(--copper); letter-spacing:0.18em; margin-bottom:8px;">ATLAS · 14:32</div>
+                <div style="font-size: 13px; line-height: 1.65;">
+                  Three things land tomorrow:
+                  <ol style="margin: 12px 0 0 18px; padding: 0;">
+                    <li style="margin-bottom: 6px;"><strong>Scribe</strong> publishes "Cognac cask 101" to wolfburn.com/news at 09:00.</li>
+                    <li style="margin-bottom: 6px;"><strong>Crucible</strong> rotates Father's Day creative, killing the lowest-CTR variant.</li>
+                    <li><strong>Lighthouse</strong> sends weekly revenue brief at 18:00.</li>
+                  </ol>
+                  One open decision still needs you: <span style="color: var(--amber);">Trustpilot vs Judge.me</span>. Want me to lay out the case?
+                </div>
+              </div>
+            </div>
+
+            <div style="border-top:1px solid var(--line); padding: 16px 24px; display:flex; gap: 12px; align-items:center; background: var(--bg);">
+              <input type="text" placeholder="Type a brief, ask a question, or press ⌥+Space to talk..." style="flex:1; background: var(--bg-3); border: 1px solid var(--line); padding: 12px 14px; color: var(--cream); font-family: var(--body); font-size: 13px; outline: none;" />
+              <button class="btn solid">Send</button>
+              <button class="btn voice-btn" style="padding: 8px 12px;">●</button>
+            </div>
+          </div>
+
+          <!-- RIGHT RAIL -->
+          <div style="display:flex; flex-direction:column; gap: 16px;">
+            <div class="panel">
+              <h3>Quick commands</h3>
+              <div style="display:flex; flex-direction:column; gap:8px; margin-top: 6px;">
+                <button class="quick-link" data-run-agent="Lighthouse" style="text-align:left;"><span>Daily revenue brief</span><span class="arrow">→</span></button>
+                <button class="quick-link" data-run-agent="Crucible" style="text-align:left;"><span>Audit Meta campaigns</span><span class="arrow">→</span></button>
+                <button class="quick-link" data-run-agent="Auditor" style="text-align:left;"><span>Run site audit</span><span class="arrow">→</span></button>
+                <button class="quick-link" data-run-agent="Scribe" style="text-align:left;"><span>Draft a blog post</span><span class="arrow">→</span></button>
+                <button class="quick-link" data-run-agent="Hawk" style="text-align:left;"><span>Check competitor SERPs</span><span class="arrow">→</span></button>
+              </div>
+            </div>
+            <div class="panel">
+              <h3>Atlas memory</h3>
+              <div class="grid-2" style="gap: 8px;">
+                <div class="stat-mini"><div class="lbl">Sources</div><div class="val">14</div></div>
+                <div class="stat-mini"><div class="lbl">Documents</div><div class="val">847</div></div>
+                <div class="stat-mini"><div class="lbl">Conversations</div><div class="val">293</div></div>
+                <div class="stat-mini"><div class="lbl">Decisions</div><div class="val">62</div></div>
+              </div>
+              <div style="font-family: var(--mono); font-size: 10px; color: var(--muted); margin-top: 14px; line-height: 1.5; letter-spacing: 0.04em;">
+                Includes the 2026.04.29 site audit, brand guidelines v2, all 16 agent specs, and 30 days of channel performance data.
+              </div>
+            </div>
+            <div class="panel">
+              <h3>Voice settings</h3>
+              <div style="display:flex; flex-direction: column; gap: 10px; font-size: 12px;">
+                <div style="display:flex; justify-content:space-between;"><span style="color: var(--muted);">Wake word</span><span class="pill ok">⌥+Space</span></div>
+                <div style="display:flex; justify-content:space-between;"><span style="color: var(--muted);">Voice model</span><span style="font-family: var(--mono); font-size: 11px;">eleven · onyx</span></div>
+                <div style="display:flex; justify-content:space-between;"><span style="color: var(--muted);">Transcription</span><span style="font-family: var(--mono); font-size: 11px;">whisper · v3</span></div>
+                <div style="display:flex; justify-content:space-between;"><span style="color: var(--muted);">Latency</span><span style="font-family: var(--mono); font-size: 11px; color: var(--green);">280ms</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================== PAGE: AGENTS ====================== -->
+      <section class="page" id="page-agents">
+        <div class="page-head">
+          <div>
+            <div class="crumb">Workspace · Agent Fleet</div>
+            <h1>Agents</h1>
+            <div class="desc">Sixteen agents across five clusters. Click into any agent to see its specification, recent runs, and queue.</div>
+          </div>
+          <div class="actions">
+            <button class="btn">Filter · 16</button>
+            <button class="btn solid">+ New agent</button>
+          </div>
+        </div>
+
+        <div class="tab-bar" data-tab-group="agents">
+          <div class="tab active" data-tab="all">All · 16</div>
+          <div class="tab" data-tab="content">Content · 4</div>
+          <div class="tab" data-tab="commerce">Commerce · 4</div>
+          <div class="tab" data-tab="marketing">Marketing · 4</div>
+          <div class="tab" data-tab="analytics">Analytics · 2</div>
+          <div class="tab" data-tab="ops">Ops · 2</div>
+        </div>
+
+        <div class="tab-panel active" data-tab-group="agents" data-tab-id="all">
+          <div class="grid-2">
+            <!-- Agent detail cards -->
+            <div class="panel">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                <div>
+                  <div style="display:flex; gap: 8px; align-items:center; margin-bottom: 6px;"><span class="pill" style="color: var(--copper); border-color: var(--line-2);">Content</span><span class="pill ok">● Online</span></div>
+                  <h3 style="margin-bottom: 4px;">Scribe</h3>
+                  <div style="color: var(--muted); font-size: 12px; max-width: 380px;">Long-form blog and editorial. Ingests product briefs, brand guidelines, and tone references. Outputs Shopify Articles.</div>
+                </div>
+                <button class="btn" data-run-agent="Scribe">Run</button>
+              </div>
+              <div class="grid-4" style="margin-top: 18px; gap: 8px;">
+                <div class="stat-mini"><div class="lbl">Runs · 7d</div><div class="val">14</div></div>
+                <div class="stat-mini"><div class="lbl">Success</div><div class="val">96%</div></div>
+                <div class="stat-mini"><div class="lbl">Avg time</div><div class="val">4:12</div></div>
+                <div class="stat-mini"><div class="lbl">Last run</div><div class="val" style="font-size:14px;">11:50</div></div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                <div>
+                  <div style="display:flex; gap: 8px; align-items:center; margin-bottom: 6px;"><span class="pill" style="color: var(--copper); border-color: var(--line-2);">Content</span><span class="pill ok">● Online</span></div>
+                  <h3 style="margin-bottom: 4px;">Quill</h3>
+                  <div style="color: var(--muted); font-size: 12px; max-width: 380px;">Product page copy, ad creative, email subject lines. Brief-driven, brand-bound. Always passes through Voice before ship.</div>
+                </div>
+                <button class="btn" data-run-agent="Quill">Run</button>
+              </div>
+              <div class="grid-4" style="margin-top: 18px; gap: 8px;">
+                <div class="stat-mini"><div class="lbl">Runs · 7d</div><div class="val">38</div></div>
+                <div class="stat-mini"><div class="lbl">Success</div><div class="val">100%</div></div>
+                <div class="stat-mini"><div class="lbl">Avg time</div><div class="val">1:48</div></div>
+                <div class="stat-mini"><div class="lbl">Last run</div><div class="val" style="font-size:14px;">12:14</div></div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                <div>
+                  <div style="display:flex; gap: 8px; align-items:center; margin-bottom: 6px;"><span class="pill" style="color: var(--copper); border-color: var(--line-2);">Content</span><span class="pill ok">● Online</span></div>
+                  <h3 style="margin-bottom: 4px;">Composer</h3>
+                  <div style="color: var(--muted); font-size: 12px; max-width: 380px;">Social posts across IG, X, TikTok captions. Schedules drafts to Buffer queue.</div>
+                </div>
+                <button class="btn" data-run-agent="Composer">Run</button>
+              </div>
+              <div class="grid-4" style="margin-top: 18px; gap: 8px;">
+                <div class="stat-mini"><div class="lbl">Runs · 7d</div><div class="val">22</div></div>
+                <div class="stat-mini"><div class="lbl">Success</div><div class="val">92%</div></div>
+                <div class="stat-mini"><div class="lbl">Avg time</div><div class="val">0:54</div></div>
+                <div class="stat-mini"><div class="lbl">Last run</div><div class="val" style="font-size:14px;">10:08</div></div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                <div>
+                  <div style="display:flex; gap: 8px; align-items:center; margin-bottom: 6px;"><span class="pill" style="color: var(--copper); border-color: var(--line-2);">Content</span><span class="pill ok">● Online</span></div>
+                  <h3 style="margin-bottom: 4px;">Voice</h3>
+                  <div style="color: var(--muted); font-size: 12px; max-width: 380px;">Brand guideline enforcer. Reviews every draft against Wolfburn's tone, terminology, and forbidden words list.</div>
+                </div>
+                <button class="btn" data-run-agent="Voice">Run</button>
+              </div>
+              <div class="grid-4" style="margin-top: 18px; gap: 8px;">
+                <div class="stat-mini"><div class="lbl">Runs · 7d</div><div class="val">73</div></div>
+                <div class="stat-mini"><div class="lbl">Success</div><div class="val">100%</div></div>
+                <div class="stat-mini"><div class="lbl">Avg time</div><div class="val">0:18</div></div>
+                <div class="stat-mini"><div class="lbl">Last run</div><div class="val" style="font-size:14px;">11:08</div></div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                <div>
+                  <div style="display:flex; gap: 8px; align-items:center; margin-bottom: 6px;"><span class="pill" style="color: var(--amber); border-color: var(--line-2);">Commerce</span><span class="pill ok">● Online</span></div>
+                  <h3 style="margin-bottom: 4px;">Forge</h3>
+                  <div style="color: var(--muted); font-size: 12px; max-width: 380px;">Shopify product, collection, theme &amp; Shogun ops. Push edits via Admin API and theme sections.</div>
+                </div>
+                <button class="btn" data-run-agent="Forge">Run</button>
+              </div>
+              <div class="grid-4" style="margin-top: 18px; gap: 8px;">
+                <div class="stat-mini"><div class="lbl">Runs · 7d</div><div class="val">26</div></div>
+                <div class="stat-mini"><div class="lbl">Success</div><div class="val">100%</div></div>
+                <div class="stat-mini"><div class="lbl">Avg time</div><div class="val">2:30</div></div>
+                <div class="stat-mini"><div class="lbl">Last run</div><div class="val" style="font-size:14px;">14:31</div></div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                <div>
+                  <div style="display:flex; gap: 8px; align-items:center; margin-bottom: 6px;"><span class="pill" style="color: var(--amber); border-color: var(--line-2);">Commerce</span><span class="pill muted">● Idle</span></div>
+                  <h3 style="margin-bottom: 4px;">Cellarman</h3>
+                  <div style="color: var(--muted); font-size: 12px; max-width: 380px;">Inventory levels, reorders, low-stock alerts. Pings Wesley when a SKU drops below 10 units.</div>
+                </div>
+                <button class="btn" data-run-agent="Cellarman">Run</button>
+              </div>
+              <div class="grid-4" style="margin-top: 18px; gap: 8px;">
+                <div class="stat-mini"><div class="lbl">Runs · 7d</div><div class="val">7</div></div>
+                <div class="stat-mini"><div class="lbl">Success</div><div class="val">97%</div></div>
+                <div class="stat-mini"><div class="lbl">Avg time</div><div class="val">0:42</div></div>
+                <div class="stat-mini"><div class="lbl">Last run</div><div class="val" style="font-size:14px;">08:00</div></div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                <div>
+                  <div style="display:flex; gap: 8px; align-items:center; margin-bottom: 6px;"><span class="pill" style="color: var(--amber); border-color: var(--line-2);">Commerce</span><span class="pill ok">● Online</span></div>
+                  <h3 style="margin-bottom: 4px;">Ledger</h3>
+                  <div style="color: var(--muted); font-size: 12px; max-width: 380px;">Order triage, fulfilment routing, refund flagging. Auto-tags VIP repeat customers.</div>
+                </div>
+                <button class="btn" data-run-agent="Ledger">Run</button>
+              </div>
+              <div class="grid-4" style="margin-top: 18px; gap: 8px;">
+                <div class="stat-mini"><div class="lbl">Runs · 7d</div><div class="val">96</div></div>
+                <div class="stat-mini"><div class="lbl">Success</div><div class="val">100%</div></div>
+                <div class="stat-mini"><div class="lbl">Avg time</div><div class="val">0:12</div></div>
+                <div class="stat-mini"><div class="lbl">Last run</div><div class="val" style="font-size:14px;">14:19</div></div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                <div>
+                  <div style="display:flex; gap: 8px; align-items:center; margin-bottom: 6px;"><span class="pill" style="color: var(--amber); border-color: var(--line-2);">Commerce</span><span class="pill ok">● Online</span></div>
+                  <h3 style="margin-bottom: 4px;">Reviews</h3>
+                  <div style="color: var(--muted); font-size: 12px; max-width: 380px;">Trustpilot &amp; Judge.me ingest. Flags 1-2★ for human reply. Surfaces themes weekly.</div>
+                </div>
+                <button class="btn" data-run-agent="Reviews">Run</button>
+              </div>
+              <div class="grid-4" style="margin-top: 18px; gap: 8px;">
+                <div class="stat-mini"><div class="lbl">Runs · 7d</div><div class="val">21</div></div>
+                <div class="stat-mini"><div class="lbl">Success</div><div class="val">100%</div></div>
+                <div class="stat-mini"><div class="lbl">Avg time</div><div class="val">0:36</div></div>
+                <div class="stat-mini"><div class="lbl">Last run</div><div class="val" style="font-size:14px;">09:30</div></div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                <div>
+                  <div style="display:flex; gap: 8px; align-items:center; margin-bottom: 6px;"><span class="pill" style="color: var(--cream); border-color: var(--line-2);">Marketing</span><span class="pill ok">● Online</span></div>
+                  <h3 style="margin-bottom: 4px;">Crucible</h3>
+                  <div style="color: var(--muted); font-size: 12px; max-width: 380px;">Meta Ads. Creative rotation, audience expansion, daily budget rebalancing.</div>
+                </div>
+                <button class="btn" data-run-agent="Crucible">Run</button>
+              </div>
+              <div class="grid-4" style="margin-top: 18px; gap: 8px;">
+                <div class="stat-mini"><div class="lbl">Runs · 7d</div><div class="val">63</div></div>
+                <div class="stat-mini"><div class="lbl">ROAS</div><div class="val">3.2×</div></div>
+                <div class="stat-mini"><div class="lbl">Spend · 7d</div><div class="val">£4.3k</div></div>
+                <div class="stat-mini"><div class="lbl">Last run</div><div class="val" style="font-size:14px;">13:42</div></div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                <div>
+                  <div style="display:flex; gap: 8px; align-items:center; margin-bottom: 6px;"><span class="pill" style="color: var(--cream); border-color: var(--line-2);">Marketing</span><span class="pill ok">● Online</span></div>
+                  <h3 style="margin-bottom: 4px;">Anvil</h3>
+                  <div style="color: var(--muted); font-size: 12px; max-width: 380px;">Google &amp; YouTube. Search, Performance Max, retargeting. Bids on whisky-buyer keywords only.</div>
+                </div>
+                <button class="btn" data-run-agent="Anvil">Run</button>
+              </div>
+              <div class="grid-4" style="margin-top: 18px; gap: 8px;">
+                <div class="stat-mini"><div class="lbl">Runs · 7d</div><div class="val">35</div></div>
+                <div class="stat-mini"><div class="lbl">ROAS</div><div class="val">2.7×</div></div>
+                <div class="stat-mini"><div class="lbl">Spend · 7d</div><div class="val">£2.1k</div></div>
+                <div class="stat-mini"><div class="lbl">Last run</div><div class="val" style="font-size:14px;">12:00</div></div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                <div>
+                  <div style="display:flex; gap: 8px; align-items:center; margin-bottom: 6px;"><span class="pill" style="color: var(--cream); border-color: var(--line-2);">Marketing</span><span class="pill ok">● Online</span></div>
+                  <h3 style="margin-bottom: 4px;">Strategist</h3>
+                  <div style="color: var(--muted); font-size: 12px; max-width: 380px;">Plans campaigns, picks angles, briefs Crucible &amp; Anvil. Owns the seasonal calendar.</div>
+                </div>
+                <button class="btn" data-run-agent="Strategist">Run</button>
+              </div>
+              <div class="grid-4" style="margin-top: 18px; gap: 8px;">
+                <div class="stat-mini"><div class="lbl">Runs · 7d</div><div class="val">9</div></div>
+                <div class="stat-mini"><div class="lbl">Success</div><div class="val">100%</div></div>
+                <div class="stat-mini"><div class="lbl">Avg time</div><div class="val">6:20</div></div>
+                <div class="stat-mini"><div class="lbl">Last run</div><div class="val" style="font-size:14px;">10:30</div></div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                <div>
+                  <div style="display:flex; gap: 8px; align-items:center; margin-bottom: 6px;"><span class="pill" style="color: var(--cream); border-color: var(--line-2);">Marketing</span><span class="pill warn">● Stale</span></div>
+                  <h3 style="margin-bottom: 4px;">Audience</h3>
+                  <div style="color: var(--muted); font-size: 12px; max-width: 380px;">Lookalike builds, RFM segments, cohort exports. Klaviyo sync stale 14h, needs refresh.</div>
+                </div>
+                <button class="btn" data-run-agent="Audience">Run</button>
+              </div>
+              <div class="grid-4" style="margin-top: 18px; gap: 8px;">
+                <div class="stat-mini"><div class="lbl">Runs · 7d</div><div class="val">5</div></div>
+                <div class="stat-mini"><div class="lbl">Success</div><div class="val">88%</div></div>
+                <div class="stat-mini"><div class="lbl">Avg time</div><div class="val">3:45</div></div>
+                <div class="stat-mini"><div class="lbl">Last run</div><div class="val" style="font-size:14px;">00:30</div></div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                <div>
+                  <div style="display:flex; gap: 8px; align-items:center; margin-bottom: 6px;"><span class="pill" style="color: var(--blue); border-color: var(--line-2);">Analytics</span><span class="pill ok">● Online</span></div>
+                  <h3 style="margin-bottom: 4px;">Lighthouse</h3>
+                  <div style="color: var(--muted); font-size: 12px; max-width: 380px;">GA4 + Shopify. Daily revenue brief, attribution, weekly executive summary.</div>
+                </div>
+                <button class="btn" data-run-agent="Lighthouse">Run</button>
+              </div>
+              <div class="grid-4" style="margin-top: 18px; gap: 8px;">
+                <div class="stat-mini"><div class="lbl">Runs · 7d</div><div class="val">7</div></div>
+                <div class="stat-mini"><div class="lbl">Success</div><div class="val">100%</div></div>
+                <div class="stat-mini"><div class="lbl">Avg time</div><div class="val">2:08</div></div>
+                <div class="stat-mini"><div class="lbl">Last run</div><div class="val" style="font-size:14px;">09:00</div></div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                <div>
+                  <div style="display:flex; gap: 8px; align-items:center; margin-bottom: 6px;"><span class="pill" style="color: var(--blue); border-color: var(--line-2);">Analytics</span><span class="pill ok">● Online</span></div>
+                  <h3 style="margin-bottom: 4px;">Hawk</h3>
+                  <div style="color: var(--muted); font-size: 12px; max-width: 380px;">Competitive intel &amp; SERP tracking for whisky vertical. Watches 24 competitor sites.</div>
+                </div>
+                <button class="btn" data-run-agent="Hawk">Run</button>
+              </div>
+              <div class="grid-4" style="margin-top: 18px; gap: 8px;">
+                <div class="stat-mini"><div class="lbl">Runs · 7d</div><div class="val">7</div></div>
+                <div class="stat-mini"><div class="lbl">Success</div><div class="val">96%</div></div>
+                <div class="stat-mini"><div class="lbl">Avg time</div><div class="val">5:40</div></div>
+                <div class="stat-mini"><div class="lbl">Last run</div><div class="val" style="font-size:14px;">06:00</div></div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                <div>
+                  <div style="display:flex; gap: 8px; align-items:center; margin-bottom: 6px;"><span class="pill" style="color: var(--green); border-color: var(--line-2);">Ops</span><span class="pill ok">● Online</span></div>
+                  <h3 style="margin-bottom: 4px;">Auditor</h3>
+                  <div style="color: var(--muted); font-size: 12px; max-width: 380px;">Site health, broken links, CLS, console errors. Full crawl weekly, smoke test daily.</div>
+                </div>
+                <button class="btn" data-run-agent="Auditor">Run</button>
+              </div>
+              <div class="grid-4" style="margin-top: 18px; gap: 8px;">
+                <div class="stat-mini"><div class="lbl">Runs · 7d</div><div class="val">7</div></div>
+                <div class="stat-mini"><div class="lbl">Open</div><div class="val">3</div></div>
+                <div class="stat-mini"><div class="lbl">Avg time</div><div class="val">8:12</div></div>
+                <div class="stat-mini"><div class="lbl">Last run</div><div class="val" style="font-size:14px;">10:22</div></div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                <div>
+                  <div style="display:flex; gap: 8px; align-items:center; margin-bottom: 6px;"><span class="pill" style="color: var(--green); border-color: var(--line-2);">Ops</span><span class="pill muted">● Idle</span></div>
+                  <h3 style="margin-bottom: 4px;">Sentinel</h3>
+                  <div style="color: var(--muted); font-size: 12px; max-width: 380px;">Uptime, GA4 pixel, app stack, third-party JS budget. Pages on incidents.</div>
+                </div>
+                <button class="btn" data-run-agent="Sentinel">Run</button>
+              </div>
+              <div class="grid-4" style="margin-top: 18px; gap: 8px;">
+                <div class="stat-mini"><div class="lbl">Runs · 7d</div><div class="val">168</div></div>
+                <div class="stat-mini"><div class="lbl">Incidents</div><div class="val">0</div></div>
+                <div class="stat-mini"><div class="lbl">Uptime</div><div class="val">100%</div></div>
+                <div class="stat-mini"><div class="lbl">Last run</div><div class="val" style="font-size:14px;">12:00</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================== PAGE: WORKFLOWS ====================== -->
+      <section class="page" id="page-workflows">
+        <div class="page-head">
+          <div>
+            <div class="crumb">Workspace · Workflows</div>
+            <h1>Workflows</h1>
+            <div class="desc">Saved orchestrations. Each is a sequence of agents triggered on a schedule, event, or voice command.</div>
+          </div>
+          <div class="actions">
+            <button class="btn">Import YAML</button>
+            <button class="btn solid">+ New workflow</button>
+          </div>
+        </div>
+
+        <div class="grid-4" style="margin-bottom: 32px;">
+          <div class="stat-mini"><div class="lbl">Active</div><div class="val">8</div><div class="delta up">+1 this week</div></div>
+          <div class="stat-mini"><div class="lbl">Runs · 24h</div><div class="val">42</div><div class="delta flat">on plan</div></div>
+          <div class="stat-mini"><div class="lbl">Avg duration</div><div class="val">3:48</div><div class="delta down">-12s vs prev</div></div>
+          <div class="stat-mini"><div class="lbl">Failures · 7d</div><div class="val">2</div><div class="delta flat">99.4% success</div></div>
+        </div>
+
+        <table class="data-table" style="margin-bottom: 32px;">
+          <thead><tr><th style="width:32%;">Workflow</th><th>Trigger</th><th>Agents</th><th>Last run</th><th>Status</th><th></th></tr></thead>
+          <tbody>
+            <tr><td><div class="name">Daily revenue brief</div><div class="muted-cell">Lighthouse → Atlas memory → Slack</div></td><td class="muted-cell">Cron · 09:00 daily</td><td class="muted-cell">3 agents</td><td class="num">Today 09:00</td><td><span class="pill ok">● running</span></td><td><button class="btn" data-run-agent="Daily brief">Run</button></td></tr>
+            <tr><td><div class="name">New product launch</div><div class="muted-cell">Quill → Voice → Forge → Composer → Crucible</div></td><td class="muted-cell">Shopify webhook</td><td class="muted-cell">5 agents</td><td class="num">3 days ago</td><td><span class="pill ok">● ok</span></td><td><button class="btn" data-run-agent="Product launch">Run</button></td></tr>
+            <tr><td><div class="name">Weekly content drop</div><div class="muted-cell">Strategist → Scribe → Voice → Composer</div></td><td class="muted-cell">Cron · Mon 06:00</td><td class="muted-cell">4 agents</td><td class="num">Mon 06:00</td><td><span class="pill ok">● ok</span></td><td><button class="btn" data-run-agent="Content drop">Run</button></td></tr>
+            <tr><td><div class="name">Meta campaign rebalance</div><div class="muted-cell">Lighthouse → Crucible → Atlas summary</div></td><td class="muted-cell">Cron · 13:00 daily</td><td class="muted-cell">3 agents</td><td class="num">Today 13:42</td><td><span class="pill ok">● ok</span></td><td><button class="btn" data-run-agent="Meta rebalance">Run</button></td></tr>
+            <tr><td><div class="name">Inventory low-stock</div><div class="muted-cell">Cellarman → Slack alert → Strategist</div></td><td class="muted-cell">Threshold &lt; 10 units</td><td class="muted-cell">3 agents</td><td class="num">2 days ago</td><td><span class="pill warn">● paused</span></td><td><button class="btn" data-run-agent="Low stock">Run</button></td></tr>
+            <tr><td><div class="name">Site smoke test</div><div class="muted-cell">Auditor lite → Sentinel → page</div></td><td class="muted-cell">Cron · hourly</td><td class="muted-cell">2 agents</td><td class="num">Today 14:00</td><td><span class="pill ok">● ok</span></td><td><button class="btn" data-run-agent="Smoke test">Run</button></td></tr>
+            <tr><td><div class="name">Review triage</div><div class="muted-cell">Reviews → Voice → reply queue</div></td><td class="muted-cell">Trustpilot webhook</td><td class="muted-cell">3 agents</td><td class="num">Today 09:30</td><td><span class="pill ok">● ok</span></td><td><button class="btn" data-run-agent="Review triage">Run</button></td></tr>
+            <tr><td><div class="name">Voice command · ad hoc</div><div class="muted-cell">Atlas → variable agents</div></td><td class="muted-cell">⌥+Space wake word</td><td class="muted-cell">dynamic</td><td class="num">Today 14:31</td><td><span class="pill ok">● ok</span></td><td><button class="btn voice-btn">Talk</button></td></tr>
+          </tbody>
+        </table>
+
+        <div class="panel">
+          <h3>Workflow architecture · default brief flow</h3>
+          <div class="panel-meta" style="margin-bottom: 18px;">Trigger → Atlas → Specialist agents → Channels → Lighthouse → back to Atlas memory</div>
+          <div style="text-align:center; padding: 32px; background: var(--bg-3); border-radius: 4px; font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.1em;">
+            See full flowchart on the Overview page · or <a data-page="overview" style="color: var(--copper); cursor:pointer;">open it now →</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================== PAGE: SHOPIFY ====================== -->
+      <section class="page" id="page-shopify">
+        <div class="page-head">
+          <div>
+            <div class="crumb">Channels · Shopify</div>
+            <h1>Shopify</h1>
+            <div class="desc">wolfburn.com · Shopify Plan · live theme "Site - Updated - 2025-10-01" · wes draft theme staged.</div>
+          </div>
+          <div class="actions">
+            <button class="btn">Open Admin ↗</button>
+            <button class="btn solid" data-run-agent="Forge">Run Forge</button>
+          </div>
+        </div>
+
+        <div class="grid-4" style="margin-bottom: 28px;">
+          <div class="stat-mini"><div class="lbl">Revenue · today</div><div class="val">£3,847</div><div class="delta up">▲ 14% vs yesterday</div></div>
+          <div class="stat-mini"><div class="lbl">Orders · today</div><div class="val">11</div><div class="delta up">▲ 2 vs yesterday</div></div>
+          <div class="stat-mini"><div class="lbl">CVR · today</div><div class="val">1.6%</div><div class="delta down">▼ 0.2pp</div></div>
+          <div class="stat-mini"><div class="lbl">Carts · open</div><div class="val">37</div><div class="delta flat">£8,420 value</div></div>
+        </div>
+
+        <div class="tab-bar" data-tab-group="shopify">
+          <div class="tab active" data-tab="orders">Recent orders</div>
+          <div class="tab" data-tab="products">Top products</div>
+          <div class="tab" data-tab="inventory">Inventory</div>
+          <div class="tab" data-tab="theme">Theme &amp; apps</div>
+        </div>
+
+        <div class="tab-panel active" data-tab-group="shopify" data-tab-id="orders">
+          <table class="data-table">
+            <thead><tr><th>Order</th><th>Customer</th><th>Items</th><th>Total</th><th>Status</th><th>Time</th></tr></thead>
+            <tbody>
+              <tr><td class="name">#WB-12847</td><td>J. Henderson · Edinburgh</td><td>Wolfburn 12yo · 1</td><td class="num">£72.00</td><td><span class="pill ok">paid</span></td><td class="num">14:19</td></tr>
+              <tr><td class="name">#WB-12846</td><td>M. Patel · London</td><td>Pentland · 1, Glencairn × 2</td><td class="num">£104.50</td><td><span class="pill ok">paid</span></td><td class="num">13:48</td></tr>
+              <tr><td class="name">#WB-12845</td><td>K. Mackenzie · Inverness</td><td>Northland · 2</td><td class="num">£84.00</td><td><span class="pill ok">paid · fulfilled</span></td><td class="num">12:30</td></tr>
+              <tr><td class="name">#WB-12844</td><td>R. O'Brien · Dublin</td><td>Wolfburn 10yo · 1</td><td class="num">£58.00</td><td><span class="pill warn">refund req</span></td><td class="num">11:55</td></tr>
+              <tr><td class="name">#WB-12843</td><td>S. Chen · Manchester</td><td>Pentland · 1</td><td class="num">£89.00</td><td><span class="pill ok">paid</span></td><td class="num">11:12</td></tr>
+              <tr><td class="name">#WB-12842</td><td>L. Thompson · Glasgow</td><td>12yo · 1, t-shirt L · 1</td><td class="num">£97.00</td><td><span class="pill ok">paid</span></td><td class="num">10:48</td></tr>
+              <tr><td class="name">#WB-12841</td><td>P. Vasquez · Madrid</td><td>Northland · 1</td><td class="num">£42.00</td><td><span class="pill info">int'l hold</span></td><td class="num">09:22</td></tr>
+              <tr><td class="name">#WB-12840</td><td>A. Jenkins · Cardiff</td><td>Wolfburn 12yo · 2, Pentland · 1</td><td class="num">£233.00</td><td><span class="pill ok">paid · fulfilled</span></td><td class="num">08:15</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="tab-panel" data-tab-group="shopify" data-tab-id="products">
+          <table class="data-table">
+            <thead><tr><th>Product</th><th>Units · 30d</th><th>Revenue · 30d</th><th>Conv rate</th><th>Stock</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td class="name">Wolfburn 12 Year Old · 70cl</td><td class="num">186</td><td class="num">£13,392</td><td class="num">2.4%</td><td class="num">412</td><td><span class="pill ok">active</span></td></tr>
+              <tr><td class="name">Pentland · Cognac Cask · 70cl</td><td class="num">87</td><td class="num">£7,743</td><td class="num">1.8%</td><td class="num">94</td><td><span class="pill warn">limited · 1,200</span></td></tr>
+              <tr><td class="name">Wolfburn 10 Year Old · 70cl</td><td class="num">142</td><td class="num">£8,236</td><td class="num">2.1%</td><td class="num">580</td><td><span class="pill ok">active</span></td></tr>
+              <tr><td class="name">Northland · 70cl</td><td class="num">203</td><td class="num">£8,526</td><td class="num">2.8%</td><td class="num">1,240</td><td><span class="pill ok">active</span></td></tr>
+              <tr><td class="name">Kylver Series 14 · 70cl</td><td class="num">42</td><td class="num">£5,460</td><td class="num">0.9%</td><td class="num">38</td><td><span class="pill warn">low stock</span></td></tr>
+              <tr><td class="name">Wolfburn Glencairn Glass</td><td class="num">156</td><td class="num">£1,872</td><td class="num">5.4%</td><td class="num">820</td><td><span class="pill ok">active</span></td></tr>
+              <tr><td class="name">Distillery T-Shirt · L</td><td class="num">38</td><td class="num">£950</td><td class="num">3.2%</td><td class="num">62</td><td><span class="pill ok">active</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="tab-panel" data-tab-group="shopify" data-tab-id="inventory">
+          <div class="grid-2">
+            <div class="panel">
+              <h3>Low-stock alerts</h3>
+              <table class="data-table"><thead><tr><th>SKU</th><th>On hand</th><th>Threshold</th><th>Days cover</th></tr></thead><tbody>
+                <tr><td class="name">Kylver Series 14</td><td class="num">38</td><td class="num">50</td><td class="num">12d</td></tr>
+                <tr><td class="name">Pentland · Cognac</td><td class="num">94</td><td class="num">100</td><td class="num">18d</td></tr>
+                <tr><td class="name">Distillery Cap · Black</td><td class="num">14</td><td class="num">25</td><td class="num">21d</td></tr>
+              </tbody></table>
+            </div>
+            <div class="panel">
+              <h3>Recent reorders · Cellarman</h3>
+              <table class="data-table"><thead><tr><th>SKU</th><th>Qty</th><th>PO</th><th>Status</th></tr></thead><tbody>
+                <tr><td class="name">Wolfburn 12yo</td><td class="num">200</td><td class="num">PO-2026-104</td><td><span class="pill ok">delivered</span></td></tr>
+                <tr><td class="name">Northland</td><td class="num">500</td><td class="num">PO-2026-105</td><td><span class="pill warn">in transit</span></td></tr>
+                <tr><td class="name">Glencairn Glasses</td><td class="num">300</td><td class="num">PO-2026-106</td><td><span class="pill info">queued</span></td></tr>
+              </tbody></table>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-panel" data-tab-group="shopify" data-tab-id="theme">
+          <div class="grid-2">
+            <div class="panel">
+              <h3>Themes</h3>
+              <table class="data-table"><thead><tr><th>Theme</th><th>Status</th><th>Last edit</th></tr></thead><tbody>
+                <tr><td class="name">Site - Updated - 2025-10-01</td><td><span class="pill ok">live</span></td><td class="num">3 days ago</td></tr>
+                <tr><td class="name">wes</td><td><span class="pill warn">draft · ready to ship</span></td><td class="num">today</td></tr>
+                <tr><td class="name">Site - Backup - 2024-08</td><td><span class="pill muted">archived</span></td><td class="num">182 days ago</td></tr>
+              </tbody></table>
+            </div>
+            <div class="panel">
+              <h3>Apps · 12 installed</h3>
+              <table class="data-table"><thead><tr><th>App</th><th>Used</th><th>Cost</th></tr></thead><tbody>
+                <tr><td class="name">Shogun Page Builder</td><td><span class="pill ok">heavy</span></td><td class="num">£39/mo</td></tr>
+                <tr><td class="name">Privy</td><td><span class="pill ok">active</span></td><td class="num">£24/mo</td></tr>
+                <tr><td class="name">Trustpilot</td><td><span class="pill warn">decision pending</span></td><td class="num">£199/mo</td></tr>
+                <tr><td class="name">Judge.me</td><td><span class="pill warn">decision pending</span></td><td class="num">£15/mo</td></tr>
+                <tr><td class="name">Klaviyo</td><td><span class="pill ok">active</span></td><td class="num">£60/mo</td></tr>
+                <tr><td class="name">Exemptify (VAT)</td><td><span class="pill ok">essential</span></td><td class="num">£20/mo</td></tr>
+                <tr><td class="name">GiftKart</td><td><span class="pill muted">unused · remove?</span></td><td class="num">£10/mo</td></tr>
+                <tr><td class="name">Selleasy / LB Upsell</td><td><span class="pill muted">unused · remove?</span></td><td class="num">£15/mo</td></tr>
+              </tbody></table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================== PAGE: META ADS ====================== -->
+      <section class="page" id="page-meta">
+        <div class="page-head">
+          <div>
+            <div class="crumb">Channels · Meta Ads</div>
+            <h1>Meta Ads</h1>
+            <div class="desc">Crucible runs Meta. Three live campaigns, blended 3.2× ROAS over the last 30 days. Budget pacing on plan.</div>
+          </div>
+          <div class="actions">
+            <button class="btn">Ads Manager ↗</button>
+            <button class="btn solid" data-run-agent="Crucible">Run Crucible</button>
+          </div>
+        </div>
+
+        <div class="grid-4" style="margin-bottom: 28px;">
+          <div class="stat-mini"><div class="lbl">Spend · 30d</div><div class="val">£8,420</div><div class="delta up">▲ 18% vs prev</div></div>
+          <div class="stat-mini"><div class="lbl">Revenue · 30d</div><div class="val">£26,944</div><div class="delta up">▲ 32%</div></div>
+          <div class="stat-mini"><div class="lbl">ROAS · blended</div><div class="val">3.2×</div><div class="delta up">▲ 0.4 vs prev</div></div>
+          <div class="stat-mini"><div class="lbl">CPM · avg</div><div class="val">£14.20</div><div class="delta down">▼ £1.80</div></div>
+        </div>
+
+        <div class="tab-bar" data-tab-group="meta">
+          <div class="tab active" data-tab="campaigns">Campaigns · 3</div>
+          <div class="tab" data-tab="creatives">Creatives · 14</div>
+          <div class="tab" data-tab="audiences">Audiences · 7</div>
+          <div class="tab" data-tab="recs">Crucible recommendations · 4</div>
+        </div>
+
+        <div class="tab-panel active" data-tab-group="meta" data-tab-id="campaigns">
+          <table class="data-table">
+            <thead><tr><th>Campaign</th><th>Objective</th><th>Spend · 7d</th><th>Revenue</th><th>ROAS</th><th>CTR</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td><div class="name">Pentland · Father's Day</div><div class="muted-cell">UK · 35-54 · Whisky Buyers LAL</div></td><td class="muted-cell">Conversions</td><td class="num">£1,820</td><td class="num">£7,462</td><td class="num" style="color: var(--green);">4.1×</td><td class="num">1.94%</td><td><span class="pill ok">active</span></td></tr>
+              <tr><td><div class="name">Wolfburn 12yo · Always-on</div><div class="muted-cell">UK + EU · 28-65 · Premium spirits</div></td><td class="muted-cell">Conversions</td><td class="num">£1,540</td><td class="num">£4,928</td><td class="num">3.2×</td><td class="num">1.42%</td><td><span class="pill ok">active</span></td></tr>
+              <tr><td><div class="name">Northland · Awareness</div><div class="muted-cell">UK · 25-45 · Approachable malt</div></td><td class="muted-cell">Reach</td><td class="num">£940</td><td class="num">£1,786</td><td class="num">1.9×</td><td class="num">0.86%</td><td><span class="pill warn">underperforming</span></td></tr>
+              <tr><td><div class="name">Distillery tours · UK</div><div class="muted-cell">Caithness · 75km radius</div></td><td class="muted-cell">Lead gen</td><td class="num">£220</td><td class="num">—</td><td class="num">42 leads</td><td class="num">2.1%</td><td><span class="pill info">paused weekend</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="tab-panel" data-tab-group="meta" data-tab-id="creatives">
+          <table class="data-table">
+            <thead><tr><th>Creative</th><th>Format</th><th>Impressions</th><th>CTR</th><th>ROAS</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td class="name">Pentland · "Bottle 416 · just 1,200"</td><td class="muted-cell">Static · 1080×1350</td><td class="num">142,030</td><td class="num">2.31%</td><td class="num" style="color: var(--green);">5.2×</td><td><span class="pill ok">winner · scale</span></td></tr>
+              <tr><td class="name">Pentland · cognac-cask close-up</td><td class="muted-cell">Static · 1080×1350</td><td class="num">98,420</td><td class="num">1.88%</td><td class="num">3.8×</td><td><span class="pill ok">active</span></td></tr>
+              <tr><td class="name">12yo · "Father's Day · Limited"</td><td class="muted-cell">Carousel · 5 slides</td><td class="num">76,840</td><td class="num">1.42%</td><td class="num">2.9×</td><td><span class="pill ok">active</span></td></tr>
+              <tr><td class="name">Northland · barrel B-roll</td><td class="muted-cell">Reel · 9:16 · 18s</td><td class="num">52,180</td><td class="num">0.74%</td><td class="num">1.4×</td><td><span class="pill warn">declining</span></td></tr>
+              <tr><td class="name">12yo · UGC · whisky reviewer</td><td class="muted-cell">Reel · 9:16 · 24s</td><td class="num">43,210</td><td class="num">2.12%</td><td class="num">3.6×</td><td><span class="pill ok">active</span></td></tr>
+              <tr><td class="name">Distillery tour · drone shot</td><td class="muted-cell">Reel · 9:16 · 12s</td><td class="num">28,640</td><td class="num">1.28%</td><td class="num">—</td><td><span class="pill info">awareness</span></td></tr>
+              <tr><td class="name">Quill draft · "Liquid courage"</td><td class="muted-cell">Static · 1080×1350</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td><span class="pill muted">awaiting Voice review</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="tab-panel" data-tab-group="meta" data-tab-id="audiences">
+          <table class="data-table">
+            <thead><tr><th>Audience</th><th>Type</th><th>Size</th><th>Used in</th><th>CPM</th><th>ROAS</th></tr></thead>
+            <tbody>
+              <tr><td class="name">UK Whisky Buyers · 35-54</td><td class="muted-cell">Lookalike · 1% · Pentland purchasers</td><td class="num">740k</td><td class="num">2 campaigns</td><td class="num">£12.40</td><td class="num">4.1×</td></tr>
+              <tr><td class="name">Premium Spirits Interest</td><td class="muted-cell">Interest · UK + EU</td><td class="num">3.2M</td><td class="num">1 campaign</td><td class="num">£15.60</td><td class="num">3.2×</td></tr>
+              <tr><td class="name">All Wolfburn buyers · 365d</td><td class="muted-cell">Custom · pixel-based</td><td class="num">14k</td><td class="num">retargeting</td><td class="num">£18.20</td><td class="num">5.8×</td></tr>
+              <tr><td class="name">Cart abandoners · 30d</td><td class="muted-cell">Custom · pixel</td><td class="num">2.4k</td><td class="num">retargeting</td><td class="num">£22.50</td><td class="num">7.1×</td></tr>
+              <tr><td class="name">Caithness · 75km</td><td class="muted-cell">Geo</td><td class="num">42k</td><td class="num">tours</td><td class="num">£8.20</td><td class="num">—</td></tr>
+              <tr><td class="name">Whisky Reviewers Engagement</td><td class="muted-cell">Lookalike · 2% · IG engagers</td><td class="num">1.4M</td><td class="num">UGC creative</td><td class="num">£13.80</td><td class="num">3.6×</td></tr>
+              <tr><td class="name">Approachable Malt Curious</td><td class="muted-cell">Interest · 25-45</td><td class="num">2.1M</td><td class="num">Northland</td><td class="num">£17.40</td><td class="num">1.9×</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="tab-panel" data-tab-group="meta" data-tab-id="recs">
+          <div style="display:flex; flex-direction:column; gap: 14px;">
+            <div class="panel" style="border-left: 3px solid var(--green);">
+              <div style="display:flex; justify-content:space-between; align-items:start;">
+                <div>
+                  <div style="font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em; color: var(--green);">SCALE · HIGH CONFIDENCE</div>
+                  <h3 style="margin-top: 6px;">Push 20% more spend into Pentland · Father's Day</h3>
+                  <div style="color: var(--muted); font-size: 13px; line-height: 1.55; margin-top: 6px;">ROAS 4.1× sustained for 11 days, frequency still under 2.4. Headroom in the 35-54 lookalike. Suggested: lift daily budget from £260 to £320.</div>
+                </div>
+                <div style="display:flex; gap: 8px;">
+                  <button class="btn">Dismiss</button>
+                  <button class="btn solid" data-run-agent="Crucible">Approve &amp; ship</button>
+                </div>
+              </div>
+            </div>
+            <div class="panel" style="border-left: 3px solid var(--red);">
+              <div style="display:flex; justify-content:space-between; align-items:start;">
+                <div>
+                  <div style="font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em; color: var(--red);">CUT · MEDIUM CONFIDENCE</div>
+                  <h3 style="margin-top: 6px;">Kill the "barrel B-roll" Northland reel</h3>
+                  <div style="color: var(--muted); font-size: 13px; line-height: 1.55; margin-top: 6px;">CTR 0.74% vs account avg 1.6%. Burned £540 last 7d at 1.4× ROAS. Two replacement creatives in queue from Quill.</div>
+                </div>
+                <div style="display:flex; gap: 8px;">
+                  <button class="btn">Keep</button>
+                  <button class="btn solid">Pause creative</button>
+                </div>
+              </div>
+            </div>
+            <div class="panel" style="border-left: 3px solid var(--amber);">
+              <div style="display:flex; justify-content:space-between; align-items:start;">
+                <div>
+                  <div style="font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em; color: var(--amber);">TEST · LOW RISK</div>
+                  <h3 style="margin-top: 6px;">Launch UGC creative pack from Composer</h3>
+                  <div style="color: var(--muted); font-size: 13px; line-height: 1.55; margin-top: 6px;">Composer surfaced 6 high-engagement IG posts that haven't run as paid yet. Suggested: £200 budget split across 3 winners, 7-day window.</div>
+                </div>
+                <div style="display:flex; gap: 8px;">
+                  <button class="btn">Skip</button>
+                  <button class="btn solid">Build test</button>
+                </div>
+              </div>
+            </div>
+            <div class="panel" style="border-left: 3px solid var(--blue);">
+              <div style="display:flex; justify-content:space-between; align-items:start;">
+                <div>
+                  <div style="font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em; color: var(--blue);">EXPAND · INFO</div>
+                  <h3 style="margin-top: 6px;">Add EU geo to Wolfburn 12yo always-on</h3>
+                  <div style="color: var(--muted); font-size: 13px; line-height: 1.55; margin-top: 6px;">Hawk flagged organic search interest spiking in Germany &amp; Netherlands. Crucible recommends £40/day test for 14d, gated by VAT (Exemptify covers).</div>
+                </div>
+                <div style="display:flex; gap: 8px;">
+                  <button class="btn">Later</button>
+                  <button class="btn solid">Run Strategist brief</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================== PAGE: GOOGLE ADS ====================== -->
+      <section class="page" id="page-google">
+        <div class="page-head">
+          <div>
+            <div class="crumb">Channels · Google Ads</div>
+            <h1>Google Ads</h1>
+            <div class="desc">Anvil runs Google &amp; YouTube. One always-on Performance Max + branded search. Smaller budget, steadier returns.</div>
+          </div>
+          <div class="actions">
+            <button class="btn">Google Ads ↗</button>
+            <button class="btn solid" data-run-agent="Anvil">Run Anvil</button>
+          </div>
+        </div>
+
+        <div class="grid-4" style="margin-bottom: 28px;">
+          <div class="stat-mini"><div class="lbl">Spend · 30d</div><div class="val">£4,160</div><div class="delta up">▲ 6%</div></div>
+          <div class="stat-mini"><div class="lbl">Revenue · 30d</div><div class="val">£11,232</div><div class="delta up">▲ 14%</div></div>
+          <div class="stat-mini"><div class="lbl">ROAS · blended</div><div class="val">2.7×</div><div class="delta up">▲ 0.2</div></div>
+          <div class="stat-mini"><div class="lbl">Quality · avg</div><div class="val">7.8</div><div class="delta flat">on plan</div></div>
+        </div>
+
+        <div class="tab-bar" data-tab-group="google">
+          <div class="tab active" data-tab="campaigns">Campaigns · 4</div>
+          <div class="tab" data-tab="keywords">Keywords · 142</div>
+          <div class="tab" data-tab="pmax">Performance Max</div>
+          <div class="tab" data-tab="anvil">Anvil recommendations · 3</div>
+        </div>
+
+        <div class="tab-panel active" data-tab-group="google" data-tab-id="campaigns">
+          <table class="data-table">
+            <thead><tr><th>Campaign</th><th>Type</th><th>Spend · 7d</th><th>Conv</th><th>ROAS</th><th>Impr share</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td><div class="name">Wolfburn · Branded Search</div><div class="muted-cell">Brand keywords · UK</div></td><td class="muted-cell">Search</td><td class="num">£280</td><td class="num">42</td><td class="num" style="color: var(--green);">8.4×</td><td class="num">94%</td><td><span class="pill ok">active</span></td></tr>
+              <tr><td><div class="name">Premium Single Malt · PMax</div><div class="muted-cell">Asset groups · 3 themes</div></td><td class="muted-cell">Performance Max</td><td class="num">£820</td><td class="num">28</td><td class="num">2.6×</td><td class="num">38%</td><td><span class="pill ok">active</span></td></tr>
+              <tr><td><div class="name">Pentland · Cognac Cask</div><div class="muted-cell">Long-tail · enthusiast</div></td><td class="muted-cell">Search</td><td class="num">£340</td><td class="num">14</td><td class="num">3.1×</td><td class="num">42%</td><td><span class="pill ok">active</span></td></tr>
+              <tr><td><div class="name">Distillery Tours · YouTube</div><div class="muted-cell">In-stream · 6s + 30s</div></td><td class="muted-cell">Video</td><td class="num">£120</td><td class="num">18 leads</td><td class="num">—</td><td class="num">—</td><td><span class="pill info">awareness</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="tab-panel" data-tab-group="google" data-tab-id="keywords">
+          <table class="data-table">
+            <thead><tr><th>Keyword</th><th>Match</th><th>Impr · 7d</th><th>Clicks</th><th>CTR</th><th>CPC</th><th>QS</th></tr></thead>
+            <tbody>
+              <tr><td class="name">wolfburn whisky</td><td class="muted-cell">[exact]</td><td class="num">2,180</td><td class="num">412</td><td class="num">18.9%</td><td class="num">£0.42</td><td class="num">10</td></tr>
+              <tr><td class="name">wolfburn 12 year old</td><td class="muted-cell">[exact]</td><td class="num">1,420</td><td class="num">238</td><td class="num">16.8%</td><td class="num">£0.38</td><td class="num">10</td></tr>
+              <tr><td class="name">pentland whisky</td><td class="muted-cell">"phrase"</td><td class="num">820</td><td class="num">94</td><td class="num">11.5%</td><td class="num">£0.84</td><td class="num">9</td></tr>
+              <tr><td class="name">cognac cask whisky</td><td class="muted-cell">"phrase"</td><td class="num">3,140</td><td class="num">186</td><td class="num">5.9%</td><td class="num">£1.42</td><td class="num">7</td></tr>
+              <tr><td class="name">small batch single malt</td><td class="muted-cell">[broad]</td><td class="num">8,420</td><td class="num">242</td><td class="num">2.9%</td><td class="num">£1.86</td><td class="num">6</td></tr>
+              <tr><td class="name">highland whisky distillery</td><td class="muted-cell">[broad]</td><td class="num">12,180</td><td class="num">186</td><td class="num">1.5%</td><td class="num">£2.10</td><td class="num">5</td></tr>
+              <tr><td class="name">caithness whisky tour</td><td class="muted-cell">"phrase"</td><td class="num">240</td><td class="num">38</td><td class="num">15.8%</td><td class="num">£0.62</td><td class="num">9</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="tab-panel" data-tab-group="google" data-tab-id="pmax">
+          <div class="grid-2">
+            <div class="panel">
+              <h3>Asset groups</h3>
+              <table class="data-table"><thead><tr><th>Theme</th><th>Performance</th><th>Conv</th></tr></thead><tbody>
+                <tr><td class="name">Highland Heritage</td><td><span class="pill ok">strong</span></td><td class="num">14</td></tr>
+                <tr><td class="name">Premium Gifting</td><td><span class="pill ok">good</span></td><td class="num">9</td></tr>
+                <tr><td class="name">Limited Editions</td><td><span class="pill warn">low volume</span></td><td class="num">5</td></tr>
+              </tbody></table>
+            </div>
+            <div class="panel">
+              <h3>Audience signals</h3>
+              <div style="display:flex; flex-direction: column; gap: 10px; font-size: 12px;">
+                <div style="display:flex; justify-content:space-between;"><span style="color: var(--muted);">Custom segments</span><span class="pill ok">3 active</span></div>
+                <div style="display:flex; justify-content:space-between;"><span style="color: var(--muted);">Customer match list</span><span class="pill ok">14k uploaded</span></div>
+                <div style="display:flex; justify-content:space-between;"><span style="color: var(--muted);">In-market · Spirits</span><span class="pill info">enabled</span></div>
+                <div style="display:flex; justify-content:space-between;"><span style="color: var(--muted);">Affinity · Foodies</span><span class="pill info">enabled</span></div>
+                <div style="display:flex; justify-content:space-between;"><span style="color: var(--muted);">Detailed demo · 35-65, HHI top 30%</span><span class="pill info">enabled</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-panel" data-tab-group="google" data-tab-id="anvil">
+          <div style="display:flex; flex-direction:column; gap: 14px;">
+            <div class="panel" style="border-left: 3px solid var(--green);">
+              <div style="display:flex; justify-content:space-between;">
+                <div>
+                  <div style="font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em; color: var(--green);">SCALE</div>
+                  <h3 style="margin-top: 6px;">Add £20/day to Branded Search</h3>
+                  <div style="color: var(--muted); font-size: 13px; line-height: 1.55; margin-top: 6px;">Impression share 94% but lost-budget impressions trending up. ROAS 8.4×. Easiest extra revenue in the account.</div>
+                </div>
+                <button class="btn solid" data-run-agent="Anvil">Approve</button>
+              </div>
+            </div>
+            <div class="panel" style="border-left: 3px solid var(--amber);">
+              <div style="display:flex; justify-content:space-between;">
+                <div>
+                  <div style="font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em; color: var(--amber);">TEST</div>
+                  <h3 style="margin-top: 6px;">Launch competitor-conquesting search</h3>
+                  <div style="color: var(--muted); font-size: 13px; line-height: 1.55; margin-top: 6px;">Hawk surfaced 8 competitor brand terms with low cost-per-click. Suggested £15/day, modal "alternative to" copy from Quill.</div>
+                </div>
+                <button class="btn solid">Build test</button>
+              </div>
+            </div>
+            <div class="panel" style="border-left: 3px solid var(--blue);">
+              <div style="display:flex; justify-content:space-between;">
+                <div>
+                  <div style="font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em; color: var(--blue);">SHIFT</div>
+                  <h3 style="margin-top: 6px;">Negative-keyword the "scotch tape" cluster from broad</h3>
+                  <div style="color: var(--muted); font-size: 13px; line-height: 1.55; margin-top: 6px;">Wasted £42 last month on irrelevant traffic. Anvil has the negative list ready.</div>
+                </div>
+                <button class="btn solid">Apply 23 negatives</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================== PAGE: KLAVIYO ====================== -->
+      <section class="page" id="page-klaviyo">
+        <div class="page-head">
+          <div>
+            <div class="crumb">Channels · Klaviyo</div>
+            <h1>Klaviyo</h1>
+            <div class="desc">Email + SMS. Three core flows running 24/7 plus a weekly newsletter campaign.</div>
+          </div>
+          <div class="actions">
+            <button class="btn">Klaviyo ↗</button>
+            <button class="btn solid" data-run-agent="Composer">Draft campaign</button>
+          </div>
+        </div>
+
+        <div class="grid-4" style="margin-bottom: 28px;">
+          <div class="stat-mini"><div class="lbl">List · subscribers</div><div class="val">14,820</div><div class="delta up">+186 · 7d</div></div>
+          <div class="stat-mini"><div class="lbl">Email revenue · 30d</div><div class="val">£15,290</div><div class="delta up">▲ 22%</div></div>
+          <div class="stat-mini"><div class="lbl">Open rate · avg</div><div class="val">38.4%</div><div class="delta up">▲ 2.1pp</div></div>
+          <div class="stat-mini"><div class="lbl">Click rate · avg</div><div class="val">4.8%</div><div class="delta flat">on plan</div></div>
+        </div>
+
+        <div class="tab-bar" data-tab-group="klaviyo">
+          <div class="tab active" data-tab="flows">Flows · 6</div>
+          <div class="tab" data-tab="campaigns">Campaigns · recent</div>
+          <div class="tab" data-tab="segments">Segments · 12</div>
+        </div>
+
+        <div class="tab-panel active" data-tab-group="klaviyo" data-tab-id="flows">
+          <table class="data-table">
+            <thead><tr><th>Flow</th><th>Trigger</th><th>Sent · 30d</th><th>Open</th><th>Click</th><th>Revenue</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td class="name">Welcome series · 4 emails</td><td class="muted-cell">List subscribe</td><td class="num">3,258</td><td class="num">52.4%</td><td class="num">8.2%</td><td class="num">£3,420</td><td><span class="pill ok">on</span></td></tr>
+              <tr><td class="name">Abandoned cart · 3 emails</td><td class="muted-cell">Cart created · no purchase 1h</td><td class="num">1,840</td><td class="num">42.8%</td><td class="num">9.4%</td><td class="num">£4,820</td><td><span class="pill ok">on</span></td></tr>
+              <tr><td class="name">Post-purchase · 2 emails</td><td class="muted-cell">Order placed</td><td class="num">312</td><td class="num">68.2%</td><td class="num">12.4%</td><td class="num">£1,420</td><td><span class="pill ok">on</span></td></tr>
+              <tr><td class="name">Win-back · 90d dormant</td><td class="muted-cell">No activity 90d</td><td class="num">820</td><td class="num">22.4%</td><td class="num">3.8%</td><td class="num">£940</td><td><span class="pill ok">on</span></td></tr>
+              <tr><td class="name">Birthday 10% off</td><td class="muted-cell">Profile birthday</td><td class="num">186</td><td class="num">48.4%</td><td class="num">14.2%</td><td class="num">£1,640</td><td><span class="pill ok">on</span></td></tr>
+              <tr><td class="name">Pentland · limited drop</td><td class="muted-cell">Tagged · whisky enthusiast</td><td class="num">3,420</td><td class="num">44.8%</td><td class="num">11.2%</td><td class="num">£3,050</td><td><span class="pill ok">on</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="tab-panel" data-tab-group="klaviyo" data-tab-id="campaigns">
+          <table class="data-table">
+            <thead><tr><th>Campaign</th><th>Sent</th><th>Recipients</th><th>Open</th><th>Click</th><th>Revenue</th></tr></thead>
+            <tbody>
+              <tr><td class="name">May newsletter · "What's distilling"</td><td class="num">May 04</td><td class="num">14,242</td><td class="num">36.2%</td><td class="num">5.8%</td><td class="num">£2,840</td></tr>
+              <tr><td class="name">Pentland release · early access</td><td class="num">Apr 28</td><td class="num">3,420</td><td class="num">52.4%</td><td class="num">14.8%</td><td class="num">£8,200</td></tr>
+              <tr><td class="name">Father's Day · save £10</td><td class="num">Apr 22</td><td class="num">14,180</td><td class="num">34.8%</td><td class="num">4.2%</td><td class="num">£3,640</td></tr>
+              <tr><td class="name">April newsletter · distillery diary</td><td class="num">Apr 06</td><td class="num">14,062</td><td class="num">38.8%</td><td class="num">5.4%</td><td class="num">£2,420</td></tr>
+              <tr><td class="name">Easter · gift guide</td><td class="num">Mar 28</td><td class="num">13,940</td><td class="num">32.4%</td><td class="num">4.8%</td><td class="num">£1,820</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="tab-panel" data-tab-group="klaviyo" data-tab-id="segments">
+          <table class="data-table">
+            <thead><tr><th>Segment</th><th>Logic</th><th>Size</th><th>Engagement</th></tr></thead>
+            <tbody>
+              <tr><td class="name">VIP · 3+ purchases</td><td class="muted-cell">orders ≥ 3</td><td class="num">820</td><td><span class="pill ok">high</span></td></tr>
+              <tr><td class="name">Engaged 30d · email opens</td><td class="muted-cell">opened email last 30d</td><td class="num">5,420</td><td><span class="pill ok">high</span></td></tr>
+              <tr><td class="name">Whisky enthusiasts</td><td class="muted-cell">tagged · clicked Pentland</td><td class="num">3,420</td><td><span class="pill ok">high</span></td></tr>
+              <tr><td class="name">Cart abandoners · 7d</td><td class="muted-cell">cart placed, no order, 7d</td><td class="num">340</td><td><span class="pill warn">recover</span></td></tr>
+              <tr><td class="name">Dormant 90d</td><td class="muted-cell">no opens, no clicks 90d</td><td class="num">2,180</td><td><span class="pill warn">re-engage</span></td></tr>
+              <tr><td class="name">UK · postcode</td><td class="muted-cell">geo</td><td class="num">11,820</td><td><span class="pill info">geo</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ====================== PAGE: GA4 ====================== -->
+      <section class="page" id="page-ga4">
+        <div class="page-head">
+          <div>
+            <div class="crumb">Channels · GA4</div>
+            <h1>GA4</h1>
+            <div class="desc">Property G-CP4VZCKLNZ · www.wolfburn.com. Pixel restored 2026-05-08 after duplicate disconnect.</div>
+          </div>
+          <div class="actions">
+            <button class="btn">GA4 property ↗</button>
+            <button class="btn solid" data-run-agent="Lighthouse">Run Lighthouse</button>
+          </div>
+        </div>
+
+        <div class="grid-4" style="margin-bottom: 28px;">
+          <div class="stat-mini"><div class="lbl">Sessions · 30d</div><div class="val">68,420</div><div class="delta up">▲ 14%</div></div>
+          <div class="stat-mini"><div class="lbl">Users · 30d</div><div class="val">52,180</div><div class="delta up">▲ 11%</div></div>
+          <div class="stat-mini"><div class="lbl">Bounce · avg</div><div class="val">38.2%</div><div class="delta down">▼ 2.1pp</div></div>
+          <div class="stat-mini"><div class="lbl">Avg session</div><div class="val">2:47</div><div class="delta up">▲ 14s</div></div>
+        </div>
+
+        <div class="grid-2">
+          <div class="panel">
+            <h3>Top pages · 30d</h3>
+            <table class="data-table"><thead><tr><th>Page</th><th>Sessions</th><th>Bounce</th><th>Conv</th></tr></thead><tbody>
+              <tr><td class="name">/</td><td class="num">14,820</td><td class="num">42.4%</td><td class="num">1.8%</td></tr>
+              <tr><td class="name">/pages/shop</td><td class="num">12,420</td><td class="num">36.8%</td><td class="num">2.4%</td></tr>
+              <tr><td class="name">/products/wolfburn-12yo</td><td class="num">8,640</td><td class="num">28.4%</td><td class="num">3.6%</td></tr>
+              <tr><td class="name">/products/pentland</td><td class="num">5,820</td><td class="num">24.8%</td><td class="num">3.8%</td></tr>
+              <tr><td class="name">/pages/where-to-buy</td><td class="num">4,180</td><td class="num">52.4%</td><td class="num">0.8%</td></tr>
+              <tr><td class="name">/pages/distillery-tours</td><td class="num">3,420</td><td class="num">38.2%</td><td class="num">1.2%</td></tr>
+              <tr><td class="name">/news/cognac-cask-101</td><td class="num">2,180</td><td class="num">28.4%</td><td class="num">1.4%</td></tr>
+            </tbody></table>
+          </div>
+          <div class="panel">
+            <h3>Source / medium · 30d</h3>
+            <table class="data-table"><thead><tr><th>Source</th><th>Sessions</th><th>%</th><th>Conv</th></tr></thead><tbody>
+              <tr><td class="name">google / organic</td><td class="num">22,180</td><td class="num">32.4%</td><td class="num">2.1%</td></tr>
+              <tr><td class="name">(direct) / (none)</td><td class="num">14,420</td><td class="num">21.1%</td><td class="num">3.4%</td></tr>
+              <tr><td class="name">facebook / cpc</td><td class="num">12,840</td><td class="num">18.8%</td><td class="num">1.8%</td></tr>
+              <tr><td class="name">google / cpc</td><td class="num">8,640</td><td class="num">12.6%</td><td class="num">2.6%</td></tr>
+              <tr><td class="name">klaviyo / email</td><td class="num">5,820</td><td class="num">8.5%</td><td class="num">4.2%</td></tr>
+              <tr><td class="name">instagram / referral</td><td class="num">2,820</td><td class="num">4.1%</td><td class="num">1.4%</td></tr>
+              <tr><td class="name">trustpilot / referral</td><td class="num">1,420</td><td class="num">2.1%</td><td class="num">2.8%</td></tr>
+              <tr><td class="name">others</td><td class="num">280</td><td class="num">0.4%</td><td class="num">—</td></tr>
+            </tbody></table>
+          </div>
+        </div>
+
+        <div class="panel" style="margin-top: 24px;">
+          <h3>Real-time · last 30 minutes</h3>
+          <div class="grid-3" style="margin-top: 14px;">
+            <div class="stat-mini"><div class="lbl">Active users</div><div class="val">142</div></div>
+            <div class="stat-mini"><div class="lbl">Page views / min</div><div class="val">26</div></div>
+            <div class="stat-mini"><div class="lbl">Events / min</div><div class="val">84</div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================== PAGE: ANALYTICS ====================== -->
+      <section class="page" id="page-analytics">
+        <div class="page-head">
+          <div>
+            <div class="crumb">Insight · Analytics</div>
+            <h1>Analytics</h1>
+            <div class="desc">Cross-channel attribution. Lighthouse stitches GA4, Shopify, Meta, Google, Klaviyo into one view.</div>
+          </div>
+          <div class="actions">
+            <button class="btn">Export CSV</button>
+            <button class="btn solid" data-run-agent="Lighthouse">Refresh</button>
+          </div>
+        </div>
+
+        <div class="grid-4" style="margin-bottom: 28px;">
+          <div class="stat-mini"><div class="lbl">Revenue · 30d</div><div class="val">£127,432</div><div class="delta up">▲ 18.4%</div></div>
+          <div class="stat-mini"><div class="lbl">CAC · paid</div><div class="val">£42</div><div class="delta down">▼ £6</div></div>
+          <div class="stat-mini"><div class="lbl">LTV · 12m est.</div><div class="val">£186</div><div class="delta up">▲ £14</div></div>
+          <div class="stat-mini"><div class="lbl">LTV : CAC</div><div class="val">4.4×</div><div class="delta up">healthy</div></div>
+        </div>
+
+        <div class="grid-2" style="margin-bottom: 24px;">
+          <div class="panel">
+            <h3>Channel attribution · last touch</h3>
+            <svg viewBox="0 0 600 240" width="100%" height="220">
+              <g font-family="Inter" font-size="11" fill="#F5EDE0">
+                <g transform="translate(20, 20)">
+                  <rect width="180" height="22" fill="#B5894C"/><text x="190" y="16">Direct · 36% · £45,876</text>
+                </g>
+                <g transform="translate(20, 56)">
+                  <rect width="120" height="22" fill="#D9A551"/><text x="130" y="16">Meta · 24% · £30,584</text>
+                </g>
+                <g transform="translate(20, 92)">
+                  <rect width="90" height="22" fill="#7EA67B"/><text x="100" y="16">Google · 18% · £22,938</text>
+                </g>
+                <g transform="translate(20, 128)">
+                  <rect width="60" height="22" fill="#6A8AA6"/><text x="70" y="16">Email · 12% · £15,292</text>
+                </g>
+                <g transform="translate(20, 164)">
+                  <rect width="50" height="22" fill="#9A8470"/><text x="60" y="16">Organic · 10% · £12,742</text>
+                </g>
+                <g transform="translate(20, 200)">
+                  <rect width="20" height="22" fill="#3A2E22"/><text x="30" y="16">Other · &lt;1%</text>
+                </g>
+              </g>
+            </svg>
+          </div>
+          <div class="panel">
+            <h3>Cohort retention · 6-month</h3>
+            <table class="data-table" style="font-size: 11px;">
+              <thead><tr><th>Cohort</th><th>M0</th><th>M1</th><th>M2</th><th>M3</th><th>M4</th><th>M5</th></tr></thead>
+              <tbody>
+                <tr><td class="muted-cell">Nov 2025</td><td class="num">100%</td><td class="num">28%</td><td class="num">18%</td><td class="num">14%</td><td class="num">12%</td><td class="num">10%</td></tr>
+                <tr><td class="muted-cell">Dec 2025</td><td class="num">100%</td><td class="num">32%</td><td class="num">22%</td><td class="num">16%</td><td class="num">14%</td><td class="num">—</td></tr>
+                <tr><td class="muted-cell">Jan 2026</td><td class="num">100%</td><td class="num">26%</td><td class="num">19%</td><td class="num">15%</td><td class="num">—</td><td class="num">—</td></tr>
+                <tr><td class="muted-cell">Feb 2026</td><td class="num">100%</td><td class="num">34%</td><td class="num">24%</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+                <tr><td class="muted-cell">Mar 2026</td><td class="num">100%</td><td class="num">38%</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+                <tr><td class="muted-cell">Apr 2026</td><td class="num">100%</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>Top customers · 90d</h3>
+          <table class="data-table">
+            <thead><tr><th>Customer</th><th>Orders</th><th>Total spent</th><th>AOV</th><th>Last order</th><th>Tag</th></tr></thead>
+            <tbody>
+              <tr><td class="name">A. Jenkins · Cardiff</td><td class="num">8</td><td class="num">£1,420</td><td class="num">£178</td><td class="num">today</td><td><span class="pill ok">VIP</span></td></tr>
+              <tr><td class="name">M. Patel · London</td><td class="num">5</td><td class="num">£842</td><td class="num">£168</td><td class="num">today</td><td><span class="pill ok">VIP</span></td></tr>
+              <tr><td class="name">R. Yamamoto · Tokyo</td><td class="num">3</td><td class="num">£640</td><td class="num">£213</td><td class="num">2d ago</td><td><span class="pill info">Int'l VIP</span></td></tr>
+              <tr><td class="name">L. Thompson · Glasgow</td><td class="num">7</td><td class="num">£612</td><td class="num">£87</td><td class="num">today</td><td><span class="pill ok">repeat</span></td></tr>
+              <tr><td class="name">K. Mackenzie · Inverness</td><td class="num">4</td><td class="num">£428</td><td class="num">£107</td><td class="num">today</td><td><span class="pill ok">repeat</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ====================== PAGE: AUDIT & SEO ====================== -->
+      <section class="page" id="page-audit">
+        <div class="page-head">
+          <div>
+            <div class="crumb">Insight · Audit &amp; SEO</div>
+            <h1>Audit &amp; SEO</h1>
+            <div class="desc">Site health and organic visibility. Auditor crawls weekly, Hawk watches the SERP daily, Sentinel pings every hour.</div>
+          </div>
+          <div class="actions">
+            <button class="btn">Open audit · Apr 29 ↗</button>
+            <button class="btn solid" data-run-agent="Auditor">Run audit now</button>
+          </div>
+        </div>
+
+        <div class="grid-4" style="margin-bottom: 28px;">
+          <div class="stat-mini"><div class="lbl">Site health score</div><div class="val">82<span style="font-size: 14px; color: var(--muted);">/100</span></div><div class="delta up">▲ 7 since Apr 29</div></div>
+          <div class="stat-mini"><div class="lbl">LCP · p75</div><div class="val">2.4s</div><div class="delta up">▲ improved</div></div>
+          <div class="stat-mini"><div class="lbl">CLS · p75</div><div class="val">0.18</div><div class="delta down">23 imgs missing dims</div></div>
+          <div class="stat-mini"><div class="lbl">Open findings</div><div class="val">3<span style="font-size: 14px; color: var(--muted);">/12</span></div><div class="delta flat">9 fixed</div></div>
+        </div>
+
+        <div class="tab-bar" data-tab-group="audit">
+          <div class="tab active" data-tab="findings">Findings · 12</div>
+          <div class="tab" data-tab="vitals">Core Web Vitals</div>
+          <div class="tab" data-tab="seo">SEO &amp; SERP</div>
+        </div>
+
+        <div class="tab-panel active" data-tab-group="audit" data-tab-id="findings">
+          <table class="data-table">
+            <thead><tr><th>Finding</th><th>Severity</th><th>Owner</th><th>Status</th><th>Resolved</th></tr></thead>
+            <tbody>
+              <tr><td><div class="name">GA4 returning 503 errors</div><div class="muted-cell">Duplicate pixel disconnected</div></td><td><span class="pill err">critical</span></td><td class="muted-cell">Sentinel</td><td><span class="pill ok">resolved</span></td><td class="num">May 8</td></tr>
+              <tr><td><div class="name">Pentland link routes to wrong product</div><div class="muted-cell">Verified correct on live</div></td><td><span class="pill err">critical</span></td><td class="muted-cell">Forge</td><td><span class="pill ok">verified ok</span></td><td class="num">May 8</td></tr>
+              <tr><td><div class="name">CAVA BENITO footer contamination</div><div class="muted-cell">Already removed on live</div></td><td><span class="pill err">critical</span></td><td class="muted-cell">Forge</td><td><span class="pill ok">verified ok</span></td><td class="num">May 8</td></tr>
+              <tr><td><div class="name">Triplicated footer in DOM</div><div class="muted-cell">Single instance confirmed</div></td><td><span class="pill err">critical</span></td><td class="muted-cell">Forge</td><td><span class="pill ok">verified ok</span></td><td class="num">May 8</td></tr>
+              <tr><td><div class="name">10% off sticky tab disabled</div><div class="muted-cell">Privy display 4446686 · Tab step</div></td><td><span class="pill warn">high</span></td><td class="muted-cell">Forge</td><td><span class="pill ok">resolved</span></td><td class="num">today</td></tr>
+              <tr><td><div class="name">Trustpilot loading sync on every page</div><div class="muted-cell">Defer or remove pending decision</div></td><td><span class="pill warn">high</span></td><td class="muted-cell">Sentinel</td><td><span class="pill warn">open · awaiting decision</span></td><td class="num">—</td></tr>
+              <tr><td><div class="name">Trustpilot vs Judge.me · pick one</div><div class="muted-cell">Both review apps installed</div></td><td><span class="pill warn">high</span></td><td class="muted-cell">Wesley</td><td><span class="pill warn">open · decision</span></td><td class="num">—</td></tr>
+              <tr><td><div class="name">8 images served at 3000×3000px</div><div class="muted-cell">Re-upload at 1500px max</div></td><td><span class="pill warn">high</span></td><td class="muted-cell">Forge</td><td><span class="pill warn">open</span></td><td class="num">—</td></tr>
+              <tr><td><div class="name">Three H1s on Shop page</div><div class="muted-cell">Demote 2 to H2</div></td><td><span class="pill warn">high</span></td><td class="muted-cell">Forge</td><td><span class="pill ok">resolved · wes draft</span></td><td class="num">May 1</td></tr>
+              <tr><td><div class="name">Top-nav 10 items → 7</div><div class="muted-cell">Consolidation drafted</div></td><td><span class="pill info">medium</span></td><td class="muted-cell">Forge</td><td><span class="pill info">queued</span></td><td class="num">—</td></tr>
+              <tr><td><div class="name">23 images missing width/height</div><div class="muted-cell">Causes CLS</div></td><td><span class="pill info">medium</span></td><td class="muted-cell">Forge</td><td><span class="pill info">queued</span></td><td class="num">—</td></tr>
+              <tr><td><div class="name">Story + Distillery + People consolidate</div><div class="muted-cell">Three pages → one</div></td><td><span class="pill info">medium</span></td><td class="muted-cell">Scribe</td><td><span class="pill info">queued</span></td><td class="num">—</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="tab-panel" data-tab-group="audit" data-tab-id="vitals">
+          <div class="grid-3">
+            <div class="panel">
+              <h3 style="color: var(--green);">LCP</h3>
+              <div class="panel-meta" style="margin-bottom: 8px;">Largest Contentful Paint</div>
+              <div style="font-family: var(--display); font-weight: 600; font-size: 42px; color: var(--cream);">2.4<span style="font-size: 18px; color: var(--muted);">s</span></div>
+              <div style="font-size: 12px; color: var(--green); margin-top: 8px;">Good · under 2.5s threshold</div>
+            </div>
+            <div class="panel">
+              <h3 style="color: var(--amber);">CLS</h3>
+              <div class="panel-meta" style="margin-bottom: 8px;">Cumulative Layout Shift</div>
+              <div style="font-family: var(--display); font-weight: 600; font-size: 42px; color: var(--cream);">0.18</div>
+              <div style="font-size: 12px; color: var(--amber); margin-top: 8px;">Needs improvement · 23 images at fault</div>
+            </div>
+            <div class="panel">
+              <h3 style="color: var(--green);">INP</h3>
+              <div class="panel-meta" style="margin-bottom: 8px;">Interaction to Next Paint</div>
+              <div style="font-family: var(--display); font-weight: 600; font-size: 42px; color: var(--cream);">142<span style="font-size: 18px; color: var(--muted);">ms</span></div>
+              <div style="font-size: 12px; color: var(--green); margin-top: 8px;">Good · under 200ms</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-panel" data-tab-group="audit" data-tab-id="seo">
+          <div class="grid-2">
+            <div class="panel">
+              <h3>Top organic queries · 30d</h3>
+              <table class="data-table"><thead><tr><th>Query</th><th>Pos</th><th>Clicks</th><th>Imp</th></tr></thead><tbody>
+                <tr><td class="name">wolfburn whisky</td><td class="num">1.2</td><td class="num">820</td><td class="num">1,420</td></tr>
+                <tr><td class="name">wolfburn 12 year old</td><td class="num">1.4</td><td class="num">462</td><td class="num">820</td></tr>
+                <tr><td class="name">caithness distillery</td><td class="num">2.1</td><td class="num">186</td><td class="num">540</td></tr>
+                <tr><td class="name">cognac cask whisky</td><td class="num">8.4</td><td class="num">98</td><td class="num">3,140</td></tr>
+                <tr><td class="name">small batch single malt</td><td class="num">12.6</td><td class="num">42</td><td class="num">8,420</td></tr>
+              </tbody></table>
+            </div>
+            <div class="panel">
+              <h3>Hawk · competitor watch</h3>
+              <table class="data-table"><thead><tr><th>Competitor</th><th>Movement</th><th>Note</th></tr></thead><tbody>
+                <tr><td class="name">Pulteney 12yo</td><td><span class="pill warn">↑ 2 pos</span></td><td class="muted-cell">launched gift edition</td></tr>
+                <tr><td class="name">Old Pulteney 18</td><td><span class="pill ok">flat</span></td><td class="muted-cell">no movement</td></tr>
+                <tr><td class="name">Glenmorangie 12</td><td><span class="pill ok">↓ 1 pos</span></td><td class="muted-cell">our gain</td></tr>
+                <tr><td class="name">Ardbeg Wee Beastie</td><td><span class="pill warn">↑ 4 pos</span></td><td class="muted-cell">running £35 promo</td></tr>
+              </tbody></table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================== PAGE: BRAND VOICE ====================== -->
+      <section class="page" id="page-voice">
+        <div class="page-head">
+          <div>
+            <div class="crumb">Insight · Brand Voice</div>
+            <h1>Brand Voice</h1>
+            <div class="desc">Wolfburn's voice rules. Voice (the agent) checks every output before it leaves the system.</div>
+          </div>
+          <div class="actions">
+            <button class="btn">Edit guidelines</button>
+            <button class="btn solid" data-run-agent="Voice">Review queue · 6</button>
+          </div>
+        </div>
+
+        <div class="grid-2" style="margin-bottom: 24px;">
+          <div class="panel">
+            <h3>Voice rules · approved</h3>
+            <ul style="list-style: none; padding: 0; margin: 0;">
+              <li style="padding: 12px 0; border-bottom: 1px solid var(--line); display:flex; align-items:start; gap: 10px;">
+                <span class="pill ok" style="flex-shrink:0;">DO</span>
+                <span style="font-size: 13px; color: var(--cream); line-height: 1.5;">Speak with quiet confidence. Wolfburn doesn't shout.</span>
+              </li>
+              <li style="padding: 12px 0; border-bottom: 1px solid var(--line); display:flex; align-items:start; gap: 10px;">
+                <span class="pill ok" style="flex-shrink:0;">DO</span>
+                <span style="font-size: 13px; color: var(--cream); line-height: 1.5;">Lead with the place: Thurso, Caithness, the Pentland Firth.</span>
+              </li>
+              <li style="padding: 12px 0; border-bottom: 1px solid var(--line); display:flex; align-items:start; gap: 10px;">
+                <span class="pill ok" style="flex-shrink:0;">DO</span>
+                <span style="font-size: 13px; color: var(--cream); line-height: 1.5;">Use "single malt Scotch whisky" not "scotch" or "whiskey" (American spelling).</span>
+              </li>
+              <li style="padding: 12px 0; border-bottom: 1px solid var(--line); display:flex; align-items:start; gap: 10px;">
+                <span class="pill err" style="flex-shrink:0;">DON'T</span>
+                <span style="font-size: 13px; color: var(--cream); line-height: 1.5;">No price-led promotion language: "discount", "sale", "limited time" feel cheap.</span>
+              </li>
+              <li style="padding: 12px 0; border-bottom: 1px solid var(--line); display:flex; align-items:start; gap: 10px;">
+                <span class="pill err" style="flex-shrink:0;">DON'T</span>
+                <span style="font-size: 13px; color: var(--cream); line-height: 1.5;">Avoid clichés: "smooth", "approachable", "easy drinker", "perfect for".</span>
+              </li>
+              <li style="padding: 12px 0; display:flex; align-items:start; gap: 10px;">
+                <span class="pill err" style="flex-shrink:0;">DON'T</span>
+                <span style="font-size: 13px; color: var(--cream); line-height: 1.5;">Never use em-dashes in copy (Wesley's preference). Use commas, colons, periods.</span>
+              </li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>Recent reviews</h3>
+            <table class="data-table" style="font-size:11px;"><thead><tr><th>Item</th><th>Agent</th><th>Decision</th><th>Time</th></tr></thead><tbody>
+              <tr><td class="name">Father's Day ad copy v3</td><td class="muted-cell">Quill</td><td><span class="pill warn">edits</span></td><td class="num">12:14</td></tr>
+              <tr><td class="name">Cognac Cask 101 blog</td><td class="muted-cell">Scribe</td><td><span class="pill ok">approved</span></td><td class="num">11:30</td></tr>
+              <tr><td class="name">IG carousel · distillery diary</td><td class="muted-cell">Composer</td><td><span class="pill ok">approved</span></td><td class="num">10:42</td></tr>
+              <tr><td class="name">Welcome email · v2</td><td class="muted-cell">Quill</td><td><span class="pill ok">approved</span></td><td class="num">09:18</td></tr>
+              <tr><td class="name">Pentland product page</td><td class="muted-cell">Quill</td><td><span class="pill warn">edits · "smooth" flagged</span></td><td class="num">08:50</td></tr>
+              <tr><td class="name">Distillery tours email</td><td class="muted-cell">Quill</td><td><span class="pill err">rejected · price-led</span></td><td class="num">08:12</td></tr>
+            </tbody></table>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>Glossary &amp; terminology</h3>
+          <div class="grid-3" style="font-size: 12px; gap: 16px;">
+            <div>
+              <div class="panel-meta" style="margin-bottom: 4px;">PREFERRED</div>
+              <div style="color: var(--cream);">single malt Scotch whisky</div>
+            </div>
+            <div>
+              <div class="panel-meta" style="margin-bottom: 4px;">AVOID</div>
+              <div style="color: var(--muted);">scotch · whiskey · liquor</div>
+            </div>
+            <div>
+              <div class="panel-meta" style="margin-bottom: 4px;">PREFERRED</div>
+              <div style="color: var(--cream);">distillery, distillers</div>
+            </div>
+            <div>
+              <div class="panel-meta" style="margin-bottom: 4px;">PREFERRED</div>
+              <div style="color: var(--cream);">cask, casking, maturation</div>
+            </div>
+            <div>
+              <div class="panel-meta" style="margin-bottom: 4px;">AVOID</div>
+              <div style="color: var(--muted);">barrel · aging · finishing (US)</div>
+            </div>
+            <div>
+              <div class="panel-meta" style="margin-bottom: 4px;">PREFERRED</div>
+              <div style="color: var(--cream);">small-batch, hand-bottled</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================== PAGE: LOGS ====================== -->
+      <section class="page" id="page-logs">
+        <div class="page-head">
+          <div>
+            <div class="crumb">System · Logs</div>
+            <h1>Logs</h1>
+            <div class="desc">Every agent run, every API call, every decision. Filter by agent, level, time. Searchable.</div>
+          </div>
+          <div class="actions">
+            <button class="btn">Export · 7d</button>
+            <button class="btn solid">Live tail</button>
+          </div>
+        </div>
+
+        <div style="display:flex; gap: 10px; margin-bottom: 18px; align-items: center;">
+          <div class="search" style="width: 100%;">
+            <span>⌕</span>
+            <span>Search logs · agent name, run id, error message...</span>
+            <span class="kbd">⌘F</span>
+          </div>
+          <button class="btn">All agents</button>
+          <button class="btn">All levels</button>
+          <button class="btn">24h</button>
+        </div>
+
+        <table class="data-table">
+          <thead><tr><th>Timestamp</th><th>Agent</th><th>Level</th><th>Run id</th><th>Message</th><th>Duration</th></tr></thead>
+          <tbody>
+            <tr><td class="num">14:32:18</td><td class="name">Atlas</td><td><span class="pill info">info</span></td><td class="muted-cell">atl_8x9k4m</td><td>brief synthesised from 16 agents · 14 sources</td><td class="num">280ms</td></tr>
+            <tr><td class="num">14:31:52</td><td class="name">Forge</td><td><span class="pill ok">ok</span></td><td class="muted-cell">frg_2k7w1n</td><td>Privy display 4446686 Tab step disabled · live verified</td><td class="num">12.4s</td></tr>
+            <tr><td class="num">14:31:08</td><td class="name">Atlas</td><td><span class="pill info">info</span></td><td class="muted-cell">atl_8x9k4l</td><td>dispatched Forge with brief: "kill privy sticky tab"</td><td class="num">120ms</td></tr>
+            <tr><td class="num">13:58:42</td><td class="name">Sentinel</td><td><span class="pill ok">ok</span></td><td class="muted-cell">snt_p2q8r1</td><td>GA4 pixel duplicate disconnected · G-SX4Q79WJ52</td><td class="num">3.2s</td></tr>
+            <tr><td class="num">13:42:14</td><td class="name">Crucible</td><td><span class="pill ok">ok</span></td><td class="muted-cell">crc_m4n2v8</td><td>scaled Pentland Father's Day budget +20% · daily £260→£312</td><td class="num">840ms</td></tr>
+            <tr><td class="num">12:14:30</td><td class="name">Quill</td><td><span class="pill ok">ok</span></td><td class="muted-cell">qll_h7j3k2</td><td>drafted 4 ad variants · Wolfburn 12yo · Father's Day</td><td class="num">2:18</td></tr>
+            <tr><td class="num">12:14:32</td><td class="name">Voice</td><td><span class="pill warn">warn</span></td><td class="muted-cell">vce_w8x4y1</td><td>flagged "smooth" in variant 3 · suggested "structured"</td><td class="num">180ms</td></tr>
+            <tr><td class="num">11:50:08</td><td class="name">Scribe</td><td><span class="pill ok">ok</span></td><td class="muted-cell">scr_t6u9o4</td><td>published "What Pentland Tastes Like" · /news</td><td class="num">4:32</td></tr>
+            <tr><td class="num">11:08:14</td><td class="name">Voice</td><td><span class="pill ok">ok</span></td><td class="muted-cell">vce_w8x4y0</td><td>approved batch · 3 product pages, 2 emails, 1 IG carousel</td><td class="num">340ms</td></tr>
+            <tr><td class="num">10:22:18</td><td class="name">Auditor</td><td><span class="pill warn">warn</span></td><td class="muted-cell">aud_a1b2c3</td><td>23 images missing width/height · CLS impact 0.18</td><td class="num">8:42</td></tr>
+            <tr><td class="num">09:30:00</td><td class="name">Reviews</td><td><span class="pill ok">ok</span></td><td class="muted-cell">rvw_d4e5f6</td><td>ingested 14 new reviews · 12×5★ 2×4★ 0×&lt;3★</td><td class="num">42s</td></tr>
+            <tr><td class="num">09:00:00</td><td class="name">Lighthouse</td><td><span class="pill ok">ok</span></td><td class="muted-cell">lgt_g7h8i9</td><td>daily brief delivered · £3,847 / 11 orders / 1.6% CVR</td><td class="num">2:08</td></tr>
+            <tr><td class="num">08:00:00</td><td class="name">Cellarman</td><td><span class="pill ok">ok</span></td><td class="muted-cell">clm_j0k1l2</td><td>inventory check · 3 SKUs flagged low</td><td class="num">42s</td></tr>
+            <tr><td class="num">06:00:00</td><td class="name">Hawk</td><td><span class="pill ok">ok</span></td><td class="muted-cell">hwk_m3n4o5</td><td>SERP crawl · 24 competitor sites · 2 movements flagged</td><td class="num">5:40</td></tr>
+            <tr><td class="num">00:30:00</td><td class="name">Audience</td><td><span class="pill warn">warn</span></td><td class="muted-cell">aud_p6q7r8</td><td>Klaviyo sync stale · last successful 14h ago · retrying</td><td class="num">30s</td></tr>
+          </tbody>
+        </table>
+
+        <div style="margin-top: 18px; display:flex; justify-content:space-between; align-items:center; font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.06em;">
+          <span>Showing 15 of 1,420 entries · last 24h</span>
+          <div style="display:flex; gap: 8px;">
+            <button class="btn">← Newer</button>
+            <button class="btn">Older →</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================== PAGE: SETTINGS ====================== -->
+      <section class="page" id="page-settings">
+        <div class="page-head">
+          <div>
+            <div class="crumb">System · Settings</div>
+            <h1>Settings</h1>
+            <div class="desc">Account, integrations, API access, team. Wesley · admin · Divergence agency.</div>
+          </div>
+          <div class="actions">
+            <button class="btn solid">Save changes</button>
+          </div>
+        </div>
+
+        <div class="tab-bar" data-tab-group="settings">
+          <div class="tab active" data-tab="account">Account</div>
+          <div class="tab" data-tab="integrations">Integrations</div>
+          <div class="tab" data-tab="api">API &amp; webhooks</div>
+          <div class="tab" data-tab="team">Team</div>
+          <div class="tab" data-tab="billing">Billing</div>
+        </div>
+
+        <div class="tab-panel active" data-tab-group="settings" data-tab-id="account">
+          <div class="grid-2">
+            <div class="panel">
+              <h3>Account</h3>
+              <div style="display:flex; flex-direction: column; gap: 14px; font-size: 13px;">
+                <div style="display:flex; justify-content:space-between; padding: 10px 0; border-bottom: 1px solid var(--line);"><span style="color:var(--muted);">Workspace</span><span>Wolfburn Distillery</span></div>
+                <div style="display:flex; justify-content:space-between; padding: 10px 0; border-bottom: 1px solid var(--line);"><span style="color:var(--muted);">Operator</span><span>Divergence (agency)</span></div>
+                <div style="display:flex; justify-content:space-between; padding: 10px 0; border-bottom: 1px solid var(--line);"><span style="color:var(--muted);">Owner</span><span>Wesley · wesley@divergence.io</span></div>
+                <div style="display:flex; justify-content:space-between; padding: 10px 0; border-bottom: 1px solid var(--line);"><span style="color:var(--muted);">Plan</span><span class="pill ok">Operations · Studio</span></div>
+                <div style="display:flex; justify-content:space-between; padding: 10px 0;"><span style="color:var(--muted);">Region</span><span>EU-West · London</span></div>
+              </div>
+            </div>
+            <div class="panel">
+              <h3>Preferences</h3>
+              <div style="display:flex; flex-direction: column; gap: 14px; font-size: 13px;">
+                <div style="display:flex; justify-content:space-between; padding: 10px 0; border-bottom: 1px solid var(--line);"><span style="color:var(--muted);">Theme</span><span>Wolfburn (charcoal)</span></div>
+                <div style="display:flex; justify-content:space-between; padding: 10px 0; border-bottom: 1px solid var(--line);"><span style="color:var(--muted);">Timezone</span><span>Europe/London (BST)</span></div>
+                <div style="display:flex; justify-content:space-between; padding: 10px 0; border-bottom: 1px solid var(--line);"><span style="color:var(--muted);">Currency</span><span>GBP</span></div>
+                <div style="display:flex; justify-content:space-between; padding: 10px 0; border-bottom: 1px solid var(--line);"><span style="color:var(--muted);">Atlas wake word</span><span style="font-family: var(--mono);">⌥+Space</span></div>
+                <div style="display:flex; justify-content:space-between; padding: 10px 0;"><span style="color:var(--muted);">Em-dashes in drafts</span><span class="pill err">disabled · per voice rule</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-panel" data-tab-group="settings" data-tab-id="integrations">
+          <table class="data-table">
+            <thead><tr><th>Integration</th><th>Status</th><th>Last sync</th><th>Used by</th><th></th></tr></thead>
+            <tbody>
+              <tr><td class="name">Shopify Admin API</td><td><span class="pill ok">connected</span></td><td class="num">28s ago</td><td class="muted-cell">Forge, Ledger, Cellarman</td><td><button class="btn">Manage</button></td></tr>
+              <tr><td class="name">Meta Marketing API</td><td><span class="pill ok">connected</span></td><td class="num">14m ago</td><td class="muted-cell">Crucible</td><td><button class="btn">Manage</button></td></tr>
+              <tr><td class="name">Google Ads API</td><td><span class="pill ok">connected</span></td><td class="num">28m ago</td><td class="muted-cell">Anvil</td><td><button class="btn">Manage</button></td></tr>
+              <tr><td class="name">Google Analytics 4</td><td><span class="pill ok">connected</span></td><td class="num">3m ago</td><td class="muted-cell">Lighthouse, Sentinel</td><td><button class="btn">Manage</button></td></tr>
+              <tr><td class="name">Klaviyo</td><td><span class="pill warn">stale · retrying</span></td><td class="num">14h ago</td><td class="muted-cell">Audience, Composer</td><td><button class="btn">Reconnect</button></td></tr>
+              <tr><td class="name">Privy</td><td><span class="pill ok">connected</span></td><td class="num">1m ago</td><td class="muted-cell">Forge</td><td><button class="btn">Manage</button></td></tr>
+              <tr><td class="name">Trustpilot</td><td><span class="pill ok">connected</span></td><td class="num">9m ago</td><td class="muted-cell">Reviews</td><td><button class="btn">Manage</button></td></tr>
+              <tr><td class="name">Judge.me</td><td><span class="pill ok">connected</span></td><td class="num">12m ago</td><td class="muted-cell">Reviews</td><td><button class="btn">Manage</button></td></tr>
+              <tr><td class="name">Shogun</td><td><span class="pill ok">connected</span></td><td class="num">2h ago</td><td class="muted-cell">Forge</td><td><button class="btn">Manage</button></td></tr>
+              <tr><td class="name">Slack</td><td><span class="pill ok">connected</span></td><td class="num">live</td><td class="muted-cell">Atlas, alerts</td><td><button class="btn">Manage</button></td></tr>
+              <tr><td class="name">OpenAI · Atlas voice</td><td><span class="pill ok">connected</span></td><td class="muted-cell">realtime</td><td class="muted-cell">Atlas</td><td><button class="btn">Manage</button></td></tr>
+              <tr><td class="name">ElevenLabs · TTS</td><td><span class="pill ok">connected</span></td><td class="muted-cell">realtime</td><td class="muted-cell">Atlas</td><td><button class="btn">Manage</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="tab-panel" data-tab-group="settings" data-tab-id="api">
+          <div class="grid-2">
+            <div class="panel">
+              <h3>API keys</h3>
+              <table class="data-table"><thead><tr><th>Name</th><th>Scope</th><th>Created</th></tr></thead><tbody>
+                <tr><td class="name">Production</td><td class="muted-cell">read+write · all agents</td><td class="num">Apr 2026</td></tr>
+                <tr><td class="name">Read-only · client</td><td class="muted-cell">read only · Wolfburn team</td><td class="num">Apr 2026</td></tr>
+                <tr><td class="name">Atlas voice</td><td class="muted-cell">realtime audio</td><td class="num">May 2026</td></tr>
+              </tbody></table>
+              <button class="btn solid" style="margin-top: 12px;">+ Create key</button>
+            </div>
+            <div class="panel">
+              <h3>Webhooks</h3>
+              <table class="data-table"><thead><tr><th>Event</th><th>Endpoint</th><th>Status</th></tr></thead><tbody>
+                <tr><td class="muted-cell">order.created</td><td class="num">/wh/order</td><td><span class="pill ok">live</span></td></tr>
+                <tr><td class="muted-cell">product.created</td><td class="num">/wh/product</td><td><span class="pill ok">live</span></td></tr>
+                <tr><td class="muted-cell">cart.abandoned</td><td class="num">/wh/cart</td><td><span class="pill ok">live</span></td></tr>
+                <tr><td class="muted-cell">review.created</td><td class="num">/wh/review</td><td><span class="pill ok">live</span></td></tr>
+                <tr><td class="muted-cell">audit.alert</td><td class="num">/wh/audit</td><td><span class="pill ok">live</span></td></tr>
+              </tbody></table>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-panel" data-tab-group="settings" data-tab-id="team">
+          <table class="data-table">
+            <thead><tr><th>Member</th><th>Role</th><th>Access</th><th>Last seen</th></tr></thead>
+            <tbody>
+              <tr><td class="name">Wesley Tarry</td><td><span class="pill ok">owner</span></td><td class="muted-cell">all · admin</td><td class="num">now</td></tr>
+              <tr><td class="name">Divergence · automation</td><td><span class="pill info">system</span></td><td class="muted-cell">all agents</td><td class="num">live</td></tr>
+              <tr><td class="name">Shane Fraser · Wolfburn IT</td><td><span class="pill ok">collaborator</span></td><td class="muted-cell">read · audit, GA4</td><td class="num">2d ago</td></tr>
+              <tr><td class="name">Daniel · Wolfburn brand</td><td><span class="pill ok">collaborator</span></td><td class="muted-cell">read · brand voice</td><td class="num">5d ago</td></tr>
+            </tbody>
+          </table>
+          <button class="btn solid" style="margin-top: 14px;">+ Invite member</button>
+        </div>
+
+        <div class="tab-panel" data-tab-group="settings" data-tab-id="billing">
+          <div class="grid-2">
+            <div class="panel">
+              <h3>Plan</h3>
+              <div style="font-family: var(--display); font-weight: 600; font-size: 28px; color: var(--cream); margin-bottom: 6px;">Operations · Studio</div>
+              <div class="panel-meta" style="margin-bottom: 14px;">£2,400/mo · billed monthly</div>
+              <div style="display:flex; flex-direction:column; gap: 10px; font-size: 13px;">
+                <div style="display:flex; justify-content:space-between;"><span style="color: var(--muted);">Agents included</span><span>16 / 24</span></div>
+                <div style="display:flex; justify-content:space-between;"><span style="color: var(--muted);">Voice minutes</span><span>180 / 500 mo</span></div>
+                <div style="display:flex; justify-content:space-between;"><span style="color: var(--muted);">Workflows</span><span>8 / unlimited</span></div>
+                <div style="display:flex; justify-content:space-between;"><span style="color: var(--muted);">Renews</span><span>Jun 8 · 2026</span></div>
+              </div>
+            </div>
+            <div class="panel">
+              <h3>Recent invoices</h3>
+              <table class="data-table"><thead><tr><th>Date</th><th>Amount</th><th>Status</th></tr></thead><tbody>
+                <tr><td class="num">May 2026</td><td class="num">£2,400</td><td><span class="pill ok">paid</span></td></tr>
+                <tr><td class="num">Apr 2026</td><td class="num">£2,400</td><td><span class="pill ok">paid</span></td></tr>
+                <tr><td class="num">Mar 2026</td><td class="num">£2,400</td><td><span class="pill ok">paid</span></td></tr>
+                <tr><td class="num">Feb 2026</td><td class="num">£2,400</td><td><span class="pill ok">paid</span></td></tr>
+              </tbody></table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+    </div>
+  </main>
+</div>
+
+<!-- TOAST STACK -->
+<div class="toast-stack" id="toast-stack"></div>
+
+<!-- MODAL -->
+<div class="modal-wrap" id="modal-wrap">
+  <div class="modal" id="modal-body">
+    <h2>Confirm</h2>
+    <p>Default modal body.</p>
+    <div class="modal-actions">
+      <button class="btn" data-modal-close>Cancel</button>
+      <button class="btn solid" data-modal-confirm>Confirm</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // ROUTING
+  function navigate(pageId) {
+    pageId = pageId || 'overview';
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    var page = document.getElementById('page-' + pageId);
+    if (!page) {
+      page = document.getElementById('page-overview');
+      pageId = 'overview';
+    }
+    page.classList.add('active');
+    var nav = document.querySelector('.nav-item[data-page="' + pageId + '"]');
+    if (nav) nav.classList.add('active');
+    window.scrollTo(0, 0);
+  }
+  function handleHash() {
+    var hash = (location.hash || '#overview').replace('#','').split('?')[0];
+    navigate(hash);
+  }
+  window.addEventListener('hashchange', handleHash);
+  window.addEventListener('DOMContentLoaded', handleHash);
+
+  // intercept clicks anywhere with data-page
+  document.addEventListener('click', function(e){
+    var link = e.target.closest('[data-page]');
+    if (link) {
+      e.preventDefault();
+      location.hash = link.dataset.page;
+    }
+  });
+
+  // TAB BAR
+  document.addEventListener('click', function(e){
+    var tab = e.target.closest('.tab[data-tab]');
+    if (!tab) return;
+    var bar = tab.closest('.tab-bar');
+    var group = bar.dataset.tabGroup;
+    bar.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    document.querySelectorAll('.tab-panel[data-tab-group="' + group + '"]').forEach(p => p.classList.remove('active'));
+    var target = document.querySelector('.tab-panel[data-tab-group="' + group + '"][data-tab-id="' + tab.dataset.tab + '"]');
+    if (target) target.classList.add('active');
+  });
+
+  // TOAST
+  window.toast = function(label, msg) {
+    var stack = document.getElementById('toast-stack');
+    var el = document.createElement('div');
+    el.className = 'toast';
+    el.innerHTML = '<div class="t-label">' + label + '</div><div class="t-msg">' + msg + '</div>';
+    stack.appendChild(el);
+    setTimeout(function(){
+      el.style.transition = 'opacity .4s';
+      el.style.opacity = '0';
+      setTimeout(function(){ el.remove(); }, 400);
+    }, 3500);
+  };
+
+  // RUN AGENT button (data-run-agent="Crucible")
+  document.addEventListener('click', function(e){
+    var btn = e.target.closest('[data-run-agent]');
+    if (!btn) return;
+    e.preventDefault();
+    var agent = btn.dataset.runAgent;
+    var time = new Date().toTimeString().slice(0,5);
+    window.toast(agent + ' dispatched', 'Brief queued · ' + time + ' · run id ' + Math.random().toString(36).slice(2,8));
+  });
+
+  // MODAL
+  window.openModal = function(title, body, confirmLabel, onConfirm) {
+    var wrap = document.getElementById('modal-wrap');
+    var m = document.getElementById('modal-body');
+    m.innerHTML = '<h2>' + title + '</h2><p>' + body + '</p><div class="modal-actions">' +
+      '<button class="btn" data-modal-close>Cancel</button>' +
+      '<button class="btn solid" data-modal-confirm>' + (confirmLabel || 'Confirm') + '</button></div>';
+    wrap.classList.add('active');
+    wrap.querySelector('[data-modal-confirm]').onclick = function(){
+      wrap.classList.remove('active');
+      if (onConfirm) onConfirm();
+    };
+  };
+  document.addEventListener('click', function(e){
+    if (e.target.closest('[data-modal-close]')) {
+      document.getElementById('modal-wrap').classList.remove('active');
+    }
+    if (e.target.id === 'modal-wrap') {
+      document.getElementById('modal-wrap').classList.remove('active');
+    }
+  });
+
+  // VOICE button — open modal
+  document.addEventListener('click', function(e){
+    var btn = e.target.closest('.voice-btn');
+    if (!btn) return;
+    e.preventDefault();
+    window.openModal('Atlas listening',
+      'Voice input would activate here. In production this connects to OpenAI Realtime or ElevenLabs streaming.<br><br>For now, jump to the Atlas chat interface to type a brief.',
+      'Open Atlas',
+      function(){ location.hash = 'atlas'; });
+  });
+
+  // search box dummy
+  document.addEventListener('click', function(e){
+    if (e.target.closest('.search')) {
+      window.toast('Command palette', 'Press ⌘K — full search ships in v2');
+    }
+  });
+
+  // New brief
+  document.addEventListener('click', function(e){
+    var btn = e.target.closest('[data-new-brief]');
+    if (!btn) return;
+    location.hash = 'atlas';
+  });
+})();
+</script>
+
+</body>
+</html>
