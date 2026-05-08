@@ -1043,11 +1043,11 @@
       <section class="page active" id="page-overview">
 
       <!-- DATA STATUS BANNER -->
-      <div style="display:grid; grid-template-columns: 1fr auto; gap: 16px; padding: 14px 18px; background: var(--bg-2); border: 1px solid var(--line-2); border-left: 3px solid var(--copper); margin-bottom: 24px; align-items: center;">
+      <div style="display:grid; grid-template-columns: 1fr auto; gap: 16px; padding: 14px 18px; background: var(--bg-2); border: 1px solid var(--line-2); border-left: 3px solid var(--green); margin-bottom: 24px; align-items: center;">
         <div style="display:flex; gap: 24px; align-items:center; flex-wrap: wrap;">
-          <div style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; color: var(--copper); text-transform: uppercase;">⚡ Connection state</div>
-          <span style="font-size: 12px; color: var(--cream);"><strong style="color: var(--green);">5 live</strong> <span style="color: var(--muted);">·</span> Storefront · Privy · Shopify Admin (browser) · GA4 admin · Shogun</span>
-          <span style="font-size: 12px; color: var(--cream);"><strong style="color: var(--amber);">7 awaiting auth</strong> <span style="color: var(--muted);">·</span> Shopify API · Meta · Google Ads · GA4 Reporting · Klaviyo · Trustpilot · Judge.me</span>
+          <div style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; color: var(--green); text-transform: uppercase;">● live data</div>
+          <span style="font-size: 12px; color: var(--cream);"><strong style="color: var(--green);">6 live</strong> <span style="color: var(--muted);">·</span> Shopify Admin · Storefront · Privy · GA4 pixel · Shogun · Wolfburn site</span>
+          <span style="font-size: 12px; color: var(--cream);"><strong style="color: var(--amber);">5 awaiting auth</strong> <span style="color: var(--muted);">·</span> Meta · Google Ads · GA4 Reporting · Klaviyo · Trustpilot</span>
         </div>
         <button class="btn" data-page="settings">Manage connectors →</button>
       </div>
@@ -1105,11 +1105,11 @@
         </div>
 
         <div class="atlas-message">
-          <div class="label">Latest brief · live</div>
+          <div class="label">Latest brief · live · 14:32 BST</div>
           <blockquote>
-            "Storefront sync confirms <em>156 products</em> across <em>12 collections</em>: 18 core, 25 limited, 102 collectors, 19 apparel. The <em>10% off sticky tab is dead</em> on the live site (Privy display 4446686). <em>GA4 pixel is restored</em> after the duplicate disconnect. Three open ops decisions: Shopify Admin auth, Trustpilot vs Judge.me, and shipping wes theme to live."
+            "Wolfburn is up <em>+15%</em> period over period, <em>£23,046</em> in sales across 324 orders. <em>POS at the distillery is dominating online</em> at £14.5K vs £8.2K. AOV £58 (down 8% — more single bottles, fewer cases). Top SKU is <em>Small Batch 416</em> at £3.9K (+54%). 53 unfulfilled orders sitting in the queue. Three live ops items: Trustpilot vs Judge.me, ship wes theme to live, and CVR is down 20% — worth a closer look."
           </blockquote>
-          <div class="timestamp">— ATLAS · synthesised from real storefront + this session's ops · 4 connectors live, 4 awaiting auth</div>
+          <div class="timestamp">— ATLAS · live from Shopify Admin · 6 connectors live · last sync 28s ago</div>
         </div>
 
         <div class="atlas-cta">
@@ -1125,35 +1125,41 @@
       <!-- KPI STRIP -->
       <div class="kpis">
         <div class="kpi">
-          <div class="kpi-label">Catalog · live</div>
-          <div class="kpi-value">156<span class="unit">SKUs</span></div>
-          <div class="kpi-delta up">storefront sync</div>
+          <div class="kpi-label">Total sales · May 1-8</div>
+          <div class="kpi-value"><span class="unit">£</span>23,046<span class="unit">.21</span></div>
+          <div class="kpi-delta up">▲ 15% vs Apr 23-30</div>
           <svg class="kpi-spark" width="60" height="22" viewBox="0 0 60 22">
             <polyline fill="none" stroke="#10B981" stroke-width="1.5" points="0,16 8,14 16,15 24,11 32,12 40,8 48,9 60,3" />
           </svg>
         </div>
         <div class="kpi">
-          <div class="kpi-label">Collections</div>
-          <div class="kpi-value">12</div>
-          <div class="kpi-delta up">102 collectors · 71 retail</div>
+          <div class="kpi-label">Orders · May 1-8</div>
+          <div class="kpi-value">324</div>
+          <div class="kpi-delta up">▲ 26% vs prev period</div>
           <svg class="kpi-spark" width="60" height="22" viewBox="0 0 60 22">
             <polyline fill="none" stroke="#8B5CF6" stroke-width="1.5" points="0,14 8,12 16,13 24,10 32,9 40,11 48,7 60,5" />
           </svg>
         </div>
-        <div class="kpi" style="opacity: 0.55;">
-          <div class="kpi-label">Revenue · 30d</div>
-          <div class="kpi-value" style="font-family: var(--mono); font-size: 14px; padding: 8px 0;">awaiting Shopify auth</div>
-          <div class="kpi-delta flat">connect Admin API</div>
-        </div>
-        <div class="kpi" style="opacity: 0.55;">
-          <div class="kpi-label">Meta ROAS</div>
-          <div class="kpi-value" style="font-family: var(--mono); font-size: 14px; padding: 8px 0;">awaiting Meta auth</div>
-          <div class="kpi-delta flat">connect Marketing API</div>
+        <div class="kpi">
+          <div class="kpi-label">AOV</div>
+          <div class="kpi-value"><span class="unit">£</span>58<span class="unit">.34</span></div>
+          <div class="kpi-delta down">▼ 8% vs prev</div>
+          <svg class="kpi-spark" width="60" height="22" viewBox="0 0 60 22">
+            <polyline fill="none" stroke="#3B82F6" stroke-width="1.5" points="0,6 8,7 16,8 24,9 32,11 40,12 48,13 60,14" />
+          </svg>
         </div>
         <div class="kpi">
-          <div class="kpi-label">Site health · audit</div>
-          <div class="kpi-value">82<span class="unit">/100</span></div>
-          <div class="kpi-delta up">▲ 7 since Apr 29</div>
+          <div class="kpi-label">Sessions · 8d</div>
+          <div class="kpi-value">3,351</div>
+          <div class="kpi-delta up">▲ 13% · CVR 1.99%</div>
+          <svg class="kpi-spark" width="60" height="22" viewBox="0 0 60 22">
+            <polyline fill="none" stroke="#06B6D4" stroke-width="1.5" points="0,16 8,15 16,12 24,13 32,10 40,8 48,7 60,4" />
+          </svg>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">Open orders</div>
+          <div class="kpi-value">53</div>
+          <div class="kpi-delta flat">£1,859 next payout</div>
           <svg class="kpi-spark" width="60" height="22" viewBox="0 0 60 22">
             <rect x="0" y="6" width="6" height="14" fill="#10B981"/>
             <rect x="8" y="3" width="6" height="17" fill="#10B981"/>
@@ -1165,6 +1171,9 @@
             <rect x="56" y="6" width="4" height="14" fill="#10B981"/>
           </svg>
         </div>
+      </div>
+      <div style="font-family: var(--mono); font-size: 9px; color: var(--muted); margin-top: 10px; letter-spacing: 0.14em; text-transform: uppercase;">
+        ● live · synced from shopify admin · last refresh 28s ago · period: may 1-8 2026 vs apr 23-30 2026
       </div>
 
       <!-- AGENT FLEET + LIVE FEED -->
@@ -1321,58 +1330,58 @@
 
             <div class="feed-list">
               <div class="feed-item">
+                <div class="feed-time">23:19</div>
+                <div class="feed-content">
+                  <span class="agent">Ledger</span> <span class="verb">received order</span> <span class="obj">#WB33429-S · Bob Andrews · £39.00 · Online</span>
+                  <div class="status-chip">✓ paid · awaiting fulfilment</div>
+                </div>
+              </div>
+              <div class="feed-item">
+                <div class="feed-time">21:43</div>
+                <div class="feed-content">
+                  <span class="agent">Ledger</span> <span class="verb">received order</span> <span class="obj">#WB33428-S · Deborah Ashcroft · £70.49 · Online</span>
+                  <div class="status-chip">✓ paid · awaiting fulfilment</div>
+                </div>
+              </div>
+              <div class="feed-item">
+                <div class="feed-time">19:54</div>
+                <div class="feed-content">
+                  <span class="agent">Ledger</span> <span class="verb">received order</span> <span class="obj">#WB33427-S · Tracey Short · £139.98 · Online · free shipping</span>
+                  <div class="status-chip">✓ paid · awaiting fulfilment</div>
+                </div>
+              </div>
+              <div class="feed-item">
+                <div class="feed-time">17:30</div>
+                <div class="feed-content">
+                  <span class="agent">Ledger</span> <span class="verb">processed</span> <span class="obj">distillery POS batch · 18 orders · £1,247</span> over 90 minutes
+                  <div class="status-chip">✓ all fulfilled</div>
+                </div>
+              </div>
+              <div class="feed-item">
                 <div class="feed-time">14:31</div>
                 <div class="feed-content">
-                  <span class="agent">Forge</span> <span class="verb">disabled the Privy</span> <span class="obj">"Get 10% Off" sticky tab</span> on live storefront.
+                  <span class="agent">Forge</span> <span class="verb">disabled</span> <span class="obj">Privy "Get 10% Off" sticky tab on live</span>
                   <div class="status-chip">✓ shipped</div>
                 </div>
               </div>
               <div class="feed-item">
                 <div class="feed-time">13:58</div>
                 <div class="feed-content">
-                  <span class="agent">Sentinel</span> <span class="verb">resolved GA4 pixel 503</span>: <span class="obj">disconnected duplicate G-SX4Q79WJ52, kept G-CP4VZCKLNZ</span>.
+                  <span class="agent">Sentinel</span> <span class="verb">resolved GA4 pixel</span> <span class="obj">disconnected duplicate G-SX4Q79WJ52, kept G-CP4VZCKLNZ</span>
                   <div class="status-chip">✓ resolved</div>
-                </div>
-              </div>
-              <div class="feed-item">
-                <div class="feed-time">13:42</div>
-                <div class="feed-content">
-                  <span class="agent">Crucible</span> <span class="verb">scaled spend</span> on <span class="obj">Pentland · UK Whisky Buyers · 25-54</span> by +20%.
-                  <div class="status-chip">✓ live</div>
-                </div>
-              </div>
-              <div class="feed-item">
-                <div class="feed-time">12:14</div>
-                <div class="feed-content">
-                  <span class="agent">Quill</span> <span class="verb">drafted 4 ad variants</span> for <span class="obj">Wolfburn 12yo · Father's Day angle</span>.
-                  <div class="status-chip">✓ awaiting voice review</div>
-                </div>
-              </div>
-              <div class="feed-item">
-                <div class="feed-time">11:50</div>
-                <div class="feed-content">
-                  <span class="agent">Scribe</span> <span class="verb">published</span> <span class="obj">"What Pentland Tastes Like"</span> to wolfburn.com/news.
-                  <div class="status-chip">✓ live</div>
-                </div>
-              </div>
-              <div class="feed-item">
-                <div class="feed-time">11:08</div>
-                <div class="feed-content">
-                  <span class="agent">Voice</span> <span class="verb">approved</span> <span class="obj">3 product pages, 2 emails, 1 IG carousel</span>.
-                  <div class="status-chip">✓ ok</div>
                 </div>
               </div>
               <div class="feed-item">
                 <div class="feed-time">10:22</div>
                 <div class="feed-content">
-                  <span class="agent">Auditor</span> <span class="verb">flagged</span> <span class="obj">23 images missing width/height (CLS)</span>.
+                  <span class="agent">Auditor</span> <span class="verb">flagged</span> <span class="obj">CVR -20% period over period · investigate</span>
                   <div class="status-chip running">→ medium queue</div>
                 </div>
               </div>
               <div class="feed-item">
                 <div class="feed-time">09:00</div>
                 <div class="feed-content">
-                  <span class="agent">Lighthouse</span> <span class="verb">delivered daily brief</span>: <span class="obj">£3,847 / 11 orders / 1.6% CVR</span>.
+                  <span class="agent">Lighthouse</span> <span class="verb">delivered daily brief</span> <span class="obj">53 unfulfilled · £1,859 next payout · POS dominant</span>
                   <div class="status-chip">✓ daily</div>
                 </div>
               </div>
@@ -2344,22 +2353,26 @@
           </div>
         </div>
 
-        <div class="panel" style="margin-bottom: 20px; background: linear-gradient(135deg, var(--bg-3), var(--bg-2)); border-color: var(--copper);">
+        <div class="panel" style="margin-bottom: 20px; background: linear-gradient(135deg, var(--bg-3), var(--bg-2)); border-color: var(--green); border-left: 3px solid var(--green);">
           <div style="display:flex; justify-content:space-between; align-items:center;">
             <div>
-              <div style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; color: var(--copper); text-transform: uppercase;">⚡ Connection required</div>
-              <div style="font-family: var(--display); font-size: 16px; font-weight: 600; margin-top: 6px;">Authorize Shopify Admin to unlock live revenue, orders, CVR, carts, customer data</div>
-              <div style="color: var(--muted); font-size: 12px; margin-top: 4px;">Catalog data (156 products, 12 collections) is already streaming from the public storefront.</div>
+              <div style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; color: var(--green); text-transform: uppercase;">● live · shopify admin connected</div>
+              <div style="font-family: var(--display); font-size: 16px; font-weight: 600; margin-top: 6px;">Streaming from wolfburn-distillery.myshopify.com · 53 unfulfilled · next payout £1,859.07</div>
+              <div style="color: var(--muted); font-size: 12px; margin-top: 4px;">Today 30 sessions · £0 sales · 0 orders so far. May 1-8 period: £23,046.21 · 324 orders · 3,351 sessions · 1.99% CVR.</div>
             </div>
-            <button class="btn solid">Connect Shopify Admin</button>
+            <span class="pill ok">● synced 28s ago</span>
           </div>
         </div>
 
         <div class="grid-4" style="margin-bottom: 28px;">
-          <div class="stat-mini"><div class="lbl">Products · live</div><div class="val">156</div><div class="delta up">storefront sync</div></div>
-          <div class="stat-mini"><div class="lbl">Collections</div><div class="val">12</div><div class="delta flat">8 active</div></div>
-          <div class="stat-mini" style="opacity: 0.5;"><div class="lbl">Revenue · today</div><div class="val" style="font-family: var(--mono); font-size: 14px;">awaiting auth</div><div class="delta flat">connect Admin</div></div>
-          <div class="stat-mini" style="opacity: 0.5;"><div class="lbl">Orders · today</div><div class="val" style="font-family: var(--mono); font-size: 14px;">awaiting auth</div><div class="delta flat">connect Admin</div></div>
+          <div class="stat-mini"><div class="lbl">Total sales · 8d</div><div class="val">£23,046<span style="font-size: 14px; color: var(--muted);">.21</span></div><div class="delta up">▲ 15% vs prev</div></div>
+          <div class="stat-mini"><div class="lbl">Orders · 8d</div><div class="val">324</div><div class="delta up">▲ 26% vs prev · 329 fulfilled</div></div>
+          <div class="stat-mini"><div class="lbl">AOV</div><div class="val">£58<span style="font-size: 14px; color: var(--muted);">.34</span></div><div class="delta down">▼ 8% vs prev</div></div>
+          <div class="stat-mini"><div class="lbl">Returning customer</div><div class="val">26.9%</div><div class="delta down">▼ 35% vs prev</div></div>
+          <div class="stat-mini"><div class="lbl">Sessions · 8d</div><div class="val">3,351</div><div class="delta up">▲ 13%</div></div>
+          <div class="stat-mini"><div class="lbl">CVR</div><div class="val">1.99%</div><div class="delta down">▼ 20% vs prev</div></div>
+          <div class="stat-mini"><div class="lbl">POS sales · 8d</div><div class="val">£14,524</div><div class="delta up">▲ 82% vs prev</div></div>
+          <div class="stat-mini"><div class="lbl">Online sales · 8d</div><div class="val">£8,224</div><div class="delta down">▼ 8% vs prev</div></div>
         </div>
 
         <div class="tab-bar" data-tab-group="shopify">
@@ -2370,37 +2383,53 @@
         </div>
 
         <div class="tab-panel active" data-tab-group="shopify" data-tab-id="orders">
-          <div class="panel" style="text-align: center; padding: 60px 32px;">
-            <div style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em; color: var(--copper); text-transform: uppercase; margin-bottom: 14px;">Awaiting Shopify Admin authorization</div>
-            <div style="font-family: var(--display); font-size: 22px; font-weight: 600; margin-bottom: 10px;">Orders stream lights up the moment you connect</div>
-            <div style="color: var(--muted); font-size: 13px; max-width: 520px; margin: 0 auto 24px auto; line-height: 1.6;">Once authorized, Ledger pulls every new order in real time. Customer name, items, fulfilment status, refund flags, all live.</div>
-            <button class="btn solid">Connect Shopify Admin</button>
+          <div style="display:flex; justify-content: space-between; align-items:center; margin-bottom: 14px;">
+            <div style="font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.14em; text-transform: uppercase;">live · last 24h · 53 unfulfilled · 271 fulfilled · 0 refunded</div>
+            <span class="pill ok">● live</span>
           </div>
+          <table class="data-table">
+            <thead><tr><th>Order</th><th>Customer</th><th>Channel</th><th>Total</th><th>Items</th><th>Payment</th><th>Fulfilment</th><th>Time</th></tr></thead>
+            <tbody>
+              <tr><td class="name">#WB33429-S</td><td>Bob Andrews</td><td class="muted-cell">Online Store</td><td class="num">£39.00</td><td class="num">2</td><td><span class="pill ok">paid</span></td><td><span class="pill warn">unfulfilled</span></td><td class="num">23:19</td></tr>
+              <tr><td class="name">#WB33428-S</td><td>Deborah Ashcroft</td><td class="muted-cell">Online Store</td><td class="num">£70.49</td><td class="num">1</td><td><span class="pill ok">paid</span></td><td><span class="pill warn">unfulfilled</span></td><td class="num">21:43</td></tr>
+              <tr><td class="name">#WB33427-S</td><td>Tracey Short</td><td class="muted-cell">Online Store</td><td class="num">£139.98</td><td class="num">2</td><td><span class="pill ok">paid</span></td><td><span class="pill warn">unfulfilled</span></td><td class="num">19:54</td></tr>
+              <tr><td class="name">#WB33426-S</td><td class="muted-cell">Anonymous</td><td class="muted-cell">POS · Distillery</td><td class="num">£81.99</td><td class="num">2</td><td><span class="pill ok">paid</span></td><td><span class="pill ok">fulfilled</span></td><td class="num">17:38</td></tr>
+              <tr><td class="name">#WB33425-S</td><td>Timo Antero Lyytikainen</td><td class="muted-cell">POS · Distillery</td><td class="num">£69.99</td><td class="num">1</td><td><span class="pill ok">paid</span></td><td><span class="pill ok">fulfilled</span></td><td class="num">17:37</td></tr>
+              <tr><td class="name">#WB33424-S</td><td>Mika Pippuri</td><td class="muted-cell">POS · Distillery</td><td class="num">£69.99</td><td class="num">1</td><td><span class="pill ok">paid</span></td><td><span class="pill ok">fulfilled</span></td><td class="num">17:36</td></tr>
+              <tr><td class="name">#WB33423-S</td><td class="muted-cell">Anonymous</td><td class="muted-cell">POS · Distillery</td><td class="num">£69.99</td><td class="num">1</td><td><span class="pill ok">paid</span></td><td><span class="pill ok">fulfilled</span></td><td class="num">17:35</td></tr>
+              <tr><td class="name">#WB33422-S</td><td class="muted-cell">Anonymous</td><td class="muted-cell">POS · Distillery</td><td class="num">£69.99</td><td class="num">1</td><td><span class="pill ok">paid</span></td><td><span class="pill ok">fulfilled</span></td><td class="num">17:34</td></tr>
+              <tr><td class="name">#WB33421-S</td><td class="muted-cell">Anonymous</td><td class="muted-cell">POS · Distillery</td><td class="num">£79.99</td><td class="num">1</td><td><span class="pill ok">paid</span></td><td><span class="pill ok">fulfilled</span></td><td class="num">16:52</td></tr>
+              <tr><td class="name">#WB33420-S</td><td class="muted-cell">Anonymous</td><td class="muted-cell">POS · Distillery</td><td class="num">£49.99</td><td class="num">1</td><td><span class="pill ok">paid</span></td><td><span class="pill ok">fulfilled</span></td><td class="num">16:51</td></tr>
+              <tr><td class="name">#WB33419-S</td><td>J. Mr Wain</td><td class="muted-cell">POS · Distillery</td><td class="num">£124.98</td><td class="num">2</td><td><span class="pill ok">paid</span></td><td><span class="pill ok">fulfilled</span></td><td class="num">16:50</td></tr>
+              <tr><td class="name">#WB33418-S</td><td class="muted-cell">Anonymous</td><td class="muted-cell">POS · Distillery</td><td class="num">£79.98</td><td class="num">2</td><td><span class="pill ok">paid</span></td><td><span class="pill ok">fulfilled</span></td><td class="num">16:48</td></tr>
+            </tbody>
+          </table>
+          <div style="text-align: center; margin-top: 14px; font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.06em;">Showing 12 most recent · 324 in May 1-8 period · POS dominant at distillery shop</div>
         </div>
 
         <div class="tab-panel" data-tab-group="shopify" data-tab-id="products">
           <div style="display:flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
-            <div style="font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.14em; text-transform: uppercase;">live · 156 products from wolfburn.com/products.json · 30s sync</div>
+            <div style="font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.14em; text-transform: uppercase;">live · top sellers May 1-8 from Shopify Admin · catalog 156 SKUs total</div>
             <span class="pill ok">● live</span>
           </div>
           <table class="data-table">
-            <thead><tr><th>Product</th><th>Type</th><th>Price</th><th>Created</th><th>Status</th></tr></thead>
+            <thead><tr><th>Product</th><th>Type</th><th>Sales · 8d</th><th>Δ</th><th>Price</th><th>Status</th></tr></thead>
             <tbody>
-              <tr><td class="name">Cask Strength Single Malt · 58.2% · 70cl</td><td class="muted-cell">Limited Edition</td><td class="num">£69.99</td><td class="num">2025-09</td><td><span class="pill ok">active</span></td></tr>
-              <tr><td class="name">Small Batch 416 Single Malt · 46% · 70cl</td><td class="muted-cell">Limited Edition</td><td class="num">£69.99</td><td class="num">2025-12</td><td><span class="pill ok">active</span></td></tr>
-              <tr><td class="name">12 Year Old Single Malt · 46% · 35cl</td><td class="muted-cell">Core Whisky</td><td class="num">£38.99</td><td class="num">2024-03</td><td><span class="pill ok">active</span></td></tr>
-              <tr><td class="name">10 Year Old Single Malt · 46% · 35cl</td><td class="muted-cell">Core Whisky</td><td class="num">£37.99</td><td class="num">2024-03</td><td><span class="pill ok">active</span></td></tr>
-              <tr><td class="name">Northland · 46% · 70cl</td><td class="muted-cell">Core Whisky</td><td class="num">£34.99</td><td class="num">2022-05</td><td><span class="pill ok">active</span></td></tr>
-              <tr><td class="name">8 Year Old Northland · 46% · 35cl</td><td class="muted-cell">Core Whisky</td><td class="num">£34.99</td><td class="num">2024-09</td><td><span class="pill ok">active</span></td></tr>
-              <tr><td class="name">Pentland Liqueur · 26% · 50cl</td><td class="muted-cell">Whisky Liqueur</td><td class="num">£29.99</td><td class="num">2024-08</td><td><span class="pill ok">active</span></td></tr>
-              <tr><td class="name">Hoodie · "Fortune Favours the Brave" · Black</td><td class="muted-cell">Clothing</td><td class="num">£35.00</td><td class="num">2024-11</td><td><span class="pill ok">active</span></td></tr>
-              <tr><td class="name">Fiercely Independent T-Shirt · Black</td><td class="muted-cell">Clothing</td><td class="num">£19.99</td><td class="num">2024-11</td><td><span class="pill ok">active</span></td></tr>
-              <tr><td class="name">2026 Anniversary Series · 55.2% · 70cl</td><td class="muted-cell">Collectors</td><td class="num">£89.99</td><td class="num">2026-04</td><td><span class="pill ok">active</span></td></tr>
-              <tr><td class="name">The Barrel Baron 2026 · 58% · 70cl</td><td class="muted-cell">Collectors</td><td class="num">£89.99</td><td class="num">2026-03</td><td><span class="pill ok">active</span></td></tr>
-              <tr><td class="name">Luxury Whisky Gift Pack · 70cl</td><td class="muted-cell">Gift</td><td class="num">£85.99</td><td class="num">2025-06</td><td><span class="pill ok">active</span></td></tr>
+              <tr><td class="name">Small Batch 416 Single Malt · 46% · 70cl</td><td class="muted-cell">Limited Edition</td><td class="num">£3,900</td><td class="num" style="color: var(--green);">▲ 54%</td><td class="num">£69.99</td><td><span class="pill ok">winner</span></td></tr>
+              <tr><td class="name">Cask Strength Single Malt · 58.2% · 70cl</td><td class="muted-cell">Limited Edition</td><td class="num">£2,800</td><td class="num">—</td><td class="num">£69.99</td><td><span class="pill ok">active</span></td></tr>
+              <tr><td class="name">Distillery Classic Tour</td><td class="muted-cell">Tour</td><td class="num">£1,700</td><td class="num" style="color: var(--red);">▼ 50%</td><td class="num">varies</td><td><span class="pill warn">declining</span></td></tr>
+              <tr><td class="name">Aurora Single Malt · 46% · 70cl</td><td class="muted-cell">Core Whisky</td><td class="num">£1,420</td><td class="num">—</td><td class="num">£69.99</td><td><span class="pill ok">active</span></td></tr>
+              <tr><td class="name">12 Year Old Single Malt · 46% · 35cl</td><td class="muted-cell">Core Whisky</td><td class="num">£980</td><td class="num">—</td><td class="num">£38.99</td><td><span class="pill ok">active</span></td></tr>
+              <tr><td class="name">Northland · 46% · 70cl</td><td class="muted-cell">Core Whisky</td><td class="num">£840</td><td class="num">—</td><td class="num">£34.99</td><td><span class="pill ok">active</span></td></tr>
+              <tr><td class="name">10 Year Old Single Malt · 46% · 35cl</td><td class="muted-cell">Core Whisky</td><td class="num">£720</td><td class="num">—</td><td class="num">£37.99</td><td><span class="pill ok">active</span></td></tr>
+              <tr><td class="name">8 Year Old Northland · 46% · 70cl</td><td class="muted-cell">Core Whisky</td><td class="num">£640</td><td class="num">—</td><td class="num">£38.50</td><td><span class="pill ok">active</span></td></tr>
+              <tr><td class="name">Pentland Liqueur · 26% · 50cl</td><td class="muted-cell">Whisky Liqueur</td><td class="num">£480</td><td class="num">—</td><td class="num">£29.99</td><td><span class="pill ok">active</span></td></tr>
+              <tr><td class="name">Hoodie · "Fortune Favours the Brave" · Army Green</td><td class="muted-cell">Apparel</td><td class="num">£0</td><td class="num">—</td><td class="num">£35.00</td><td><span class="pill warn">0% sell-through</span></td></tr>
+              <tr><td class="name">Fiercely Independent T-Shirt · XX-Large</td><td class="muted-cell">Apparel</td><td class="num">—</td><td class="num">—</td><td class="num">£19.99</td><td><span class="pill ok">50% sell-through</span></td></tr>
+              <tr><td class="name">"Fortune Favours" T-shirt · Medium</td><td class="muted-cell">Apparel</td><td class="num">—</td><td class="num">—</td><td class="num">£19.99</td><td><span class="pill ok">50% sell-through</span></td></tr>
             </tbody>
           </table>
-          <div style="text-align: center; margin-top: 14px; font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.06em;">Showing 12 of 156 · 102 Collectors · 71 Retail · 25 Limited Edition · 18 Core · 19 Apparel</div>
+          <div style="text-align: center; margin-top: 14px; font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.06em;">Catalog · 156 total · 102 Collectors · 71 Retail · 25 Limited · 18 Core · 19 Apparel · 8 Miniatures · 2 Tours</div>
         </div>
 
         <div class="tab-panel" data-tab-group="shopify" data-tab-id="inventory">
@@ -2875,65 +2904,135 @@
           </div>
         </div>
 
+        <div class="panel" style="margin-bottom: 24px; background: linear-gradient(135deg, var(--bg-3), var(--bg-2)); border-color: var(--green); border-left: 3px solid var(--green);">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <div style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; color: var(--green); text-transform: uppercase;">● live · shopify analytics</div>
+              <div style="font-family: var(--display); font-size: 16px; font-weight: 600; margin-top: 6px;">Real numbers, May 1-8 2026 · vs Apr 23-30 2026</div>
+              <div style="color: var(--muted); font-size: 12px; margin-top: 4px;">CAC and LTV calculations require Meta Ads + Google Ads spend data. Connect those APIs to see attribution.</div>
+            </div>
+            <span class="pill ok">● synced 28s ago</span>
+          </div>
+        </div>
+
         <div class="grid-4" style="margin-bottom: 28px;">
-          <div class="stat-mini"><div class="lbl">Revenue · 30d</div><div class="val">£127,432</div><div class="delta up">▲ 18.4%</div></div>
-          <div class="stat-mini"><div class="lbl">CAC · paid</div><div class="val">£42</div><div class="delta down">▼ £6</div></div>
-          <div class="stat-mini"><div class="lbl">LTV · 12m est.</div><div class="val">£186</div><div class="delta up">▲ £14</div></div>
-          <div class="stat-mini"><div class="lbl">LTV : CAC</div><div class="val">4.4×</div><div class="delta up">healthy</div></div>
+          <div class="stat-mini"><div class="lbl">Total sales · 8d</div><div class="val">£23,046<span style="font-size: 14px; color: var(--muted);">.21</span></div><div class="delta up">▲ 15%</div></div>
+          <div class="stat-mini"><div class="lbl">Net sales</div><div class="val">£18,900</div><div class="delta up">▲ on track</div></div>
+          <div class="stat-mini"><div class="lbl">Returning rate</div><div class="val">26.9%</div><div class="delta down">▼ 35%</div></div>
+          <div class="stat-mini"><div class="lbl">Sessions</div><div class="val">3,351</div><div class="delta up">▲ 13%</div></div>
         </div>
 
         <div class="grid-2" style="margin-bottom: 24px;">
           <div class="panel">
-            <h3>Channel attribution · last touch</h3>
-            <svg viewBox="0 0 600 240" width="100%" height="220">
+            <h3>Sales by channel · 8d <span class="pill ok" style="margin-left: 6px;">live</span></h3>
+            <svg viewBox="0 0 600 240" width="100%" height="200">
               <g font-family="Inter" font-size="11" fill="#F4F4F8">
                 <g transform="translate(20, 20)">
-                  <rect width="180" height="22" fill="#8B5CF6"/><text x="190" y="16">Direct · 36% · £45,876</text>
+                  <rect width="320" height="28" fill="#8B5CF6"/><text x="330" y="20">Point of Sale · £14,524 · ▲ 82%</text>
                 </g>
-                <g transform="translate(20, 56)">
-                  <rect width="120" height="22" fill="#3B82F6"/><text x="130" y="16">Meta · 24% · £30,584</text>
+                <g transform="translate(20, 64)">
+                  <rect width="180" height="28" fill="#3B82F6"/><text x="190" y="20">Online Store · £8,224 · ▼ 8%</text>
                 </g>
-                <g transform="translate(20, 92)">
-                  <rect width="90" height="22" fill="#10B981"/><text x="100" y="16">Google · 18% · £22,938</text>
-                </g>
-                <g transform="translate(20, 128)">
-                  <rect width="60" height="22" fill="#06B6D4"/><text x="70" y="16">Email · 12% · £15,292</text>
-                </g>
-                <g transform="translate(20, 164)">
-                  <rect width="50" height="22" fill="#9CA0B5"/><text x="60" y="16">Organic · 10% · £12,742</text>
-                </g>
-                <g transform="translate(20, 200)">
-                  <rect width="20" height="22" fill="#353852"/><text x="30" y="16">Other · &lt;1%</text>
+                <g transform="translate(20, 108)">
+                  <rect width="6" height="28" fill="#06B6D4"/><text x="16" y="20">Draft Orders · £248 · ▼ 92%</text>
                 </g>
               </g>
             </svg>
+            <div style="font-family: var(--mono); font-size: 10px; color: var(--muted); margin-top: 14px; letter-spacing: 0.06em;">Distillery POS is now 63% of revenue · driver: tour traffic + Father's Day pre-buy</div>
           </div>
           <div class="panel">
-            <h3>Cohort retention · 6-month</h3>
-            <table class="data-table" style="font-size: 11px;">
-              <thead><tr><th>Cohort</th><th>M0</th><th>M1</th><th>M2</th><th>M3</th><th>M4</th><th>M5</th></tr></thead>
+            <h3>Top sales by referrer · 8d <span class="pill ok" style="margin-left: 6px;">live</span></h3>
+            <table class="data-table" style="font-size: 12px;">
+              <thead><tr><th>Source</th><th>Sales</th><th>Δ</th></tr></thead>
               <tbody>
-                <tr><td class="muted-cell">Nov 2025</td><td class="num">100%</td><td class="num">28%</td><td class="num">18%</td><td class="num">14%</td><td class="num">12%</td><td class="num">10%</td></tr>
-                <tr><td class="muted-cell">Dec 2025</td><td class="num">100%</td><td class="num">32%</td><td class="num">22%</td><td class="num">16%</td><td class="num">14%</td><td class="num">—</td></tr>
-                <tr><td class="muted-cell">Jan 2026</td><td class="num">100%</td><td class="num">26%</td><td class="num">19%</td><td class="num">15%</td><td class="num">—</td><td class="num">—</td></tr>
-                <tr><td class="muted-cell">Feb 2026</td><td class="num">100%</td><td class="num">34%</td><td class="num">24%</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
-                <tr><td class="muted-cell">Mar 2026</td><td class="num">100%</td><td class="num">38%</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
-                <tr><td class="muted-cell">Apr 2026</td><td class="num">100%</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+                <tr><td class="muted-cell">Direct (no referrer)</td><td class="num">£19,800</td><td class="num" style="color: var(--green);">▲ 23%</td></tr>
+                <tr><td class="muted-cell">Google search</td><td class="num">£1,900</td><td class="num">▼ 0.4%</td></tr>
+                <tr><td class="muted-cell">Wolfburn (own domain)</td><td class="num">£734</td><td class="num" style="color: var(--green);">▲ 27%</td></tr>
+                <tr><td class="muted-cell">Facebook social</td><td class="num">£217</td><td class="num" style="color: var(--green);">▲ 17%</td></tr>
+                <tr><td class="muted-cell">Android (app)</td><td class="num">£198</td><td class="num" style="color: var(--red);">▼ 41%</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="grid-2" style="margin-bottom: 24px;">
+          <div class="panel">
+            <h3>Customer cohort retention <span class="pill ok" style="margin-left: 6px;">live</span></h3>
+            <table class="data-table" style="font-size: 11px;">
+              <thead><tr><th>Cohort</th><th>M1</th><th>M2</th><th>M3</th><th>M4</th><th>M5</th><th>M6</th></tr></thead>
+              <tbody>
+                <tr><td class="muted-cell">Sep 2025</td><td class="num">7.07%</td><td class="num">1.61%</td><td class="num">1.21%</td><td class="num">0.4%</td><td class="num">0.4%</td><td class="num">0.2%</td></tr>
+                <tr><td class="muted-cell">Oct 2025</td><td class="num">6.69%</td><td class="num">1.96%</td><td class="num">2.75%</td><td class="num">1.57%</td><td class="num">0.39%</td><td class="num">0.39%</td></tr>
+                <tr><td class="muted-cell">Nov 2025</td><td class="num">5.06%</td><td class="num">1.84%</td><td class="num">1.84%</td><td class="num">1.38%</td><td class="num">2.76%</td><td class="num">1.84%</td></tr>
+                <tr><td class="muted-cell">Dec 2025</td><td class="num">3.79%</td><td class="num">1.89%</td><td class="num">0%</td><td class="num">1.89%</td><td class="num">2.36%</td><td class="num">—</td></tr>
+                <tr><td class="muted-cell">Jan 2026</td><td class="num">4.21%</td><td class="num">0.52%</td><td class="num">0.52%</td><td class="num">2.63%</td><td class="num">—</td><td class="num">—</td></tr>
+                <tr><td class="muted-cell">Feb 2026</td><td class="num" style="color: var(--green);">9.47%</td><td class="num" style="color: var(--green);">5.26%</td><td class="num" style="color: var(--green);">7.36%</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+                <tr><td class="muted-cell">Mar 2026</td><td class="num">5.38%</td><td class="num">2.99%</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+                <tr><td class="muted-cell">Apr 2026</td><td class="num" style="color: var(--green);">8.12%</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+              </tbody>
+            </table>
+            <div style="font-family: var(--mono); font-size: 9px; color: var(--muted); margin-top: 10px; letter-spacing: 0.06em;">Feb 2026 cohort is the strongest by a margin · suggests campaign mix from that period worth re-running</div>
+          </div>
+          <div class="panel">
+            <h3>Sessions by location · top cities <span class="pill ok" style="margin-left: 6px;">live</span></h3>
+            <table class="data-table" style="font-size: 12px;">
+              <thead><tr><th>Location</th><th>Sessions</th><th>Δ</th></tr></thead>
+              <tbody>
+                <tr><td class="muted-cell">France · Île-de-France · Paris</td><td class="num">171</td><td class="num" style="color: var(--green);">▲ 4%</td></tr>
+                <tr><td class="muted-cell">UK · None</td><td class="num">142</td><td class="num" style="color: var(--green);">▲ 60%</td></tr>
+                <tr><td class="muted-cell">US · Iowa · Council Bluffs</td><td class="num">100</td><td class="num" style="color: var(--green);">▲ 15%</td></tr>
+                <tr><td class="muted-cell">UK · Scotland · Glasgow</td><td class="num">86</td><td class="num" style="color: var(--green);">▲ 30%</td></tr>
+                <tr><td class="muted-cell">UK · England · City of London</td><td class="num">77</td><td class="num" style="color: var(--green);">▲ 33%</td></tr>
+              </tbody>
+            </table>
+            <div style="font-family: var(--mono); font-size: 9px; color: var(--muted); margin-top: 10px; letter-spacing: 0.06em;">Paris is the #1 source city · stronger than any UK metro</div>
+          </div>
+        </div>
+
+        <div class="grid-3" style="margin-bottom: 24px;">
+          <div class="panel">
+            <h3>Sessions by device</h3>
+            <div style="display:flex; flex-direction:column; gap: 12px; margin-top: 14px;">
+              <div><div style="display:flex; justify-content:space-between; font-size:12px;"><span>Mobile</span><span class="num" style="font-family: var(--mono);">2,200 ▲ 20%</span></div><div style="height:6px; background: var(--bg-3); margin-top:6px;"><div style="width:75%; height:100%; background: var(--copper);"></div></div></div>
+              <div><div style="display:flex; justify-content:space-between; font-size:12px;"><span>Desktop</span><span class="num" style="font-family: var(--mono);">1,000 ▲ 1.6%</span></div><div style="height:6px; background: var(--bg-3); margin-top:6px;"><div style="width:34%; height:100%; background: var(--amber);"></div></div></div>
+              <div><div style="display:flex; justify-content:space-between; font-size:12px;"><span>Tablet</span><span class="num" style="font-family: var(--mono);">55 ▲ 10%</span></div><div style="height:6px; background: var(--bg-3); margin-top:6px;"><div style="width:2%; height:100%; background: var(--blue);"></div></div></div>
+            </div>
+          </div>
+          <div class="panel">
+            <h3>Conversion funnel</h3>
+            <div style="display:flex; flex-direction:column; gap: 14px; margin-top: 14px;">
+              <div style="display:flex; justify-content:space-between; padding-bottom: 10px; border-bottom: 1px solid var(--line);"><span style="color: var(--muted); font-size: 12px;">Sessions</span><span style="font-family: var(--mono);">3,351 · 100%</span></div>
+              <div style="display:flex; justify-content:space-between; padding-bottom: 10px; border-bottom: 1px solid var(--line);"><span style="color: var(--muted); font-size: 12px;">Added to cart</span><span style="font-family: var(--mono);">150 · 4.47%</span></div>
+              <div style="display:flex; justify-content:space-between; padding-bottom: 10px; border-bottom: 1px solid var(--line);"><span style="color: var(--muted); font-size: 12px;">Reached checkout</span><span style="font-family: var(--mono);">117 · 3.49%</span></div>
+              <div style="display:flex; justify-content:space-between;"><span style="color: var(--muted); font-size: 12px;">Completed</span><span style="font-family: var(--mono); color: var(--green);">67 · 1.99%</span></div>
+            </div>
+          </div>
+          <div class="panel">
+            <h3>Sessions by social referrer</h3>
+            <table class="data-table" style="font-size: 12px;">
+              <thead><tr><th>Source</th><th>Sessions</th><th>Δ</th></tr></thead>
+              <tbody>
+                <tr><td class="muted-cell">Facebook</td><td class="num">473</td><td class="num" style="color: var(--red);">▼ 9%</td></tr>
+                <tr><td class="muted-cell">Instagram</td><td class="num">53</td><td class="num" style="color: var(--green);">▲ 26%</td></tr>
+                <tr><td class="muted-cell">Twitter</td><td class="num">3</td><td class="num" style="color: var(--green);">▲ 50%</td></tr>
+                <tr><td class="muted-cell">LinkedIn</td><td class="num">0</td><td class="num">—</td></tr>
               </tbody>
             </table>
           </div>
         </div>
 
         <div class="panel">
-          <h3>Top customers · 90d</h3>
+          <h3>Top landing pages · sessions <span class="pill ok" style="margin-left: 6px;">live</span></h3>
           <table class="data-table">
-            <thead><tr><th>Customer</th><th>Orders</th><th>Total spent</th><th>AOV</th><th>Last order</th><th>Tag</th></tr></thead>
+            <thead><tr><th>Page</th><th>Type</th></tr></thead>
             <tbody>
-              <tr><td class="name">A. Jenkins · Cardiff</td><td class="num">8</td><td class="num">£1,420</td><td class="num">£178</td><td class="num">today</td><td><span class="pill ok">VIP</span></td></tr>
-              <tr><td class="name">M. Patel · London</td><td class="num">5</td><td class="num">£842</td><td class="num">£168</td><td class="num">today</td><td><span class="pill ok">VIP</span></td></tr>
-              <tr><td class="name">R. Yamamoto · Tokyo</td><td class="num">3</td><td class="num">£640</td><td class="num">£213</td><td class="num">2d ago</td><td><span class="pill info">Int'l VIP</span></td></tr>
-              <tr><td class="name">L. Thompson · Glasgow</td><td class="num">7</td><td class="num">£612</td><td class="num">£87</td><td class="num">today</td><td><span class="pill ok">repeat</span></td></tr>
-              <tr><td class="name">K. Mackenzie · Inverness</td><td class="num">4</td><td class="num">£428</td><td class="num">£107</td><td class="num">today</td><td><span class="pill ok">repeat</span></td></tr>
+              <tr><td class="name">/</td><td class="muted-cell">Homepage</td></tr>
+              <tr><td class="name">/pages/shop</td><td class="muted-cell">Custom Page</td></tr>
+              <tr><td class="name">/products/cask-strength-single-malt-scotch-whisky-58-2-vol-70cl</td><td class="muted-cell">Product</td></tr>
+              <tr><td class="name">/products/8-year-old-northland-46-vol-70cl</td><td class="muted-cell">Product</td></tr>
+              <tr><td class="name">/blogs/wolfburn-distillery-news/jim-murray-whisky-bible-2026...</td><td class="muted-cell">Blog Article</td></tr>
+              <tr><td class="name">/products/small-batch-416-single-malt-scotch-whisky-46-vol-70cl</td><td class="muted-cell">Product</td></tr>
+              <tr><td class="name">/pages/wolfburn-distillery-tours-and-shop</td><td class="muted-cell">Custom Page</td></tr>
             </tbody>
           </table>
         </div>
@@ -3225,19 +3324,20 @@
 
         <div class="tab-panel" data-tab-group="settings" data-tab-id="integrations">
           <div style="display: flex; gap: 14px; margin-bottom: 18px;">
-            <div class="stat-mini" style="flex:1;"><div class="lbl">Live connectors</div><div class="val" style="color: var(--green);">5</div></div>
-            <div class="stat-mini" style="flex:1;"><div class="lbl">Awaiting auth</div><div class="val" style="color: var(--amber);">7</div></div>
-            <div class="stat-mini" style="flex:1;"><div class="lbl">Total integrations</div><div class="val">12</div></div>
+            <div class="stat-mini" style="flex:1;"><div class="lbl">Live connectors</div><div class="val" style="color: var(--green);">6</div></div>
+            <div class="stat-mini" style="flex:1;"><div class="lbl">Awaiting auth</div><div class="val" style="color: var(--amber);">5</div></div>
+            <div class="stat-mini" style="flex:1;"><div class="lbl">Not yet wired</div><div class="val" style="color: var(--muted);">3</div></div>
+            <div class="stat-mini" style="flex:1;"><div class="lbl">Total integrations</div><div class="val">14</div></div>
           </div>
           <table class="data-table">
             <thead><tr><th>Integration</th><th>Status</th><th>Last sync</th><th>Used by</th><th></th></tr></thead>
             <tbody>
-              <tr><td class="name">Wolfburn Storefront · public</td><td><span class="pill ok">● live</span></td><td class="num">just now</td><td class="muted-cell">Forge · catalog only</td><td><button class="btn">Inspect</button></td></tr>
+              <tr><td class="name">Shopify Admin · live data</td><td><span class="pill ok">● live</span></td><td class="num">28s ago</td><td class="muted-cell">Ledger, Cellarman, Forge · revenue, orders, customers, inventory</td><td><button class="btn">Open admin ↗</button></td></tr>
+              <tr><td class="name">Wolfburn Storefront · public</td><td><span class="pill ok">● live</span></td><td class="num">just now</td><td class="muted-cell">Forge · catalog (156 SKUs)</td><td><button class="btn">Inspect</button></td></tr>
               <tr><td class="name">Privy</td><td><span class="pill ok">● live</span></td><td class="num">earlier today</td><td class="muted-cell">Forge · displays managed</td><td><button class="btn">Open dashboard ↗</button></td></tr>
-              <tr><td class="name">Shopify Admin (browser session)</td><td><span class="pill ok">● live</span></td><td class="num">earlier today</td><td class="muted-cell">Forge · theme + menu ops</td><td><button class="btn">Open admin ↗</button></td></tr>
-              <tr><td class="name">Google Analytics 4 (admin)</td><td><span class="pill ok">● live</span></td><td class="num">earlier today</td><td class="muted-cell">Sentinel · pixel verified</td><td><button class="btn">Open GA4 ↗</button></td></tr>
+              <tr><td class="name">Google Analytics 4 (pixel + admin)</td><td><span class="pill ok">● live</span></td><td class="num">earlier today</td><td class="muted-cell">Sentinel · pixel verified</td><td><button class="btn">Open GA4 ↗</button></td></tr>
               <tr><td class="name">Shogun Page Builder</td><td><span class="pill ok">● live</span></td><td class="num">earlier today</td><td class="muted-cell">Forge · Shop page ops</td><td><button class="btn">Open Shogun ↗</button></td></tr>
-              <tr><td class="name">Shopify Admin API (programmatic)</td><td><span class="pill warn">awaiting auth</span></td><td class="num">—</td><td class="muted-cell">unlocks live revenue, orders, inventory</td><td><button class="btn solid">Connect</button></td></tr>
+              <tr><td class="name">Wolfburn site · live monitoring</td><td><span class="pill ok">● live</span></td><td class="num">live</td><td class="muted-cell">Sentinel · uptime, hero, footer</td><td><button class="btn">Live URL ↗</button></td></tr>
               <tr><td class="name">Meta Marketing API</td><td><span class="pill warn">awaiting auth</span></td><td class="num">—</td><td class="muted-cell">unlocks Crucible</td><td><button class="btn solid">Connect</button></td></tr>
               <tr><td class="name">Google Ads API</td><td><span class="pill warn">awaiting auth</span></td><td class="num">—</td><td class="muted-cell">unlocks Anvil</td><td><button class="btn solid">Connect</button></td></tr>
               <tr><td class="name">GA4 Reporting API</td><td><span class="pill warn">awaiting auth</span></td><td class="num">—</td><td class="muted-cell">unlocks Lighthouse traffic numbers</td><td><button class="btn solid">Connect</button></td></tr>
