@@ -1,0 +1,1232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Wolfburn × World Cup 2026 · Campaign Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0F0B08;
+    --bg-2: #14100C;
+    --bg-3: #1A1410;
+    --bg-4: #221B14;
+    --line: #2A2118;
+    --line-2: #3A2E22;
+    --copper: #B5894C;
+    --amber: #D9A551;
+    --cream: #F5EDE0;
+    --muted: #9A8470;
+    --muted-2: #6B5A48;
+    --green: #7EA67B;
+    --serif: 'Playfair Display', Georgia, serif;
+    --body: 'Inter', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', 'SF Mono', monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--cream); font-family: var(--body); font-weight: 400; font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+  a { color: var(--copper); text-decoration: none; }
+  a:hover { color: var(--amber); }
+
+  .wrap { max-width: 920px; margin: 0 auto; padding: 80px 56px 120px 56px; }
+
+  /* COVER */
+  .cover {
+    min-height: 100vh;
+    padding: 80px 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--line);
+    background: radial-gradient(ellipse at top right, rgba(217,165,81,0.06) 0%, transparent 60%);
+  }
+  .cover-top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .crest {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    color: var(--cream);
+  }
+  .crest .accent { color: var(--copper); }
+  .crest-sub {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+  .classification {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: right;
+  }
+  .classification strong { color: var(--copper); display: block; margin-top: 4px; font-weight: 500; }
+  .cover-title {
+    margin: 120px 0;
+  }
+  .cover-eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 28px;
+  }
+  .cover-title h1 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 86px;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    color: var(--cream);
+  }
+  .cover-title h1 .italic {
+    font-style: italic;
+    color: var(--copper);
+    font-weight: 500;
+  }
+  .cover-sub {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-style: italic;
+    color: var(--muted);
+    margin-top: 36px;
+    max-width: 620px;
+    line-height: 1.5;
+  }
+  .cover-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 36px;
+    padding-top: 36px;
+    border-top: 1px solid var(--line);
+  }
+  .cover-meta .item .label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .cover-meta .item .value {
+    font-family: var(--serif);
+    font-size: 16px;
+    color: var(--cream);
+  }
+
+  /* SECTIONS */
+  .section { margin-bottom: 96px; }
+  .section-num {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 20px;
+  }
+  h2 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 40px;
+    letter-spacing: -0.015em;
+    color: var(--cream);
+    margin-bottom: 32px;
+    line-height: 1.15;
+  }
+  h2 .italic { font-style: italic; color: var(--copper); font-weight: 500; }
+  h3 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 22px;
+    color: var(--cream);
+    margin: 40px 0 16px 0;
+    letter-spacing: -0.005em;
+  }
+  h4 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 17px;
+    color: var(--copper);
+    margin: 32px 0 12px 0;
+  }
+  p { margin-bottom: 18px; color: var(--cream); }
+  p.lede {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-style: italic;
+    line-height: 1.55;
+    color: var(--muted);
+    margin-bottom: 32px;
+  }
+  p.lede em { color: var(--copper); font-style: normal; font-weight: 500; }
+  ul, ol { margin: 12px 0 24px 24px; }
+  li { margin-bottom: 10px; color: var(--cream); }
+  blockquote {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--cream);
+    border-left: 2px solid var(--copper);
+    padding: 12px 0 12px 28px;
+    margin: 32px 0;
+    max-width: 720px;
+  }
+  blockquote .cite {
+    display: block;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-style: normal;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 12px;
+  }
+
+  /* PILLS / CARDS */
+  .pill {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 100px;
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    border: 1px solid var(--line-2);
+    color: var(--copper);
+    margin-right: 6px;
+  }
+  .pill.amber { color: var(--amber); }
+  .pill.muted { color: var(--muted); }
+  .pill.cream { color: var(--cream); }
+
+  .card {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    padding: 36px;
+    margin-bottom: 28px;
+    border-radius: 4px;
+  }
+  .card-eyebrow {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 14px;
+  }
+
+  /* TOPIC BANK */
+  .topic {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--copper);
+    padding: 32px 36px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+  }
+  .topic-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 14px; gap: 24px; }
+  .topic-num {
+    font-family: var(--serif);
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--copper);
+    font-style: italic;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .topic-title {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--cream);
+    line-height: 1.25;
+    letter-spacing: -0.005em;
+  }
+  .topic-meta {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+  }
+  .topic-body { color: var(--cream); margin-top: 14px; }
+  .topic-body .hook {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--muted);
+    margin-bottom: 12px;
+    padding-left: 16px;
+    border-left: 1px solid var(--line-2);
+  }
+
+  /* TABLES */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 14px;
+  }
+  th {
+    text-align: left;
+    padding: 14px 16px;
+    background: var(--bg-3);
+    border-bottom: 1px solid var(--line);
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  td {
+    padding: 16px;
+    border-bottom: 1px solid var(--line);
+    color: var(--cream);
+    vertical-align: top;
+  }
+  td.num { font-family: var(--mono); font-size: 12px; color: var(--copper); }
+  td.muted { color: var(--muted); font-size: 13px; }
+  td .small { display: block; color: var(--muted); font-size: 12px; margin-top: 4px; }
+
+  /* GRID */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+
+  /* RULES */
+  .rule-list .rule {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 18px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .rule .tag {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding-top: 4px;
+  }
+  .rule .tag.do { color: var(--green); }
+  .rule .tag.dont { color: var(--amber); }
+  .rule .text { font-size: 14px; color: var(--cream); line-height: 1.6; }
+
+  /* SAMPLE COPY */
+  .sample {
+    background: var(--bg-2);
+    border: 1px solid var(--line-2);
+    padding: 56px 64px;
+    border-radius: 4px;
+    margin: 24px 0;
+  }
+  .sample-eyebrow {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 16px;
+  }
+  .sample-title {
+    font-family: var(--serif);
+    font-size: 38px;
+    font-weight: 600;
+    color: var(--cream);
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    margin-bottom: 12px;
+  }
+  .sample-deck {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-style: italic;
+    color: var(--muted);
+    margin-bottom: 36px;
+    line-height: 1.5;
+  }
+  .sample p { font-size: 16.5px; line-height: 1.75; color: var(--cream); margin-bottom: 18px; }
+  .sample p:first-of-type::first-letter {
+    font-family: var(--serif);
+    font-size: 64px;
+    font-weight: 600;
+    float: left;
+    line-height: 0.9;
+    margin: 6px 12px 0 0;
+    color: var(--copper);
+  }
+  .signoff {
+    margin-top: 36px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-family: var(--serif);
+    font-size: 17px;
+    font-style: italic;
+    color: var(--copper);
+  }
+
+  /* EMAIL MOCK */
+  .email-mock {
+    background: var(--cream);
+    color: var(--bg);
+    padding: 48px 56px;
+    border-radius: 4px;
+    margin: 24px 0;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  }
+  .email-mock .email-meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted-2);
+    margin-bottom: 28px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #d4c8b4;
+  }
+  .email-mock .email-meta .row { display: grid; grid-template-columns: 72px 1fr; gap: 10px; padding: 3px 0; }
+  .email-mock .email-meta .label { color: var(--muted-2); letter-spacing: 0.08em; text-transform: uppercase; font-size: 9px; padding-top: 2px; }
+  .email-mock .email-meta .value { color: var(--bg); }
+  .email-mock h1 {
+    font-family: var(--serif);
+    font-size: 42px;
+    font-weight: 600;
+    line-height: 1.1;
+    color: var(--bg);
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+  }
+  .email-mock h1 .italic { font-style: italic; color: var(--copper); }
+  .email-mock .deck {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-style: italic;
+    color: var(--muted-2);
+    margin-bottom: 36px;
+    line-height: 1.5;
+  }
+  .email-mock p { font-size: 15.5px; line-height: 1.7; color: var(--bg); margin-bottom: 16px; }
+  .email-mock .cta {
+    display: inline-block;
+    padding: 16px 36px;
+    background: var(--bg);
+    color: var(--cream);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin: 24px 0;
+    border-radius: 2px;
+  }
+  .email-mock .footer-line {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 18px;
+    color: var(--copper);
+    margin-top: 36px;
+    padding-top: 24px;
+    border-top: 1px solid #d4c8b4;
+  }
+
+  /* AUDIENCE STATS */
+  .stat-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin: 28px 0;
+  }
+  .stat {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    padding: 28px 24px;
+    border-radius: 4px;
+  }
+  .stat .label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .stat .value {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--cream);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .stat .sub {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 10px;
+  }
+
+  /* FOOTER */
+  .footer {
+    margin-top: 80px;
+    padding: 48px 56px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    color: var(--muted);
+  }
+  .footer .crest { justify-content: center; margin-bottom: 18px; }
+  .footer .meta {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted-2);
+  }
+
+  /* PRINT */
+  @page { size: A4; margin: 18mm; }
+  @media print {
+    body { font-size: 11pt; }
+    .wrap { padding: 0; max-width: none; }
+    .section { page-break-inside: avoid; margin-bottom: 36px; }
+    .topic { page-break-inside: avoid; }
+    .cover { min-height: auto; padding: 0 0 40px 0; }
+    .cover-title { margin: 60px 0; }
+    .cover-title h1 { font-size: 52px; }
+    h2 { font-size: 28px; }
+    .sample { padding: 28px; }
+    .email-mock { padding: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ========================== COVER ========================== -->
+<section class="cover">
+  <div class="cover-top">
+    <div>
+      <div class="crest">WOLFBURN<span class="accent">.</span></div>
+      <div class="crest-sub">Made in Thurso · Caithness · Scotland</div>
+    </div>
+    <div class="classification">
+      Internal &middot; campaign brief
+      <strong>Confidential</strong>
+      Rev 0.1 &middot; 27 May 2026
+    </div>
+  </div>
+
+  <div class="cover-title">
+    <div class="cover-eyebrow">CAMPAIGN BRIEF &middot; SUMMER 2026</div>
+    <h1>Mibbe aye, <span class="italic">mibbe no.</span></h1>
+    <div class="cover-sub">A Wolfburn dispatch for the football summer. A dram for whichever way it goes. Fortune favours the brave.</div>
+  </div>
+
+  <div class="cover-meta">
+    <div class="item">
+      <div class="label">Client</div>
+      <div class="value">Wolfburn Distillery</div>
+    </div>
+    <div class="item">
+      <div class="label">Agency</div>
+      <div class="value">Divergence</div>
+    </div>
+    <div class="item">
+      <div class="label">Window</div>
+      <div class="value">Jun &ndash; Jul 2026</div>
+    </div>
+    <div class="item">
+      <div class="label">Surfaces</div>
+      <div class="value">Email + Blog</div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <!-- ========================== 01 EXEC SUMMARY ========================== -->
+  <section class="section">
+    <div class="section-num">01 &middot; Executive summary</div>
+    <h2>The campaign, in <span class="italic">thirty seconds</span>.</h2>
+
+    <p class="lede">Scotland turns up to the World Cup. Wolfburn turns up alongside, with the right line for every result. The tagline already exists. We're just <em>walking into it</em>.</p>
+
+    <ul>
+      <li><strong>Anchor phrase &middot;</strong> <em>"Mibbe aye, mibbe no"</em> &mdash; the Tartan Army's national hedge. Dry, knowing, ours.</li>
+      <li><strong>Hook &middot;</strong> <em>Fortune favours the brave.</em> The existing Wolfburn tagline becomes the existing campaign tagline. No re-platform required.</li>
+      <li><strong>Voice &middot;</strong> editorial, dry-humoured, place-led, considered. Cheeky on the surface, quietly upper-class underneath. Never lad-mag, never breathless.</li>
+      <li><strong>Email &middot;</strong> one launch send announcing the new product (TBC by team), framed around the campaign.</li>
+      <li><strong>Blog &middot;</strong> 13 topics drafted across two arcs: a hero set that lives all summer, and a pre-match set that lands the day before each Scotland fixture.</li>
+      <li><strong>Audience &middot;</strong> older Scottish whisky drinkers (55-75), plus the Scotland-curious internationals already showing in the data (Paris leads on storefront sessions, followed by UK metros and Council Bluffs Iowa).</li>
+    </ul>
+  </section>
+
+  <!-- ========================== 02 STRATEGIC CONTEXT ========================== -->
+  <section class="section">
+    <div class="section-num">02 &middot; Strategic context</div>
+    <h2>Why the football summer <span class="italic">matters</span> for Wolfburn.</h2>
+
+    <p>The 2026 FIFA World Cup runs <strong>11 June to 19 July</strong> across the United States, Canada, and Mexico. Scotland are competing. For the team to confirm: group, fixtures, kick-off times in BST.</p>
+
+    <p>For Wolfburn, this is the single most concentrated marketing moment of the year. Three things make it specifically Wolfburn's window:</p>
+
+    <h4>1 &middot; The tagline pre-exists the campaign</h4>
+    <p>Fortune favours the brave is not a slogan we are inventing for the World Cup. It is the Wolfburn line. Scotland's whole footballing identity is the underdog turning up &mdash; bravery without certainty. The brand and the moment are already aligned. We are not selling a story, we are pointing at one.</p>
+
+    <h4>2 &middot; The audience is already there</h4>
+    <p>Storefront analytics show our most engaged geographies are Scottish (Glasgow, broader UK), French (Paris is the #1 source city), and US (Council Bluffs Iowa, City of London, suburban). Every one of these audiences will be watching the World Cup in some form. Email and blog go where they already are.</p>
+
+    <h4>3 &middot; POS strength tells us where the brand really lives</h4>
+    <p>Recent admin data has the distillery shop running at <strong>£14.5K vs £8.2K online</strong> over the May 1-8 period. People come to Caithness for the brand, not the other way around. The campaign's editorial register has to honour that &mdash; we are a destination distillery, not a discount-led DTC label. The blog is the closest thing to an in-person dram for people who can't make the journey north.</p>
+
+    <h3>What we are <em>not</em> doing</h3>
+    <ul>
+      <li>No World Cup branding, no FIFA marks. Avoids licensing exposure and frankly suits us better &mdash; we don't need their crest.</li>
+      <li>No price-led messaging, no "20% off match day" calls. Off-brand and unnecessary.</li>
+      <li>No bombast. No "Come on Scotland!" all-caps energy. Scotland's whole charm is the quiet shrug. We meet that.</li>
+      <li>No betting partnerships, no influencer plays, no patriotic shouting.</li>
+    </ul>
+  </section>
+
+  <!-- ========================== 03 AUDIENCE ========================== -->
+  <section class="section">
+    <div class="section-num">03 &middot; Audience truth</div>
+    <h2>Who we are <span class="italic">actually</span> writing for.</h2>
+
+    <p class="lede">Two readers, one tone. The Highland gentleman pouring at home, and the Parisian whisky enthusiast reading at the kitchen table. The campaign has to land for both. Our voice already does.</p>
+
+    <div class="stat-strip">
+      <div class="stat">
+        <div class="label">#1 source city</div>
+        <div class="value">Paris</div>
+        <div class="sub">171 sessions &middot; <strong style="color: var(--green);">▲ 4%</strong></div>
+      </div>
+      <div class="stat">
+        <div class="label">Top scottish city</div>
+        <div class="value">Glasgow</div>
+        <div class="sub">86 sessions &middot; <strong style="color: var(--green);">▲ 30%</strong></div>
+      </div>
+      <div class="stat">
+        <div class="label">Core audience</div>
+        <div class="value">55-75</div>
+        <div class="sub">whisky-literate &middot; heritage-led</div>
+      </div>
+      <div class="stat">
+        <div class="label">POS share</div>
+        <div class="value">63%</div>
+        <div class="sub">distillery shop dominant</div>
+      </div>
+    </div>
+
+    <h3>The Highland gentleman</h3>
+    <p>Older Scottish, late 50s through mid-70s. Reads with a glass already poured. Knows the difference between a 10 year old and a 12 year old without prompting. Doesn't need to be told that Scotland will probably lose &mdash; he's been Scottish all his life. Wants the writing to share his weather-worn humour, not deny it. Will forgive almost any wit and almost no cliche. Reads on a desktop, opens emails on a Sunday morning.</p>
+
+    <h3>The Scotland-curious international</h3>
+    <p>Late 30s to 60s. Parisian, German, Iowa transplant, London-Scot. Buys whisky as a personal pleasure, often as gifts. Has been to Edinburgh or wants to. Reads English fluently but appreciates being walked through the Scottish references &mdash; that's part of the charm of subscribing to a brand like ours. We give them a guide and a wink at the same time.</p>
+
+    <h3>What both readers want from this campaign</h3>
+    <ul>
+      <li>A reason to feel they're in on something. The blog is a "fellow traveller" register, not a sales register.</li>
+      <li>Permission to enjoy the football tournament without surrendering taste. Wolfburn is the way you stay civilised through a sporting summer.</li>
+      <li>A dram for the result &mdash; whatever it turns out to be.</li>
+    </ul>
+  </section>
+
+  <!-- ========================== 04 THE THESIS ========================== -->
+  <section class="section">
+    <div class="section-num">04 &middot; Anchor thesis</div>
+    <h2>"Mibbe aye, <span class="italic">mibbe no.</span>"</h2>
+
+    <p class="lede">If you ask a Tartan Army veteran on the morning of a fixture whether Scotland will win today, the most reliable answer you'll receive is some form of "aye, mibbe aye, mibbe no." It is the national hedge. It is also the perfect Wolfburn voice.</p>
+
+    <blockquote>
+      The phrase says: I am not naive enough to expect a win, but I am stubborn enough to show up anyway. I have a glass in my hand. I will not be moved.
+      <span class="cite">&mdash; the thesis of the campaign</span>
+    </blockquote>
+
+    <p>It threads three things at once, which is what makes it usable across the whole summer:</p>
+
+    <ul>
+      <li><strong>It is Scottish to the bone.</strong> No translation required for the audience that matters.</li>
+      <li><strong>It is dry without being mean.</strong> It mocks no one. It just hedges. That is the Wolfburn tonal sweet spot.</li>
+      <li><strong>It rhymes with the brand.</strong> "Fortune favours the brave" is the brave answer. "Mibbe aye, mibbe no" is the honest answer. Together they are the campaign in three words and four.</li>
+    </ul>
+
+    <p>The campaign uses "mibbe aye, mibbe no" as the running phrase &mdash; subject lines, opening sentences, sign-offs, the email subject for the launch &mdash; and "Fortune favours the brave" as the resolution. The reader earns the second by sitting through the first.</p>
+  </section>
+
+  <!-- ========================== 05 VOICE QUICK-REFERENCE ========================== -->
+  <section class="section">
+    <div class="section-num">05 &middot; Voice quick-reference</div>
+    <h2>How to write like <span class="italic">Wolfburn</span>.</h2>
+
+    <p>Pin this card next to the keyboard. Everything in this campaign should pass these checks before it ships. Voice (the brand QA agent) reviews every output against this list.</p>
+
+    <div class="rule-list">
+      <div class="rule"><div class="tag do">DO</div><div class="text">Speak with quiet confidence. The whisky has a 10-year-old, a 12-year-old, and a tagline. Nothing else needs to shout.</div></div>
+      <div class="rule"><div class="tag do">DO</div><div class="text">Lead with the place. Thurso, Caithness, the Pentland Firth. Place is the brand and the brand is the place.</div></div>
+      <div class="rule"><div class="tag do">DO</div><div class="text">Write the way an older Scot tells a story &mdash; sparingly, with timing, with a beat before the punchline.</div></div>
+      <div class="rule"><div class="tag do">DO</div><div class="text">Use "single malt Scotch whisky". Never "scotch". The American spelling is fine in dialogue or quotation, never in our voice.</div></div>
+      <div class="rule"><div class="tag do">DO</div><div class="text">Be cheeky about the moment. Be never cheeky about the audience. There is a line between dry humour and condescension; we stay on the correct side of it.</div></div>
+      <div class="rule"><div class="tag do">DO</div><div class="text">Earn the punchline. Set the scene first. The Scottish ear hears the joke coming and rewards the patience.</div></div>
+      <div class="rule"><div class="tag dont">DON'T</div><div class="text">Use the words <em>smooth</em>, <em>approachable</em>, <em>easy drinker</em>, <em>perfect for</em>. Cliche tasting-note vocabulary. They are immediate red flags to a literate audience.</div></div>
+      <div class="rule"><div class="tag dont">DON'T</div><div class="text">Lean on price, discount, sale, limited time, save. We don't compete on price and we won't pretend to.</div></div>
+      <div class="rule"><div class="tag dont">DON'T</div><div class="text">Use em-dashes in any draft (Wesley's preference). Use commas, colons, full stops, en-dashes. Mid-sentence pauses are achievable without them.</div></div>
+      <div class="rule"><div class="tag dont">DON'T</div><div class="text">Shout. No exclamation marks unless someone is genuinely surprised inside the writing. "Come on Scotland!" is for the pub, not for the dispatch.</div></div>
+      <div class="rule"><div class="tag dont">DON'T</div><div class="text">Punch down at any opponent country. We tease, we don't insult. Imagine the post being read by a Norwegian fan over their breakfast. Would they smile?</div></div>
+      <div class="rule"><div class="tag dont">DON'T</div><div class="text">Use FIFA, World Cup, or any competition marks unless legal has cleared them. "The summer tournament", "the championship", "the football summer" are our workarounds.</div></div>
+    </div>
+  </section>
+
+  <!-- ========================== 06 CAMPAIGN ARCHITECTURE ========================== -->
+  <section class="section">
+    <div class="section-num">06 &middot; Campaign architecture</div>
+    <h2>Two surfaces, <span class="italic">one tone</span>.</h2>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-eyebrow">SURFACE 01</div>
+        <h3 style="margin: 0 0 14px 0;">Email &middot; the launch</h3>
+        <p style="margin-bottom: 14px;">A single, well-considered send announcing the new product. Sets the campaign voice. Drives one click to the blog &middot; one click to the product page. No carousel, no rotation.</p>
+        <p style="font-size: 13px; color: var(--muted);">Subject line carries the anchor phrase. The body earns it. The CTA is the new product. Footer signs off "Fortune favours the brave."</p>
+      </div>
+      <div class="card">
+        <div class="card-eyebrow">SURFACE 02</div>
+        <h3 style="margin: 0 0 14px 0;">Blog &middot; the dispatch</h3>
+        <p style="margin-bottom: 14px;">Two arcs running in parallel. <strong>Hero set</strong> &mdash; 4 to 5 posts that hold up the summer's whole register. <strong>Match set</strong> &mdash; a short post the day before each Scotland fixture, gentle on the opponent, warm to the visitor.</p>
+        <p style="font-size: 13px; color: var(--muted);">Each blog post links to one product, never a discount. The link is a recommendation, not a hard sell.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================== 07 EMAIL ========================== -->
+  <section class="section">
+    <div class="section-num">07 &middot; Email campaign &middot; the launch</div>
+    <h2>One send. <span class="italic">One product.</span> One line they remember.</h2>
+
+    <p>The launch email is the front door for the whole summer. It does three jobs: announce the new product, set the tone for everything that follows, give the reader a phrase they will quote at someone before next weekend.</p>
+
+    <h3>Send mechanics</h3>
+    <table>
+      <tr><th style="width: 30%;">Element</th><th>Value</th></tr>
+      <tr><td>Send window</td><td>Tuesday or Wednesday morning, two weeks before Scotland's opening fixture. Local time UK.<span class="small">Klaviyo. Segment: full active list, excluding trade accounts.</span></td></tr>
+      <tr><td>Subject line</td><td><strong>"Mibbe aye, mibbe no."</strong><span class="small">Tests well as a stand-alone. Curiosity-led. Almost no other brand will send this.</span></td></tr>
+      <tr><td>Pre-header</td><td>A dram for whatever happens this summer.</td></tr>
+      <tr><td>From name</td><td>Wolfburn Distillery</td></tr>
+      <tr><td>From address</td><td>news@wolfburn.com</td></tr>
+      <tr><td>CTA primary</td><td>Discover [PRODUCT NAME] &middot; deep link to PDP</td></tr>
+      <tr><td>CTA secondary</td><td>Read the dispatch &middot; deep link to hero blog post</td></tr>
+      <tr><td>Footer signature</td><td>Fortune favours the brave.</td></tr>
+    </table>
+
+    <h3>The draft (team to swap [PRODUCT NAME])</h3>
+
+    <div class="email-mock">
+      <div class="email-meta">
+        <div class="row"><div class="label">From</div><div class="value">Wolfburn Distillery &middot; news@wolfburn.com</div></div>
+        <div class="row"><div class="label">To</div><div class="value">{{ first_name }}</div></div>
+        <div class="row"><div class="label">Subject</div><div class="value">Mibbe aye, mibbe no.</div></div>
+      </div>
+      <h1>Mibbe aye, <span class="italic">mibbe no.</span></h1>
+      <div class="deck">A dram for whichever way the summer goes.</div>
+      <p>If you ask a Scot in Thurso this morning whether the team will win their group, you will receive a small smile and a sentence that begins "aye, well&hellip;". We are an optimistic country in private and a guarded one in public, and the football tournament that begins next month is going to test that arrangement.</p>
+      <p>So we have made <strong>[PRODUCT NAME]</strong>. A single malt Scotch whisky for whichever way it goes. Pour it when the team turns up. Pour it when the team doesn't. The bottle does not mind. The bottle has been here longer than the result.</p>
+      <p>We have set aside the first allocation for our newsletter readers. The full release follows next week.</p>
+      <p style="text-align: center;"><a href="#" class="cta">Discover [PRODUCT NAME]</a></p>
+      <p>The first dispatch of the summer follows in a few days. We are calling the series <em>Mibbe aye, mibbe no</em>. It is what we will be drinking to, writing about, and quietly hoping for, between now and July.</p>
+      <p>Until then. <a href="#" style="color: var(--copper);">Read the dispatch &rarr;</a></p>
+      <div class="footer-line">Fortune favours the brave.</div>
+    </div>
+
+    <p style="margin-top: 28px; color: var(--muted); font-size: 14px;">Email reads in a glance, scans cleanly, lands one product, sets up the blog series, sends the reader off with the tagline. No price. No urgency. No exclamation marks. The whole campaign rises and falls on whether this email feels like Wolfburn. It does.</p>
+  </section>
+
+  <!-- ========================== 08 BLOG TOPIC BANK ========================== -->
+  <section class="section">
+    <div class="section-num">08 &middot; Blog topic bank</div>
+    <h2>Thirteen <span class="italic">dispatches</span> for the summer.</h2>
+
+    <p class="lede">Two arcs. <em>Hero set</em> &mdash; five long-form pieces that hold the summer up. <em>Match set</em> &mdash; eight shorter dispatches keyed to fixtures and tournament beats. All in the same voice. All sign-off "Fortune favours the brave."</p>
+
+    <h3 style="margin-top: 36px;">Hero set &middot; long-form (5)</h3>
+
+    <div class="topic">
+      <div class="topic-head">
+        <div class="topic-num">01</div>
+        <div style="flex: 1;">
+          <div class="topic-title">Mibbe aye, mibbe no. A short defence of the Scottish shrug.</div>
+        </div>
+      </div>
+      <div class="topic-body">
+        <div class="hook">Opening line: "Ask a man in Thurso whether the team will win on Saturday and you will receive a sentence that takes him three minutes to finish."</div>
+        <p>The thesis piece. Explains the phrase to outsiders and toasts it for insiders. Sits at the top of the campaign hub. Links to the new product as the dram the hedge deserves. Tone: editorial, generous, dry.</p>
+      </div>
+      <div class="topic-meta">
+        <span class="pill amber">HERO</span><span class="pill">1,200 words</span><span class="pill muted">Publishes week 1 &middot; with email send</span><span class="pill">Cornerstone for the campaign</span>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-head">
+        <div class="topic-num">02</div>
+        <div style="flex: 1;">
+          <div class="topic-title">Fortune Favours the Brave. A field guide.</div>
+        </div>
+      </div>
+      <div class="topic-body">
+        <div class="hook">Opening line: "Bravery, in Scotland, is not the same word it is anywhere else."</div>
+        <p>A serious-but-warm essay on what the tagline actually means to a Highland distillery. Bravery as patience, not bombast. Ties the brand to the moment without lifting the FIFA crest. Heritage register, no jokes for the first three paragraphs.</p>
+      </div>
+      <div class="topic-meta">
+        <span class="pill amber">HERO</span><span class="pill">1,000 words</span><span class="pill muted">Publishes week 2</span><span class="pill">Links to 12 Year Old</span>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-head">
+        <div class="topic-num">03</div>
+        <div style="flex: 1;">
+          <div class="topic-title">The match-day dram. A handbook.</div>
+        </div>
+      </div>
+      <div class="topic-body">
+        <div class="hook">Opening line: "There is a way to drink whisky during international football. Most people get it wrong."</div>
+        <p>Service piece with a wink. Walks the reader through what to pour at the various stages of a Scotland fixture, including the period after a 1-0 lead in which a small dram is the only sensible course of action. Charming, useful, very sharable. Photographs of Glencairn glasses encouraged.</p>
+      </div>
+      <div class="topic-meta">
+        <span class="pill amber">HERO</span><span class="pill">900 words</span><span class="pill muted">Publishes week 2 or 3</span><span class="pill">Links to Northland + Small Batch 416</span>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-head">
+        <div class="topic-num">04</div>
+        <div style="flex: 1;">
+          <div class="topic-title">The Tartan Army's travel guide. Where to find a proper dram in the host cities.</div>
+        </div>
+      </div>
+      <div class="topic-body">
+        <div class="hook">Opening line: "Most of the Tartan Army is not in Caithness this June. We thought we would help."</div>
+        <p>For supporters travelling to North American host cities, a curated short list of bars and bottle shops where they can find a proper Scotch. Practical. Useful. Quietly hilarious if executed with the right comparative notes ("Avoid anywhere that calls it 'scotch'"). For the team to confirm the cities once fixtures are known.</p>
+      </div>
+      <div class="topic-meta">
+        <span class="pill amber">HERO</span><span class="pill">900 words</span><span class="pill muted">Publishes week 1</span><span class="pill">Travel + service angle</span>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-head">
+        <div class="topic-num">05</div>
+        <div style="flex: 1;">
+          <div class="topic-title">Caithness after midnight. On watching football from the far north.</div>
+        </div>
+      </div>
+      <div class="topic-body">
+        <div class="hook">Opening line: "Time zones are a small price to pay for a tournament we have not been to in nearly thirty years."</div>
+        <p>Mood piece. The romance of staying up late or rising early to watch matches across the Atlantic. The dram as a companion through the time-shift. Beautifully shot if we have the production. Atmospheric, melancholic, ends warmly.</p>
+      </div>
+      <div class="topic-meta">
+        <span class="pill amber">HERO</span><span class="pill">800 words</span><span class="pill muted">Publishes mid-tournament</span><span class="pill">Editorial &middot; brand</span>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 48px;">Match set &middot; pre-fixture (8)</h3>
+
+    <div class="topic">
+      <div class="topic-head">
+        <div class="topic-num">06</div>
+        <div style="flex: 1;">
+          <div class="topic-title">Welcome to Caithness. A pre-match dispatch for [OPPONENT 1].</div>
+        </div>
+      </div>
+      <div class="topic-body">
+        <div class="hook">Opening line template: "Tomorrow we play [opponent]. We have prepared the whisky. You bring the optimism."</div>
+        <p>One per Scotland fixture. Always short (350-500 words). Always warm to the opposing fans. Recommends a Wolfburn pour suited to the moment. Always ends with the tagline. Template-driven so the team can produce them quickly the day before each match.</p>
+      </div>
+      <div class="topic-meta">
+        <span class="pill">MATCH</span><span class="pill">400 words</span><span class="pill muted">Publishes day-before each fixture</span><span class="pill amber">×3 minimum (group stage)</span>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-head">
+        <div class="topic-num">07</div>
+        <div style="flex: 1;">
+          <div class="topic-title">A quiet word with the manager.</div>
+        </div>
+      </div>
+      <div class="topic-body">
+        <div class="hook">Opening line: "Dear Mr [Manager's surname], we have not been introduced, and we are not about to start."</div>
+        <p>Open-letter format. Imaginary advice from a Highland distillery to the Scotland manager. Gentle, charming, tongue firmly in cheek. Publishes the day Scotland's squad is announced (or two days before opening fixture if the squad is already known). Verifiable risk: the manager actually responds. Manageable.</p>
+      </div>
+      <div class="topic-meta">
+        <span class="pill">MATCH</span><span class="pill">600 words</span><span class="pill muted">Publishes squad day</span><span class="pill">High shareability</span>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-head">
+        <div class="topic-num">08</div>
+        <div style="flex: 1;">
+          <div class="topic-title">What to pour at full time. A protocol.</div>
+        </div>
+      </div>
+      <div class="topic-body">
+        <div class="hook">Opening line: "Whether we win, lose, or draw is mathematically half the question. What we pour after is the other half, and rather more under our control."</div>
+        <p>Three pours. One for jubilation, one for ruefulness, one for a draw. The draw pour is the most considered of the three. Light service piece, very shareable, prints up neatly as a card if the team wants a print run.</p>
+      </div>
+      <div class="topic-meta">
+        <span class="pill">MATCH</span><span class="pill">500 words</span><span class="pill muted">Publishes after each fixture</span><span class="pill">Repeating format</span>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-head">
+        <div class="topic-num">09</div>
+        <div style="flex: 1;">
+          <div class="topic-title">A glossary of Scottish football, for the curious.</div>
+        </div>
+      </div>
+      <div class="topic-body">
+        <div class="hook">Opening line: "If you have come to Wolfburn from Paris or from Council Bluffs, welcome. Here is the dictionary we wish someone had given us."</div>
+        <p>Specifically for the international audience. Translates "Tartan Army", "the Hampden roar", "scunnered", "mibbe aye, mibbe no", "minted", "fashed" into plain English. Surprises the Scots by being affectionate rather than reductive. Surprises the internationals by being usable. Heavy SEO upside: ranks for "Scottish football phrases", "Tartan Army meaning", etc.</p>
+      </div>
+      <div class="topic-meta">
+        <span class="pill">MATCH</span><span class="pill">700 words</span><span class="pill muted">Publishes week 1</span><span class="pill amber">SEO + Paris audience</span>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-head">
+        <div class="topic-num">10</div>
+        <div style="flex: 1;">
+          <div class="topic-title">Why we don't toast before kick-off.</div>
+        </div>
+      </div>
+      <div class="topic-body">
+        <div class="hook">Opening line: "Superstition is a thing every football nation has. Most of them deny it. We do not."</div>
+        <p>Short, charming, very Scottish piece on the rituals around watching the team. The toast that waits until after. The chair that nobody else may sit in. The way nobody utters "we" until the third goal is in. Folkloric, warm, fun.</p>
+      </div>
+      <div class="topic-meta">
+        <span class="pill">MATCH</span><span class="pill">450 words</span><span class="pill muted">Publishes match-eve, before first fixture</span><span class="pill">Folk register</span>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-head">
+        <div class="topic-num">11</div>
+        <div style="flex: 1;">
+          <div class="topic-title">How to read a Scottish crowd. A guide for the visiting fan.</div>
+        </div>
+      </div>
+      <div class="topic-body">
+        <div class="hook">Opening line: "There are at least four kinds of silence in a Scottish stadium. None of them mean nothing."</div>
+        <p>Cultural translation piece. What the various noises and absences of noises actually mean. A bit of history. Aimed at the international audience, written so the home audience nods along. The Paris reader's favourite.</p>
+      </div>
+      <div class="topic-meta">
+        <span class="pill">MATCH</span><span class="pill">800 words</span><span class="pill muted">Publishes week 2 or 3</span><span class="pill">International appeal</span>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-head">
+        <div class="topic-num">12</div>
+        <div style="flex: 1;">
+          <div class="topic-title">A dram for Hampden in the rain.</div>
+        </div>
+      </div>
+      <div class="topic-body">
+        <div class="hook">Opening line: "We have never quite worked out whether the rain helps us or hurts us. It depends, mostly, on who is wearing the studs."</div>
+        <p>Heritage piece tied to weather. Talks about playing in Scottish conditions and how that prepares (or doesn't) the squad. Wolfburn is from a place where the weather is the whole story. The piece earns the connection. Lovely if illustrated with a Caithness coastal shot.</p>
+      </div>
+      <div class="topic-meta">
+        <span class="pill">MATCH</span><span class="pill">600 words</span><span class="pill muted">Publishes mid-group stage</span><span class="pill">Mood piece</span>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-head">
+        <div class="topic-num">13</div>
+        <div style="flex: 1;">
+          <div class="topic-title">If we go through. If we don't. A dispatch for either.</div>
+        </div>
+      </div>
+      <div class="topic-body">
+        <div class="hook">Opening line: "We have written two of these, just in case."</div>
+        <p>The cleverest piece in the set. Acknowledges openly that the team has prepared two posts for the day Scotland's group stage ends &mdash; one for if we go through, one for if we don't. Then publishes the version the result calls for. Honest, warm, deeply Scottish. The "we wrote both" framing is itself the joke. Self-aware bravery, exactly on-brand.</p>
+      </div>
+      <div class="topic-meta">
+        <span class="pill amber">MATCH &middot; SIGNATURE</span><span class="pill">700 words</span><span class="pill muted">Publishes day after Scotland's final group match</span><span class="pill">Set piece</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================== 09 CALENDAR TEMPLATE ========================== -->
+  <section class="section">
+    <div class="section-num">09 &middot; Match-day calendar &middot; template</div>
+    <h2>Publish schedule. <span class="italic">The team to plug fixtures in.</span></h2>
+
+    <p>The grid below assumes a group-stage of three fixtures. Knockout publishing rolls forward if Scotland advance. <strong>The fixture column is intentionally blank</strong> &mdash; the team to confirm dates and opponents and we wire them in.</p>
+
+    <table>
+      <thead>
+        <tr><th style="width:14%;">Window</th><th style="width:24%;">Fixture (team to confirm)</th><th>Publish</th><th style="width:18%;">Format</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="num">T-14d</td>
+          <td class="muted">&mdash;</td>
+          <td>Email send &middot; "Mibbe aye, mibbe no." product launch</td>
+          <td class="muted">Email</td>
+        </tr>
+        <tr>
+          <td class="num">T-10d</td>
+          <td class="muted">&mdash;</td>
+          <td>#01 Mibbe aye, mibbe no. The campaign cornerstone.</td>
+          <td class="muted">Hero blog</td>
+        </tr>
+        <tr>
+          <td class="num">T-7d</td>
+          <td class="muted">&mdash;</td>
+          <td>#09 A glossary of Scottish football, for the curious.</td>
+          <td class="muted">Match blog</td>
+        </tr>
+        <tr>
+          <td class="num">T-4d</td>
+          <td class="muted">&mdash;</td>
+          <td>#04 Tartan Army's travel guide.</td>
+          <td class="muted">Hero blog</td>
+        </tr>
+        <tr>
+          <td class="num">T-2d</td>
+          <td class="muted">Squad announcement day</td>
+          <td>#07 A quiet word with the manager.</td>
+          <td class="muted">Match blog</td>
+        </tr>
+        <tr>
+          <td class="num">T-1d</td>
+          <td class="muted">Day before fixture 1</td>
+          <td>#06 Welcome to Caithness. Dispatch for [opp 1]. + #10 Why we don't toast before kick-off.</td>
+          <td class="muted">Match blog</td>
+        </tr>
+        <tr>
+          <td class="num">T+0</td>
+          <td class="muted">Fixture 1</td>
+          <td>Match day. No blog publish, the day belongs to the football.</td>
+          <td class="muted">Silence</td>
+        </tr>
+        <tr>
+          <td class="num">T+1</td>
+          <td class="muted">Day after fixture 1</td>
+          <td>#08 What to pour at full time. Tailored to the result.</td>
+          <td class="muted">Match blog</td>
+        </tr>
+        <tr>
+          <td class="num">T+3</td>
+          <td class="muted">Build-up to fixture 2</td>
+          <td>#03 The match-day dram. A handbook.</td>
+          <td class="muted">Hero blog</td>
+        </tr>
+        <tr>
+          <td class="num">T+5</td>
+          <td class="muted">Day before fixture 2</td>
+          <td>#06 Welcome to Caithness. Dispatch for [opp 2].</td>
+          <td class="muted">Match blog</td>
+        </tr>
+        <tr>
+          <td class="num">T+6</td>
+          <td class="muted">Fixture 2</td>
+          <td>Silence.</td>
+          <td class="muted">&mdash;</td>
+        </tr>
+        <tr>
+          <td class="num">T+7</td>
+          <td class="muted">Day after fixture 2</td>
+          <td>#08 What to pour at full time. Tailored to the result.</td>
+          <td class="muted">Match blog</td>
+        </tr>
+        <tr>
+          <td class="num">T+9</td>
+          <td class="muted">Build-up to fixture 3</td>
+          <td>#05 Caithness after midnight.</td>
+          <td class="muted">Hero blog</td>
+        </tr>
+        <tr>
+          <td class="num">T+11</td>
+          <td class="muted">Day before fixture 3</td>
+          <td>#06 Welcome to Caithness. Dispatch for [opp 3]. + #12 A dram for Hampden in the rain.</td>
+          <td class="muted">Match blog</td>
+        </tr>
+        <tr>
+          <td class="num">T+12</td>
+          <td class="muted">Fixture 3</td>
+          <td>Silence.</td>
+          <td class="muted">&mdash;</td>
+        </tr>
+        <tr>
+          <td class="num">T+13</td>
+          <td class="muted">Day after fixture 3 &middot; group ends</td>
+          <td>#13 If we go through. If we don't. A dispatch for either. + #02 Fortune Favours the Brave. A field guide.</td>
+          <td class="muted">Signature + Hero</td>
+        </tr>
+        <tr>
+          <td class="num">T+14+</td>
+          <td class="muted">Knockouts (if applicable)</td>
+          <td>#06 dispatches roll forward. #08 protocol roll forward. Extra hero piece written live if Scotland advance.</td>
+          <td class="muted">Live</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ========================== 10 SAMPLE COPY ========================== -->
+  <section class="section">
+    <div class="section-num">10 &middot; Sample copy</div>
+    <h2>One dispatch, <span class="italic">in full</span>, to set the tone.</h2>
+
+    <p>If the rest of the brief is convincing on paper, this is what it sounds like in practice. The cornerstone piece, drafted in full. Voice, length, sign-off, all on-pattern. The team can use this as the template for tone calibration on every other post.</p>
+
+    <div class="sample">
+      <div class="sample-eyebrow">Dispatch &middot; 01</div>
+      <h2 class="sample-title" style="margin-top: 0;">Mibbe aye, <span style="font-style: italic; color: var(--copper);">mibbe no.</span></h2>
+      <div class="sample-deck">A short defence of the Scottish shrug, ahead of a long summer.</div>
+      <p>Ask a man in Thurso whether the team will win on Saturday and you will receive a sentence that takes him three minutes to finish. He will begin with "aye", he will not end with "aye", and there will be at least one stretch of silence in which you are invited to look out of the window and admire the weather. This is not evasion. This is, in fact, the most precise answer in the world, delivered in the only language that knows how to say it.</p>
+      <p>The phrase, eventually, will be some version of "mibbe aye, mibbe no." It is the national hedge. It is also, on closer inspection, the national religion. Hope, tempered by experience. Optimism, kept on the shelf with the good glasses. Scotland turning up to a football tournament with hand luggage and low expectations is not pessimism. It is good manners.</p>
+      <p>You can drink whisky to that. You can drink whisky to a great many things, but you can drink whisky to that particularly well. The bottle has been through worse than a back four. The bottle has seen a Pentland Firth winter and not flinched. If anyone in this house is going to lose composure during a penalty shoot-out, it will not be the whisky.</p>
+      <p>So this summer, we are putting out a series of short dispatches under the title <em>Mibbe aye, mibbe no</em>. Some of them will be about the football, in the sense that the football is the thing that everyone in Scotland is currently pretending not to be too excited about. Some of them will be about Caithness, which is where the whisky is from and where some of us are watching the games. Some of them will be about whatever a Scottish summer does to a person who has lived through enough of them to know better than to expect anything.</p>
+      <p>The first thing we are sending out alongside the dispatches is a new single malt Scotch whisky we have made for the occasion. We will tell you about it properly in a separate note. The short version is that it is a dram for whichever way the results go, which is to say, a dram for the most likely outcome. It is bottled in measured quantities. It does not require a result to justify it.</p>
+      <p>We have not put a football crest anywhere on the bottle. We did not need to. A bottle of Wolfburn already carries the only crest that earns its place &mdash; "fortune favours the brave", which is what we think when we watch Scotland line up against teams who do this for a living, and what we think when we ourselves consider whether the year ahead will be kind to a small distillery on the very top edge of the country.</p>
+      <p>If it is kind, mibbe we will say so. If it is not, mibbe we will still say so, with the right kind of pause beforehand. Either way, the pour is the same.</p>
+      <p>The dispatches will be brief. The whisky is not. We will be here all summer.</p>
+      <div class="signoff">Fortune favours the brave.</div>
+    </div>
+
+    <p style="margin-top: 24px; color: var(--muted); font-size: 14px;">Total: 524 words. Light editing welcome. The first sentence sets a register the team should hold across every other post. The sign-off line is a contract: every dispatch ends this way, no exceptions.</p>
+  </section>
+
+  <!-- ========================== 11 PRODUCTION ========================== -->
+  <section class="section">
+    <div class="section-num">11 &middot; Production schedule</div>
+    <h2>Who does <span class="italic">what</span>, when.</h2>
+
+    <table>
+      <thead>
+        <tr><th>Owner</th><th>Deliverable</th><th>Deadline</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Wolfburn team</strong></td><td>Confirm new product name + launch SKU + product photography</td><td class="num">T-21d</td></tr>
+        <tr><td><strong>Wolfburn team</strong></td><td>Confirm Scotland fixture dates, opponents, kick-off times</td><td class="num">T-21d</td></tr>
+        <tr><td><strong>Divergence / Quill</strong></td><td>First-draft email + dispatch 01 (cornerstone)</td><td class="num">T-14d</td></tr>
+        <tr><td><strong>Divergence / Voice</strong></td><td>Brand QA on email + dispatch 01</td><td class="num">T-12d</td></tr>
+        <tr><td><strong>Wolfburn team</strong></td><td>Sign-off email + dispatch 01</td><td class="num">T-10d</td></tr>
+        <tr><td><strong>Divergence / Composer</strong></td><td>Email build in Klaviyo + scheduled send</td><td class="num">T-8d</td></tr>
+        <tr><td><strong>Divergence / Scribe</strong></td><td>Hero set #02-#05 written + filed for sign-off</td><td class="num">T-7d</td></tr>
+        <tr><td><strong>Divergence / Scribe</strong></td><td>Match set template (#06) finalised so per-match dispatches can ship in &lt; 2 hours each</td><td class="num">T-5d</td></tr>
+        <tr><td><strong>Divergence / Scribe</strong></td><td>Match set dispatches &mdash; ship rolling, day before each fixture</td><td class="num">Live</td></tr>
+        <tr><td><strong>Divergence / Voice</strong></td><td>Same-day QA on every post before publish</td><td class="num">Live</td></tr>
+        <tr><td><strong>Divergence / Lighthouse</strong></td><td>Weekly performance brief &middot; email opens, blog reads, attributed product sales</td><td class="num">Weekly</td></tr>
+      </tbody>
+    </table>
+
+    <p style="margin-top: 24px;">Two safety nets built in: the match-set dispatch #06 is template-driven so a new fixture-day post takes ~90 minutes from kick-off-time confirmed to live. Dispatch #13 is written in two versions so the team is never scrambling on the night Scotland's group ends.</p>
+  </section>
+
+  <!-- ========================== 12 OPEN QUESTIONS ========================== -->
+  <section class="section">
+    <div class="section-num">12 &middot; Open questions for the team</div>
+    <h2>What we need from <span class="italic">Wolfburn</span> to lock the calendar.</h2>
+
+    <ol>
+      <li><strong>The new product.</strong> Name, SKU, price point, photography, story. The email is a template until those land.</li>
+      <li><strong>Allocation.</strong> Limited release or rolling? Newsletter-only first-allocation or general?</li>
+      <li><strong>Fixtures.</strong> Confirmation of group-stage dates and opponents. As soon as the draw is final.</li>
+      <li><strong>Trade considerations.</strong> Any retailers we should pre-brief before the email goes live? Any markets that need a separate variant?</li>
+      <li><strong>Visual treatment.</strong> Do we have unique photography for the campaign, or do we lean on the existing product imagery plus newly generated Higgsfield UGC?</li>
+      <li><strong>Print.</strong> Worth printing the "What to pour at full time" protocol as a small card to send with first orders during the tournament window? Production lead 3 weeks.</li>
+      <li><strong>Email volume.</strong> Confirmed single-send launch, or do we add a second send mid-tournament with a roundup of the dispatches?</li>
+      <li><strong>Tone latitude.</strong> Anyone at Wolfburn who needs to sign off "mibbe aye, mibbe no" as a subject line? We think it is the strongest line in the campaign and we'd like it locked early.</li>
+    </ol>
+  </section>
+
+  <!-- ========================== 13 RESEARCH NOTES ========================== -->
+  <section class="section">
+    <div class="section-num">13 &middot; Research notes &middot; sources for the writer</div>
+    <h2>Where to <span class="italic">dig deeper</span>.</h2>
+
+    <p>For the writer producing the posts. Tone calibration, fact-checking, vocabulary, and atmosphere. Not citations &mdash; references.</p>
+
+    <h3>Scottish dry humour, in print</h3>
+    <ul>
+      <li>Ian Rankin, the Rebus novels. The way an Edinburgh detective says exactly what he means and the page somehow gets it wrong.</li>
+      <li>James Robertson, <em>The Testament of Gideon Mack</em>. Highland register at full strength.</li>
+      <li>Anything by Janice Galloway, for sentence rhythm.</li>
+      <li>Limmy's <em>Daft Wee Stories</em>, for permission to be brief.</li>
+    </ul>
+
+    <h3>Tartan Army register</h3>
+    <ul>
+      <li>Archive footage of the 1998 World Cup Scotland coverage. The way the commentary held composure through the heartbreak. That is the tonal target.</li>
+      <li>The Tartan Army Magazine archives, for actual fan vocabulary in print.</li>
+      <li>Any of Stuart Cosgrove's football writing.</li>
+    </ul>
+
+    <h3>Whisky writing we can stand behind</h3>
+    <ul>
+      <li>Iain Banks, <em>Raw Spirit</em>. The reference text for tonal mood when writing about Scotch.</li>
+      <li>Dave Broom, anything. For accuracy without pretension.</li>
+      <li>The Spectator's wine column. For how to be cheeky without surrendering taste.</li>
+    </ul>
+
+    <h3>Caithness, place</h3>
+    <ul>
+      <li>Neil Gunn, <em>Highland River</em>. The water source of all of this.</li>
+      <li>Wolfburn's existing distillery diary entries, for in-house tonal continuity.</li>
+      <li>The North Coast 500 marketing materials, only as a counter-example. Wolfburn does not need to sell the road.</li>
+    </ul>
+
+    <h3>Vocabulary worth knowing for the international audience</h3>
+    <p style="font-size: 14px;">
+      <em>fashed</em> (annoyed) &middot; <em>scunnered</em> (fed up, in a particularly Scottish way) &middot; <em>minted</em> (well-funded) &middot; <em>peely-wally</em> (pale) &middot; <em>Hampden roar</em> (the noise the national stadium makes when Scotland score) &middot; <em>thrawn</em> (stubborn, but with a hint of dignity) &middot; <em>blether</em> (a long chat) &middot; <em>haud yer wheesht</em> (be quiet) &middot; <em>nae bother</em> (no problem, often more sincere than it sounds) &middot; <em>aye right</em> (no, almost always meaning no, despite appearances).
+    </p>
+
+    <h3>Things the writer should fact-check before publish</h3>
+    <ul>
+      <li>All fixture details. We do not invent kick-off times.</li>
+      <li>Manager name and tenure, before dispatch 07.</li>
+      <li>Any specific quote attributed to a real person. If unsure, paraphrase or remove.</li>
+      <li>Any reference to "the World Cup" by name, in case the team's policy is to use a workaround for licensing safety. Default phrases: "the summer tournament", "the championship", "the football summer".</li>
+    </ul>
+  </section>
+
+  <!-- ========================== 14 SIGN-OFF ========================== -->
+  <section class="section" style="margin-bottom: 0;">
+    <div class="section-num">14 &middot; Sign-off</div>
+    <h2>The next <span class="italic">forty-eight hours</span>.</h2>
+
+    <ol>
+      <li>Wolfburn confirms new product details + fixtures.</li>
+      <li>Divergence drafts email and dispatch 01 to the standard set by the sample above.</li>
+      <li>Voice (the QA agent) reviews. Wolfburn signs off.</li>
+      <li>Klaviyo build, send scheduled, blog hub spun up.</li>
+      <li>We hold our nerve. We pour our own dram. The summer begins.</li>
+    </ol>
+
+    <blockquote style="margin-top: 36px;">
+      Mibbe aye, mibbe no. Fortune favours the brave.
+      <span class="cite">&mdash; Wolfburn, summer 2026</span>
+    </blockquote>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="crest">WOLFBURN<span class="accent">.</span></div>
+  <div class="meta">Campaign brief &middot; Wolfburn × Divergence &middot; rev 0.1 &middot; 27 May 2026</div>
+  <div class="meta" style="margin-top: 6px;">Internal &middot; not for distribution outside the project team</div>
+</div>
+
+</body>
+</html>
