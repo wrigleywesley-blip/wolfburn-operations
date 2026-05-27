@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Wolfburn × World Cup · Image Render Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0F0B08; --bg-2: #14100C; --bg-3: #1A1410; --bg-4: #221B14;
+    --line: #2A2118; --line-2: #3A2E22;
+    --copper: #B5894C; --amber: #D9A551; --cream: #F5EDE0;
+    --muted: #9A8470; --muted-2: #6B5A48;
+    --green: #7EA67B;
+    --serif: 'Playfair Display', Georgia, serif;
+    --body: 'Inter', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', 'SF Mono', monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--cream); font-family: var(--body); font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+  a { color: var(--copper); }
+
+  .wrap { max-width: 980px; margin: 0 auto; padding: 80px 56px 120px 56px; }
+
+  .cover {
+    padding: 64px 56px 56px 56px;
+    border-bottom: 1px solid var(--line);
+    background: radial-gradient(ellipse at top right, rgba(217,165,81,0.06) 0%, transparent 60%);
+  }
+  .cover .crest { font-family: var(--serif); font-size: 22px; font-weight: 600; letter-spacing: 0.16em; }
+  .cover .crest .accent { color: var(--copper); }
+  .cover .crest-sub { font-family: var(--mono); font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
+  .cover .eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--copper); margin: 56px 0 24px 0; }
+  .cover h1 { font-family: var(--serif); font-weight: 600; font-size: 64px; line-height: 1.05; letter-spacing: -0.02em; color: var(--cream); }
+  .cover h1 .italic { font-style: italic; color: var(--copper); font-weight: 500; }
+  .cover .deck { font-family: var(--serif); font-style: italic; font-size: 20px; color: var(--muted); margin-top: 24px; max-width: 680px; line-height: 1.5; }
+  .cover .meta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line); }
+  .cover .meta .label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .cover .meta .value { font-family: var(--serif); font-size: 15px; color: var(--cream); }
+
+  .section { margin-bottom: 80px; }
+  .section-num { font-family: var(--mono); font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--copper); margin-bottom: 18px; }
+  h2 { font-family: var(--serif); font-weight: 600; font-size: 36px; letter-spacing: -0.015em; color: var(--cream); margin-bottom: 24px; line-height: 1.15; }
+  h2 .italic { font-style: italic; color: var(--copper); }
+  h3 { font-family: var(--serif); font-weight: 600; font-size: 20px; color: var(--cream); margin: 32px 0 14px 0; }
+  h4 { font-family: var(--serif); font-weight: 600; font-size: 16px; color: var(--copper); margin: 24px 0 10px 0; }
+  p { margin-bottom: 16px; }
+  p.lede { font-family: var(--serif); font-size: 20px; font-style: italic; line-height: 1.55; color: var(--muted); margin-bottom: 32px; }
+  p.lede em { color: var(--copper); font-style: normal; font-weight: 500; }
+
+  ul { margin: 12px 0 20px 24px; }
+  li { margin-bottom: 8px; }
+
+  .prompt-block {
+    background: #07050300;
+    background-color: #050402;
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--copper);
+    padding: 32px 36px;
+    border-radius: 4px;
+    margin: 24px 0;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    line-height: 1.75;
+    color: var(--cream);
+    white-space: pre-wrap;
+    overflow-x: auto;
+  }
+  .prompt-block .heading { color: var(--copper); font-weight: 500; letter-spacing: 0.04em; }
+  .prompt-block .placeholder { color: var(--amber); }
+  .prompt-block .comment { color: var(--muted); }
+
+  .copy-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+  .copy-button { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--copper); cursor: pointer; padding: 6px 12px; border: 1px solid var(--copper); border-radius: 2px; background: transparent; }
+  .copy-button:hover { background: var(--copper); color: var(--bg); }
+
+  .variant-card {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    padding: 28px 32px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 24px;
+  }
+  .variant-card .swatch {
+    width: 80px; height: 80px; border-radius: 4px;
+    border: 1px solid var(--line-2);
+  }
+  .variant-card .swatch.cream { background: linear-gradient(135deg, #f0e3c8, #d9c79b); }
+  .variant-card .swatch.cobalt { background: linear-gradient(135deg, #1e3a6b, #0f2347); }
+  .variant-card .swatch.gold { background: linear-gradient(135deg, #d6b042, #a17a1f); }
+  .variant-card .label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--copper); margin-bottom: 6px; }
+  .variant-card h3 { margin: 0 0 12px 0; font-size: 22px; }
+  .variant-card .specs { font-family: var(--mono); font-size: 12px; line-height: 1.9; color: var(--muted); }
+  .variant-card .specs strong { color: var(--cream); font-weight: 500; }
+  .variant-card .stage-note { font-style: italic; color: var(--cream); margin-top: 10px; font-size: 14px; line-height: 1.6; padding-top: 12px; border-top: 1px solid var(--line); }
+
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+  th { text-align: left; padding: 12px 14px; background: var(--bg-3); border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+  td { padding: 14px; border-bottom: 1px solid var(--line); }
+  td.num { font-family: var(--mono); font-size: 12px; color: var(--copper); }
+
+  .scene-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+  .scene { background: var(--bg-2); border: 1px solid var(--line); padding: 20px 24px; border-radius: 4px; }
+  .scene .num { font-family: var(--serif); font-size: 28px; font-weight: 600; font-style: italic; color: var(--copper); line-height: 1; margin-bottom: 10px; }
+  .scene .title { font-family: var(--serif); font-size: 17px; font-weight: 600; color: var(--cream); margin-bottom: 8px; }
+  .scene .body { font-size: 13.5px; line-height: 1.6; color: var(--muted); }
+
+  .negative-list { background: var(--bg-2); border: 1px solid var(--line); border-left: 3px solid #C26B5C; padding: 24px 28px; border-radius: 4px; margin: 16px 0; }
+  .negative-list .label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #C26B5C; margin-bottom: 14px; }
+  .negative-list ul { margin: 0 0 0 20px; }
+  .negative-list li { font-size: 13.5px; color: var(--cream); margin-bottom: 6px; }
+
+  .footer { margin-top: 80px; padding: 36px 56px; border-top: 1px solid var(--line); text-align: center; color: var(--muted); }
+  .footer .crest { font-family: var(--serif); font-size: 18px; letter-spacing: 0.16em; margin-bottom: 12px; }
+  .footer .meta { font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted-2); }
+
+  @media print {
+    .wrap { padding: 0; }
+    .cover { padding: 0 0 40px 0; }
+    .cover h1 { font-size: 44px; }
+    h2 { font-size: 26px; }
+    .prompt-block { font-size: 10pt; }
+  }
+</style>
+</head>
+<body>
+
+<section class="cover">
+  <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+    <div>
+      <div class="crest">WOLFBURN<span class="accent">.</span></div>
+      <div class="crest-sub">Image render brief · World Cup edition</div>
+    </div>
+    <div style="text-align: right; font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted);">
+      Companion to the campaign brief<br>
+      <strong style="color: var(--copper); display: inline-block; margin-top: 4px;">Rev 0.1 &middot; 27 May 2026</strong>
+    </div>
+  </div>
+
+  <div class="eyebrow">RENDER BRIEF &middot; THREE EDITIONS</div>
+  <h1>The bottle is the <span class="italic">trophy</span>.</h1>
+  <div class="deck">A master prompt for generating cinematic product renders of the three World Cup edition bottles. Restraint over spectacle. The label brings the energy. The room brings the dignity.</div>
+
+  <div class="meta">
+    <div><div class="label">SKUs</div><div class="value">3 &middot; Haiti, Morocco, Brazil</div></div>
+    <div><div class="label">Surfaces</div><div class="value">Web, email, social, OOH</div></div>
+    <div><div class="label">Reference</div><div class="value">Cask render style</div></div>
+    <div><div class="label">Operator</div><div class="value">Higgsfield / Krea / Midjourney</div></div>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <section class="section">
+    <div class="section-num">01 &middot; Brief</div>
+    <h2>Direction in <span class="italic">one paragraph</span>.</h2>
+    <p class="lede">Macallan editorial, not Mountain Dew. The label already carries the celebration. The scene's job is to be the room that label deserves. <em>Quiet authority. Cinematic restraint. The bottle is the hero.</em></p>
+    <p>The bottles already do the celebrating: yellow for Brazil, cream for Haiti, cobalt for Morocco. If we surround them with party props we cheapen what is, in fact, a serious limited release of single malt Scotch whisky. Instead, the staging stays in Wolfburn's tonal world — weathered oak, brass, slate, leather, a single thread of tartan in soft focus. The bottle reads as a museum-grade collectible commemorating a specific moment.</p>
+  </section>
+
+  <section class="section">
+    <div class="section-num">02 &middot; Master prompt</div>
+    <h2>Paste this <span class="italic">verbatim</span>.</h2>
+    <p>Always pass the actual reference photograph of the bottle as visual input. Text-to-image alone will hallucinate the label. Reference-driven models only.</p>
+
+    <div class="copy-row">
+      <div style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted);">master prompt &middot; copy &amp; paste</div>
+      <button class="copy-button" onclick="copyPrompt(this)">⎘ Copy prompt</button>
+    </div>
+
+    <div class="prompt-block" id="master-prompt">WOLFBURN × WORLD CUP — CINEMATIC PRODUCT RENDERS
+
+<span class="heading">OBJECTIVE</span>
+Ultra-premium cinematic product renders of the Wolfburn World Cup Edition bottle using the provided reference image as the exact source of truth. Intended for website hero, social feed, email campaign assets, paid social, OOH. Visual style: luxury spirit campaign with a quiet spark of celebration. Reference points: Macallan editorial, Hennessy Limited Editions, Dalmore King Alexander, Players' Tribune sport portraits. The bottle is the hero. Restraint over spectacle. The "occasion" comes from staging, not from gimmick. The label is already doing the celebrating; the scene's job is to be the room that label deserves.
+
+<span class="heading">PRODUCT ACCURACY (CRITICAL)</span>
+Use the provided product image as the exact source for: bottle shape and proportions, dark green glass tint, liquid colour, label design and layout including the colour ground (yellow / cream / blue), Wolfburn wordmark, wolf engraving, twin rampant lions, both national flags exactly as shown, the "AGED [N] YEARS" gold numeral, the "WORLD CUP EDITION WHISKY" type, the match line "SCOTLAND V <span class="placeholder">[OPPONENT]</span>", "DRAMS FOR THE TARTAN ARMY" tagline, the kick-off date and venue line, "PRODUCT OF SCOTLAND" script footer, gold foil neck wrap, charcoal cap, "HIGHLAND SINGLE MALT SCOTCH WHISKY" foil ribbon, 35cl, 46% vol, non-chill filtered, natural colour notes.
+
+Do not alter branding. Do not redesign the label. Do not stylise typography. Do not add or remove flags. Maintain photorealistic accuracy. The bottle must look exactly like the reference.
+
+<span class="heading">SCENE DIRECTION</span>
+Editorial, atmospheric, considered. Deep shadows, soft directional light from upper-left, gentle rim light catching the foil and label edges. Minimal environment. The bottle should read as a museum-grade collectible commemorating a specific moment: Scotland v <span class="placeholder">[OPPONENT]</span>, <span class="placeholder">[DATE]</span>, <span class="placeholder">[VENUE]</span>. Mood register:
+  — quiet authority, not party energy
+  — "limited release" feel, not "merch"
+  — a hint of occasion but never a costume
+  — surface texture suggesting craft: weathered oak, dark leather, brushed brass, slate, a single thread of tartan in soft focus
+  — never literal: no national costumes, no stereotypical opponent props, no beach umbrellas, no camels, no carnival, no flags except those already on the label
+  — the bottle is the trophy
+
+<span class="heading">COMPOSITION &amp; LIGHTING</span>
+Hero-friendly framing. Bottle centred or thirds-composed. Clean negative space at the top or one side for headline overlay (campaign uses "Mibbe aye, mibbe no" and "Fortune favours the brave"). Two-thirds of the frame should breathe. Lighting: low-key Rembrandt with a softbox kicker on the label so the colour ground (yellow / cream / blue) registers cleanly. Slight halation around the foil to suggest collectible glow. Liquid catches a small specular highlight at the shoulder. The cap reflects nothing literal.
+
+<span class="heading">ENVIRONMENT PALETTE (rotate by shoot)</span>
+  1. Weathered oak distillery counter, slate floor just out of focus, a single Glencairn glass with a finger of whisky beside the bottle, dimmed warm tungsten light.
+  2. Dark green leather surface, brass desk lamp throwing the only light, a folded match programme partially visible, vintage library depth.
+  3. Black slate ledge against a heather-grey limewash wall, single sprig of dried thistle out of focus, a thin band of late-afternoon sun.
+  4. Deep navy velvet cloth bunched naturally, gold thread catching light, antique map of Caithness softly out of focus behind, Scottish edition feel.
+  5. Distillery interior — copper still in deep background blur, the bottle on a worn wood barrel-head, warm amber atmosphere.
+
+<span class="heading">NEGATIVE PROMPT</span>
+  — No human hands, no full human figures
+  — No football, no goal posts, no boots, no stadium imagery, no FIFA marks or competition crests
+  — No competitor whisky brands, no tasting-notes overlays, no price tags, no QR codes
+  — No national costumes or stereotypes of the opponent country
+  — No party props: confetti, streamers, balloons, fireworks
+  — No text overlay in the render itself (added in post)
+  — No reflections of camera crew, lighting rigs, modern fixtures
+  — No bright primary backdrops; the label colour is the only bright moment in frame
+  — No glassware other than a single Glencairn or heavy crystal tumbler
+
+<span class="heading">OUTPUT</span>
+  — Aspect ratios per scene: 1:1 (IG feed), 4:5 (IG portrait + email hero), 9:16 (story / reel), 16:9 (desktop hero / YouTube)
+  — Resolution: 2048px long edge minimum
+  — Bottle occupies 35–55% of frame height; label fully legible at thumbnail
+  — PNG, with a clean-background variant for compositing</div>
+  </section>
+
+  <section class="section">
+    <div class="section-num">03 &middot; Per-bottle variants</div>
+    <h2>Three bottles, <span class="italic">three rooms</span>.</h2>
+    <p>Replace the <code style="background: var(--bg-3); padding: 2px 8px; border-radius: 2px; font-family: var(--mono); font-size: 13px; color: var(--amber);">[OPPONENT]</code>, <code style="background: var(--bg-3); padding: 2px 8px; border-radius: 2px; font-family: var(--mono); font-size: 13px; color: var(--amber);">[DATE]</code>, <code style="background: var(--bg-3); padding: 2px 8px; border-radius: 2px; font-family: var(--mono); font-size: 13px; color: var(--amber);">[VENUE]</code> placeholders in the master prompt with the values below before each generation. Each variant has a recommended scene pairing.</p>
+
+    <div class="variant-card">
+      <div class="swatch cream"></div>
+      <div>
+        <div class="label">Edition A</div>
+        <h3>Scotland v Haiti &middot; 10 Year Old</h3>
+        <div class="specs">
+          <strong>Opponent:</strong> Haiti<br>
+          <strong>Date:</strong> Sunday 14 June 2026<br>
+          <strong>Venue:</strong> Foxborough, USA<br>
+          <strong>Label ground:</strong> warm cream &amp; gold
+        </div>
+        <div class="stage-note">Lean into the warm cream. Pair with pale oak and antique brass. Opening-day register. Optimism without bombast. <strong>Recommended scenes: 1 or 3.</strong></div>
+      </div>
+    </div>
+
+    <div class="variant-card">
+      <div class="swatch cobalt"></div>
+      <div>
+        <div class="label">Edition B</div>
+        <h3>Scotland v Morocco &middot; 8 Year Old</h3>
+        <div class="specs">
+          <strong>Opponent:</strong> Morocco<br>
+          <strong>Date:</strong> Friday 19 June 2026<br>
+          <strong>Venue:</strong> Foxborough, USA<br>
+          <strong>Label ground:</strong> cobalt blue with gold
+        </div>
+        <div class="stage-note">Lean into the cobalt. Darker leather, slate, polished brass, dusk light. The second-match composure. <strong>Recommended scenes: 2 or 4.</strong></div>
+      </div>
+    </div>
+
+    <div class="variant-card">
+      <div class="swatch gold"></div>
+      <div>
+        <div class="label">Edition C</div>
+        <h3>Scotland v Brazil &middot; 12 Year Old</h3>
+        <div class="specs">
+          <strong>Opponent:</strong> Brazil<br>
+          <strong>Date:</strong> Wednesday 24 June 2026<br>
+          <strong>Venue:</strong> Miami, USA<br>
+          <strong>Label ground:</strong> rich golden yellow with gold foil
+        </div>
+        <div class="stage-note">Lean into the gold. Warm walnut, deep amber tungsten, a touch of summer warmth without leaving Scotland's tonal world. The all-in register. <strong>Recommended scenes: 5, or a hybrid 1 + 5.</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-num">04 &middot; Scene palette</div>
+    <h2>Five rooms. <span class="italic">Rotate by shoot.</span></h2>
+    <div class="scene-grid">
+      <div class="scene"><div class="num">01</div><div class="title">Distillery counter, oak, Glencairn</div><div class="body">Weathered oak counter, slate floor out of focus, a single Glencairn glass with a finger of whisky beside the bottle, warm dimmed tungsten light. The workhorse hero shot.</div></div>
+      <div class="scene"><div class="num">02</div><div class="title">Leather, brass lamp, match programme</div><div class="body">Dark green leather surface, brass desk lamp casting the only light, a folded match programme partially visible. Vintage library register. Editorial.</div></div>
+      <div class="scene"><div class="num">03</div><div class="title">Slate ledge, thistle, limewash</div><div class="body">Black slate ledge against a heather-grey limewash wall, a single sprig of dried thistle softly out of focus, a thin band of late-afternoon Caithness sun. Quiet, Scottish.</div></div>
+      <div class="scene"><div class="num">04</div><div class="title">Velvet, gold thread, Caithness map</div><div class="body">Deep navy velvet cloth bunched naturally, gold thread catching light, antique map of Caithness softly behind. Collectors-edition mood.</div></div>
+      <div class="scene"><div class="num">05</div><div class="title">Distillery interior, copper still</div><div class="body">Copper still in deep background blur, the bottle on a worn wood barrel-head, warm amber atmosphere. Brand-film register, OOH-ready.</div></div>
+      <div class="scene" style="background: linear-gradient(135deg, var(--bg-3), var(--bg-2)); border-color: var(--copper);"><div class="num">+</div><div class="title">Add your own</div><div class="body">Scenes that respect the rules: low-key lighting, Scottish materials, no party props, no opponent stereotypes, plenty of negative space.</div></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-num">05 &middot; What to avoid</div>
+    <h2>The line we don't <span class="italic">cross</span>.</h2>
+    <p>The single fastest way to ruin one of these renders is to literalise the opponent. The label already names the match. Anything more is cheap. Anything less is right.</p>
+
+    <div class="negative-list">
+      <div class="label">⊘ Negative prompt</div>
+      <ul>
+        <li>No human hands, no full human figures</li>
+        <li>No football, no goal posts, no boots, no stadium imagery, no FIFA marks</li>
+        <li>No competitor whisky brands, no tasting-notes overlays, no price tags, no QR codes</li>
+        <li>No national costumes or stereotypes of the opponent country</li>
+        <li>No party props: confetti, streamers, balloons, fireworks</li>
+        <li>No text overlay in the render itself (we add headline copy in post)</li>
+        <li>No reflections of camera crew, lighting rigs, modern fixtures</li>
+        <li>No bright primary backdrops &mdash; the label colour is the only bright moment</li>
+        <li>No glassware other than a single Glencairn or heavy crystal tumbler</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-num">06 &middot; Shot list</div>
+    <h2>What we need delivered, <span class="italic">per SKU</span>.</h2>
+    <p>The minimum viable set is five renders per bottle &mdash; fifteen total across the three editions. Each in the listed aspect ratio.</p>
+
+    <table>
+      <thead><tr><th style="width: 5%;">#</th><th style="width: 32%;">Scene</th><th style="width: 12%;">Aspect</th><th>Primary use</th></tr></thead>
+      <tbody>
+        <tr><td class="num">01</td><td>Hero on oak with Glencairn</td><td class="num">16:9</td><td>Website hero &middot; desktop</td></tr>
+        <tr><td class="num">02</td><td>Hero on oak with Glencairn</td><td class="num">4:5</td><td>Email hero &middot; IG portrait</td></tr>
+        <tr><td class="num">03</td><td>Slate ledge with thistle</td><td class="num">1:1</td><td>IG feed &middot; thumbnails</td></tr>
+        <tr><td class="num">04</td><td>Velvet + map &middot; collectors</td><td class="num">9:16</td><td>Story &middot; reel &middot; mobile hero</td></tr>
+        <tr><td class="num">05</td><td>Distillery interior</td><td class="num">16:9</td><td>Brand film still &middot; OOH</td></tr>
+        <tr><td class="num">+</td><td>Clean-background cut-out</td><td class="num">3:4</td><td>For compositing into ads</td></tr>
+      </tbody>
+    </table>
+
+    <p style="margin-top: 18px; font-size: 14px; color: var(--muted);">15 hero renders + 3 cut-outs = 18 deliverables total. Generate two variants per scene, pick the winner. Estimated burn on Higgsfield: ~450 credits across the set.</p>
+  </section>
+
+  <section class="section">
+    <div class="section-num">07 &middot; Editorial overlays</div>
+    <h2>Headline copy <span class="italic">added in post</span>.</h2>
+    <p>Renders ship without text. Design overlays the campaign copy in InDesign / Figma / Photoshop. Lock these strings before designers touch the files:</p>
+    <table>
+      <tr><td style="width: 40%; padding-right: 24px;"><strong>Campaign anchor</strong></td><td style="font-family: var(--serif); font-style: italic; color: var(--copper); font-size: 17px;">Mibbe aye, mibbe no.</td></tr>
+      <tr><td><strong>Sign-off line</strong></td><td style="font-family: var(--serif); font-style: italic; color: var(--copper); font-size: 17px;">Fortune favours the brave.</td></tr>
+      <tr><td><strong>Match line</strong></td><td style="font-family: var(--mono); font-size: 12px;">Scotland v [opponent] &middot; [date] &middot; [venue]</td></tr>
+      <tr><td><strong>Edition stamp</strong></td><td style="font-family: var(--mono); font-size: 12px;">Limited Edition &middot; World Cup 2026</td></tr>
+      <tr><td><strong>Bottle-number stamp</strong></td><td style="font-family: var(--mono); font-size: 12px;">Bottle XXXX of YYYY (optional)</td></tr>
+    </table>
+  </section>
+
+  <section class="section">
+    <div class="section-num">08 &middot; Operator notes</div>
+    <h2>How to actually <span class="italic">run</span> these.</h2>
+    <ul>
+      <li><strong>Always include the reference image.</strong> Text-to-image alone will hallucinate the label every time. Use Higgsfield Marketing Studio Image, Seedream reference models, or Nano Banana Pro with image input. Non-negotiable.</li>
+      <li><strong>One scene per generation.</strong> Don't ask for multiple environments in one prompt. Generate scene 1, then scene 2, etc. Better hit rates.</li>
+      <li><strong>Run two variants per scene.</strong> Pick the stronger one. ~25 credits each.</li>
+      <li><strong>Save the seed.</strong> When you find a winner, save the seed so you can re-roll the same scene with the next bottle for consistency across the three editions.</li>
+      <li><strong>Post-light in Photoshop or Capture One.</strong> AI renders almost always need a curves pass and a sharpening pass before they meet luxury-spirits print standards. Allow 30 minutes retouch per hero.</li>
+      <li><strong>Stress-test at thumbnail.</strong> If the label is unreadable at 200px wide, the render fails IG. Re-light, don't re-prompt.</li>
+    </ul>
+  </section>
+
+  <section class="section" style="margin-bottom: 0;">
+    <div class="section-num">09 &middot; Sign-off</div>
+    <h2>The first <span class="italic">deliverable</span>.</h2>
+    <p>Render <strong>Scene 1 hero on oak with Glencairn</strong> for all three editions first. That's the cornerstone shot. If it lands, the rest of the system holds.</p>
+    <p style="margin-top: 24px; font-family: var(--serif); font-style: italic; font-size: 18px; color: var(--copper);">Fortune favours the brave.</p>
+  </section>
+
+</div>
+
+<div class="footer">
+  <div class="crest">WOLFBURN<span class="accent">.</span></div>
+  <div class="meta">Image render brief &middot; companion to the World Cup campaign brief &middot; Divergence &middot; rev 0.1</div>
+</div>
+
+<script>
+function copyPrompt(btn) {
+  const block = document.getElementById('master-prompt');
+  const text = block.innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ Copied';
+    btn.style.background = 'var(--copper)';
+    btn.style.color = 'var(--bg)';
+    setTimeout(() => {
+      btn.textContent = '⎘ Copy prompt';
+      btn.style.background = 'transparent';
+      btn.style.color = 'var(--copper)';
+    }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>
