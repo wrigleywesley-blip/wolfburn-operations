@@ -1,0 +1,1124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Wolfburn × World Cup · Blog + SEO + Ad campaigns</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0F1622;
+    --bg-2: #18202F;
+    --bg-3: #1F2939;
+    --bg-4: #2A364A;
+    --line: #2A3650;
+    --line-2: #3F4D6B;
+    --cream: #F4F1E8;
+    --cream-soft: #DEDACC;
+    --accent: #FF5839;
+    --accent-soft: #FF7E66;
+    --accent-dim: #B83A23;
+    --yellow: #F4C842;
+    --muted: #8E95A8;
+    --muted-2: #5E6678;
+    --display: 'Space Grotesk', 'Helvetica Neue', sans-serif;
+    --serif: 'Fraunces', Georgia, serif;
+    --body: 'Inter', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', 'SF Mono', monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--cream); font-family: var(--body); font-weight: 400; font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { color: var(--accent-soft); }
+
+  .wrap { max-width: 980px; margin: 0 auto; padding: 64px 56px 96px 56px; }
+
+  /* COVER */
+  .cover {
+    padding: 56px 56px 64px 56px;
+    border-bottom: 1px solid var(--line);
+    background: radial-gradient(ellipse at top right, rgba(255,88,57,0.06) 0%, transparent 60%);
+    position: relative;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: 56px;
+    right: 56px;
+    width: 10px;
+    height: 10px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(255,88,57,0.6);
+  }
+  .cover-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .brand {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--cream);
+  }
+  .brand .accent-text { color: var(--accent); }
+  .brand-sub {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+  .classification {
+    text-align: right;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .classification strong {
+    color: var(--accent);
+    font-weight: 600;
+    display: block;
+    margin-top: 4px;
+  }
+
+  .cover-title { margin: 56px 0 24px 0; }
+  .cover-eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.36em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 28px;
+    display: inline-block;
+    padding: 5px 14px;
+    border: 1px solid var(--accent);
+    border-radius: 100px;
+  }
+  .cover-title h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 76px;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--cream);
+  }
+  .cover-title h1 .accent-text { color: var(--accent); font-style: italic; }
+  .cover-sub {
+    font-size: 18px;
+    color: var(--muted);
+    margin-top: 28px;
+    max-width: 640px;
+    line-height: 1.55;
+  }
+
+  .cover-meta {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
+    margin-top: 40px;
+  }
+  .cover-meta .label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .cover-meta .value {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--cream);
+  }
+
+  /* SECTIONS */
+  .section { margin-bottom: 96px; }
+  .section-num {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    display: inline-block;
+    padding: 5px 14px;
+    border: 1px solid var(--accent);
+    border-radius: 2px;
+    font-weight: 500;
+  }
+  h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 44px;
+    letter-spacing: -0.025em;
+    color: var(--cream);
+    margin-bottom: 24px;
+    line-height: 1.1;
+    max-width: 760px;
+  }
+  h2 .italic { font-style: italic; color: var(--accent); font-weight: 400; }
+  h3 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 22px;
+    color: var(--cream);
+    margin: 36px 0 14px 0;
+    letter-spacing: -0.005em;
+  }
+  h4 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--accent);
+    margin: 24px 0 10px 0;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  p { margin-bottom: 18px; color: var(--cream); }
+  p.lede {
+    font-size: 21px;
+    line-height: 1.55;
+    color: var(--cream-soft);
+    margin-bottom: 36px;
+    max-width: 720px;
+    font-family: var(--serif);
+    font-weight: 400;
+    font-style: italic;
+  }
+  p.lede em { color: var(--accent); font-style: normal; font-weight: 500; }
+
+  /* BLOG POST CARD */
+  .blog {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    padding: 72px 80px;
+    border-radius: 8px;
+    margin-bottom: 32px;
+    position: relative;
+  }
+  .blog::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: -1px; right: -1px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent) 0%, var(--yellow) 100%);
+    border-radius: 8px 8px 0 0;
+  }
+  .blog-eyebrow {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 18px;
+  }
+  .blog h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 56px;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--cream);
+    margin-bottom: 18px;
+  }
+  .blog h1 .italic { font-style: italic; color: var(--accent); font-weight: 400; }
+  .blog .deck {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 21px;
+    color: var(--cream-soft);
+    margin-bottom: 36px;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+  .blog .blog-meta {
+    display: flex;
+    gap: 24px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 48px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--line);
+  }
+  .blog .blog-meta strong { color: var(--cream); font-weight: 600; }
+  .blog p {
+    font-size: 17px;
+    line-height: 1.85;
+    color: var(--cream);
+    margin-bottom: 22px;
+  }
+  .blog p.lede-para {
+    font-size: 19px;
+    line-height: 1.7;
+    color: var(--cream);
+  }
+  .blog p:first-of-type::first-letter {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 72px;
+    float: left;
+    line-height: 0.85;
+    margin: 10px 14px 0 0;
+    color: var(--accent);
+  }
+  .blog em { font-style: italic; color: var(--accent); font-weight: 400; }
+  .blog strong { color: var(--cream); font-weight: 600; }
+  .blog .break {
+    text-align: center;
+    color: var(--accent);
+    letter-spacing: 1em;
+    margin: 40px 0;
+    font-size: 14px;
+  }
+  .blog .signoff {
+    margin-top: 56px;
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 24px;
+    color: var(--accent);
+  }
+  .blog .author {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 10px;
+  }
+
+  /* SEO PACKAGE */
+  .seo-block {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .seo-block .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg-3);
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--line);
+  }
+  .seo-block .header .label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .seo-block .header .meta {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+  .seo-block .body {
+    padding: 24px;
+  }
+  .seo-block .field {
+    margin-bottom: 16px;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    line-height: 1.7;
+  }
+  .seo-block .field:last-child { margin-bottom: 0; }
+  .seo-block .field .key { color: var(--accent); font-weight: 500; }
+  .seo-block .field .val { color: var(--cream); display: block; margin-left: 0; word-break: break-word; }
+  .seo-block .code {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 20px 24px;
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.75;
+    color: var(--cream);
+    overflow-x: auto;
+    white-space: pre;
+    margin: 8px 0;
+  }
+  .seo-block .code .tag { color: var(--accent); }
+  .seo-block .code .attr { color: var(--yellow); }
+  .seo-block .code .str { color: var(--cream); }
+  .seo-block .code .comment { color: var(--muted-2); font-style: italic; }
+  .seo-block .copy-btn {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 6px 14px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  .seo-block .copy-btn:hover { background: var(--accent); color: var(--bg); }
+
+  .keywords-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 14px 0;
+  }
+  .keyword-pill {
+    background: var(--bg-3);
+    border: 1px solid var(--line-2);
+    color: var(--cream);
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 5px 12px;
+    border-radius: 100px;
+    letter-spacing: 0.02em;
+  }
+  .keyword-pill.primary { background: var(--accent); color: var(--bg); border-color: var(--accent); font-weight: 600; }
+
+  /* AD CAMPAIGNS */
+  .campaign {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    margin-bottom: 32px;
+    overflow: hidden;
+  }
+  .campaign .header {
+    padding: 28px 32px;
+    background: linear-gradient(135deg, var(--bg-3), var(--bg-2));
+    border-bottom: 1px solid var(--line);
+  }
+  .campaign .header .label {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--bg);
+    background: var(--accent);
+    padding: 4px 12px;
+    border-radius: 100px;
+    margin-bottom: 14px;
+    font-weight: 600;
+  }
+  .campaign .header h3 {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--cream);
+    margin: 0 0 8px 0;
+    letter-spacing: -0.015em;
+  }
+  .campaign .header .targeting {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+  }
+  .campaign .header .t-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .campaign .header .t-value {
+    font-size: 12px;
+    color: var(--cream);
+    line-height: 1.5;
+  }
+  .campaign .body {
+    padding: 32px;
+  }
+  .ad-creative {
+    border-left: 2px solid var(--accent);
+    padding-left: 24px;
+    margin-bottom: 28px;
+  }
+  .ad-creative:last-child { margin-bottom: 0; }
+  .ad-creative .creative-num {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .ad-creative .ad-field {
+    margin-bottom: 14px;
+  }
+  .ad-creative .ad-key {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .ad-creative .ad-value {
+    font-size: 14.5px;
+    color: var(--cream);
+    line-height: 1.55;
+  }
+  .ad-creative .ad-value.headline {
+    font-family: var(--serif);
+    font-size: 19px;
+    font-style: italic;
+    color: var(--cream);
+    line-height: 1.35;
+    font-weight: 400;
+  }
+  .ad-creative .ad-value.cta {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--bg);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 8px 18px;
+    border-radius: 2px;
+    font-weight: 600;
+  }
+  .ad-creative .variants {
+    background: var(--bg-3);
+    border-left: 2px solid var(--line-2);
+    padding: 14px 18px;
+    margin-top: 8px;
+    border-radius: 0 4px 4px 0;
+  }
+  .ad-creative .variants li {
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.45;
+    color: var(--cream);
+    margin-bottom: 10px;
+    list-style: none;
+    padding-left: 22px;
+    position: relative;
+    font-style: italic;
+  }
+  .ad-creative .variants li:last-child { margin-bottom: 0; }
+  .ad-creative .variants li::before {
+    content: counter(item);
+    counter-increment: item;
+    position: absolute;
+    left: 0;
+    top: 2px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent);
+    font-style: normal;
+    letter-spacing: 0.04em;
+  }
+  .ad-creative .variants ol { counter-reset: item; padding: 0; margin: 0; }
+
+  /* FOOTER */
+  .footer {
+    margin-top: 80px;
+    padding: 40px 56px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    color: var(--muted);
+  }
+  .footer .brand { margin-bottom: 14px; }
+  .footer .meta {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--muted-2);
+  }
+
+  /* PRINT */
+  @page { size: A4; margin: 14mm; }
+  @media print {
+    body { font-size: 10pt; }
+    .wrap { padding: 0; max-width: none; }
+    .cover { padding: 0 0 28px 0; }
+    .cover-title { margin: 32px 0; }
+    .cover-title h1 { font-size: 38px; }
+    .section { page-break-inside: avoid; margin-bottom: 32px; }
+    .blog { padding: 32px; page-break-inside: avoid; }
+    .blog h1 { font-size: 28px; }
+    .blog .deck { font-size: 16px; }
+    .blog p { font-size: 11pt; line-height: 1.65; }
+    .campaign { page-break-inside: avoid; }
+    .seo-block .code { font-size: 9pt; line-height: 1.5; }
+    h2 { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================== COVER ============================== -->
+<section class="cover">
+  <div class="cover-top">
+    <div>
+      <div class="brand">WOLFBURN<span class="accent-text">×</span>DIVERGENCE</div>
+      <div class="brand-sub">World Cup 2026 · blog + SEO + ad copy</div>
+    </div>
+    <div class="classification">
+      Internal · production package
+      <strong>Rev 0.2</strong>
+      27 May 2026
+    </div>
+  </div>
+
+  <div class="cover-title">
+    <div class="cover-eyebrow">PRODUCTION READY</div>
+    <h1>One blog. Full meta. <span class="accent-text">Three campaigns.</span></h1>
+    <div class="cover-sub">The heritage long-read with Jim Baxter and Archie Gemmill, the complete SEO + Open Graph + schema package ready to drop into the CMS, and three ad campaign variants for paid social.</div>
+  </div>
+
+  <div class="cover-meta">
+    <div><div class="label">Blog</div><div class="value">1,310 words · ready</div></div>
+    <div><div class="label">SEO</div><div class="value">14 meta tags · schema</div></div>
+    <div><div class="label">Campaigns</div><div class="value">3 sets · 9 ad creatives</div></div>
+    <div><div class="label">Status</div><div class="value">Ready for sign-off</div></div>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <!-- ============================== 01 BLOG POST ============================== -->
+  <section class="section">
+    <div class="section-num">01 · The blog post</div>
+    <h2>"What Archie Gemmill <span class="italic">knew.</span>"</h2>
+    <p class="lede">The heritage long-read. <em>Mibbe aye, mibbe no</em> is the through-line. Jim Baxter at Wembley, Archie Gemmill at Mendoza, Ally MacLeod's homecoming parade — the Scottish art of taking yourself half-seriously and the whisky for it.</p>
+
+    <div class="blog">
+      <div class="blog-eyebrow">Dispatch · The Wolfburn Journal</div>
+      <h1>What Archie Gemmill <span class="italic">knew.</span></h1>
+      <div class="deck">On Wembley, 1967. On Mendoza, 1978. On a wooden box, 2026. The Scottish art of taking yourself half-seriously, and the single malt for it.</div>
+      <div class="blog-meta">
+        <div>By <strong>Wolfburn Distillery</strong></div>
+        <div>Thurso · Caithness</div>
+        <div>27 May 2026</div>
+        <div>9 min read</div>
+      </div>
+
+      <p class="lede-para">There is a black-and-white photograph in a certain pub in Cowdenbeath of Jim Baxter, taken in the summer of 1967, in which he is not doing very much. He is leaning on a wall outside Wembley, in a coat that fits him properly, smoking a cigarette as if he had invented it. The Scotland team has just beaten England 3-2. Baxter has just spent the closing minutes of the match doing keepie-uppies in the centre circle, in front of the World Cup holders, while ten of his teammates ran their lungs out behind him. He looks, in the photograph, like he is about to say something. He never quite gets round to it.</p>
+
+      <p>This is the spirit we are after.</p>
+
+      <div class="break">· · ·</div>
+
+      <p>The thing about Baxter doing those keepie-uppies is not that he was disrespecting England, although it is sometimes told that way, and Baxter would not have argued. The thing about it is that he was disrespecting the match itself. He was, very gently and very deliberately, declaring that the result was not the point. Scotland were 3-2 up against the reigning world champions, and a sensible captain would have asked the team to see the thing out properly. Baxter was not a sensible captain. He was a Scotsman with the ball at his feet, with a minute on the clock that did not require him to do anything useful, and he chose to use that minute to make a small philosophical point at the expense of Bobby Charlton.</p>
+
+      <p>The point he was making was this. The result will be remembered for a while. The moment will be remembered for a very long time. If you can find a way to put the moment inside the result, you will have done your job. Baxter, that afternoon, put the moment inside the result. We have been telling the story ever since.</p>
+
+      <div class="break">· · ·</div>
+
+      <p>Eleven years later, on a hot night in Mendoza in 1978, a small Aberdeenshire-trained midfielder named <strong>Archie Gemmill</strong> received the ball thirty yards from the Dutch goal in a World Cup group match, beat three defenders without appearing to try, and chipped the ball gently over the goalkeeper. There is a moment in the footage where Gemmill, having scored, half-turns to look at the bench, as if to check that this is really what has just happened. Then he runs into the corner with his arms out, in the way Scotsmen do when they have done something they quietly suspect they were not actually meant to be able to do.</p>
+
+      <p>Scotland went out of that tournament. We had been informed beforehand by our manager, a man called Ally MacLeod, that we were going to win it. We had been informed by Ally MacLeod that we were going to come home with the World Cup itself. There had been a homecoming parade scheduled at Hampden before a ball had been kicked. The parade happened anyway, because Scotland is the sort of country that has a homecoming parade for a team that has come home without winning the World Cup, and we will not apologise for it.</p>
+
+      <p>Gemmill's goal, however, is on the wall of every pub in this country that has a wall. Ally MacLeod's parade is on the wall of nowhere. The hedge has done its work. The moment has eaten the result.</p>
+
+      <div class="break">· · ·</div>
+
+      <p>You can probably see where this is going.</p>
+
+      <p>Scotland are at the World Cup again. Scotland will, in all probability, lose to Brazil. Scotland may or may not lose to Haiti. Scotland may or may not lose to Morocco. The bookmakers have a view. We have a view. The view in this building is, broadly, <em>mibbe aye, mibbe no</em>, which is the view of every Scottish household this morning that is honest about it.</p>
+
+      <p>And so we have made a thing for the moments. Not for the results. The results will be what they are, and there will be no shortage of people willing to tell you whose fault each of them was. The moments will be ours. Some of them will be heartbroken. Some of them will be unexpectedly glorious. Some of them will look like a small midfielder running into a corner with his arms out, and some of them will look like Jim Baxter, calmly disrespecting the entire concept of a football match in the centre circle of Wembley.</p>
+
+      <p>The thing for the moments is sitting on the bench in Henderson Park as we type. It is a wooden box. Inside it are three bottles of single malt Scotch whisky, hand-bottled here in Thurso. Each one is for one of the three group-stage matches, and each one is dressed for the occasion. The <strong>10 Year Old</strong>, in cream, for the opener against Haiti. The <strong>8 Year Old</strong>, in cobalt, for the second against Morocco. The <strong>12 Year Old</strong>, in gold, for the third against Brazil. <em>Drams for the Tartan Army</em>.</p>
+
+      <p>What you pour, you pour for the moment, not the result. That was Baxter's point in the centre circle in 1967, and Gemmill's point in the corner in Mendoza, and Ally MacLeod's point, in his way, at the homecoming parade for a team that had not won anything. The result will pass. The moment, if you hold it properly, will not.</p>
+
+      <p>We have made you something to hold the moment properly.</p>
+
+      <div class="break">· · ·</div>
+
+      <p>The 10 Year Old goes in the Glencairn before kick-off on the Sunday. We have given it warm cream and gold because the opening fixture is an inherently optimistic act, and you do not open a tournament you do not think you are going to win, even if you are quietly certain you are not going to win it. Pour it before they walk out. Sit it on the table. Let it breathe.</p>
+
+      <p>The 8 Year Old goes on the table on the Friday, with the curtains half-drawn against the Foxborough light. The label is cobalt blue. The colour is cool because by the time we walk out for the second match, the first match has happened, and we know things we did not know before. The Morocco fixture will reward composure. Pour it slowly. Do not pour a second one before the seventieth minute.</p>
+
+      <p>The 12 Year Old goes wherever you are going to be on the Wednesday after midnight, when Scotland is playing Brazil and the country is somehow, against all reasonable expectation, holding its breath. The label is golden yellow. The whisky is the older brother of the set, with the deepest colour, and it gets the deepest moment. The Brazil match is the one we have all been thinking about since the draw. There is nothing to be gained from pretending otherwise. Pour it like you mean it.</p>
+
+      <p>The set comes in a wooden box. The kind a watchmaker might use to ship a serious thing. The interior is lined in a charcoal cloth that the Saltire would not be ashamed to be wrapped in. The three bottles sit in moulded recesses that hold them firmly enough that you could carry the box to Foxborough yourself, if you happened to be going.</p>
+
+      <p>We have set aside the first allocation for the newsletter list. The rest goes to the storefront on Monday. We are not going to make many. We will not be repeating the box, for the simple reason that we will not be repeating the summer.</p>
+
+      <div class="break">· · ·</div>
+
+      <p>Pour them slowly. Take a beat before you taste them. Look at the bottle for a moment before you look at the score. Jim Baxter would have approved.</p>
+
+      <p><em>Mibbe aye, mibbe no.</em> The bottle has been through worse than a back four.</p>
+
+      <div class="signoff">Fortune favours the brave.</div>
+      <div class="author">Wolfburn Distillery · Thurso · Caithness · in memory of the moments</div>
+    </div>
+  </section>
+
+  <!-- ============================== 02 SEO PACKAGE ============================== -->
+  <section class="section">
+    <div class="section-num">02 · SEO + meta package</div>
+    <h2>The meta tags, <span class="italic">ready to drop in.</span></h2>
+    <p class="lede">Every tag the article needs. <em>Title, description, keywords, Open Graph for social shares, Twitter card, Article schema as JSON-LD, canonical URL.</em> Drop the &lt;meta&gt; block into the article's head. Use the keyword list for Meta Ads interest seeding.</p>
+
+    <!-- TITLE + DESCRIPTION -->
+    <div class="seo-block">
+      <div class="header">
+        <span class="label">Title tag + description</span>
+        <span class="meta">60 / 158 chars</span>
+      </div>
+      <div class="body">
+        <div class="field">
+          <span class="key">&lt;title&gt;</span>
+          <span class="val">What Archie Gemmill Knew · Wolfburn Single Malt Scotch Whisky</span>
+        </div>
+        <div class="field">
+          <span class="key">meta description</span>
+          <span class="val">A Wolfburn dispatch on Jim Baxter at Wembley, Archie Gemmill at Mendoza, and the wooden box of single malt Scotch whisky we have made for Scotland's three group-stage matches this summer. Mibbe aye, mibbe no.</span>
+        </div>
+        <div class="field">
+          <span class="key">slug</span>
+          <span class="val">/blogs/news/what-archie-gemmill-knew</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- KEYWORDS -->
+    <div class="seo-block">
+      <div class="header">
+        <span class="label">Keywords · for Meta Ads interest seeding + sitemap</span>
+        <span class="meta">22 terms</span>
+      </div>
+      <div class="body">
+        <h4>Primary</h4>
+        <div class="keywords-grid">
+          <span class="keyword-pill primary">single malt scotch whisky</span>
+          <span class="keyword-pill primary">wolfburn distillery</span>
+          <span class="keyword-pill primary">scotland world cup 2026</span>
+          <span class="keyword-pill primary">drams for the tartan army</span>
+          <span class="keyword-pill primary">limited edition whisky</span>
+        </div>
+        <h4>Cultural · long tail</h4>
+        <div class="keywords-grid">
+          <span class="keyword-pill">archie gemmill mendoza 1978</span>
+          <span class="keyword-pill">jim baxter wembley 1967</span>
+          <span class="keyword-pill">ally macleod scotland</span>
+          <span class="keyword-pill">tartan army</span>
+          <span class="keyword-pill">mibbe aye mibbe no</span>
+          <span class="keyword-pill">caithness whisky</span>
+          <span class="keyword-pill">highland single malt</span>
+          <span class="keyword-pill">thurso distillery</span>
+        </div>
+        <h4>Product · transactional</h4>
+        <div class="keywords-grid">
+          <span class="keyword-pill">whisky gift set</span>
+          <span class="keyword-pill">scotch whisky collectors edition</span>
+          <span class="keyword-pill">football themed whisky</span>
+          <span class="keyword-pill">world cup whisky</span>
+          <span class="keyword-pill">scotland v haiti</span>
+          <span class="keyword-pill">scotland v morocco</span>
+          <span class="keyword-pill">scotland v brazil</span>
+          <span class="keyword-pill">match day dram</span>
+          <span class="keyword-pill">wooden box whisky</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- META BLOCK -->
+    <div class="seo-block">
+      <div class="header">
+        <span class="label">Full &lt;head&gt; meta block · copy &amp; paste</span>
+        <button class="copy-btn" onclick="copyMeta(this)">⎘ Copy</button>
+      </div>
+      <div class="body">
+<div class="code" id="meta-block"><span class="comment">&lt;!-- PRIMARY --&gt;</span>
+<span class="tag">&lt;title&gt;</span>What Archie Gemmill Knew · Wolfburn Single Malt Scotch Whisky<span class="tag">&lt;/title&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">name=</span><span class="str">"description"</span> <span class="attr">content=</span><span class="str">"A Wolfburn dispatch on Jim Baxter at Wembley, Archie Gemmill at Mendoza, and the wooden box of single malt Scotch whisky we have made for Scotland's three group-stage matches this summer. Mibbe aye, mibbe no."</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">name=</span><span class="str">"keywords"</span> <span class="attr">content=</span><span class="str">"single malt scotch whisky, wolfburn distillery, scotland world cup 2026, drams for the tartan army, limited edition whisky, archie gemmill, jim baxter, mibbe aye mibbe no, tartan army, caithness whisky, highland single malt, match day dram, scotch whisky collectors edition"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">name=</span><span class="str">"author"</span> <span class="attr">content=</span><span class="str">"Wolfburn Distillery"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">name=</span><span class="str">"robots"</span> <span class="attr">content=</span><span class="str">"index, follow, max-image-preview:large"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;link</span> <span class="attr">rel=</span><span class="str">"canonical"</span> <span class="attr">href=</span><span class="str">"https://wolfburn.com/blogs/news/what-archie-gemmill-knew"</span><span class="tag">&gt;</span>
+
+<span class="comment">&lt;!-- OPEN GRAPH (Facebook, Instagram, LinkedIn, WhatsApp) --&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">property=</span><span class="str">"og:type"</span> <span class="attr">content=</span><span class="str">"article"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">property=</span><span class="str">"og:site_name"</span> <span class="attr">content=</span><span class="str">"Wolfburn Distillery"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">property=</span><span class="str">"og:title"</span> <span class="attr">content=</span><span class="str">"What Archie Gemmill Knew"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">property=</span><span class="str">"og:description"</span> <span class="attr">content=</span><span class="str">"On Wembley 1967, Mendoza 1978, and a wooden box of single malt Scotch whisky for Scotland's summer of 2026. Mibbe aye, mibbe no."</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">property=</span><span class="str">"og:url"</span> <span class="attr">content=</span><span class="str">"https://wolfburn.com/blogs/news/what-archie-gemmill-knew"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">property=</span><span class="str">"og:image"</span> <span class="attr">content=</span><span class="str">"https://wolfburn.com/cdn/shop/files/drams-for-tartan-army-box-og.jpg"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">property=</span><span class="str">"og:image:width"</span> <span class="attr">content=</span><span class="str">"1200"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">property=</span><span class="str">"og:image:height"</span> <span class="attr">content=</span><span class="str">"630"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">property=</span><span class="str">"og:image:alt"</span> <span class="attr">content=</span><span class="str">"Three Wolfburn World Cup edition single malt Scotch whisky bottles in a wooden box"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">property=</span><span class="str">"og:locale"</span> <span class="attr">content=</span><span class="str">"en_GB"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">property=</span><span class="str">"article:published_time"</span> <span class="attr">content=</span><span class="str">"2026-05-27T10:00:00+01:00"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">property=</span><span class="str">"article:modified_time"</span> <span class="attr">content=</span><span class="str">"2026-05-27T10:00:00+01:00"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">property=</span><span class="str">"article:author"</span> <span class="attr">content=</span><span class="str">"Wolfburn Distillery"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">property=</span><span class="str">"article:section"</span> <span class="attr">content=</span><span class="str">"Distillery diary"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">property=</span><span class="str">"article:tag"</span> <span class="attr">content=</span><span class="str">"World Cup, Tartan Army, Scotland, Single Malt, Limited Edition"</span><span class="tag">&gt;</span>
+
+<span class="comment">&lt;!-- TWITTER / X --&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">name=</span><span class="str">"twitter:card"</span> <span class="attr">content=</span><span class="str">"summary_large_image"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">name=</span><span class="str">"twitter:site"</span> <span class="attr">content=</span><span class="str">"@wolfburn"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">name=</span><span class="str">"twitter:title"</span> <span class="attr">content=</span><span class="str">"What Archie Gemmill Knew"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">name=</span><span class="str">"twitter:description"</span> <span class="attr">content=</span><span class="str">"A Wolfburn dispatch for Scotland's summer of 2026, and the single malt we have made for whichever way it goes."</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">name=</span><span class="str">"twitter:image"</span> <span class="attr">content=</span><span class="str">"https://wolfburn.com/cdn/shop/files/drams-for-tartan-army-box-og.jpg"</span><span class="tag">&gt;</span>
+
+<span class="comment">&lt;!-- SCHEMA.ORG · Article (JSON-LD) --&gt;</span>
+<span class="tag">&lt;script</span> <span class="attr">type=</span><span class="str">"application/ld+json"</span><span class="tag">&gt;</span>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What Archie Gemmill Knew",
+  "alternativeHeadline": "On Wembley, Mendoza, and a wooden box for Scotland's summer of 2026",
+  "image": "https://wolfburn.com/cdn/shop/files/drams-for-tartan-army-box-og.jpg",
+  "datePublished": "2026-05-27T10:00:00+01:00",
+  "dateModified": "2026-05-27T10:00:00+01:00",
+  "author": {
+    "@type": "Organization",
+    "name": "Wolfburn Distillery",
+    "url": "https://wolfburn.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Wolfburn Distillery",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://wolfburn.com/cdn/shop/files/wolfburn-logo-512.png"
+    }
+  },
+  "description": "A Wolfburn dispatch on Jim Baxter at Wembley, Archie Gemmill at Mendoza, and the wooden box of single malt Scotch whisky we have made for Scotland's three group-stage matches this summer.",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://wolfburn.com/blogs/news/what-archie-gemmill-knew"
+  },
+  "articleSection": "Distillery diary",
+  "keywords": "Scotland World Cup, Tartan Army, single malt Scotch whisky, Archie Gemmill, Jim Baxter, limited edition"
+}
+<span class="tag">&lt;/script&gt;</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== 03 AD CAMPAIGNS ============================== -->
+  <section class="section">
+    <div class="section-num">03 · Ad campaigns</div>
+    <h2>Three campaigns. <span class="italic">Different angles, same set.</span></h2>
+    <p class="lede">Three concurrent paid campaigns for the launch fortnight. Each one targets a distinct buyer mode. <em>Tartan Army</em> sells to the believers, <em>The Collector</em> sells to the connoisseurs, <em>The Discovery</em> opens the door to everyone else.</p>
+
+    <!-- CAMPAIGN A -->
+    <div class="campaign">
+      <div class="header">
+        <span class="label">Campaign A · The Tartan Army</span>
+        <h3>For the believers, the regulars, the home pour.</h3>
+        <div class="targeting">
+          <div><div class="t-label">Channel</div><div class="t-value">Meta (FB + IG) · TikTok</div></div>
+          <div><div class="t-label">Audience</div><div class="t-value">UK · 38-68 · whisky enthusiasts · Scottish football fans</div></div>
+          <div><div class="t-label">Budget split</div><div class="t-value">40% of spend</div></div>
+          <div><div class="t-label">Window</div><div class="t-value">T-14d → T+0 (kick-off)</div></div>
+        </div>
+      </div>
+
+      <div class="body">
+        <div class="ad-creative">
+          <div class="creative-num">Ad 1 · Hero image · feed</div>
+          <div class="ad-field">
+            <div class="ad-key">Headline (test 3 variants)</div>
+            <div class="ad-value variants">
+              <ol>
+                <li>Mibbe aye, mibbe no.</li>
+                <li>A dram for whichever way it goes.</li>
+                <li>We have prepared the whisky. You bring the optimism.</li>
+              </ol>
+            </div>
+          </div>
+          <div class="ad-field">
+            <div class="ad-key">Primary text</div>
+            <div class="ad-value">Twenty-eight years is a long time to wait. We made three bottles for Scotland's three group matches. Cream for Haiti, cobalt for Morocco, gold for Brazil. Drams for the Tartan Army. A limited release of single malt Scotch whisky from Thurso, in a wooden box. First allocation to the newsletter list.</div>
+          </div>
+          <div class="ad-field">
+            <div class="ad-key">Description</div>
+            <div class="ad-value">Hand-bottled in Caithness. Limited release. Fortune favours the brave.</div>
+          </div>
+          <div class="ad-field">
+            <div class="ad-key">CTA</div>
+            <div class="ad-value cta">Shop the set</div>
+          </div>
+        </div>
+
+        <div class="ad-creative">
+          <div class="creative-num">Ad 2 · Carousel · 4 frames</div>
+          <div class="ad-field">
+            <div class="ad-key">Frame 1 (cover) headline</div>
+            <div class="ad-value variants">
+              <ol>
+                <li>Three bottles. Three matches. One small box of Scotland.</li>
+                <li>A wee box of trouble.</li>
+              </ol>
+            </div>
+          </div>
+          <div class="ad-field">
+            <div class="ad-key">Frame 2 (Haiti bottle)</div>
+            <div class="ad-value">Aged 10 Years · cream and gold · for Scotland v Haiti, 14 June.</div>
+          </div>
+          <div class="ad-field">
+            <div class="ad-key">Frame 3 (Morocco bottle)</div>
+            <div class="ad-value">Aged 8 Years · cobalt blue · for Scotland v Morocco, 19 June.</div>
+          </div>
+          <div class="ad-field">
+            <div class="ad-key">Frame 4 (Brazil bottle)</div>
+            <div class="ad-value">Aged 12 Years · golden yellow · for Scotland v Brazil, 24 June.</div>
+          </div>
+          <div class="ad-field">
+            <div class="ad-key">Primary text</div>
+            <div class="ad-value">Open them in order. Pour them whichever way the result goes. The bottles do not require a particular outcome to justify themselves. They have been here longer than the result. Drams for the Tartan Army.</div>
+          </div>
+          <div class="ad-field">
+            <div class="ad-key">CTA</div>
+            <div class="ad-value cta">Reserve a set</div>
+          </div>
+        </div>
+
+        <div class="ad-creative">
+          <div class="creative-num">Ad 3 · Reel / TikTok · 15s UGC pour</div>
+          <div class="ad-field">
+            <div class="ad-key">Hook (first 2 seconds)</div>
+            <div class="ad-value variants">
+              <ol>
+                <li>"Will Scotland win the World Cup? Mibbe aye, mibbe no."</li>
+                <li>"We made three whiskies for the three matches. No, we have not been told otherwise."</li>
+              </ol>
+            </div>
+          </div>
+          <div class="ad-field">
+            <div class="ad-key">On-screen text overlay</div>
+            <div class="ad-value">A dram for whichever way it goes / Three bottles · three matches / Drams for the Tartan Army / Fortune favours the brave</div>
+          </div>
+          <div class="ad-field">
+            <div class="ad-key">CTA</div>
+            <div class="ad-value cta">Tap to see the set</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAMPAIGN B -->
+    <div class="campaign">
+      <div class="header">
+        <span class="label">Campaign B · The Collector</span>
+        <h3>For the limited-release buyer who wants to mark the summer.</h3>
+        <div class="targeting">
+          <div><div class="t-label">Channel</div><div class="t-value">Meta · Google Display · YouTube pre-roll</div></div>
+          <div><div class="t-label">Audience</div><div class="t-value">US · EU · 40-72 · single malt collectors · whisky club members · premium gifting</div></div>
+          <div><div class="t-label">Budget split</div><div class="t-value">35% of spend</div></div>
+          <div><div class="t-label">Window</div><div class="t-value">T-14d → T+30 (post-tournament)</div></div>
+        </div>
+      </div>
+
+      <div class="body">
+        <div class="ad-creative">
+          <div class="creative-num">Ad 1 · Editorial hero · static feed</div>
+          <div class="ad-field">
+            <div class="ad-key">Headline (test 3 variants)</div>
+            <div class="ad-value variants">
+              <ol>
+                <li>One summer. Three drams. Limited.</li>
+                <li>A collector's set, for a summer that will not repeat.</li>
+                <li>The match-day dram, hand-bottled in Caithness.</li>
+              </ol>
+            </div>
+          </div>
+          <div class="ad-field">
+            <div class="ad-key">Primary text</div>
+            <div class="ad-value">Drams for the Tartan Army is a limited Wolfburn release marking Scotland's return to the World Cup. Three single malts, hand-bottled in Thurso. Each bears the date, the venue, the opponent, and a small Saltire raised against a darker flag. Released as a single set, in a wooden box. When the box is gone, the box is gone. We will not repeat it.</div>
+          </div>
+          <div class="ad-field">
+            <div class="ad-key">Description</div>
+            <div class="ad-value">35cl × 3 · 46% vol · non-chill filtered · natural colour</div>
+          </div>
+          <div class="ad-field">
+            <div class="ad-key">CTA</div>
+            <div class="ad-value cta">Reserve your box</div>
+          </div>
+        </div>
+
+        <div class="ad-creative">
+          <div class="creative-num">Ad 2 · Long-form video · 30s product film</div>
+          <div class="ad-field">
+            <div class="ad-key">Voiceover open</div>
+            <div class="ad-value variants">
+              <ol>
+                <li>"Some things you collect because the world demands it of you. Stamps. First editions. Football programmes that were left on a chair at half-time and never seen again."</li>
+                <li>"Twenty-eight years is a long time to wait. We made three bottles for the wait."</li>
+              </ol>
+            </div>
+          </div>
+          <div class="ad-field">
+            <div class="ad-key">End frame</div>
+            <div class="ad-value">Box closed. Three bottles visible through the cut-out. "Fortune favours the brave." CTA chip.</div>
+          </div>
+          <div class="ad-field">
+            <div class="ad-key">CTA</div>
+            <div class="ad-value cta">View the set</div>
+          </div>
+        </div>
+
+        <div class="ad-creative">
+          <div class="creative-num">Ad 3 · Retargeting · cart abandon</div>
+          <div class="ad-field">
+            <div class="ad-key">Headline</div>
+            <div class="ad-value variants">
+              <ol>
+                <li>The box is still here. Just.</li>
+                <li>We are not going to make many.</li>
+              </ol>
+            </div>
+          </div>
+          <div class="ad-field">
+            <div class="ad-key">Primary text</div>
+            <div class="ad-value">You left without finishing. The wooden box of three is a limited release. When the box is gone, the box is gone. We will not repeat it, for the simple reason that we will not repeat the summer.</div>
+          </div>
+          <div class="ad-field">
+            <div class="ad-key">CTA</div>
+            <div class="ad-value cta">Complete your order</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAMPAIGN C -->
+    <div class="campaign">
+      <div class="header">
+        <span class="label">Campaign C · The Discovery</span>
+        <h3>For the broader paid social audience. Opens the door.</h3>
+        <div class="targeting">
+          <div><div class="t-label">Channel</div><div class="t-value">Meta · lookalikes from buyers + newsletter</div></div>
+          <div><div class="t-label">Audience</div><div class="t-value">Global English · 28-65 · Scotland-curious · whisky discovery</div></div>
+          <div><div class="t-label">Budget split</div><div class="t-value">25% of spend</div></div>
+          <div><div class="t-label">Window</div><div class="t-value">T-7d → T+14d (group stage)</div></div>
+        </div>
+      </div>
+
+      <div class="body">
+        <div class="ad-creative">
+          <div class="creative-num">Ad 1 · Story / Reel · vertical hero</div>
+          <div class="ad-field">
+            <div class="ad-key">Hook (first 2 seconds)</div>
+            <div class="ad-value variants">
+              <ol>
+                <li>"Scotland are at the World Cup. We made you a thing."</li>
+                <li>"What does a Scottish distillery do when the football team turns up?"</li>
+                <li>"Three matches. Three drams. One wooden box."</li>
+              </ol>
+            </div>
+          </div>
+          <div class="ad-field">
+            <div class="ad-key">Primary text</div>
+            <div class="ad-value">A small Highland distillery in Thurso has hand-bottled three single malt Scotch whiskies for Scotland's three group-stage matches at the 2026 World Cup. One for Haiti. One for Morocco. One for Brazil. Released together, in a wooden box, as a single Wolfburn set.</div>
+          </div>
+          <div class="ad-field">
+            <div class="ad-key">CTA</div>
+            <div class="ad-value cta">Discover Wolfburn</div>
+          </div>
+        </div>
+
+        <div class="ad-creative">
+          <div class="creative-num">Ad 2 · Blog promotion · driving to article</div>
+          <div class="ad-field">
+            <div class="ad-key">Headline</div>
+            <div class="ad-value variants">
+              <ol>
+                <li>What Archie Gemmill knew.</li>
+                <li>Read: Why Scotland's summer needs a particular kind of whisky.</li>
+                <li>A short essay on the Scottish art of taking yourself half-seriously.</li>
+              </ol>
+            </div>
+          </div>
+          <div class="ad-field">
+            <div class="ad-key">Primary text</div>
+            <div class="ad-value">On Jim Baxter at Wembley in 1967. On Archie Gemmill at Mendoza in 1978. On the wooden box of single malt Scotch whisky we have made for the summer of 2026. A nine-minute read from the Wolfburn journal.</div>
+          </div>
+          <div class="ad-field">
+            <div class="ad-key">CTA</div>
+            <div class="ad-value cta">Read the dispatch</div>
+          </div>
+        </div>
+
+        <div class="ad-creative">
+          <div class="creative-num">Ad 3 · Awareness · gentle introduction</div>
+          <div class="ad-field">
+            <div class="ad-key">Headline</div>
+            <div class="ad-value variants">
+              <ol>
+                <li>Made in Thurso, the very top of Scotland.</li>
+                <li>Hand-bottled. Small batch. Caithness.</li>
+              </ol>
+            </div>
+          </div>
+          <div class="ad-field">
+            <div class="ad-key">Primary text</div>
+            <div class="ad-value">If you have not met us before. Wolfburn is a Highland distillery on the very north edge of Scotland. We have made three single malts for Scotland's three group matches at this summer's World Cup. It is a small box. There will not be many. Fortune favours the brave.</div>
+          </div>
+          <div class="ad-field">
+            <div class="ad-key">CTA</div>
+            <div class="ad-value cta">Meet Wolfburn</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 56px;">Budget &amp; performance benchmarks</h3>
+    <p style="color: var(--muted); font-size: 14.5px; max-width: 720px; line-height: 1.7;">
+      Allocate spend roughly 40 / 35 / 25 across A / B / C. The Tartan Army campaign should over-index on engagement and adds-to-cart; The Collector should over-index on revenue per click and AOV; The Discovery should drive new-visitor traffic and email list growth as the leading indicator. Refresh creative every 7 days. Hold the bottom 10% of spend back for the retargeting set that turns on as soon as the cart abandon segment hits 500 users.
+    </p>
+  </section>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="brand">WOLFBURN<span class="accent-text">×</span>DIVERGENCE</div>
+  <div class="meta">Blog · SEO · ad copy · World Cup 2026 · rev 0.2 · 27 May 2026</div>
+  <div class="meta" style="margin-top: 6px;">Internal · review &amp; redline · not for distribution outside the project team</div>
+</div>
+
+<script>
+function copyMeta(btn) {
+  const block = document.getElementById('meta-block');
+  const text = block.innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ Copied';
+    btn.style.background = 'var(--accent)';
+    btn.style.color = 'var(--bg)';
+    setTimeout(() => {
+      btn.textContent = '⎘ Copy';
+      btn.style.background = 'transparent';
+      btn.style.color = 'var(--accent)';
+    }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>
