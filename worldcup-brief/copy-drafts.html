@@ -1,0 +1,807 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Wolfburn × World Cup · Copy drafts · email + blog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #08090D;
+    --bg-2: #11131A;
+    --bg-3: #181B24;
+    --bg-4: #1F232E;
+    --line: #252934;
+    --line-2: #353A48;
+    --lime: #C5FF00;
+    --lime-soft: #B0E600;
+    --lime-dim: #586C00;
+    --fg: #FAFAFA;
+    --muted: #8E8E96;
+    --muted-2: #5A5C66;
+    --display: 'Space Grotesk', 'Helvetica Neue', sans-serif;
+    --body: 'Inter', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', 'SF Mono', monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--fg); font-family: var(--body); font-weight: 400; font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+  a { color: var(--lime); text-decoration: none; }
+  a:hover { color: var(--lime-soft); }
+
+  .wrap { max-width: 980px; margin: 0 auto; padding: 80px 56px 120px 56px; }
+
+  /* COVER */
+  .cover {
+    min-height: 92vh;
+    padding: 64px 56px 72px 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--line);
+    background:
+      radial-gradient(ellipse at top right, rgba(197,255,0,0.04) 0%, transparent 65%),
+      linear-gradient(180deg, var(--bg) 0%, var(--bg) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: 64px;
+    right: 56px;
+    width: 8px;
+    height: 8px;
+    background: var(--lime);
+    border-radius: 50%;
+    box-shadow: 0 0 24px rgba(197,255,0,0.5);
+  }
+
+  .cover-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .brand {
+    font-family: var(--display);
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--fg);
+  }
+  .brand .accent { color: var(--lime); }
+  .brand-sub {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+  .classification {
+    text-align: right;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .classification strong {
+    color: var(--lime);
+    font-weight: 500;
+    display: block;
+    margin-top: 4px;
+  }
+
+  .cover-title { margin: 80px 0; }
+  .cover-eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.36em;
+    text-transform: uppercase;
+    color: var(--lime);
+    margin-bottom: 32px;
+    display: inline-block;
+    padding: 4px 14px;
+    border: 1px solid var(--lime);
+    border-radius: 100px;
+  }
+  .cover-title h1 {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 96px;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    color: var(--fg);
+  }
+  .cover-title h1 .lime { color: var(--lime); }
+  .cover-title h1 .strike {
+    text-decoration: line-through;
+    text-decoration-color: var(--lime);
+    text-decoration-thickness: 4px;
+    color: var(--muted);
+    font-weight: 400;
+  }
+  .cover-sub {
+    font-size: 19px;
+    color: var(--muted);
+    margin-top: 36px;
+    max-width: 640px;
+    line-height: 1.55;
+  }
+  .cover-sub strong { color: var(--fg); font-weight: 500; }
+
+  .cover-meta {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 36px;
+    padding-top: 36px;
+    border-top: 1px solid var(--line);
+  }
+  .cover-meta .label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .cover-meta .value {
+    font-family: var(--display);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--fg);
+  }
+
+  /* SECTIONS */
+  .section { margin-bottom: 120px; }
+  .section-num {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--lime);
+    margin-bottom: 24px;
+    display: inline-block;
+    padding: 6px 14px;
+    border: 1px solid var(--lime);
+    border-radius: 2px;
+  }
+  h2 {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 48px;
+    letter-spacing: -0.025em;
+    color: var(--fg);
+    margin-bottom: 28px;
+    line-height: 1.1;
+    max-width: 760px;
+  }
+  h2 .lime { color: var(--lime); }
+  h2 .italic { font-style: italic; font-weight: 400; }
+
+  h3 {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 22px;
+    color: var(--fg);
+    margin: 36px 0 14px 0;
+    letter-spacing: -0.005em;
+  }
+
+  p { margin-bottom: 18px; color: var(--fg); }
+  p.lede {
+    font-size: 22px;
+    line-height: 1.5;
+    color: var(--muted);
+    margin-bottom: 36px;
+    max-width: 720px;
+    font-weight: 300;
+  }
+  p.lede em { color: var(--lime); font-style: normal; font-weight: 500; }
+
+  /* EXAMPLE CARDS */
+  .example {
+    margin-bottom: 56px;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .example-meta {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-bottom: none;
+    padding: 24px 32px;
+    border-radius: 6px 6px 0 0;
+  }
+  .example-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: var(--lime);
+    color: var(--bg);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    border-radius: 100px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .example-tag.alt { background: transparent; color: var(--lime); border: 1px solid var(--lime); }
+  .example-meta h3 {
+    font-family: var(--display);
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--fg);
+    margin: 0;
+    letter-spacing: -0.015em;
+  }
+  .example-meta .note {
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: 8px;
+    line-height: 1.55;
+  }
+
+  /* EMAIL MOCKUP */
+  .email {
+    background: #F5F5F2;
+    color: #1A1A1A;
+    padding: 56px 64px;
+    font-family: var(--body);
+  }
+  .email-header {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: #6B6B6B;
+    margin-bottom: 32px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #D8D8D2;
+  }
+  .email-header .row { display: grid; grid-template-columns: 72px 1fr; gap: 12px; padding: 3px 0; }
+  .email-header .lbl { color: #999; letter-spacing: 0.1em; text-transform: uppercase; font-size: 9px; padding-top: 2px; }
+  .email-header .val { color: #1A1A1A; }
+  .email h1 {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 44px;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: #0A0A0A;
+    margin-bottom: 12px;
+  }
+  .email h1 .lime { color: #4A5C00; }
+  .email .deck {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 18px;
+    color: #6B6B6B;
+    margin-bottom: 36px;
+    font-weight: 400;
+  }
+  .email p { font-size: 15.5px; line-height: 1.75; color: #1A1A1A; margin-bottom: 16px; }
+  .email ul { margin: 16px 0 16px 0; padding-left: 18px; }
+  .email li { font-size: 15.5px; line-height: 1.7; color: #1A1A1A; margin-bottom: 8px; padding-left: 4px; }
+  .email .cta {
+    display: inline-block;
+    padding: 16px 36px;
+    background: #0A0A0A;
+    color: #C5FF00;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin: 24px 0;
+    border-radius: 2px;
+    font-weight: 600;
+  }
+  .email .signoff {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 18px;
+    color: #4A5C00;
+    margin-top: 36px;
+    padding-top: 24px;
+    border-top: 1px solid #D8D8D2;
+  }
+  .email .footer-meta {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: #999;
+    letter-spacing: 0.12em;
+    margin-top: 14px;
+    line-height: 1.6;
+  }
+
+  /* BLOG POST CARD */
+  .blog {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    padding: 64px 72px;
+    border-radius: 0 0 6px 6px;
+  }
+  .blog .blog-eyebrow {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--lime);
+    margin-bottom: 18px;
+  }
+  .blog h1 {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 48px;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    color: var(--fg);
+    margin-bottom: 16px;
+  }
+  .blog h1 .lime { color: var(--lime); }
+  .blog h1 .italic { font-style: italic; font-weight: 400; }
+  .blog .deck {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 20px;
+    color: var(--muted);
+    margin-bottom: 48px;
+    line-height: 1.5;
+    font-weight: 300;
+  }
+  .blog p {
+    font-size: 16.5px;
+    line-height: 1.85;
+    color: var(--fg);
+    margin-bottom: 22px;
+  }
+  .blog p.lede-para {
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--fg);
+  }
+  .blog p:first-of-type::first-letter {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 64px;
+    float: left;
+    line-height: 0.9;
+    margin: 8px 14px 0 0;
+    color: var(--lime);
+  }
+  .blog em { font-style: italic; color: var(--lime); }
+  .blog .break {
+    text-align: center;
+    color: var(--muted-2);
+    letter-spacing: 1em;
+    margin: 36px 0;
+    font-size: 13px;
+  }
+  .blog .signoff {
+    margin-top: 56px;
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 22px;
+    color: var(--lime);
+  }
+  .blog .author {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 10px;
+  }
+
+  /* FOOTER */
+  .footer {
+    margin-top: 96px;
+    padding: 48px 56px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    color: var(--muted);
+  }
+  .footer .brand { margin-bottom: 16px; }
+  .footer .meta {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--muted-2);
+  }
+
+  /* PRINT */
+  @page { size: A4; margin: 16mm; }
+  @media print {
+    body { font-size: 10pt; }
+    .wrap { padding: 0; max-width: none; }
+    .cover { min-height: auto; padding: 0 0 32px 0; }
+    .cover-title { margin: 40px 0; }
+    .cover-title h1 { font-size: 48px; }
+    .section { page-break-inside: avoid; margin-bottom: 32px; }
+    .example { page-break-inside: avoid; }
+    .email { padding: 24px; }
+    .blog { padding: 32px; }
+    .blog h1 { font-size: 28px; }
+    h2 { font-size: 26px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================== COVER ============================== -->
+<section class="cover">
+  <div class="cover-top">
+    <div>
+      <div class="brand">WOLFBURN<span class="accent">×</span>DIVERGENCE</div>
+      <div class="brand-sub">World Cup 2026 · copy drafts</div>
+    </div>
+    <div class="classification">
+      Internal · review &amp; redline
+      <strong>Rev 0.1</strong>
+      27 May 2026
+    </div>
+  </div>
+
+  <div class="cover-title">
+    <div class="cover-eyebrow">EMAIL · BLOG · DRAFTS</div>
+    <h1>Three bottles. <span class="lime">Three matches.</span> <span class="italic">One small box of Scotland.</span></h1>
+    <div class="cover-sub">Three launch email variants and three long-form blog drafts for the Wolfburn × World Cup release. <strong>Drams for the Tartan Army</strong>, the set-of-three pack tied to Scotland's group-stage fixtures against Haiti, Morocco, and Brazil. All copy lands on "mibbe aye, mibbe no" and signs off "fortune favours the brave."</div>
+  </div>
+
+  <div class="cover-meta">
+    <div><div class="label">Format</div><div class="value">Email × 3 + Blog × 3</div></div>
+    <div><div class="label">Voice</div><div class="value">Dry · Scottish · upper class</div></div>
+    <div><div class="label">References</div><div class="value">Baxter · Gemmill · 1978</div></div>
+    <div><div class="label">Status</div><div class="value">Ready for sign-off</div></div>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <!-- ============================== 01 EMAILS ============================== -->
+  <section class="section">
+    <div class="section-num">01 · Launch emails</div>
+    <h2>Three sends. <span class="lime">Pick one</span>, or run all three as A/B/C variants on a held-out segment.</h2>
+    <p class="lede">Same product, same announcement, three different tonal registers. <em>The heritage hold</em>, the <em>dry direct</em>, and the <em>collector's pitch</em>. Each runs ~250 words. Each is editable line-by-line.</p>
+
+    <!-- EMAIL VARIANT A -->
+    <div class="example">
+      <div class="example-meta">
+        <span class="example-tag">Variant A · The heritage hold</span>
+        <h3>"Mibbe aye, mibbe no."</h3>
+        <p class="note">The dignified opening. For the older Scottish list, the trade contacts, and the Paris audience. Quiet authority. No bombast. Closes on the tagline. Estimated open rate strongest with the long-time subscribers.</p>
+      </div>
+      <div class="email">
+        <div class="email-header">
+          <div class="row"><div class="lbl">From</div><div class="val">Wolfburn Distillery · news@wolfburn.com</div></div>
+          <div class="row"><div class="lbl">To</div><div class="val">{{ first_name }}</div></div>
+          <div class="row"><div class="lbl">Subject</div><div class="val">Mibbe aye, mibbe no.</div></div>
+          <div class="row"><div class="lbl">Preview</div><div class="val">Three bottles. Three matches. One summer.</div></div>
+        </div>
+
+        <h1>Mibbe aye, <span class="lime">mibbe no.</span></h1>
+        <div class="deck">A wee box of single malt, for the summer ahead.</div>
+
+        <p>Scotland qualified.</p>
+        <p>We will not bury that. Twenty-eight years is a long time to wait for a sentence we can finally write at the top of a newsletter without a footnote. We have written it. We are moving on.</p>
+        <p>What we have done about it sits in a wooden box on the bench in front of us. Three bottles of single malt Scotch whisky, hand-bottled in Thurso, released together as a single Wolfburn set to mark the group-stage matches at this summer's tournament. We have called it <em>Drams for the Tartan Army</em>.</p>
+        <ul>
+          <li><strong>Aged 10 Years</strong>, in cream and gold. For Scotland v Haiti, Foxborough, 14 June.</li>
+          <li><strong>Aged 8 Years</strong>, in cobalt blue. For Scotland v Morocco, Foxborough, 19 June.</li>
+          <li><strong>Aged 12 Years</strong>, in golden yellow. For Scotland v Brazil, Miami, 24 June.</li>
+        </ul>
+        <p>You buy them as a set. You open them in order. You pour them whichever way the result goes. The bottles do not require a particular outcome to justify themselves. They have been here longer than the result.</p>
+        <p>Released as a limited box. First allocation to the newsletter list.</p>
+
+        <p style="text-align: center;"><a href="#" class="cta">Reserve your set →</a></p>
+
+        <div class="signoff">Fortune favours the brave.</div>
+        <div class="footer-meta">
+          Wolfburn Distillery<br>
+          Henderson Park · Thurso · Caithness · KW14 7XW<br>
+          Aged in the same building since 2013
+        </div>
+      </div>
+    </div>
+
+    <!-- EMAIL VARIANT B -->
+    <div class="example">
+      <div class="example-meta">
+        <span class="example-tag alt">Variant B · The dry direct</span>
+        <h3>"We've made you a wee box of trouble."</h3>
+        <p class="note">The cheeky variant. The one your most engaged segment (high opens, high clicks) will tell their pals about. Reads aloud well. Closes on both phrases — anchor + tagline. Estimated highest forward rate.</p>
+      </div>
+      <div class="email">
+        <div class="email-header">
+          <div class="row"><div class="lbl">From</div><div class="val">Wolfburn Distillery · news@wolfburn.com</div></div>
+          <div class="row"><div class="lbl">To</div><div class="val">{{ first_name }}</div></div>
+          <div class="row"><div class="lbl">Subject</div><div class="val">We've made you a wee box of trouble.</div></div>
+          <div class="row"><div class="lbl">Preview</div><div class="val">Three matches. Three drams. Yes, in that order. No, we have not been told otherwise.</div></div>
+        </div>
+
+        <h1>A wee box of <span class="lime">trouble.</span></h1>
+        <div class="deck">For Scotland's three group matches. One whisky for each.</div>
+
+        <p>You'll know by now that Scotland are at the World Cup. You will know what we think Scotland's chances are. You will know what we will say at the door of the pub on the way home regardless of the result, and you will know exactly how long it will take us to admit anything.</p>
+        <p>So we have made you a thing.</p>
+        <p>Three bottles of single malt Scotch whisky. One for each of the matches against Haiti, Morocco, and Brazil. Yes, that order. No, we have not been told otherwise.</p>
+        <ul>
+          <li>The <strong>10 Year Old</strong> wears cream and gold and goes with the opener.</li>
+          <li>The <strong>8 Year Old</strong> wears cobalt blue and goes with the second.</li>
+          <li>The <strong>12 Year Old</strong> wears golden yellow and goes with Brazil, in the same way that one wears a good coat to a difficult meeting.</li>
+        </ul>
+        <p>You receive them as a set. You receive them in a wooden box. You receive them with no further explanation, because we trust you to know what to do with them.</p>
+        <p>The Tartan Army gets first refusal. The rest of you, on Monday.</p>
+
+        <p style="text-align: center;"><a href="#" class="cta">Take a set →</a></p>
+
+        <div class="signoff">Mibbe aye, mibbe no. Fortune favours the brave.</div>
+        <div class="footer-meta">
+          Wolfburn Distillery · Thurso, Caithness<br>
+          The bottle does not mind the result.
+        </div>
+      </div>
+    </div>
+
+    <!-- EMAIL VARIANT C -->
+    <div class="example">
+      <div class="example-meta">
+        <span class="example-tag">Variant C · The collector's pitch</span>
+        <h3>"A collector's set, for a summer that won't repeat."</h3>
+        <p class="note">The scarcity-led variant. For the limited-release buyers and the international list (Paris, Iowa, London) who collect more deliberately. Slightly longer. Stronger on the "one-off summer" framing. Sells the wooden box as a keepsake.</p>
+      </div>
+      <div class="email">
+        <div class="email-header">
+          <div class="row"><div class="lbl">From</div><div class="val">Wolfburn Distillery · news@wolfburn.com</div></div>
+          <div class="row"><div class="lbl">To</div><div class="val">{{ first_name }}</div></div>
+          <div class="row"><div class="lbl">Subject</div><div class="val">A collector's set, for a summer that won't repeat.</div></div>
+          <div class="row"><div class="lbl">Preview</div><div class="val">Three bottles. Three matches. One small wooden box of Scotland.</div></div>
+        </div>
+
+        <h1>One <span class="lime">summer.</span> Three drams.</h1>
+        <div class="deck">A limited Wolfburn release for the matches Scotland has waited twenty-eight years to play.</div>
+
+        <p>Some things you collect because the world demands it of you. Stamps. First editions. Football programmes that were left on a chair at half-time and never seen again.</p>
+        <p>We have made another one of these.</p>
+        <p><em>Drams for the Tartan Army</em> is a set of three single malt Scotch whiskies, hand-bottled in Thurso, set in a wooden box, released to mark Scotland's three group-stage matches at the 2026 World Cup. Each bottle carries the date, the venue, the opponent, and a small Saltire raised against a darker flag. The lions are rampant on both sides.</p>
+        <ul>
+          <li><strong>Aged 10 Years.</strong> Scotland v Haiti. Foxborough. 14 June.</li>
+          <li><strong>Aged 8 Years.</strong> Scotland v Morocco. Foxborough. 19 June.</li>
+          <li><strong>Aged 12 Years.</strong> Scotland v Brazil. Miami. 24 June.</li>
+        </ul>
+        <p>It is a limited release. When the box is gone, the box is gone. We will not repeat it, for the simple reason that we will not repeat the summer.</p>
+        <p>The newsletter list receives first allocation. Six days.</p>
+
+        <p style="text-align: center;"><a href="#" class="cta">Reserve your box →</a></p>
+
+        <div class="signoff">Fortune favours the brave.</div>
+        <div class="footer-meta">
+          Wolfburn Distillery<br>
+          Thurso · Caithness · Scotland<br>
+          Aged in the same building since 2013
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== 02 BLOG POSTS ============================== -->
+  <section class="section">
+    <div class="section-num">02 · Blog posts</div>
+    <h2>Three long-form drafts. <span class="lime">Cornerstone, product-led, heritage.</span></h2>
+    <p class="lede">Three blog drafts of increasing length. All in the Scottish-dry-upper-class voice. <em>Maybe aye, maybe no</em> threads through all three. Football legends invoked: Jim Baxter, Archie Gemmill, the Ally MacLeod 1978 moment. Edit, swap, redline.</p>
+
+    <!-- BLOG 1 -->
+    <div class="example">
+      <div class="example-meta">
+        <span class="example-tag">Blog 1 · Cornerstone</span>
+        <h3>"Mibbe aye, mibbe no: a Wolfburn dispatch for the summer of 2026"</h3>
+        <p class="note">~1,100 words. The flagship piece. Publishes the day of the email send. Sets the tonal anchor for the whole campaign. SEO target: "mibbe aye mibbe no" + "Scotland World Cup 2026" long-tail.</p>
+      </div>
+      <div class="blog">
+        <div class="blog-eyebrow">Dispatch · 01 · The hedge</div>
+        <h1>Mibbe aye, <span class="italic lime">mibbe no.</span></h1>
+        <div class="deck">A Wolfburn dispatch for the summer of 2026, and a wee box of single malt for whichever way it goes.</div>
+
+        <p class="lede-para">If you ask a man on Thurso high street this morning whether Scotland will get out of their group, you will receive a sentence with a beginning, a middle, and an end, and somewhere between those three points you will lose track of which answer is being given. He will start by saying "aye." He will not finish by saying "aye." There will be a long pause in the middle in which the weather will be invited to participate. By the time he has finished the sentence, you and he will be friends, and you will have no idea what he thinks about Scotland's chances of making the round of sixteen.</p>
+
+        <p>This is not vagueness. This is the most precise answer in the world, delivered in the only language that knows how to say it. The phrase, when it eventually arrives, will be some version of <em>mibbe aye, mibbe no</em>. It is the national hedge. It is also, on closer inspection, the national religion. Hope tempered by experience. Optimism kept on the shelf with the good glasses. Scotland turning up to a football tournament with hand luggage and low expectations is not pessimism. It is good manners.</p>
+
+        <p>This summer, we are going to test that arrangement.</p>
+
+        <div class="break">· · ·</div>
+
+        <p>Twenty-eight years is a long time to wait for the sentence we have finally allowed ourselves to write. Scotland are at the World Cup. The last time we managed it, the world was a wider place, most of you reading this were not yet at school, and a small distillery on the very top edge of the country had not yet opened its doors. The men who are about to walk out in Foxborough and Miami in our colours have been preparing for this their whole adult lives. Most of them have not yet started getting nervous, which is the most Scottish quality of all.</p>
+
+        <p>We have made you a thing.</p>
+
+        <p>It is sitting in a wooden box on the bench in front of us as we type. Three bottles of single malt Scotch whisky, hand-bottled in Thurso, released as a single set to mark the three group-stage fixtures. <strong>Aged 10 Years</strong>, cream and gold, for the opening match against Haiti on Sunday 14 June. <strong>Aged 8 Years</strong>, cobalt blue, for the second against Morocco on Friday 19 June. <strong>Aged 12 Years</strong>, golden yellow, for the third against Brazil on Wednesday 24 June. <em>Drams for the Tartan Army</em>, is what we have called them.</p>
+
+        <p>You will notice immediately that we have not committed to a particular outcome. The bottles do not say "to celebrate," and they do not say "to commiserate." They say "Scotland v Haiti." They say "Scotland v Morocco." They say "Scotland v Brazil." What you do with them depends, in the end, on what the eleven players in our colours do with the ninety minutes in front of them.</p>
+
+        <p>This is not cowardice. This is what we know.</p>
+
+        <div class="break">· · ·</div>
+
+        <p>There is a passage in any Scottish writer worth reading about Jim Baxter at Wembley in 1967. Scotland had gone 2-1 up against an England team that had won the World Cup the year before, and Baxter, instead of helping the team see the match out, started doing keepie-uppies in his own half. The English players, by all accounts, did not find it funny. Baxter did not stop. Scotland won 3-2. The keepie-uppies are remembered. The result, less so.</p>
+
+        <p>Archie Gemmill scored that goal against Holland in 1978 that you have seen on a wall in a pub somewhere. He beat three defenders to do it. Scotland went out of the group anyway, having been informed by their manager beforehand that they were going to win the tournament. The goal is remembered. The exit, less so.</p>
+
+        <p>This is the trick of the thing. Scotland's football history is not a history of results. It is a history of moments. The hedge is in the moments. We are taught from a very young age that the result is a small part of the story, and the small part of the story is the part we will probably get wrong. The rest is ours.</p>
+
+        <p>So we have made the whisky for the rest.</p>
+
+        <div class="break">· · ·</div>
+
+        <p>The cream one comes first. We have aged it ten years. We have given it the warm cream and gold dress because the first match is the opening match, and openings are an inherently optimistic act. You do not open a tournament you do not think you are going to win, even if you are quietly certain you are not going to win it. Pour this one before kick-off on the Sunday. Allow it room.</p>
+
+        <p>The cobalt blue comes second. We have aged it eight years. The colour is cooler, because by the time we walk out for the second match, the first match has happened, and we know things we did not know before. Whatever the first result was, the second match is now the match that matters. Pour this one slowly. The Morocco fixture will reward composure.</p>
+
+        <p>The golden yellow comes third. We have aged it twelve years. It is the older brother of the three, with the deepest colour, and it gets the deepest moment. The Brazil match is the one we have all been thinking about since the draw. There is nothing to be gained from pretending otherwise. We have given it gold because gold is what the moment asks for, whether the moment turns out to be a famous win or a famous defeat. Pour it like you mean it.</p>
+
+        <div class="break">· · ·</div>
+
+        <p>The box is wooden. The kind a watchmaker might use to ship a serious thing. The interior is lined in a charcoal cloth that the Saltire would not be ashamed to be wrapped in. The three bottles sit in moulded recesses that hold them firmly enough that you could carry the box to Foxborough yourself, if you happened to be going.</p>
+
+        <p>We have set aside the first allocation for the newsletter list. The rest goes to the storefront on Monday. We are not going to make many. We will not be repeating the box, for the simple reason that we will not be repeating the summer.</p>
+
+        <p>What we do know is what is in the box. Three single malts. Three matches. One small wooden release of Scotland, in glass.</p>
+
+        <p>The match-day dram is not a recipe. It is a ritual. It is what you reach for when there is nothing else to be said, and the country has not stopped saying things for the last twenty-eight years. Some quiet, this June, will be welcome.</p>
+
+        <p><em>Mibbe aye, mibbe no.</em> We are here either way.</p>
+
+        <div class="signoff">Fortune favours the brave.</div>
+        <div class="author">Wolfburn Distillery · Thurso · 27 May 2026</div>
+      </div>
+    </div>
+
+    <!-- BLOG 2 -->
+    <div class="example">
+      <div class="example-meta">
+        <span class="example-tag alt">Blog 2 · Product-led</span>
+        <h3>"The wooden box, opened: what each bottle is for"</h3>
+        <p class="note">~900 words. The walkthrough piece. For the product page hub and the second-week newsletter. Photographable end-to-end: the box opening, each bottle in turn, each suggested pour. Conversion-friendly.</p>
+      </div>
+      <div class="blog">
+        <div class="blog-eyebrow">Dispatch · 02 · The box</div>
+        <h1>The wooden box, <span class="italic lime">opened.</span></h1>
+        <div class="deck">What each bottle is for. In order. Without spoiling the surprise.</div>
+
+        <p>The wooden box arrived on the bench at Henderson Park on a Monday morning in early May. It had come up the road from a small workshop in Aberdeenshire that has been making serious wooden boxes since long before anybody in this building was thinking about a World Cup. Inside it, when we opened it, were three bottles, lying neatly in moulded recesses, and a small printed card explaining what each of them was for. The printed card was important. The bottles, taken on their own, would not have told you the whole story.</p>
+
+        <p>This is the story.</p>
+
+        <div class="break">· · ·</div>
+
+        <p>The first bottle is the <strong>10 Year Old</strong>. The label is cream, the foil is gold, and the date on the bottom reads <em>Sunday 14 June 2026 · Foxborough USA</em>. This is the opening match, Scotland v Haiti, and we have dressed the bottle for it. The cream is warm in the way an early-summer morning is warm — full of promise, slightly unspoken about it. The 10 Year Old itself is a Highland single malt matured in second-fill Oloroso sherry hogsheads and ex-bourbon casks, which is to say it is a whisky with depth of character but no inclination to start with a speech.</p>
+
+        <p>The pour for this one is before kick-off. Pour it into a Glencairn, sit it on the table, look at it once before the players come out, and leave it. If we win, you will get back to it in due course. If we draw, you will get back to it more quickly than that. If we lose, the dram will still be there, and the bottle will not remind you of anything painful, which is more than the highlights package will manage.</p>
+
+        <div class="break">· · ·</div>
+
+        <p>The second bottle is the <strong>8 Year Old</strong>. The label is cobalt blue, the foil is gold, and the date reads <em>Friday 19 June 2026 · Foxborough USA</em>. This is the Morocco match, and the cobalt is doing two jobs. It is the cool, sober colour of a country that has had five days to think about the first result. It is also a small nod to the Atlas Mountains, without committing to anything as gauche as a national costume.</p>
+
+        <p>The 8 Year Old is the youngest in the set, and the youngest in the Wolfburn core range. It has a touch more brightness on the nose than the 10 Year Old, which suits the second match in a tournament, when the body is starting to remember that this is going to go on for a while. Pour it after dinner. Take it into the room you watch matches in. Do not pour a second one before the seventieth minute.</p>
+
+        <div class="break">· · ·</div>
+
+        <p>The third bottle is the <strong>12 Year Old</strong>. The label is golden yellow, the foil is gold, and the date reads <em>Wednesday 24 June 2026 · Miami USA</em>. This is the Brazil match, and there is a longer conversation to be had about why we have given the oldest whisky to the third match. The short version is that the Brazil fixture is the match we have all been thinking about since the draw. It is the match every Scotland supporter has rehearsed in their head, in various wildly differing outcomes. It is the match the entire group stage points at, regardless of how we have got there. It deserves the seriousness of the 12 Year Old, in the same way that a serious meeting deserves a good coat.</p>
+
+        <p>The 12 Year Old is the flagship. It is matured in hand-selected Oloroso sherry butts and ex-bourbon casks, and the result is a whisky with a lingering finish that does not require a particular result to justify itself. We have given it gold because gold is what the moment asks for. Whether the moment turns out to be a famous win or a famous defeat, the colour is correct.</p>
+
+        <div class="break">· · ·</div>
+
+        <p>The set comes in the wooden box. The box is lined in charcoal cloth. The whole thing has the weight of an object you might keep on a shelf afterwards, regardless of what happens to the bottles. We have not numbered the editions, because the set itself is the edition. When the box is gone, the box is gone. We will not repeat it, for the simple reason that we will not repeat the summer.</p>
+
+        <p>Three bottles. Three matches. One small wooden release of Scotland, in glass.</p>
+
+        <p><em>Mibbe aye, mibbe no.</em></p>
+
+        <div class="signoff">Fortune favours the brave.</div>
+        <div class="author">Wolfburn Distillery · Thurso · the wooden box has landed</div>
+      </div>
+    </div>
+
+    <!-- BLOG 3 -->
+    <div class="example">
+      <div class="example-meta">
+        <span class="example-tag">Blog 3 · Heritage</span>
+        <h3>"What Jim Baxter knew"</h3>
+        <p class="note">~1,300 words. The heritage long-read. For the third-week newsletter and shareable across the Scottish football press. Goes deep on the 1967 Wembley moment, Archie Gemmill's 1978 goal, and Ally MacLeod's hubris. Ties the whisky in the back third.</p>
+      </div>
+      <div class="blog">
+        <div class="blog-eyebrow">Dispatch · 03 · Heritage</div>
+        <h1>What Jim Baxter <span class="italic lime">knew.</span></h1>
+        <div class="deck">On Wembley, 1967. On Mendoza, 1978. On a wooden box, 2026. The Scottish art of taking yourself half-seriously, and the whisky for it.</div>
+
+        <p>There is a black-and-white photograph in a particular pub in Cowdenbeath of Jim Baxter, taken in the summer of 1967, in which he is not doing very much. He is leaning on a wall outside Wembley, in a coat that fits him properly, smoking a cigarette as if he had invented it. The Scotland team has just beaten England 3-2. Baxter has just spent the closing minutes of the match doing keepie-uppies in the centre circle, in front of the world champions, while ten of his teammates ran their lungs out behind him. He looks, in the photograph, like he is about to say something. He never quite gets round to it.</p>
+
+        <p>This is the spirit we are after.</p>
+
+        <div class="break">· · ·</div>
+
+        <p>The thing about Baxter doing those keepie-uppies is not that he was disrespecting England, although it is sometimes told that way, and Baxter would not have argued. The thing about it is that he was disrespecting the match. He was, very gently and very deliberately, declaring that the result was not the point. Scotland were 3-2 up against the reigning World Cup holders, and a sensible captain would have asked the team to see the thing out properly. Baxter was not a sensible captain. He was a Scotsman with the ball at his feet, with a minute on the clock that did not require him to do anything useful, and he chose to use that minute to make a small philosophical point at the expense of Bobby Charlton.</p>
+
+        <p>The point he was making was this. The result will be remembered for a while. The moment will be remembered for a very long time. If you can find a way to put the moment inside the result, you will have done your job. Baxter, that afternoon, put the moment inside the result. We have been telling the story ever since.</p>
+
+        <div class="break">· · ·</div>
+
+        <p>Eleven years later, on a hot night in Mendoza in 1978, a small Aberdeenshire-trained midfielder named Archie Gemmill received the ball thirty yards from the Dutch goal in a World Cup group game, beat three defenders without appearing to try, and chipped the ball gently over the goalkeeper. There is a moment in the footage where Gemmill, having scored, half-turns to look at the bench, as if to check that this is really what has just happened. Then he runs into the corner with his arms out, in the way Scotsmen do when they have done something they suspect they were not actually meant to be able to do.</p>
+
+        <p>Scotland went out of that tournament. We had been informed beforehand by our manager, a man called Ally MacLeod, that we were going to win it. We had been informed by Ally MacLeod that we were going to come home with the World Cup itself. There had been a homecoming parade scheduled at Hampden before a ball had been kicked. The parade happened anyway, because Scotland is the sort of country that has a homecoming parade for a team that has come home without winning the World Cup, and we will not apologise for it.</p>
+
+        <p>Gemmill's goal, however, is on the wall of every pub in this country that has a wall. Ally MacLeod's parade is on the wall of nowhere. The hedge has done its work. The moment has eaten the result.</p>
+
+        <div class="break">· · ·</div>
+
+        <p>You can probably see where this is going.</p>
+
+        <p>Scotland are at the World Cup again. Scotland will, in all probability, lose to Brazil. Scotland may or may not lose to Haiti. Scotland may or may not lose to Morocco. The bookmakers have a view. We have a view. The view in this building is, broadly, <em>mibbe aye, mibbe no</em>, which is the view of every Scottish household this morning that is honest about it.</p>
+
+        <p>And so we have made a thing for the moments. Not for the results. The results will be what they are, and there will be no shortage of people willing to tell you whose fault each of them was. The moments will be ours. Some of them will be heartbroken. Some of them will be unexpectedly glorious. Some of them will look like a small midfielder running into a corner with his arms out, and some of them will look like Jim Baxter, calmly disrespecting the entire concept of a football match in the centre circle of Wembley.</p>
+
+        <p>The thing for the moments is sitting on the bench in Henderson Park as we type. It is a wooden box. Inside it are three bottles of single malt Scotch whisky. Each one is for one of the three group-stage matches, and each one is dressed for the occasion. The 10 Year Old, in cream, for the opener. The 8 Year Old, in cobalt, for the second. The 12 Year Old, in gold, for the third. <em>Drams for the Tartan Army</em>.</p>
+
+        <p>What you pour, you pour for the moment, not the result. That was Baxter's point in the centre circle in 1967, and Gemmill's point in the corner in Mendoza, and Ally MacLeod's point, in his way, at the homecoming parade for a team that had not won anything. The result will pass. The moment, if you hold it properly, will not.</p>
+
+        <p>We have made you something to hold the moment properly.</p>
+
+        <div class="break">· · ·</div>
+
+        <p>The 10 Year Old goes in the Glencairn before kick-off on the Sunday. The 8 Year Old goes on the table on the Friday, with the curtains half-drawn against the Foxborough light. The 12 Year Old goes wherever you are going to be on the Wednesday after midnight, when Scotland is playing Brazil and the country is somehow, against all reasonable expectation, holding its breath.</p>
+
+        <p>Pour them slowly. Take a beat before you taste them. Look at the bottle for a moment before you look at the score. Jim Baxter would have approved.</p>
+
+        <p><em>Mibbe aye, mibbe no.</em> The bottle has been through worse than a back four.</p>
+
+        <div class="signoff">Fortune favours the brave.</div>
+        <div class="author">Wolfburn Distillery · Thurso · in memory of the moments</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== 03 NOTES ============================== -->
+  <section class="section" style="margin-bottom: 0;">
+    <div class="section-num">03 · Notes for the team</div>
+    <h2>Edits, swaps, and the <span class="lime">"Montgomery" question.</span></h2>
+
+    <h3>The football legend reference</h3>
+    <p>Wesley asked for a reference to a Scottish footballer named Montgomery. The closest I can confidently place is <strong>Jim Montgomery</strong>, the Sunderland goalkeeper who made the famous double-save in the 1973 FA Cup Final — but he was English. The drafts above lean on <strong>Jim Baxter</strong> (Wembley 1967 keepie-uppies) and <strong>Archie Gemmill</strong> (the Mendoza goal against Holland, 1978), plus <strong>Ally MacLeod</strong> (the 1978 hubris). These three are the safest, best-attested Scottish football references that map onto the "mibbe aye, mibbe no" thesis. Wesley to confirm or swap in the specific name he meant.</p>
+
+    <h3>What's locked across all three blogs</h3>
+    <ul>
+      <li>"Mibbe aye, mibbe no" appears in every piece</li>
+      <li>Sign-off "Fortune favours the brave" closes every piece</li>
+      <li>No em-dashes, per house style</li>
+      <li>"Single malt Scotch whisky", never "scotch"</li>
+      <li>No FIFA / World Cup competition marks (we say "tournament", "the summer", "this June")</li>
+      <li>No price mentioned in the body — sales page handles it</li>
+    </ul>
+
+    <h3>If you want to A/B/C test the email</h3>
+    <p>Run Variant A as the primary send to the full list. Hold back 10% of the list, split it 5/5, and send Variant B to one half, Variant C to the other. Measure 24-hour open rate + click rate + revenue per recipient. Use the winner for any re-sends. The whole campaign should take a single morning to set up in Klaviyo.</p>
+
+    <h3>Production sequence</h3>
+    <ul>
+      <li><strong>T-14d</strong> · Email variant A goes to the full list with Blog 1 (Cornerstone) live on the site</li>
+      <li><strong>T-10d</strong> · Blog 2 (The wooden box, opened) publishes to the news section</li>
+      <li><strong>T-5d</strong> · Blog 3 (What Jim Baxter knew) publishes, with a paid social push behind it</li>
+      <li><strong>T-3d</strong> · Reminder email if box has not sold through</li>
+      <li><strong>Tournament window</strong> · Match-day dispatches and "what to pour at full time" posts follow per the main campaign brief</li>
+    </ul>
+  </section>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="brand">WOLFBURN<span class="accent">×</span>DIVERGENCE</div>
+  <div class="meta">Copy drafts · World Cup 2026 · rev 0.1 · 27 May 2026</div>
+  <div class="meta" style="margin-top: 6px;">Internal · review &amp; redline · not for distribution outside the project team</div>
+</div>
+
+</body>
+</html>
