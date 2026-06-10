@@ -1,0 +1,847 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Wolfburn × World Cup 2026 · Meta Ad Campaigns</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0F1622;
+    --bg-2: #18202F;
+    --bg-3: #1F2939;
+    --bg-4: #2A364A;
+    --line: #2A3650;
+    --line-2: #3F4D6B;
+    --cream: #F4F1E8;
+    --cream-soft: #DEDACC;
+    --accent: #FF5839;
+    --accent-soft: #FF7E66;
+    --accent-dim: #B83A23;
+    --yellow: #F4C842;
+    --cobalt: #4677D9;
+    --gold: #D9A647;
+    --label-cream: #E0CFA8;
+    --green: #6FBA7A;
+    --cyan: #5CC9D6;
+    --muted: #8E95A8;
+    --muted-2: #5E6678;
+    --display: 'Space Grotesk', sans-serif;
+    --serif: 'Fraunces', Georgia, serif;
+    --body: 'Inter', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', 'SF Mono', monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  html, body { background: var(--bg); color: var(--cream); font-family: var(--body); font-weight: 400; font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+  a { color: var(--accent); text-decoration: none; transition: color .15s; }
+  a:hover { color: var(--accent-soft); }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 56px 56px 96px 56px; }
+
+  /* HERO */
+  .hero {
+    padding: 56px 56px 64px 56px;
+    border-bottom: 1px solid var(--line);
+    background: radial-gradient(ellipse at top right, rgba(255,88,57,0.08) 0%, transparent 60%);
+    position: relative;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: 56px; right: 56px;
+    width: 10px; height: 10px;
+    background: var(--accent); border-radius: 50%;
+    box-shadow: 0 0 20px rgba(255,88,57,0.6);
+  }
+  .hero-top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .brand { font-family: var(--display); font-weight: 600; font-size: 15px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--cream); }
+  .brand .a { color: var(--accent); }
+  .brand-sub { font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+  .classification { text-align: right; font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); }
+  .classification strong { color: var(--accent); font-weight: 600; display: block; margin-top: 4px; }
+  .hero-title { margin: 48px 0 24px 0; }
+  .hero-eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; display: inline-block; padding: 5px 14px; border: 1px solid var(--accent); border-radius: 100px; }
+  .hero-title h1 { font-family: var(--serif); font-weight: 500; font-size: 64px; line-height: 1; letter-spacing: -0.025em; color: var(--cream); }
+  .hero-title h1 .a { color: var(--accent); font-style: italic; }
+  .hero-sub { font-size: 18px; color: var(--cream-soft); margin-top: 24px; max-width: 740px; line-height: 1.55; }
+
+  /* INTRO STRIP */
+  .intro-strip { background: var(--bg-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 36px 56px; }
+  .intro-strip h2 { font-family: var(--display); font-size: 14px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+  .intro-strip p { font-size: 17px; color: var(--cream); line-height: 1.7; max-width: 820px; }
+  .intro-strip strong { color: var(--accent); font-weight: 600; }
+
+  /* TOC */
+  .toc { background: var(--bg); padding: 56px; border-bottom: 1px solid var(--line); }
+  .toc-head { font-family: var(--mono); font-size: 11px; letter-spacing: 0.36em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; display: inline-block; padding: 6px 16px; border: 1px solid var(--accent); border-radius: 100px; }
+  .toc h2 { font-family: var(--serif); font-weight: 500; font-size: 32px; letter-spacing: -0.015em; color: var(--cream); margin-bottom: 28px; }
+  .toc h2 .a { color: var(--accent); font-style: italic; }
+  .toc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .toc-card {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--accent);
+    padding: 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all .15s;
+    text-decoration: none;
+    display: block;
+  }
+  .toc-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .toc-card.cream { border-left-color: var(--label-cream); }
+  .toc-card.cobalt { border-left-color: var(--cobalt); }
+  .toc-card.gold { border-left-color: var(--gold); }
+  .toc-card.umbrella { background: linear-gradient(135deg, rgba(255,88,57,0.06), var(--bg-2)); }
+  .toc-card .num { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; font-weight: 500; }
+  .toc-card h3 { font-family: var(--display); font-size: 19px; font-weight: 600; color: var(--cream); margin-bottom: 6px; line-height: 1.25; }
+  .toc-card .meta { font-size: 13px; color: var(--muted); margin-top: 6px; }
+  .toc-card .count { font-family: var(--mono); font-size: 10px; color: var(--accent); letter-spacing: 0.14em; text-transform: uppercase; margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--line); }
+
+  /* SECTION DIVIDER */
+  .section-divider {
+    margin: 80px 0 48px 0;
+    padding-top: 56px;
+    border-top: 2px solid var(--accent);
+  }
+  .section-divider.cream { border-top-color: var(--label-cream); }
+  .section-divider.cobalt { border-top-color: var(--cobalt); }
+  .section-divider.gold { border-top-color: var(--gold); }
+  .section-divider .meta { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+  .section-divider .number { font-family: var(--display); font-size: 16px; font-weight: 700; color: var(--bg); background: var(--accent); padding: 6px 14px; border-radius: 4px; }
+  .section-divider.cream .number { background: var(--label-cream); }
+  .section-divider.cobalt .number { background: var(--cobalt); color: var(--cream); }
+  .section-divider.gold .number { background: var(--gold); }
+  .section-divider .type { font-family: var(--mono); font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+  .section-divider.cream .type { color: var(--label-cream); }
+  .section-divider.cobalt .type { color: var(--cobalt); }
+  .section-divider.gold .type { color: var(--gold); }
+  .section-divider h2 { font-family: var(--serif); font-weight: 500; font-size: 48px; letter-spacing: -0.02em; color: var(--cream); line-height: 1.05; margin-bottom: 16px; }
+  .section-divider h2 .a { color: var(--accent); font-style: italic; }
+  .section-divider.cream h2 .a { color: var(--label-cream); }
+  .section-divider.cobalt h2 .a { color: var(--cobalt); }
+  .section-divider.gold h2 .a { color: var(--gold); }
+  .section-divider .desc { font-size: 17px; color: var(--cream-soft); line-height: 1.55; max-width: 800px; font-family: var(--serif); font-style: italic; font-weight: 400; }
+
+  /* SUB-HEAD for sections inside campaigns */
+  .sub-head { margin: 36px 0 14px 0; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+  .sub-head .badge { display: inline-block; font-family: var(--mono); font-size: 9px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; padding: 4px 12px; border-radius: 100px; margin-right: 10px; margin-bottom: 8px; color: var(--bg); background: var(--accent); }
+  .sub-head h3 { font-family: var(--display); font-size: 22px; font-weight: 600; color: var(--cream); margin: 0; letter-spacing: -0.01em; }
+  .sub-head .note { font-size: 13.5px; color: var(--muted); margin-top: 6px; line-height: 1.5; }
+
+  /* FIELD BLOCK */
+  .field {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    border-radius: 6px;
+    margin-bottom: 14px;
+    overflow: hidden;
+  }
+  .field-head { display: flex; justify-content: space-between; align-items: center; background: var(--bg-3); padding: 11px 22px; border-bottom: 1px solid var(--line); }
+  .field-head .label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+  .field-head .meta { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.04em; }
+  .field-body { padding: 20px 24px; font-size: 14.5px; line-height: 1.65; color: var(--cream); }
+  .field-body strong { color: var(--cream); font-weight: 600; }
+  .field-body em { font-style: italic; color: var(--accent); }
+  .field-body ul { margin: 8px 0 8px 18px; }
+  .field-body li { margin-bottom: 5px; }
+
+  /* VARIANTS LIST */
+  .variants { background: var(--bg-3); border-left: 2px solid var(--line-2); padding: 12px 16px; border-radius: 0 4px 4px 0; }
+  .variants ol { counter-reset: item; padding: 0; margin: 0; list-style: none; }
+  .variants li { font-family: var(--serif); font-size: 16px; line-height: 1.4; color: var(--cream); margin-bottom: 7px; padding-left: 22px; position: relative; font-style: italic; counter-increment: item; }
+  .variants li::before { content: counter(item, decimal-leading-zero); position: absolute; left: 0; top: 1px; font-family: var(--mono); font-size: 10px; color: var(--accent); font-style: normal; letter-spacing: 0.04em; }
+
+  /* TARGETING GRID */
+  .targeting {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 24px 28px;
+    margin-bottom: 24px;
+    border-top: 3px solid var(--accent);
+  }
+  .targeting-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .targeting-grid .t-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+  .targeting-grid .t-value { font-size: 13.5px; color: var(--cream); line-height: 1.5; font-weight: 500; }
+
+  /* CTA TAG */
+  .cta-tag {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--bg);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 2px;
+    font-weight: 600;
+  }
+
+  /* KEYWORD PILLS */
+  .kw-row { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 16px 0; }
+  .kw {
+    background: var(--bg-3);
+    border: 1px solid var(--line-2);
+    color: var(--cream);
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 100px;
+    letter-spacing: 0.02em;
+  }
+  .kw.primary { background: var(--accent); color: var(--bg); border-color: var(--accent); font-weight: 600; }
+  .kw-group { margin-bottom: 16px; }
+  .kw-group h4 { font-family: var(--display); font-weight: 600; font-size: 11px; color: var(--accent); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 6px; }
+
+  /* BACK TO TOP */
+  .top-link { display: block; text-align: right; font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; color: var(--muted); margin: 32px 0 0 0; }
+  .top-link:hover { color: var(--accent); }
+
+  /* FOOTER */
+  .footer { margin-top: 64px; padding: 36px 56px; border-top: 1px solid var(--line); text-align: center; color: var(--muted); }
+  .footer .brand { margin-bottom: 12px; }
+  .footer .meta { font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em; color: var(--muted-2); text-transform: uppercase; }
+
+  /* PRINT */
+  @page { size: A4; margin: 14mm; }
+  @media print {
+    body { font-size: 10pt; }
+    .wrap, .hero, .toc, .intro-strip { padding: 0; max-width: none; }
+    .toc-grid { grid-template-columns: 1fr 1fr; }
+    .section-divider { page-break-before: always; }
+    .field, .targeting { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-top">
+    <div>
+      <div class="brand">WOLFBURN<span class="a">×</span>DIVERGENCE</div>
+      <div class="brand-sub">Meta ad campaigns · World Cup 2026 series</div>
+    </div>
+    <div class="classification">
+      Production-ready · Ads Manager
+      <strong>Rev 0.1</strong>
+      27 May 2026
+    </div>
+  </div>
+  <div class="hero-title">
+    <div class="hero-eyebrow">4 CAMPAIGNS · 13 AD CREATIVES · ALL FIELDS</div>
+    <h1>Four Meta campaigns. <span class="a">One World Cup.</span></h1>
+    <div class="hero-sub">Three match-day campaigns (one per Scotland fixture) plus one umbrella campaign for the wooden box set. Every field your Ads Manager needs: targeting, primary text, headlines, descriptions, CTAs, keywords, custom audiences.</div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="intro-strip">
+  <h2>What's in this document</h2>
+  <p>Four production-ready Meta campaign blueprints. <strong>Three match-specific campaigns</strong> activate around each Scotland fixture (Haiti, Morocco, Brazil) with the matching bottle as the hero product. <strong>One umbrella World Cup campaign</strong> runs across the full tournament window selling the wooden box of three. Each campaign includes targeting + interests + custom audiences + 3 ad creatives with multiple headline variants + keywords for Meta Ads interest seeding.</p>
+</section>
+
+<!-- TOC -->
+<section class="toc" id="contents">
+  <div class="toc-head">CONTENTS</div>
+  <h2>Four campaigns. <span class="a">Pick one to jump.</span></h2>
+  <div class="toc-grid">
+    <a href="#campaign-1" class="toc-card cream">
+      <div class="num">CAMPAIGN 1 · MATCH DAY</div>
+      <h3>Scotland v Haiti</h3>
+      <div class="meta">Sun 14 Jun · 21:00 BST · Foxborough</div>
+      <div class="count">10 YR · CREAM &amp; GOLD · 3 ad creatives</div>
+    </a>
+    <a href="#campaign-2" class="toc-card cobalt">
+      <div class="num">CAMPAIGN 2 · MATCH DAY</div>
+      <h3>Scotland v Morocco</h3>
+      <div class="meta">Fri 19 Jun · 20:00 BST · Foxborough</div>
+      <div class="count">8 YR · COBALT BLUE · 3 ad creatives</div>
+    </a>
+    <a href="#campaign-3" class="toc-card gold">
+      <div class="num">CAMPAIGN 3 · MATCH DAY</div>
+      <h3>Scotland v Brazil</h3>
+      <div class="meta">Wed 24 Jun · 02:00 BST · Miami</div>
+      <div class="count">12 YR · GOLDEN YELLOW · 3 ad creatives</div>
+    </a>
+    <a href="#campaign-4" class="toc-card umbrella">
+      <div class="num">CAMPAIGN 4 · UMBRELLA</div>
+      <h3>Drams for the Tartan Army</h3>
+      <div class="meta">Full tournament · all 3 bottles · the box</div>
+      <div class="count">SET · CORAL · 4 ad creatives</div>
+    </a>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <!-- ============================== CAMPAIGN 1 · HAITI ============================== -->
+  <div class="section-divider cream" id="campaign-1">
+    <div class="meta">
+      <span class="number">1</span>
+      <span class="type">Match Day · Scotland v Haiti</span>
+    </div>
+    <h2>Campaign 1 · <span class="a">The opener.</span></h2>
+    <div class="desc">The 10 Year Old, in cream and gold. Sunday 14 June, Foxborough, 21:00 BST. The optimistic-opening register. Sells the individual bottle plus drives box purchases.</div>
+  </div>
+
+  <div class="targeting" style="border-top-color: var(--label-cream);">
+    <div class="targeting-grid">
+      <div><div class="t-label">Campaign name</div><div class="t-value">WC26 · Match 1 · Haiti · 10YR</div></div>
+      <div><div class="t-label">Objective</div><div class="t-value">Conversions · purchase</div></div>
+      <div><div class="t-label">Channel</div><div class="t-value">Meta (FB + IG) · Reels</div></div>
+      <div><div class="t-label">Window</div><div class="t-value">7 Jun → 15 Jun (8 days)</div></div>
+      <div><div class="t-label">Budget</div><div class="t-value">£1,200 total · £150/day</div></div>
+      <div><div class="t-label">Geo</div><div class="t-value">UK · US · Canada · IE</div></div>
+      <div><div class="t-label">Age</div><div class="t-value">35-65</div></div>
+      <div><div class="t-label">Primary CTA</div><div class="t-value">Shop Now</div></div>
+    </div>
+  </div>
+
+  <!-- Ad 1 · Static -->
+  <div class="sub-head"><span class="badge" style="background: var(--label-cream);">Ad 1.1 · Static hero · Feed</span><h3>The bottle as the moment</h3><div class="note">Bottle hero shot on weathered oak with a Glencairn. Negative space top-right for headline overlay. 1:1 + 4:5 versions.</div></div>
+  <div class="field">
+    <div class="field-head"><span class="label">Headlines · test 3</span><span class="meta">27 char target</span></div>
+    <div class="field-body"><div class="variants"><ol><li>Sunday. 21:00. The 10 Year Old.</li><li>28 years. First match. First dram.</li><li>Mibbe aye, mibbe no. Foxborough.</li></ol></div></div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">Primary text</span><span class="meta">~125 char in-view</span></div>
+    <div class="field-body">On Sunday 14 June at 21:00 BST, Scotland plays a World Cup match for the first time since 1998. The Wolfburn 10 Year Old, in cream and gold, is the dram for the opener. Hand-bottled in Thurso. 35cl, 46% vol. Released as part of <em>Drams for the Tartan Army</em>.</div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">Description (link)</span></div>
+    <div class="field-body">Single malt Scotch whisky · 35cl · 46% vol</div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">CTA</span></div>
+    <div class="field-body"><span class="cta-tag">Shop Now</span></div>
+  </div>
+
+  <!-- Ad 2 · Carousel -->
+  <div class="sub-head"><span class="badge" style="background: var(--label-cream);">Ad 1.2 · Carousel · 4 frames</span><h3>The bottle, the label, the moment</h3><div class="note">Slide through: bottle hero → label close-up (date + venue + opponent) → pour ritual → the campaign tagline.</div></div>
+  <div class="field">
+    <div class="field-head"><span class="label">Frame 1 · cover headline</span></div>
+    <div class="field-body"><div class="variants"><ol><li>The opener. Scotland v Haiti.</li><li>The 10 Year Old. Hand-bottled in Thurso.</li></ol></div></div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">Frame 2 · label detail</span></div>
+    <div class="field-body">14 JUN 2026 · Foxborough USA · Aged 10 Years · 46% vol · Single Malt Scotch Whisky.</div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">Frame 3 · pour</span></div>
+    <div class="field-body">Pour it before the players come out. Sit it on the table. Let it breathe.</div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">Frame 4 · close + CTA</span></div>
+    <div class="field-body"><em>Mibbe aye, mibbe no. Fortune favours the brave.</em> → Reserve the set</div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">Primary text</span></div>
+    <div class="field-body">A 10-year-old single malt Scotch whisky, hand-bottled in Thurso, for Scotland's first World Cup match in twenty-eight years. Cream and gold label. Released as part of the Drams for the Tartan Army set.</div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">CTA</span></div>
+    <div class="field-body"><span class="cta-tag">Reserve</span></div>
+  </div>
+
+  <!-- Ad 3 · Reel -->
+  <div class="sub-head"><span class="badge" style="background: var(--label-cream);">Ad 1.3 · Reel / Story · 15s vertical</span><h3>Match-day energy</h3><div class="note">Quick cuts. Bottle reveal, pour, Glencairn close, label hold, end card. Audio: low-key Scottish folk or silent with on-screen text.</div></div>
+  <div class="field">
+    <div class="field-head"><span class="label">Hook · first 2 seconds</span></div>
+    <div class="field-body"><div class="variants"><ol><li>"Scotland plays Haiti on Sunday. We made you a thing."</li><li>"28 years of waiting. One bottle."</li></ol></div></div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">On-screen text overlay</span></div>
+    <div class="field-body">14 JUNE · 21:00 BST · FOXBOROUGH · THE 10 YEAR OLD · DRAMS FOR THE TARTAN ARMY · MIBBE AYE, MIBBE NO</div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">End-card headline</span></div>
+    <div class="field-body">The 10 Year Old. For the opener. Shop now.</div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">CTA</span></div>
+    <div class="field-body"><span class="cta-tag">Shop Now</span></div>
+  </div>
+
+  <!-- Interests + Keywords -->
+  <div class="sub-head"><span class="badge" style="background: var(--label-cream);">1.4 · Meta interests + custom audiences</span><h3>Audience targeting</h3><div class="note">Detailed targeting interests for Meta Ads + custom audience seed list for retargeting.</div></div>
+  <div class="field">
+    <div class="field-head"><span class="label">Detailed targeting · interests</span></div>
+    <div class="field-body">
+      <div class="kw-group">
+        <h4>Primary</h4>
+        <div class="kw-row"><span class="kw primary">Scotch whisky</span><span class="kw primary">Single malt whisky</span><span class="kw primary">Scotland national football team</span><span class="kw primary">Tartan Army</span></div>
+      </div>
+      <div class="kw-group">
+        <h4>Secondary</h4>
+        <div class="kw-row"><span class="kw">FIFA World Cup</span><span class="kw">2026 FIFA World Cup</span><span class="kw">Highland whisky</span><span class="kw">Premium spirits</span><span class="kw">The Macallan</span><span class="kw">Highland Park</span><span class="kw">Dalmore</span><span class="kw">Whisky tasting</span><span class="kw">Distillery tours</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">Custom audiences</span></div>
+    <div class="field-body">
+      <ul>
+        <li><strong>Wolfburn buyers · 365d</strong> · pixel-based (PUR event)</li>
+        <li><strong>Newsletter list</strong> · Klaviyo export (14k subscribers)</li>
+        <li><strong>Site visitors · 30d</strong> · pixel-based (PageView)</li>
+        <li><strong>Engaged IG followers · 90d</strong> · platform-native</li>
+      </ul>
+    </div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">Lookalikes</span></div>
+    <div class="field-body">
+      <ul>
+        <li>1% lookalike of <em>Wolfburn buyers 365d</em> (UK + US)</li>
+        <li>2% lookalike of <em>Newsletter list</em> (UK only)</li>
+        <li>3% lookalike of <em>Cart abandoners 60d</em> (UK)</li>
+      </ul>
+    </div>
+  </div>
+
+  <a class="top-link" href="#contents">↑ back to contents</a>
+
+  <!-- ============================== CAMPAIGN 2 · MOROCCO ============================== -->
+  <div class="section-divider cobalt" id="campaign-2">
+    <div class="meta">
+      <span class="number">2</span>
+      <span class="type">Match Day · Scotland v Morocco</span>
+    </div>
+    <h2>Campaign 2 · <span class="a">The match in the middle.</span></h2>
+    <div class="desc">The 8 Year Old, in cobalt blue. Friday 19 June, Foxborough, 20:00 BST. The cooler-composure register. Re-engages everyone who saw Campaign 1, adds new viewers.</div>
+  </div>
+
+  <div class="targeting" style="border-top-color: var(--cobalt);">
+    <div class="targeting-grid">
+      <div><div class="t-label">Campaign name</div><div class="t-value">WC26 · Match 2 · Morocco · 8YR</div></div>
+      <div><div class="t-label">Objective</div><div class="t-value">Conversions · purchase</div></div>
+      <div><div class="t-label">Channel</div><div class="t-value">Meta (FB + IG) · Reels</div></div>
+      <div><div class="t-label">Window</div><div class="t-value">15 Jun → 20 Jun (6 days)</div></div>
+      <div><div class="t-label">Budget</div><div class="t-value">£900 total · £150/day</div></div>
+      <div><div class="t-label">Geo</div><div class="t-value">UK · US · Canada · IE</div></div>
+      <div><div class="t-label">Age</div><div class="t-value">35-65</div></div>
+      <div><div class="t-label">Primary CTA</div><div class="t-value">Shop Now</div></div>
+    </div>
+  </div>
+
+  <div class="sub-head"><span class="badge" style="background: var(--cobalt); color: var(--cream);">Ad 2.1 · Static hero · Feed</span><h3>The cobalt bottle as composure</h3></div>
+  <div class="field">
+    <div class="field-head"><span class="label">Headlines · test 3</span></div>
+    <div class="field-body"><div class="variants"><ol><li>Friday. 20:00. The 8 Year Old.</li><li>Morocco at Foxborough. The cobalt one.</li><li>Composure, in 35cl. Mibbe aye, mibbe no.</li></ol></div></div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">Primary text</span></div>
+    <div class="field-body">On Friday 19 June at 20:00 BST, Scotland returns to Gillette Stadium to play Morocco. The Wolfburn 8 Year Old, in cobalt blue, is the dram for the second match. The cooler colour for the fixture the country has had five days to think about. Hand-bottled in Thurso.</div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">CTA</span></div>
+    <div class="field-body"><span class="cta-tag" style="background: var(--cobalt); color: var(--cream);">Shop Now</span></div>
+  </div>
+
+  <div class="sub-head"><span class="badge" style="background: var(--cobalt); color: var(--cream);">Ad 2.2 · Carousel · 4 frames</span><h3>Composure, in four panels</h3></div>
+  <div class="field">
+    <div class="field-head"><span class="label">Frame 1 · cover headline</span></div>
+    <div class="field-body"><div class="variants"><ol><li>The second match. The cobalt bottle.</li><li>Friday 19 June. The 8 Year Old.</li></ol></div></div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">Frame 2 · label detail</span></div>
+    <div class="field-body">19 JUN 2026 · Foxborough USA · Aged 8 Years · 46% vol · Single Malt Scotch Whisky.</div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">Frame 3 · ritual</span></div>
+    <div class="field-body">Pour it slowly. Do not look at the form guide. The fixture rewards composure.</div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">Frame 4 · close</span></div>
+    <div class="field-body"><em>Mibbe aye, mibbe no. Fortune favours the brave.</em> → Shop the set</div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">Primary text</span></div>
+    <div class="field-body">An 8-year-old single malt Scotch whisky for Scotland's second World Cup group match. The cooler colour for the match the country has had five days to think about. Hand-bottled in Thurso.</div>
+  </div>
+
+  <div class="sub-head"><span class="badge" style="background: var(--cobalt); color: var(--cream);">Ad 2.3 · Reel / Story · 12s vertical</span><h3>Five days of thinking</h3></div>
+  <div class="field">
+    <div class="field-head"><span class="label">Hook · first 2s</span></div>
+    <div class="field-body"><div class="variants"><ol><li>"Tomorrow night. Morocco. The cobalt bottle."</li><li>"Five days since the last one. Composure, in 35cl."</li></ol></div></div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">On-screen text overlay</span></div>
+    <div class="field-body">19 JUNE · 20:00 BST · FOXBOROUGH · THE 8 YEAR OLD · DO NOT LOOK AT THE FORM GUIDE</div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">CTA</span></div>
+    <div class="field-body"><span class="cta-tag" style="background: var(--cobalt); color: var(--cream);">Tap to Shop</span></div>
+  </div>
+
+  <div class="sub-head"><span class="badge" style="background: var(--cobalt); color: var(--cream);">2.4 · Interests + custom audiences</span><h3>Audience targeting</h3><div class="note">Layered on Campaign 1 audience. Add retargeting layer for everyone who saw Campaign 1 or visited the 10 Year Old PDP.</div></div>
+  <div class="field">
+    <div class="field-head"><span class="label">Detailed targeting · interests</span></div>
+    <div class="field-body">
+      <div class="kw-group">
+        <h4>Primary</h4>
+        <div class="kw-row"><span class="kw primary">Scotch whisky</span><span class="kw primary">Single malt whisky</span><span class="kw primary">Scotland national football team</span><span class="kw primary">Tartan Army</span></div>
+      </div>
+      <div class="kw-group">
+        <h4>New for this campaign</h4>
+        <div class="kw-row"><span class="kw">Football fans</span><span class="kw">Premier League</span><span class="kw">Scottish football</span><span class="kw">Glencairn glassware</span><span class="kw">Whisky collectors</span><span class="kw">Single Malt &amp; Co</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">Retargeting custom audiences</span></div>
+    <div class="field-body">
+      <ul>
+        <li><strong>Campaign 1 viewers · 7d</strong> · saw the Haiti ads, did not convert</li>
+        <li><strong>10 Year Old PDP visitors · 7d</strong> · viewed but did not add to cart</li>
+        <li><strong>Engaged with Wolfburn IG post · 14d</strong> · platform-native</li>
+        <li>+ all standing audiences from Campaign 1</li>
+      </ul>
+    </div>
+  </div>
+
+  <a class="top-link" href="#contents">↑ back to contents</a>
+
+  <!-- ============================== CAMPAIGN 3 · BRAZIL ============================== -->
+  <div class="section-divider gold" id="campaign-3">
+    <div class="meta">
+      <span class="number">3</span>
+      <span class="type">Match Day · Scotland v Brazil</span>
+    </div>
+    <h2>Campaign 3 · <span class="a">The big one.</span></h2>
+    <div class="desc">The 12 Year Old, in golden yellow. Wednesday 24 June, Miami, 02:00 BST. The flagship for the flagship match. Highest-spend match day campaign of the three.</div>
+  </div>
+
+  <div class="targeting" style="border-top-color: var(--gold);">
+    <div class="targeting-grid">
+      <div><div class="t-label">Campaign name</div><div class="t-value">WC26 · Match 3 · Brazil · 12YR</div></div>
+      <div><div class="t-label">Objective</div><div class="t-value">Conversions · purchase</div></div>
+      <div><div class="t-label">Channel</div><div class="t-value">Meta · Reels · YouTube Shorts via Meta Mix</div></div>
+      <div><div class="t-label">Window</div><div class="t-value">20 Jun → 25 Jun (6 days)</div></div>
+      <div><div class="t-label">Budget</div><div class="t-value">£1,400 total · £230/day</div></div>
+      <div><div class="t-label">Geo</div><div class="t-value">UK · US · Canada · IE · AU</div></div>
+      <div><div class="t-label">Age</div><div class="t-value">35-70</div></div>
+      <div><div class="t-label">Primary CTA</div><div class="t-value">Shop Now</div></div>
+    </div>
+  </div>
+
+  <div class="sub-head"><span class="badge" style="background: var(--gold);">Ad 3.1 · Static hero · Feed</span><h3>Gold for the marquee fixture</h3></div>
+  <div class="field">
+    <div class="field-head"><span class="label">Headlines · test 3</span></div>
+    <div class="field-body"><div class="variants"><ol><li>Wednesday 02:00. Miami. Brazil.</li><li>The flagship. For the flagship match.</li><li>The 12 Year Old. Stay up.</li></ol></div></div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">Primary text</span></div>
+    <div class="field-body">On Wednesday 24 June at 02:00 BST, Scotland plays Brazil at the Hard Rock Stadium in Miami. The Wolfburn 12 Year Old, in golden yellow, is the flagship of our range. Twelve years in oak. Gold because that's what the moment asks for, regardless of which way it goes.</div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">CTA</span></div>
+    <div class="field-body"><span class="cta-tag" style="background: var(--gold);">Shop Now</span></div>
+  </div>
+
+  <div class="sub-head"><span class="badge" style="background: var(--gold);">Ad 3.2 · Carousel · 4 frames</span><h3>For the marquee match</h3></div>
+  <div class="field">
+    <div class="field-head"><span class="label">Frame 1 · cover headline</span></div>
+    <div class="field-body"><div class="variants"><ol><li>Brazil. Miami. The 12 Year Old.</li><li>The deepest dram. The deepest moment.</li></ol></div></div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">Frame 2 · label detail</span></div>
+    <div class="field-body">24 JUN 2026 · Hard Rock Stadium, Miami USA · Aged 12 Years · 46% vol · Single Malt Scotch Whisky.</div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">Frame 3 · the late-night ritual</span></div>
+    <div class="field-body">Pour it between half-past one and a quarter to two. Sit it on the side table. Do not look at the form guide.</div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">Frame 4 · close + CTA</span></div>
+    <div class="field-body"><em>Mibbe aye, mibbe no. Fortune favours the brave.</em> → Reserve the box</div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">Primary text</span></div>
+    <div class="field-body">Wolfburn 12 Year Old. The flagship of our range. Hand-selected Oloroso sherry butts and ex-bourbon casks. Twelve years in oak in a building on the very top edge of Scotland. Gold for the deepest moment.</div>
+  </div>
+
+  <div class="sub-head"><span class="badge" style="background: var(--gold);">Ad 3.3 · 20s video · the late-night cut</span><h3>For the night-owl segment</h3></div>
+  <div class="field">
+    <div class="field-head"><span class="label">VO open · first 3s</span></div>
+    <div class="field-body"><div class="variants"><ol><li>"Tonight, between Tuesday and Wednesday, at two o'clock in the morning, Scotland plays Brazil."</li><li>"Stay up. The 12 Year Old is on the side table."</li></ol></div></div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">End card</span></div>
+    <div class="field-body">THE 12 YEAR OLD · DRAMS FOR THE TARTAN ARMY · WOLFBURN.COM · FORTUNE FAVOURS THE BRAVE</div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">CTA</span></div>
+    <div class="field-body"><span class="cta-tag" style="background: var(--gold);">Reserve</span></div>
+  </div>
+
+  <div class="sub-head"><span class="badge" style="background: var(--gold);">3.4 · Interests + custom audiences</span><h3>Audience targeting · broader than M1/M2</h3><div class="note">Brazil match draws a wider audience including non-Scottish football fans curious about the David vs Goliath fixture. Widen the net.</div></div>
+  <div class="field">
+    <div class="field-head"><span class="label">Detailed targeting · interests</span></div>
+    <div class="field-body">
+      <div class="kw-group">
+        <h4>Primary</h4>
+        <div class="kw-row"><span class="kw primary">Scotch whisky</span><span class="kw primary">Single malt whisky</span><span class="kw primary">Brazil national football team</span><span class="kw primary">FIFA World Cup</span><span class="kw primary">Tartan Army</span></div>
+      </div>
+      <div class="kw-group">
+        <h4>Secondary</h4>
+        <div class="kw-row"><span class="kw">Luxury spirits</span><span class="kw">Whisky collectors</span><span class="kw">Single malt collectors</span><span class="kw">Glenfiddich</span><span class="kw">Glenmorangie</span><span class="kw">Premium gifting</span><span class="kw">Cigar enthusiasts</span><span class="kw">Late-night sport viewing</span></div>
+      </div>
+      <div class="kw-group">
+        <h4>Behavioural</h4>
+        <div class="kw-row"><span class="kw">Online buyers · luxury</span><span class="kw">Engaged shoppers</span><span class="kw">Premium goods buyers</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">Retargeting custom audiences</span></div>
+    <div class="field-body">
+      <ul>
+        <li><strong>Campaign 1 + 2 viewers · 14d</strong> · saw the previous match-day ads</li>
+        <li><strong>12 Year Old PDP visitors · 14d</strong> · viewed flagship, did not buy</li>
+        <li><strong>Box-set PDP visitors · 14d</strong> · serious-intent retarget</li>
+        <li><strong>Cart abandoners · 7d</strong> · lower-funnel close</li>
+      </ul>
+    </div>
+  </div>
+
+  <a class="top-link" href="#contents">↑ back to contents</a>
+
+  <!-- ============================== CAMPAIGN 4 · UMBRELLA ============================== -->
+  <div class="section-divider" id="campaign-4">
+    <div class="meta">
+      <span class="number">4</span>
+      <span class="type">Umbrella · The whole World Cup · The Box</span>
+    </div>
+    <h2>Campaign 4 · <span class="a">Drams for the Tartan Army.</span></h2>
+    <div class="desc">The flagship campaign. Sells the wooden box of three. Runs across the full 27-day tournament window. Highest budget, broadest audience, hardest-working creative. Drives the campaign hero product.</div>
+  </div>
+
+  <div class="targeting">
+    <div class="targeting-grid">
+      <div><div class="t-label">Campaign name</div><div class="t-value">WC26 · Umbrella · The Box · DTTA</div></div>
+      <div><div class="t-label">Objective</div><div class="t-value">Conversions · purchase (box)</div></div>
+      <div><div class="t-label">Channel</div><div class="t-value">Meta · Reels · Stories · IG Shop</div></div>
+      <div><div class="t-label">Window</div><div class="t-value">31 May → 26 Jun (27 days)</div></div>
+      <div><div class="t-label">Budget</div><div class="t-value">£3,500 total · £130/day</div></div>
+      <div><div class="t-label">Geo</div><div class="t-value">UK · US · EU · Canada · AU · IE</div></div>
+      <div><div class="t-label">Age</div><div class="t-value">35-72</div></div>
+      <div><div class="t-label">Primary CTA</div><div class="t-value">Reserve Set</div></div>
+    </div>
+  </div>
+
+  <div class="sub-head"><span class="badge">Ad 4.1 · Hero static · the box</span><h3>The campaign hero shot</h3><div class="note">Wooden box open, three bottles visible in their moulded recesses. Editorial register. Negative space for headline.</div></div>
+  <div class="field">
+    <div class="field-head"><span class="label">Headlines · test 3</span></div>
+    <div class="field-body"><div class="variants"><ol><li>Three matches. Three drams. One summer.</li><li>A World Cup, in three bottles.</li><li>Drams for the Tartan Army.</li></ol></div></div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">Primary text</span></div>
+    <div class="field-body">Scotland's first World Cup in twenty-eight years. Three Wolfburn single malt Scotch whiskies, hand-bottled in Thurso, one for each group match. <strong>The 10 Year Old</strong> for Haiti. <strong>The 8 Year Old</strong> for Morocco. <strong>The 12 Year Old</strong> for Brazil. Released together in a wooden box. Limited.</div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">Description (link)</span></div>
+    <div class="field-body">Hand-bottled in Thurso · 35cl × 3 · 46% vol</div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">CTA</span></div>
+    <div class="field-body"><span class="cta-tag">Reserve Set</span></div>
+  </div>
+
+  <!-- Ad 4.2 -->
+  <div class="sub-head"><span class="badge">Ad 4.2 · Carousel · the three bottles</span><h3>The set, panel by panel</h3><div class="note">Wooden box → bottle 1 (Haiti) → bottle 2 (Morocco) → bottle 3 (Brazil) → call-to-reserve.</div></div>
+  <div class="field">
+    <div class="field-head"><span class="label">Frame 1 · cover</span></div>
+    <div class="field-body">Three matches. Three drams. One summer.</div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">Frame 2 · Haiti</span></div>
+    <div class="field-body">10 Year Old · 14 Jun · Foxborough · 21:00 BST</div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">Frame 3 · Morocco</span></div>
+    <div class="field-body">8 Year Old · 19 Jun · Foxborough · 20:00 BST</div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">Frame 4 · Brazil</span></div>
+    <div class="field-body">12 Year Old · 24 Jun · Miami · 02:00 BST</div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">Frame 5 · close</span></div>
+    <div class="field-body">A wooden box of three. Limited Wolfburn release. Reserve →</div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">Primary text</span></div>
+    <div class="field-body"><em>Drams for the Tartan Army</em>. A wooden box of three single malt Scotch whiskies for Scotland's three group matches at the 2026 World Cup. One for each match. Open them in order. Pour them whichever way the result goes.</div>
+  </div>
+
+  <!-- Ad 4.3 -->
+  <div class="sub-head"><span class="badge">Ad 4.3 · 30s film · long-form storytelling</span><h3>The heritage piece</h3><div class="note">Cinematic. VO-led. Bottle and box in atmospheric Wolfburn settings. For YouTube via Meta Mix + IG In-stream.</div></div>
+  <div class="field">
+    <div class="field-head"><span class="label">VO open · first 5s</span></div>
+    <div class="field-body"><div class="variants"><ol><li>"Twenty-eight years. Three matches. Three single malt Scotch whiskies."</li><li>"On Sunday 14 June, Scotland plays a World Cup match for the first time since 1998."</li></ol></div></div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">VO middle</span></div>
+    <div class="field-body">"Three matches. One for Haiti. One for Morocco. One for Brazil. We have made the dram for each one. Hand-bottled in Thurso. Released together in a wooden box. The box does not require a particular result to justify itself. It has been here longer than the result."</div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">End card</span></div>
+    <div class="field-body">DRAMS FOR THE TARTAN ARMY · MIBBE AYE, MIBBE NO · FORTUNE FAVOURS THE BRAVE</div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">CTA</span></div>
+    <div class="field-body"><span class="cta-tag">Reserve Set</span></div>
+  </div>
+
+  <!-- Ad 4.4 -->
+  <div class="sub-head"><span class="badge">Ad 4.4 · Retargeting · cart abandon</span><h3>The closing ad</h3><div class="note">Runs in the final 72 hours before launch and throughout the match window. Triggers on AddToCart-no-Purchase events.</div></div>
+  <div class="field">
+    <div class="field-head"><span class="label">Headlines</span></div>
+    <div class="field-body"><div class="variants"><ol><li>The box is going. The first match is Sunday.</li><li>We're not making many. We're not repeating the summer.</li><li>The box you left in your cart. Limited release.</li></ol></div></div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">Primary text</span></div>
+    <div class="field-body">You left without finishing. <em>Drams for the Tartan Army</em> is a single Wolfburn release for Scotland's first World Cup in twenty-eight years. When the box is gone, the box is gone. The first match is on Sunday.</div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">CTA</span></div>
+    <div class="field-body"><span class="cta-tag">Complete Order</span></div>
+  </div>
+
+  <div class="sub-head"><span class="badge">4.5 · Interests + custom audiences</span><h3>Broadest audience of the four campaigns</h3></div>
+  <div class="field">
+    <div class="field-head"><span class="label">Detailed targeting · interests</span></div>
+    <div class="field-body">
+      <div class="kw-group">
+        <h4>Primary</h4>
+        <div class="kw-row"><span class="kw primary">Scotch whisky</span><span class="kw primary">Single malt whisky</span><span class="kw primary">Whisky gift sets</span><span class="kw primary">FIFA World Cup</span><span class="kw primary">Scotland national football team</span><span class="kw primary">Tartan Army</span></div>
+      </div>
+      <div class="kw-group">
+        <h4>Premium gifting</h4>
+        <div class="kw-row"><span class="kw">Premium spirits</span><span class="kw">Luxury gifts</span><span class="kw">Fathers Day gifts</span><span class="kw">Whisky collectors</span><span class="kw">Limited edition spirits</span><span class="kw">Scotch whisky societies</span><span class="kw">The Macallan</span><span class="kw">Dalmore</span><span class="kw">Glenmorangie</span><span class="kw">The Balvenie</span></div>
+      </div>
+      <div class="kw-group">
+        <h4>Sport + cultural</h4>
+        <div class="kw-row"><span class="kw">Football</span><span class="kw">Scottish culture</span><span class="kw">Caithness</span><span class="kw">Highland tourism</span><span class="kw">North Coast 500</span><span class="kw">Edinburgh</span><span class="kw">Burns Night</span><span class="kw">Scottish heritage</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">Custom audiences</span></div>
+    <div class="field-body">
+      <ul>
+        <li><strong>All Wolfburn buyers · 730d</strong> · widest pixel audience</li>
+        <li><strong>Full newsletter list</strong> · Klaviyo export (14k subscribers)</li>
+        <li><strong>Site visitors · 60d</strong> · broad reach pool</li>
+        <li><strong>Engaged with any WC26 ad · 14d</strong> · captures cross-campaign warm audience</li>
+        <li><strong>Box-set PDP visitors · 30d</strong> · highest-intent retarget</li>
+        <li><strong>AddToCart no-Purchase · 7d</strong> · feeds Ad 4.4</li>
+      </ul>
+    </div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">Lookalikes</span></div>
+    <div class="field-body">
+      <ul>
+        <li>1% lookalike · Box-set PDP visitors (UK)</li>
+        <li>2% lookalike · Wolfburn buyers 730d (UK + IE + US)</li>
+        <li>3% lookalike · Newsletter list (UK + IE)</li>
+        <li>1% lookalike · Limited Edition buyers 365d (international)</li>
+      </ul>
+    </div>
+  </div>
+
+  <a class="top-link" href="#contents">↑ back to contents</a>
+
+  <!-- ============================== APPENDIX ============================== -->
+  <div class="section-divider" id="appendix">
+    <div class="meta">
+      <span class="number">A</span>
+      <span class="type">Appendix · tracking, budget, benchmarks</span>
+    </div>
+    <h2>Tracking + <span class="a">budget + benchmarks.</span></h2>
+    <div class="desc">Pixel events, UTM convention, budget allocation across the four campaigns, performance benchmarks to call winners by day 7.</div>
+  </div>
+
+  <div class="sub-head"><h3>Pixel events to track</h3></div>
+  <div class="field">
+    <div class="field-head"><span class="label">Standard events</span></div>
+    <div class="field-body">
+      <ul>
+        <li><strong>PageView</strong> · all PDPs · for retargeting + LAL seed</li>
+        <li><strong>ViewContent</strong> · individual product PDPs (10yr, 8yr, 12yr, box)</li>
+        <li><strong>AddToCart</strong> · cart_id, value, currency</li>
+        <li><strong>InitiateCheckout</strong> · funnel midpoint</li>
+        <li><strong>Purchase</strong> · value, currency, content_ids, content_type=product</li>
+      </ul>
+    </div>
+  </div>
+  <div class="field">
+    <div class="field-head"><span class="label">Custom conversions</span></div>
+    <div class="field-body">
+      <ul>
+        <li><strong>WC26_BoxPurchase</strong> · Purchase event where content_ids contains the box SKU</li>
+        <li><strong>WC26_BottlePurchase</strong> · Purchase where content_ids matches any of the three individual bottles</li>
+        <li><strong>WC26_NewsletterSignup</strong> · footer / PDP email capture form submit</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sub-head"><h3>UTM parameter convention</h3></div>
+  <div class="field">
+    <div class="field-head"><span class="label">URL pattern</span></div>
+    <div class="field-body" style="font-family: var(--mono); font-size: 12.5px;">
+      <p>?utm_source=<strong>meta</strong>&amp;utm_medium=<strong>paid_social</strong>&amp;utm_campaign=<strong>wc26_match[1-3]</strong> | <strong>wc26_umbrella</strong>&amp;utm_content=<strong>ad[1-4]_[static|carousel|reel|video]</strong>&amp;utm_term=<strong>headline_var[1-3]</strong></p>
+      <p style="margin-top: 12px; color: var(--muted);">Example: <code>?utm_source=meta&amp;utm_medium=paid_social&amp;utm_campaign=wc26_match1&amp;utm_content=ad1_static&amp;utm_term=headline_var2</code></p>
+    </div>
+  </div>
+
+  <div class="sub-head"><h3>Total budget allocation</h3></div>
+  <div class="field">
+    <div class="field-head"><span class="label">Spend split across the 4 campaigns</span><span class="meta">£7,000 total</span></div>
+    <div class="field-body">
+      <ul>
+        <li><strong>Campaign 1 · Haiti · 10YR</strong> · £1,200 (17%)</li>
+        <li><strong>Campaign 2 · Morocco · 8YR</strong> · £900 (13%)</li>
+        <li><strong>Campaign 3 · Brazil · 12YR</strong> · £1,400 (20%)</li>
+        <li><strong>Campaign 4 · Umbrella · The Box</strong> · £3,500 (50%)</li>
+      </ul>
+      <p style="margin-top: 14px;">Total: <strong>£7,000</strong> across 27 days · average £259/day blended · the umbrella campaign carries the largest share because it runs the longest and sells the highest-AOV product.</p>
+    </div>
+  </div>
+
+  <div class="sub-head"><h3>Performance benchmarks · call winners by day 7</h3></div>
+  <div class="field">
+    <div class="field-head"><span class="label">Targets per campaign</span></div>
+    <div class="field-body">
+      <ul>
+        <li><strong>ROAS</strong> · target 3.0× blended across all four campaigns</li>
+        <li><strong>CTR · feed static</strong> · &gt; 1.8% (Wolfburn historical baseline 1.6%)</li>
+        <li><strong>CTR · reels</strong> · &gt; 1.2%</li>
+        <li><strong>CPM</strong> · &lt; £14 UK · &lt; £18 US</li>
+        <li><strong>CPC</strong> · &lt; £0.80 UK</li>
+        <li><strong>Conversion rate (PDP → purchase)</strong> · &gt; 2.4% (storefront baseline 1.99%)</li>
+      </ul>
+      <p style="margin-top: 14px;">If any ad creative is below target after 48 hours and £100 spend, pause it. If a campaign is below target after 72 hours, refresh creative (don't kill the campaign yet). Refresh creative every 7 days regardless of performance to avoid fatigue.</p>
+    </div>
+  </div>
+
+  <a class="top-link" href="#contents">↑ back to contents</a>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="brand">WOLFBURN<span class="a">×</span>DIVERGENCE</div>
+  <div class="meta">Meta ad campaigns · World Cup 2026 · rev 0.1 · 27 May 2026</div>
+  <div class="meta" style="margin-top: 6px;">Internal · production-ready · paste into Ads Manager</div>
+</div>
+
+</body>
+</html>
